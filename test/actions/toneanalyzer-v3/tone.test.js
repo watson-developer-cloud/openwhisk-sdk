@@ -22,10 +22,8 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Undefined parameters error was not found');
       })
       .catch((err) => {
-        assert(
-          err.message ===
-            'Argument error: username and password are required unless use_unauthenticated is set',
-        );
+        assert(err.message ===
+            'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
 
@@ -37,10 +35,8 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Null parameters error was not found');
       })
       .catch((err) => {
-        assert(
-          err.message ===
-            'Argument error: username and password are required unless use_unauthenticated is set',
-        );
+        assert(err.message ===
+            'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
 
@@ -56,10 +52,8 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Missing username error was not found');
       })
       .catch((err) => {
-        assert(
-          err.message ===
-            'Argument error: username and password are required unless use_unauthenticated is set',
-        );
+        assert(err.message ===
+            'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
 
@@ -75,10 +69,8 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Missing password error was not found');
       })
       .catch((err) => {
-        assert(
-          err.message ===
-            'Argument error: username and password are required unless use_unauthenticated is set',
-        );
+        assert(err.message ===
+            'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
 
@@ -94,10 +86,8 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Missing version_date error was not found');
       })
       .catch((err) => {
-        assert(
-          err.message ===
-            'Argument error: version_date was not specified, use 2016-05-19',
-        );
+        assert(err.message ===
+            'Argument error: version_date was not specified, use 2016-05-19');
       });
   });
 

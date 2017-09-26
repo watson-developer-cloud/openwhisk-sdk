@@ -7,6 +7,7 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {Boolean} [params.use_unauthenticated] - Skip credential requirement
  * @param {Object} [params.headers]
  * @param {Boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - Opt-out of data collection
+ * @param {String} [params.url] - Override default service base url
  * @param {String} params.version_date - The ToneAnalyzer service version date
  * @param {String} params.text - The Text To Be Analyzed For Tone
  * @param {String} [params.tone = ['emotion','language','social']] - A list of tones for which the

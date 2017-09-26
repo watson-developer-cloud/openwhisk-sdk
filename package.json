@@ -1,21 +1,34 @@
 {
   "name": "openwhisk-sdk",
-  "version": "1.0.0",
-  "description": "Openwhisk actions for watson services",
+  "version": "0.0.1",
+  "description": "Openwhisk SDK",
   "main": "index.js",
-  "directories": {
-    "test": "test"
+  "scripts": {
+    "test": "jest test --coverage",
+    "lint": "eslint .",
+    "autofix": "eslint --fix ."
+  },
+  "keywords": [
+    "openwhisk",
+    "watson",
+    "ibm-watson"
+  ],
+  "author": "IBM Corp",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^3.5.3",
+    "nock": "^9.0.21",
+    "watson-developer-cloud": "^2.39.0"
   },
   "devDependencies": {
-    "watson-developer-cloud": "^2.37.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^21.1.0",
+    "prettier-eslint": "^8.1.1"
   },
   "repository": {
     "type": "git",
     "url": "git@github.ibm.com:Watson/openwhisk-sdk.git"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }

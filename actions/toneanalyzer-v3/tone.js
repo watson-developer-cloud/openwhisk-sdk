@@ -13,8 +13,7 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * service to return its analysis of the input
  * @param {Boolean} [params.sentences = true] - Indicates whether the service is to
  * return an analysis of each individual sentence in addition to its analysis of the full document
- * @param {Boolean} [params.isHTML = true] - Indicates whether the text parameter provides HTML input
- * 
+ * @param {Boolean} [params.isHTML = true] - Indicates the text parameter provides HTML input
  * @return {Promise}
  */
 function main(params) {

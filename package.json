@@ -1,0 +1,21 @@
+{
+  "name": "openwhisk-sdk",
+  "version": "1.0.0",
+  "description": "Openwhisk actions for watson services",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "watson-developer-cloud": "^2.37.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.ibm.com:Watson/openwhisk-sdk.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

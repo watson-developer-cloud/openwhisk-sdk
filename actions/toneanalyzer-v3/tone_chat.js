@@ -1,0 +1,39 @@
+const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+/**
+ * @param {Object} params - The parameters object
+ * @param {String} [params.username] - The ToneAnalyzer service username
+ * @param {String} [params.password] - The ToneAnalyzer service password
+ * @param {Boolean} [params.use_unauthenticated] - Skip credential requirement
+ * @param {Object} [params.headers]
+ * @param {Boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - Opt-out of data collection
+ * @param {String} [params.url] - Override default service base url
+ * @param {String} params.version_date - The ToneAnalyzer service version date
+ * @param {Object[]} params.utterences - An array of Utterance objects to analyze
+ * @param {String} [params.tone = ['emotion','language','social']] - A list of tones for which the
+ * service to return its analysis of the input
+ * @param {Boolean} [params.sentences = true] - Indicates whether the service is to
+ * return an analysis of each individual sentence in addition to its analysis of the full document
+ * @param {Boolean} [params.isHTML = true] - Indicates the text parameter provides HTML input
+ * @return {Promise}
+ */
+function main(params) {
+  return new Promise((resolve, reject) => {
+    let service;
+    try {
+      service = new ToneAnalyzerV3(params);
+    } catch (err) {
+      reject(err);
+    }
+
+    service.tone_chat(params, (err, tone) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(tone);
+      }
+    });
+  });
+}
+
+module.exports.main = main;

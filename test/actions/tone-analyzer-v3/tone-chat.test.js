@@ -1,6 +1,6 @@
 const assert = require('assert');
 const nock = require('nock');
-const action = require('../../../actions/tone-analyzer-v3/tone_chat');
+const action = require('../../../actions/tone-analyzer-v3/tone-chat');
 
 describe('[action] ToneAnalyzer', () => {
   beforeEach(() => {

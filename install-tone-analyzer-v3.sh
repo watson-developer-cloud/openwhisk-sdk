@@ -176,7 +176,7 @@ $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/t
   ]
 }'
 
-$WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/tone_chat" "$PACKAGE_HOME/actions/toneanalyzer-v3/tone_chat.js" \
+$WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/tone-chat" "$PACKAGE_HOME/actions/toneanalyzer-v3/tone-chat.js" \
 -a description 'Analyzes customer engagement tone' \
 -a parameters \
 '[

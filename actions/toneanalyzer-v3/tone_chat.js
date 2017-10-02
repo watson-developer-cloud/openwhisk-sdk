@@ -9,7 +9,7 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {Boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - Opt-out of data collection
  * @param {String} [params.url] - Override default service base url
  * @param {String} params.version_date - The ToneAnalyzer service version date
- * @param {String} params.text - The Text To Be Analyzed For Tone
+ * @param {Object[]} params.utterences - An array of Utterance objects to analyze
  * @param {String} [params.tone = ['emotion','language','social']] - A list of tones for which the
  * service to return its analysis of the input
  * @param {Boolean} [params.sentences = true] - Indicates whether the service is to
@@ -26,7 +26,7 @@ function main(params) {
       reject(err);
     }
 
-    service.tone(params, (err, tone) => {
+    service.tone_chat(params, (err, tone) => {
       if (err) {
         reject(err);
       } else {

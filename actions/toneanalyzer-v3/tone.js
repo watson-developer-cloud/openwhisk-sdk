@@ -19,7 +19,12 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const service = new ToneAnalyzerV3(params);
+    let service;
+    try {
+      service = new ToneAnalyzerV3(params);
+    } catch (err) {
+      reject(err);
+    }
 
     service.tone(params, (err, tone) => {
       if (err) {

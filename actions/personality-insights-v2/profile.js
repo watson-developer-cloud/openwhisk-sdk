@@ -13,11 +13,7 @@ const PersonalityInsightsV2 = require('watson-developer-cloud/personality-insigh
  * @param {Boolean} [params.include_raw=false] -  include raw results
  * @param {String} [params.accept_language=en] - The language expected for the output
  * @param {String} [params.language=en] - the language of the input
- *
  * @return {Promise}
- */
-/**
- * Internal base class that other services inherit from
  */
 function main(params) {
   return new Promise((resolve, reject) => {

@@ -46,7 +46,7 @@ $WSK_CLI package update ${PACKAGE_NAME} --shared yes --auth "$AUTH"  --apihost "
 ]' \
 -a prettyName "Watson Tone Analyzer V3"
 
-$WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/tone" "$PACKAGE_HOME/actions/toneanalyzer-v3/tone.js" \
+$WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/tone" "$PACKAGE_HOME/actions/tone-analyzer-v3/tone.js" \
 -a description "Analyzes the tone of text" \
 -a parameters \
 '[

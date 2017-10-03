@@ -1,11 +1,11 @@
 const assert = require('assert');
 const nock = require('nock');
-const action = require('../../../actions/toneanalyzer-v3/tone');
+const action = require('../../../actions/tone-analyzer-v3/tone-chat');
 
 describe('[action] ToneAnalyzer', () => {
   beforeEach(() => {
     nock('https://gateway.watsonplatform.net/tone-analyzer')
-      .post('/api/v3/tone')
+      .post('/api/v3/tone_chat')
       .query({
         version: 'fake version date',
       })
@@ -43,7 +43,7 @@ describe('[action] ToneAnalyzer', () => {
   it('should fail if username is not provided', () => {
     const params = {
       password: 'fake password',
-      text: 'fake text',
+      utterances: [{ text: 'fake text', user: 'fake user' }],
       version_date: 'fake version date',
     };
     return action
@@ -60,7 +60,7 @@ describe('[action] ToneAnalyzer', () => {
   it('should fail if password is not provided', () => {
     const params = {
       username: 'fake username',
-      text: 'fake text',
+      utterances: [{ text: 'fake text', user: 'fake user' }],
       version_date: 'fake version date',
     };
     return action
@@ -78,7 +78,7 @@ describe('[action] ToneAnalyzer', () => {
     const params = {
       username: 'fake username',
       password: 'fake password',
-      text: 'fake text',
+      utterances: [{ text: 'fake text', user: 'fake user' }],
     };
     return action
       .main(params)
@@ -91,7 +91,7 @@ describe('[action] ToneAnalyzer', () => {
       });
   });
 
-  it('should fail if text is not provided', () => {
+  it('should fail if utterances is not provided', () => {
     const params = {
       username: 'fake username',
       password: 'fake password',
@@ -101,10 +101,10 @@ describe('[action] ToneAnalyzer', () => {
     return action
       .main(params)
       .then(() => {
-        assert.fail('Missing text error was not found');
+        assert.fail('Missing utterances error was not found');
       })
       .catch((err) => {
-        assert(err.message === 'Missing required parameters: text');
+        assert(err.message === 'Missing required parameters: utterances');
       });
   });
 
@@ -113,7 +113,7 @@ describe('[action] ToneAnalyzer', () => {
       username: 'fake username',
       password: 'fake password',
       version_date: 'fake version date',
-      text: 'fake text',
+      utterances: [{ text: 'fake text', user: 'fake user' }],
     };
 
     return action
@@ -126,7 +126,7 @@ describe('[action] ToneAnalyzer', () => {
 
   it('it should pass if username and password are omitted but use_unauthenticated is set', () => {
     const params = {
-      text: 'fake text',
+      utterances: [{ text: 'fake text', user: 'fake user' }],
       version_date: 'fake version date',
       use_unauthenticated: true,
     };

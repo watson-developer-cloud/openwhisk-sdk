@@ -6,7 +6,7 @@ script:
 - npm test
 #need to make sure wsk is installed prior to the deployment script running
 before_install:
-- wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
+- sudo wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
 - export PATH=$PATH:"/usr/local/bin/wsk"
 deploy:
   # deploy develop to the staging

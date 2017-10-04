@@ -1,0 +1,9 @@
+{
+    "description": "Actions for Watson Personality Insights V3",
+    "parameters":
+    [
+        {"name":"username", "required":false, "bindTime":true, "description":"The Personality Insights service username"},
+        {"name":"password", "required":false, "bindTime":true, "description":"The Personality Insights service password"}
+    ],
+    "prettyName": "Watson Personality Insights V3"
+}

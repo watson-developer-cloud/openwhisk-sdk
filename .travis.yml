@@ -4,3 +4,18 @@ node_js: 6
 script:
 - npm run lint
 - npm test
+#need to make sure wsk is installed prior to the deployment script running
+before_install:
+- wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
+- export PATH=$PATH:"/usr/local/bin/wsk"
+deploy:
+  # deploy develop to the staging
+  - provider: script
+    script: python deploy.py staging
+    on:
+      branch: develop
+  # deploy master to production
+  - provider: script
+    script: python deploy.py staging #should be changed to production later
+    on:
+      branch: master

@@ -23,12 +23,12 @@ function main(params) {
     try {
       service = new ToneAnalyzerV3(params);
     } catch (err) {
-      reject(err);
+      reject(err.message);
     }
 
     service.tone_chat(params, (err, tone) => {
       if (err) {
-        reject(err);
+        reject(err.message);
       } else {
         resolve(tone);
       }

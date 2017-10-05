@@ -6,7 +6,7 @@ import sys
 is_staging = True
 
 #GLOBAL ENVIRONMENT VARIABLES
-API_HOST = os.environ['API_HOST'] if is_staging else os.environ['PROD_API_HOST']
+API_HOST = None
 AUTH = os.environ['AUTH']
 WSK_CLI = os.environ['WSK_CLI']
 
@@ -58,10 +58,11 @@ def deploy_action(package_name,action_name,deployment_command):
     os.system(deployment_command)
 
 def deploy():
-    global is_staging
+    global is_staging, API_HOST
     assert len(sys.argv)==2, "Must specify either 'production' or 'staging' as a command line option"
     assert sys.argv[1]=='staging' or sys.argv[1]=='production', "invalid option {}".format(sys.argv[1])
     is_staging = True if sys.argv[1]=='staging' else False
+    API_HOST = os.environ['API_HOST'] if is_staging else os.environ['PROD_API_HOST']
 
     package_paths = glob.glob('actions/*')
     for package_path in package_paths:

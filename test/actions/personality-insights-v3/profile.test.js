@@ -22,7 +22,7 @@ describe('[action] Personality Insights', () => {
         assert.fail('Undefined parameters error was not found');
       })
       .catch((err) => {
-        assert(err.message ===
+        assert(err ===
             'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
@@ -35,7 +35,7 @@ describe('[action] Personality Insights', () => {
         assert.fail('Null parameters error was not found');
       })
       .catch((err) => {
-        assert(err.message ===
+        assert(err ===
             'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
@@ -52,7 +52,7 @@ describe('[action] Personality Insights', () => {
         assert.fail('Missing username error was not found');
       })
       .catch((err) => {
-        assert(err.message ===
+        assert(err ===
             'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
@@ -69,7 +69,7 @@ describe('[action] Personality Insights', () => {
         assert.fail('Missing password error was not found');
       })
       .catch((err) => {
-        assert(err.message ===
+        assert(err ===
             'Argument error: username and password are required unless use_unauthenticated is set');
       });
   });
@@ -86,7 +86,7 @@ describe('[action] Personality Insights', () => {
         assert.fail('Missing version_date error was not found');
       })
       .catch((err) => {
-        assert(err.message ===
+        assert(err ===
             'Argument error: version_date was not specified, use 2016-10-19');
       });
   });
@@ -103,7 +103,7 @@ describe('[action] Personality Insights', () => {
         assert.fail('Missing text and content_items error was not found');
       })
       .catch((err) => {
-        assert(err.message === 'Missing required parameters: text or content_items');
+        assert(err === 'Missing required parameters: text or content_items');
       });
   });
 

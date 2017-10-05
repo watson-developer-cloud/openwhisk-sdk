@@ -32,12 +32,12 @@ function main(params) {
     try {
       service = new PersonalityInsightsV3(params);
     } catch (err) {
-      reject(err);
+      reject(err.message);
     }
 
     service.profile(params, (err, profile) => {
       if (err) {
-        reject(err);
+        reject(err.message);
       } else {
         resolve(profile);
       }

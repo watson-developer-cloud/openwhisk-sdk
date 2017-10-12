@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -31,19 +30,20 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.name - The name of the collection.
  * @param {string} [params.description] - A description of the collection.
- * @param {string} [params.configuration_id] - The ID of the configuration in which the collection is to be updated.
+ * @param {string} [params.configuration_id] - The ID of the configuration in
+ * which the collection is to be updated.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new DiscoveryV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.updateCollection(params, (err,response) => {
-      if(err) {
+    service.updateCollection(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

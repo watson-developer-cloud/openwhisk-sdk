@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -28,20 +27,25 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.name - The name of the new classifier. Cannot contain special characters.
- * @param {File} params.classname_positive_examples - A compressed (.zip) file of images that depict the visual subject for a class within the new classifier. Must contain a minimum of 10 images. The swagger limits you to training only one class. To train more classes, use the API functionality.
- * @param {File} [params.negative_examples] - A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.
+ * @param {File} params.classname_positive_examples - A compressed (.zip) file of images that
+ * depict the visual subject for a class within the new classifier. Must contain a minimum of
+ * 10 images. The swagger limits you to training only one class.
+ * To train more classes, use the API functionality.
+ * @param {File} [params.negative_examples] - A compressed (.zip) file of images that do not depict
+ * the visual subject of any of the classes of the new classifier.
+ * Must contain a minimum of 10 images.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new VisualRecognitionV3(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.createClassifier(params, (err,response) => {
-      if(err) {
+    service.createClassifier(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -30,15 +29,15 @@ const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-l
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new NaturalLanguageUnderstandingV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.listModels(params, (err,response) => {
-      if(err) {
+    service.listModels(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -28,19 +27,20 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
- * @param {string[]} params.collection_ids - A comma-separated list of collection IDs to be queried against.
+ * @param {string[]} params.collection_ids - A comma-separated list of
+ * collection IDs to be queried against.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new DiscoveryV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.listFields(params, (err,response) => {
-      if(err) {
+    service.listFields(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

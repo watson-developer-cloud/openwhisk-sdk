@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -30,21 +29,25 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.name - The name of the configuration.
  * @param {string} [params.description] - The description of the configuration, if available.
- * @param {Conversions} [params.conversions] - The document conversion settings for the configuration.
- * @param {Enrichment[]} [params.enrichments] - An array of document enrichment settings for the configuration.
- * @param {NormalizationOperation[]} [params.normalizations] - Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array.
+ * @param {Conversions} [params.conversions] - The document conversion settings
+ * for the configuration.
+ * @param {Enrichment[]} [params.enrichments] - An array of document enrichment settings
+ * for the configuration.
+ * @param {NormalizationOperation[]} [params.normalizations] - Defines operations that can be used
+ * to transform the final output JSON into a normalized form.
+ * Operations are executed in the order that they appear in the array.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new DiscoveryV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.createConfiguration(params, (err,response) => {
-      if(err) {
+    service.createConfiguration(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

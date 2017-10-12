@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -32,15 +31,15 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new ConversationV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.createCounterexample(params, (err,response) => {
-      if(err) {
+    service.createCounterexample(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

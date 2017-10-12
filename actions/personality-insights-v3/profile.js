@@ -26,25 +26,46 @@ const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insigh
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Content} params.content - A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see [Guidelines for providing sufficient input](https://console.bluemix.net/docs/services/personality-insights/user-overview.html#overviewGuidelines). A JSON request must conform to the `Content` model.
- * @param {string} params.content_type - The type of the input: application/json, text/html, or text/plain. A character encoding can be specified by including a `charset` parameter. For example, 'text/html;charset=utf-8'.
- * @param {string} [params.content_language] - The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The effect of the `content_language` header depends on the `Content-Type` header. When `Content-Type` is `text/plain` or `text/html`, `content_language` is the only way to specify the language. When `Content-Type` is `application/json`, `content_language` overrides a language specified with the `language` parameter of a `ContentItem` object, and content items that specify a different language are ignored; omit this header to base the language on the specification of the content items. You can specify any combination of languages for `content_language` and `Accept-Language`.
- * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of languages for the input and response content.
- * @param {boolean} [params.raw_scores] - If `true`, a raw score in addition to a normalized percentile is returned for each characteristic; raw scores are not compared with a sample population. If `false` (the default), only normalized percentiles are returned.
- * @param {boolean} [params.csv_headers] - If `true`, column labels are returned with a CSV response; if `false` (the default), they are not. Applies only when the `Accept` header is set to `text/csv`.
- * @param {boolean} [params.consumption_preferences] - If `true`, information about consumption preferences is returned with the results; if `false` (the default), the response does not include the information.
+ * @param {Content} params.content - A maximum of 20 MB of content to analyze, though the service
+ * requires much less text; for more information.
+ * A JSON request must conform to the `Content` model.
+ * @param {string} params.content_type - The type of the input: application/json, text/html,
+ * or text/plain. A character encoding can be specified by including a `charset` parameter.
+ * For example, 'text/html;charset=utf-8'.
+ * @param {string} [params.content_language] - The language of the input text for the request:
+ * Arabic, English, Japanese, Korean, or Spanish. Regional variants are treated as their parent
+ * language; for example, `en-US` is interpreted as `en`. The effect of the `content_language`
+ * header depends on the `Content-Type` header. When `Content-Type` is `text/plain` or `text/html`,
+ * `content_language` is the only way to specify the language. When `Content-Type` is
+ * `application/json`, `content_language` overrides a language specified with the `language`
+ * parameter of a `ContentItem` object, and content items that specify a different language
+ * are ignored; omit this header to base the language on the specification of the content items.
+ * You can specify any combination of languages for `content_language` and `Accept-Language`.
+ * @param {string} [params.accept_language] - The desired language of the response.
+ * For two-character arguments, regional variants are treated as their parent language;
+ * for example, `en-US` is interpreted as `en`. You can specify any combination
+ * of languages for the input and response content.
+ * @param {boolean} [params.raw_scores] - If `true`, a raw score in addition to a normalized
+ * percentile is returned for each characteristic; raw scores are not compared with a
+ * sample population. If `false` (the default), only normalized percentiles are returned.
+ * @param {boolean} [params.csv_headers] - If `true`, column labels are returned
+ * with a CSV response; if `false` (the default), they are not.
+ * Applies only when the `Accept` header is set to `text/csv`.
+ * @param {boolean} [params.consumption_preferences] - If `true`, information about consumption
+ * preferences is returned with the results; if `false` (the default),
+ * the response does not include the information.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new PersonalityInsightsV3(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.profile(params, (err,response) => {
-      if(err) {
+    service.profile(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

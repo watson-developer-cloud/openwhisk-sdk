@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -37,24 +36,26 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {Object} [params.new_output] - The output of the dialog node.
  * @param {Object} [params.new_context] - The context for the dialog node.
  * @param {Object} [params.new_metadata] - The metadata for the dialog node.
- * @param {DialogNodeNextStep} [params.new_next_step] - The next step to execute following this dialog node.
+ * @param {DialogNodeNextStep} [params.new_next_step] - The next step to
+ * execute following this dialog node.
  * @param {string} [params.new_title] - The alias used to identify the dialog node.
  * @param {string} [params.new_type] - How the node is processed.
  * @param {string} [params.new_event_name] - How an `event_handler` node is processed.
- * @param {string} [params.new_variable] - The location in the dialog context where output is stored.
+ * @param {string} [params.new_variable] - The location in the dialog
+ * context where output is stored.
  * @param {DialogNodeAction[]} [params.new_actions] - The actions for the dialog node.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new ConversationV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.updateDialogNode(params, (err,response) => {
-      if(err) {
+    service.updateDialogNode(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

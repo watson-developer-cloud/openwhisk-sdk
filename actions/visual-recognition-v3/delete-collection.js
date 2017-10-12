@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -31,15 +30,15 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new VisualRecognitionV3(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.deleteCollection(params, (err,response) => {
-      if(err) {
+    service.deleteCollection(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

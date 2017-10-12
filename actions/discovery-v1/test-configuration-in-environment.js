@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -28,24 +27,38 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
- * @param {string} [params.configuration] - The configuration to use to process the document. If this part is provided, then the provided configuration is used to process the document. If the `configuration_id` is also provided (both are present at the same time), then request is rejected. The maximum supported configuration size is 1 MB. Configuration parts larger than 1 MB are rejected. See the `GET /configurations/{configuration_id}` operation for an example configuration.
- * @param {string} [params.step] - Specify to only run the input document through the given step instead of running the input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`.
- * @param {string} [params.configuration_id] - The ID of the configuration to use to process the document. If the `configuration` form part is also provided (both are present at the same time), then request will be rejected.
- * @param {File} [params.file] - The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected.
- * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
+ * @param {string} [params.configuration] - The configuration to use to process the document.
+ * If this part is provided, then the provided configuration is used to process the document.
+ * If the `configuration_id` is also provided (both are present at the same time), then request
+ * is rejected. The maximum supported configuration size is 1 MB. Configuration parts larger than
+ * 1 MB are rejected.
+ * See the `GET /configurations/{configuration_id}` operation for an example configuration.
+ * @param {string} [params.step] - Specify to only run the input document through the given step
+ * instead of running the input document through the entire ingestion workflow.
+ * Valid values are `convert`, `enrich`, and `normalize`.
+ * @param {string} [params.configuration_id] - The ID of the configuration to use
+ * to process the document. If the `configuration` form part is also provided
+ * (both are present at the same time), then request will be rejected.
+ * @param {File} [params.file] - The content of the document to ingest.
+ * The maximum supported file size is 50 megabytes.
+ * Files larger than 50 megabytes is rejected.
+ * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents,
+ * you can test a document against the type of metadata that the Data Crawler might send.
+ * The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected.
+ * Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
  * @param {string} [params.file_content_type] - The content type of file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new DiscoveryV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.testConfigurationInEnvironment(params, (err,response) => {
-      if(err) {
+    service.testConfigurationInEnvironment(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

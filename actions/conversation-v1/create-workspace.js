@@ -29,24 +29,30 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {string} [params.name] - The name of the workspace.
  * @param {string} [params.description] - The description of the workspace.
  * @param {string} [params.language] - The language of the workspace.
- * @param {CreateIntent[]} [params.intents] - An array of objects defining the intents for the workspace.
- * @param {CreateEntity[]} [params.entities] - An array of objects defining the entities for the workspace.
- * @param {CreateDialogNode[]} [params.dialog_nodes] - An array of objects defining the nodes in the workspace dialog.
- * @param {CreateCounterexample[]} [params.counterexamples] - An array of objects defining input examples that have been marked as irrelevant input.
+ * @param {CreateIntent[]} [params.intents] - An array of objects defining the intents
+ * for the workspace.
+ * @param {CreateEntity[]} [params.entities] - An array of objects defining the entities
+ * for the workspace.
+ * @param {CreateDialogNode[]} [params.dialog_nodes] - An array of objects defining the nodes in
+ * the workspace dialog.
+ * @param {CreateCounterexample[]} [params.counterexamples] - An array of objects defining input
+ * examples that have been marked as irrelevant input.
  * @param {Object} [params.metadata] - Any metadata related to the workspace.
- * @param {boolean} [params.learning_opt_out] - Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+ * @param {boolean} [params.learning_opt_out] - Whether training data from the workspace can be
+ * used by IBM for general service improvements.
+ * `true` indicates that workspace training data is not to be used.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new ConversationV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.createWorkspace(params, (err,response) => {
-      if(err) {
+    service.createWorkspace(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

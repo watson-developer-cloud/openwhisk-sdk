@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -29,23 +28,29 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - The workspace ID.
  * @param {string} params.entity - The name of the entity.
- * @param {boolean} [params.export] - Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`.
- * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
- * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
- * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
- * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
+ * @param {boolean} [params.export] - Whether to include all element content in the returned data.
+ * If export=`false`, the returned data includes only information about the element itself.
+ * If export=`true`, all content, including subelements, is included. The default value is `false`.
+ * @param {number} [params.page_limit] - The number of records to return in each page of results.
+ * The default page limit is 100.
+ * @param {boolean} [params.include_count] - Whether to include information about
+ * the number of records returned.
+ * @param {string} [params.sort] - Sorts the response according to the value of
+ * the specified property, in ascending or descending order.
+ * @param {string} [params.cursor] - A token identifying the last value
+ * from the previous page of results.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new ConversationV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.listValues(params, (err,response) => {
-      if(err) {
+    service.listValues(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

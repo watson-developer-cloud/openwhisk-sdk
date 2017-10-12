@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -28,21 +27,23 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.collection_id - The ID of your collection.
- * @param {File} params.image_file - The image file (.jpg or .png) of the image to search against the collection.
- * @param {number} [params.limit] - The number of similar results you want returned. Default limit is 10 results, you can specify a maximum limit of 100 results.
+ * @param {File} params.image_file - The image file (.jpg or .png) of the
+ * image to search against the collection.
+ * @param {number} [params.limit] - The number of similar results you want returned.
+ * Default limit is 10 results, you can specify a maximum limit of 100 results.
  * @param {string} [params.image_file_content_type] - The content type of image_file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new VisualRecognitionV3(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.findSimilarImages(params, (err,response) => {
-      if(err) {
+    service.findSimilarImages(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

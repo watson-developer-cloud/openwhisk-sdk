@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -33,15 +32,15 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new NaturalLanguageClassifierV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.createClassifier(params, (err,response) => {
-      if(err) {
+    service.createClassifier(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

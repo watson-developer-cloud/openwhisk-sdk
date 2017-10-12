@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -18,7 +17,7 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * 
+ *
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -33,15 +32,15 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     let service;
     try {
       service = new DiscoveryV1(params);
-    } catch(err) {
+    } catch (err) {
       reject(err.message);
     }
-    service.getTrainingData(params, (err,response) => {
-      if(err) {
+    service.getTrainingData(params, (err, response) => {
+      if (err) {
         reject(err.message);
       } else {
         resolve(response);

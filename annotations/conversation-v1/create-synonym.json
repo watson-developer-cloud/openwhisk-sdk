@@ -1,0 +1,79 @@
+{
+  "description": "Add entity value synonym.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "workspace_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The workspace ID."
+    },
+    {
+      "name": "entity",
+      "required": true,
+      "bindTime": false,
+      "description": "The name of the entity."
+    },
+    {
+      "name": "value",
+      "required": true,
+      "bindTime": false,
+      "description": "The text of the entity value."
+    },
+    {
+      "name": "synonym",
+      "required": true,
+      "bindTime": false,
+      "description": "The text of the synonym."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "workspace_id": "{workspace_id}",
+    "entity": "beverage",
+    "value": "orange juice",
+    "synonym": "OJ"
+  },
+  "sampleOutput": {
+    "created": "2017-04-12T15:02:29.188Z",
+    "synonym": "OJ",
+    "updated": "2017-04-12T15:02:29.188Z"
+  }
+}

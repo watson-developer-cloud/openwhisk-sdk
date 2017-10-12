@@ -1,0 +1,18 @@
+{
+  "description": "Actions for Watson Discovery V1",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    }
+  ],
+  "prettyName": "Watson Discovery V1"
+}

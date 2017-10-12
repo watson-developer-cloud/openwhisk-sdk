@@ -1,0 +1,100 @@
+{
+  "description":
+    "Uploads a TMX glossary file on top of a domain to customize a translation model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "base_model_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "Specifies the domain model that is used as the base for the training. To see current supported domain models, use the GET /v2/models parameter."
+    },
+    {
+      "name": "name",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "The model name. Valid characters are letters, numbers, -, and _. No spaces."
+    },
+    {
+      "name": "forced_glossary",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call."
+    },
+    {
+      "name": "parallel_corpus",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A TMX file that contains entries that are treated as a parallel corpus instead of a glossary."
+    },
+    {
+      "name": "monolingual_corpus",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A UTF-8 encoded plain text file that is used to customize the target language model."
+    },
+    {
+      "name": "forced_glossary_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of forced_glossary."
+    },
+    {
+      "name": "parallel_corpus_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of parallel_corpus."
+    },
+    {
+      "name": "monolingual_corpus_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of monolingual_corpus."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "name": "custom-english-to-spanish",
+    "base_model_id": "en-es",
+    "forced_glossary": "fs.createReadStream('glossary.tmx')"
+  },
+  "sampleOutput": {
+    "model_id": "3e7dfdbe-f757-4150-afee-458e71eb93fb"
+  }
+}

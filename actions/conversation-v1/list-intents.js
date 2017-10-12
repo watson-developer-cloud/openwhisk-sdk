@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 
 /**
- * Analyze customer engagement tone.
+ * List intents.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -27,19 +27,23 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+ * @param {string} params.workspace_id - The workspace ID.
+ * @param {boolean} [params.export] - Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`.
+ * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
+ * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
+ * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
+ * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve,reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new ConversationV1(params);
     } catch(err) {
       reject(err.message);
     }
-    service.toneChat(params, (err,response) => {
+    service.listIntents(params, (err,response) => {
       if(err) {
         reject(err.message);
       } else {

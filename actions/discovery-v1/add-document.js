@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Analyze customer engagement tone.
+ * Add a document.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -27,19 +27,22 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+ * @param {string} params.environment_id - The ID of the environment.
+ * @param {string} params.collection_id - The ID of the collection.
+ * @param {File} [params.file] - The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected.
+ * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
+ * @param {string} [params.file_content_type] - The content type of file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve,reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new DiscoveryV1(params);
     } catch(err) {
       reject(err.message);
     }
-    service.toneChat(params, (err,response) => {
+    service.addDocument(params, (err,response) => {
       if(err) {
         reject(err.message);
       } else {

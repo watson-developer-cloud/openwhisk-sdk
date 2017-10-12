@@ -1,0 +1,67 @@
+{
+  "description": "Update a classifier.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "classifier_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the classifier."
+    },
+    {
+      "name": "classname_positive_examples",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A compressed (.zip) file of images that depict the visual subject for a class within the classifier. Must contain a minimum of 10 images."
+    },
+    {
+      "name": "negative_examples",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19"
+  },
+  "sampleOutput": {}
+}

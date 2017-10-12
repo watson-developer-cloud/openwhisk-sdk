@@ -1,0 +1,73 @@
+{
+  "description": "Add images to a collection - beta.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "collection_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of your collection."
+    },
+    {
+      "name": "image_file",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The image file (.jpg or .png) of the image to add to the collection. Maximum file size of 2 MB."
+    },
+    {
+      "name": "metadata",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A json object file that adds metadata to the image. Maximum 2 KB of metadata for each image."
+    },
+    {
+      "name": "image_file_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of image_file."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19"
+  },
+  "sampleOutput": {}
+}

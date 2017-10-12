@@ -1,0 +1,26 @@
+
+{
+ "description":"",
+ "parameters":
+ [
+   {"name":"username", "required":false, "bindTime":true, "description":"The service username"},
+   {"name":"password", "required":false, "bindTime":true, "description":"The service password"},
+   {"name":"headers", "required":false, "bindTime":false, "description":"The request headers"},
+   {"name":"headers.X-Watson-Learning-Opt-Out", "required":false, "bindTime":false, "description":"opt-out of data collection"},
+   {"name":"url","required":false,"bindTime":false, "description":"override default service base url"},
+   {"name":"version_date","required":true,"bindTime":false,"description":"Release date of the API version in YYYY-MM-DD format."},
+   {"name":"environment_id","required":true,"bindTime":false,"description":"The ID of the environment."},
+   {"name":"collection_id","required":true,"bindTime":false,"description":"The ID of the collection."},
+   {"name":"query_id","required":true,"bindTime":false,"description":"The ID of the query used for training."},
+   {"name":"example_id","required":true,"bindTime":false,"description":"The ID of the document as it is indexed."},
+   {"name":"cross_reference","required":false,"bindTime":false,"description":""},
+   {"name":"relevance","required":false,"bindTime":false,"description":""},
+ ],
+ "sampleInput":
+ {
+   "username":"XXX",
+   "password":"XXX",
+   "version_date":"2016-10-19",
+ }
+ "sampleOutput"
+}

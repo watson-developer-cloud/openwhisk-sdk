@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 IBM All Rights Reserved.
  *
@@ -15,10 +14,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1');
 
 /**
- * Analyze customer engagement tone.
+ * Analyze text, HTML, or a public webpage.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -27,19 +26,27 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+ * @param {Features} params.features - Specific features to analyze the document for.
+ * @param {string} [params.text] - The plain text to analyze.
+ * @param {string} [params.html] - The HTML file to analyze.
+ * @param {string} [params.url] - The web page to analyze.
+ * @param {boolean} [params.clean] - Remove website elements, such as links, ads, etc.
+ * @param {string} [params.xpath] - XPath query for targeting nodes in HTML.
+ * @param {boolean} [params.fallback_to_raw] - Whether to use raw HTML content if text cleaning fails.
+ * @param {boolean} [params.return_analyzed_text] - Whether or not to return the analyzed text.
+ * @param {string} [params.language] - ISO 639-1 code indicating the language to use in the analysis.
+ * @param {number} [params.limit_text_characters] - Sets the maximum number of characters that are processed by the service.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve,reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new NaturalLanguageUnderstandingV1(params);
     } catch(err) {
       reject(err.message);
     }
-    service.toneChat(params, (err,response) => {
+    service.analyze(params, (err,response) => {
       if(err) {
         reject(err.message);
       } else {

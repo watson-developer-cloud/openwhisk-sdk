@@ -1,0 +1,86 @@
+{
+  "description": "Update an environment.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "environment_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the environment."
+    },
+    {
+      "name": "name",
+      "required": false,
+      "bindTime": false,
+      "description": "Name that identifies the environment."
+    },
+    {
+      "name": "description",
+      "required": false,
+      "bindTime": false,
+      "description": "Description of the environment."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "environment_id": "{environment_id}",
+    "name": "{environment_name}",
+    "description": "{description}"
+  },
+  "sampleOutput": {
+    "environment_id": "{environment_id}",
+    "name": "{environment_name}",
+    "description": "{description}",
+    "created": "2016-06-16T10:56:54.957Z",
+    "updated": "2017-05-16T13:56:54.957Z",
+    "status": "active",
+    "read_only": false,
+    "index_capacity": {
+      "documents": {
+        "indexed": 0,
+        "maximum_allowed": 1000000
+      },
+      "disk_usage": {
+        "used_bytes": 0,
+        "maximum_allowed_bytes": 85899345920
+      }
+    }
+  }
+}

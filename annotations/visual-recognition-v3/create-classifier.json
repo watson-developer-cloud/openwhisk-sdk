@@ -1,0 +1,83 @@
+{
+  "description": "Create a classifier.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "name",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The name of the new classifier. Cannot contain special characters."
+    },
+    {
+      "name": "classname_positive_examples",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "A compressed (.zip) file of images that depict the visual subject for a class within the new classifier. Must contain a minimum of 10 images. The swagger limits you to training only one class. To train more classes, use the API functionality."
+    },
+    {
+      "name": "negative_examples",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "apple_positive_examples": "fs.createReadStream('./apples.zip')",
+    "banana_positive_examples": "fs.createReadStream('./yellow.zip')",
+    "orange_positive_examples": "fs.createReadStream('./pos_ex.zip')",
+    "negative_examples": "fs.createReadStream('./vegetables.zip')"
+  },
+  "sampleOutput": {
+    "classifier_id": "dogs_1477088859",
+    "name": "dogs",
+    "owner": "b2a3c43c-f1ef-4186-a3d3-71073e4142c5",
+    "status": "training",
+    "created": "2017-09-12T14:34:22.965",
+    "classes": [
+      { "class": "goldenretriever" },
+      { "class": "beagle" },
+      { "class": "husky" }
+    ]
+  }
+}

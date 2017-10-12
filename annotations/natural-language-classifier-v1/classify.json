@@ -1,0 +1,71 @@
+{
+  "description": "Returns label information for the input.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "classifier_id",
+      "required": true,
+      "bindTime": false,
+      "description": "Classifier ID to use."
+    },
+    {
+      "name": "text",
+      "required": true,
+      "bindTime": false,
+      "description": "The submitted phrase."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "classifier_id": "{classifier_id}",
+    "text": "How hot will it be today?"
+  },
+  "sampleOutput": {
+    "classifier_id": "{classifier_id}",
+    "url":
+      "https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers/10D41B-nlc-1/classify?text=How%20hot%20wil/{classifier_id}",
+    "text": "How hot will it be today?",
+    "top_class": "temperature",
+    "classes": [
+      {
+        "class_name": "temperature",
+        "confidence": 0.9998201258549781
+      },
+      {
+        "class_name": "conditions",
+        "confidence": 0.00017987414502176904
+      }
+    ]
+  }
+}

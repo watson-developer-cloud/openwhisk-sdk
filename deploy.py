@@ -3,6 +3,7 @@ import glob
 import json
 import sys
 
+#indicates whether deployment is onto staging or production
 is_staging = True
 
 #GLOBAL ENVIRONMENT VARIABLES
@@ -10,24 +11,15 @@ API_HOST = None
 AUTH = os.environ['AUTH']
 WSK_CLI = os.environ['WSK_CLI']
 
-def get_package_annotations(package_path):
-    package_annotations = None
+def get_annotations(package_name,annotation_filename):
+    annotation_data = None
     try:
-        infile = open(package_path+'/package.annotations.json')
-        package_annotations = json.load(infile)
+        annotation_file = open('./annotations/'+package_name+'/'+annotation_filename+'.json')
+        annotation_data = json.load(annotation_file)
+        annotation_file.close()
     except IOError:
         pass
-    return package_annotations
-
-def get_action_annotations(action_path):
-    action_annotations = None
-    try:
-        last_period = action_path.rfind('.')
-        infile = open(action_path[:last_period]+'.annotations.json')
-        action_annotations = json.load(infile)
-    except IOError:
-        pass
-    return action_annotations
+    return annotation_data
 
 def make_package_command(package_path,package_annotations):
     package_name = package_path.split('/')[1]
@@ -67,7 +59,7 @@ def deploy():
     package_paths = glob.glob('actions/*')
     for package_path in package_paths:
         package_name = package_path.split('/')[1]
-        package_annotations = get_package_annotations(package_path)
+        package_annotations = get_annotations(package_name,package_name)
         #don't deploy packages that are missing annotations
         if package_annotations is None:
             continue
@@ -77,7 +69,7 @@ def deploy():
         action_paths = glob.glob(package_path+'/*.js')
         for action_path in action_paths:
             action_name = action_path.split('/')[2].split('.')[0]
-            action_annotations = get_action_annotations(action_path)
+            action_annotations = get_annotation(package_name,action_name)
             #don't deploy actions that are missing annotations
             if action_annotations is None:
                 continue

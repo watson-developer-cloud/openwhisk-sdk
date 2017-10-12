@@ -1,0 +1,18 @@
+{
+  "description": "Actions for Watson Visual Recognition V3",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    }
+  ],
+  "prettyName": "Watson Visual Recognition V3"
+}

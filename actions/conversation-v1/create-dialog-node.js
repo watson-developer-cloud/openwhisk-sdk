@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 
 /**
- * Analyze customer engagement tone.
+ * Create dialog node.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -27,19 +27,32 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+ * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.dialog_node - The dialog node ID.
+ * @param {string} [params.description] - The description of the dialog node.
+ * @param {string} [params.conditions] - The condition that will trigger the dialog node.
+ * @param {string} [params.parent] - The ID of the parent dialog node (if any).
+ * @param {string} [params.previous_sibling] - The previous dialog node.
+ * @param {Object} [params.output] - The output of the dialog node.
+ * @param {Object} [params.context] - The context for the dialog node.
+ * @param {Object} [params.metadata] - The metadata for the dialog node.
+ * @param {DialogNodeNextStep} [params.next_step] - The next step to execute following this dialog node.
+ * @param {DialogNodeAction[]} [params.actions] - The actions for the dialog node.
+ * @param {string} [params.title] - The alias used to identify the dialog node.
+ * @param {string} [params.node_type] - How the dialog node is processed.
+ * @param {string} [params.event_name] - How an `event_handler` node is processed.
+ * @param {string} [params.variable] - The location in the dialog context where output is stored.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve,reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new ConversationV1(params);
     } catch(err) {
       reject(err.message);
     }
-    service.toneChat(params, (err,response) => {
+    service.createDialogNode(params, (err,response) => {
       if(err) {
         reject(err.message);
       } else {

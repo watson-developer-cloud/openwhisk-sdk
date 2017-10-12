@@ -1,0 +1,71 @@
+{
+  "description": "Get information about a workspace.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "workspace_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The workspace ID."
+    },
+    {
+      "name": "export",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "workspace_id": "{workspace_id}"
+  },
+  "sampleOutput": {
+    "name": "API test",
+    "created": "2017-02-01T15:28:10.145Z",
+    "updated": "2017-02-01T15:28:10.145Z",
+    "language": "en",
+    "status": "Available",
+    "metadata": null,
+    "description": "Example workspace.",
+    "workspace_id": "{workspace_id}",
+    "learning_opt_out": false
+  }
+}

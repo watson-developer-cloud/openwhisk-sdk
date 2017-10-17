@@ -46,7 +46,7 @@ function main(params) {
       reject(err.message);
     }
     if (params.file) {
-      const doucmentDataBuffer = Buffer.from(params.file, 'base64');
+      const documentDataBuffer = Buffer.from(params.file, 'base64');
       params.file = documentDataBuffer;
     }
     service.addDocument(params, (err, response) => {

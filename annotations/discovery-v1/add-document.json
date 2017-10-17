@@ -54,7 +54,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected."
+        "Base-64 encoded content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected."
     },
     {
       "name": "metadata",

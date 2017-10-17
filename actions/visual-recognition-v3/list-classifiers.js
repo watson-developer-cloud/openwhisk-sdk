@@ -20,8 +20,7 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  * Retrieve a list of custom classifiers.
  *
  * @param {Object} params - The parameters to send to the service.
- * @param {string} [params.username] - required unless use_unauthenticated is set.
- * @param {string} [params.password] - required unless use_unauthenticated is set.
+ * @param {string} [params.api_key] - the service api key.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url

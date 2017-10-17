@@ -20,17 +20,16 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  * Classify images.
  *
  * @param {Object} params - The parameters to send to the service.
- * @param {string} [params.username] - required unless use_unauthenticated is set.
- * @param {string} [params.password] - required unless use_unauthenticated is set.
+ * @param {string} [params.api_key] - the service api key.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {File} [params.images_file] - An image file (.jpg, .png) or .zip file with images.
- * Include no more than 20 images and limit the .zip file to 5 MB. You can also include images
+ * @param {string} [params.images_file] - Base-64 encoded image file (.jpg, .png) data or .zip file 
+ * data. Include no more than 20 images and limit the .zip file to 5 MB. You can also include images
  * with the `url` property in the **parameters** object.
  * @param {string} [params.parameters] - Specifies input parameters. The parameter can include
- * these inputs in a JSON object:  - url: A string with the image URL to analyze.
+ * these inputs in a JSON object: - url: A string with the image URL to analyze.
  * You can also include images in the **images_file** parameter.
  * - classifier_ids: An array of classifier IDs to classify the images against.
  * - owners: An array with the values IBM, me, or both to specify which classifiers to run.
@@ -54,6 +53,10 @@ function main(params) {
       service = new VisualRecognitionV3(params);
     } catch (err) {
       reject(err.message);
+    }
+    if (params.images_file) {
+      const imagesDataBuffer = Buffer.from(params.images_file, 'base64');
+      params.images_file = imagesDataBuffer;
     }
     service.classify(params, (err, response) => {
       if (err) {

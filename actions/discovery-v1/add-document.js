@@ -28,7 +28,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {File} [params.file] - The content of the document to ingest.
+ * @param {string} [params.file] - Base-64 encoded content of the document to ingest.
  * The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected.
  * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents,
  * you can test a document against the type of metadata that the Data Crawler might send.
@@ -44,6 +44,10 @@ function main(params) {
       service = new DiscoveryV1(params);
     } catch (err) {
       reject(err.message);
+    }
+    if (params.file) {
+      const doucmentDataBuffer = Buffer.from(params.file, 'base64');
+      params.file = documentDataBuffer;
     }
     service.addDocument(params, (err, response) => {
       if (err) {

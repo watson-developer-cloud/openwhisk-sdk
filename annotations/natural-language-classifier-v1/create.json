@@ -1,0 +1,78 @@
+{
+  "description": "Create classifier.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "metadata",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. For details, see the [API reference](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/#create_classifier)."
+    },
+    {
+      "name": "training_data",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "Training data in CSV format. Each text value must have at least one class. The data can include up to 15,000 records. For details, see [Using your own data](https://www.ibm.com/watson/developercloud/doc/natural-language-classifier/using-your-data.html)."
+    },
+    {
+      "name": "training_metadata_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of training_metadata."
+    },
+    {
+      "name": "training_data_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of training_data."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "training_data": "<64-bit Encoded training csv string>",
+    "metadata": "<64-bit encoded classifier metadata string>"
+  },
+  "sampleOutput": {
+    "classifier_id": "10D41B-nlc-1",
+    "name": "My Classifier",
+    "language": "en",
+    "created": "2015-05-28T18:01:57.393Z",
+    "url":
+      "https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers/10D41B-nlc-1",
+    "status": "Training",
+    "status_description":
+      "The classifier instance is in its training phase, not yet ready to accept classify requests"
+  }
+}

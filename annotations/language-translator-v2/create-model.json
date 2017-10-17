@@ -92,7 +92,7 @@
     "version_date": "2016-10-19",
     "name": "custom-english-to-spanish",
     "base_model_id": "en-es",
-    "forced_glossary": "fs.createReadStream('glossary.tmx')"
+    "monolingual_corpus": "<UTF-8 Encoded String>"
   },
   "sampleOutput": {
     "model_id": "3e7dfdbe-f757-4150-afee-458e71eb93fb"

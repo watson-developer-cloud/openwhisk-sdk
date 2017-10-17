@@ -1,5 +1,5 @@
 {
-  "description": "Delete dialog node.",
+  "description": "Adds one or more words to a custom voice model.",
   "parameters": [
     {
       "name": "username",
@@ -32,30 +32,36 @@
       "description": "override default service base url"
     },
     {
-      "name": "version_date",
+      "name": "customization_id",
       "required": true,
       "bindTime": false,
-      "description": "Release date of the API version in YYYY-MM-DD format."
+      "description":
+        "GUID of the custom voice model to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model."
     },
     {
-      "name": "workspace_id",
+      "name": "words",
       "required": true,
       "bindTime": false,
-      "description": "The workspace ID."
-    },
-    {
-      "name": "dialog_node",
-      "required": true,
-      "bindTime": false,
-      "description": "The dialog node ID (for example, `get_order`)."
+      "description":
+        "List of words and their translations. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words."
     }
   ],
   "sampleInput": {
     "username": "XXX",
     "password": "XXX",
     "version_date": "2016-10-19",
-    "workspace_id": "{workspace_id}",
-    "dialog_node": "greeting"
+    "customization_id": "{customization_id}",
+    "words": [
+      {
+        "word": "EEE",
+        "translation": "<phoneme alphabet=\"ibm\" ph=\"tr1Ipxl.1i\"></phoneme>"
+      },
+      {
+        "word": "IEEE",
+        "translation":
+          "<phoneme alphabet=\"ibm\" ph=\"1Y.tr1Ipxl.1i\"></phoneme>"
+      }
+    ]
   },
   "sampleOutput": {}
 }

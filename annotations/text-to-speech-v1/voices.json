@@ -1,0 +1,111 @@
+{
+  "description": "Retrieves all voices available for speech synthesis.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19"
+  },
+  "sampleOutput": {
+    "voices": [
+      {
+        "name": "pt-BR_IsabelaVoice",
+        "language": "pt-BR",
+        "customizable": true,
+        "gender": "female",
+        "url":
+          "https://stream-s.watsonplatform.net/text-to-speech/api/v1/voices/pt-BR_IsabelaVoice",
+        "supported_features": {
+          "voice_transformation": false,
+          "custom_pronunciation": true
+        },
+        "description":
+          "Isabela: Brazilian Portuguese (português brasileiro) female voice."
+      },
+      {
+        "name": "es-US_SofiaVoice",
+        "language": "es-US",
+        "customizable": true,
+        "gender": "female",
+        "url":
+          "https://stream-s.watsonplatform.net/text-to-speech/api/v1/voices/es-US_SofiaVoice",
+        "supported_features": {
+          "voice_transformation": false,
+          "custom_pronunciation": true
+        },
+        "description":
+          "Sofia: North American Spanish (español norteamericano) female voice."
+      },
+      {
+        "name": "en-GB_KateVoice",
+        "language": "en-GB",
+        "customizable": true,
+        "gender": "female",
+        "url":
+          "https://stream-s.watsonplatform.net/text-to-speech/api/v1/voices/en-GB_KateVoice",
+        "supported_features": {
+          "voice_transformation": false,
+          "custom_pronunciation": true
+        },
+        "description": "Kate: British English female voice."
+      },
+      {
+        "name": "en-US_LisaVoice",
+        "language": "en-US",
+        "customizable": true,
+        "gender": "female",
+        "url":
+          "https://stream-s.watsonplatform.net/text-to-speech/api/v1/voices/en-US_LisaVoice",
+        "supported_features": {
+          "voice_transformation": true,
+          "custom_pronunciation": true
+        },
+        "description": "Lisa: American English female voice."
+      },
+      {
+        "name": "ja-JP_EmiVoice",
+        "language": "ja-JP",
+        "customizable": true,
+        "gender": "female",
+        "url":
+          "https://stream-s.watsonplatform.net/text-to-speech/api/v1/voices/ja-JP_EmiVoice",
+        "supported_features": {
+          "voice_transformation": false,
+          "custom_pronunciation": true
+        },
+        "description": "Emi: Japanese (日本語) female voice."
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "description": "Delete dialog node.",
+  "description": "Queries the contents of a custom voice model.",
   "parameters": [
     {
       "name": "username",
@@ -32,30 +32,36 @@
       "description": "override default service base url"
     },
     {
-      "name": "version_date",
+      "name": "customization_id",
       "required": true,
       "bindTime": false,
-      "description": "Release date of the API version in YYYY-MM-DD format."
-    },
-    {
-      "name": "workspace_id",
-      "required": true,
-      "bindTime": false,
-      "description": "The workspace ID."
-    },
-    {
-      "name": "dialog_node",
-      "required": true,
-      "bindTime": false,
-      "description": "The dialog node ID (for example, `get_order`)."
+      "description":
+        "GUID of the custom voice model to be queried. You must make the request with service credentials created for the instance of the service that owns the custom model."
     }
   ],
   "sampleInput": {
     "username": "XXX",
     "password": "XXX",
     "version_date": "2016-10-19",
-    "workspace_id": "{workspace_id}",
-    "dialog_node": "greeting"
+    "customization_id": "{customization_id}"
   },
-  "sampleOutput": {}
+  "sampleOutput": {
+    "customization_id": "{customization_id}",
+    "name": "First Model Update",
+    "description": "First custom voice model update",
+    "language": "en-US",
+    "owner": "35df7157-fad0-498c-912c-6e429f5c1e11",
+    "created": "2017-01-23T16:00:32.893",
+    "last_modified": "2017-01-23T16:00:35.619",
+    "words": [
+      {
+        "word": "NCAA",
+        "translation": "N C double A"
+      },
+      {
+        "word": "iPhone",
+        "translation": "I phone"
+      }
+    ]
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Delete dialog node.",
+  "description": "Deletes a word from a custom voice model.",
   "parameters": [
     {
       "name": "username",
@@ -32,30 +32,25 @@
       "description": "override default service base url"
     },
     {
-      "name": "version_date",
+      "name": "customization_id",
       "required": true,
       "bindTime": false,
-      "description": "Release date of the API version in YYYY-MM-DD format."
+      "description":
+        "GUID of the custom voice model from which to delete a word. You must make the request with service credentials created for the instance of the service that owns the custom model."
     },
     {
-      "name": "workspace_id",
+      "name": "word",
       "required": true,
       "bindTime": false,
-      "description": "The workspace ID."
-    },
-    {
-      "name": "dialog_node",
-      "required": true,
-      "bindTime": false,
-      "description": "The dialog node ID (for example, `get_order`)."
+      "description": "The word to be deleted from the custom voice model."
     }
   ],
   "sampleInput": {
     "username": "XXX",
     "password": "XXX",
     "version_date": "2016-10-19",
-    "workspace_id": "{workspace_id}",
-    "dialog_node": "greeting"
+    "customization_id": "{customization_id}",
+    "word": "ACLs"
   },
   "sampleOutput": {}
 }

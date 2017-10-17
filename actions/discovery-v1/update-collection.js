@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Analyze customer engagement tone.
+ * Update a collection.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -26,22 +26,23 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the
- * input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response.
- * For two-character arguments, regional variants are treated as their parent language;
- * for example, `en-US` is interpreted as `en`.
+ * @param {string} params.environment_id - The ID of the environment.
+ * @param {string} params.collection_id - The ID of the collection.
+ * @param {string} params.name - The name of the collection.
+ * @param {string} [params.description] - A description of the collection.
+ * @param {string} [params.configuration_id] - The ID of the configuration in
+ * which the collection is to be updated.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new DiscoveryV1(params);
     } catch (err) {
       reject(err.message);
     }
-    service.toneChat(params, (err, response) => {
+    service.updateCollection(params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

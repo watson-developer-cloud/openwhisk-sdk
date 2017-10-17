@@ -1,0 +1,49 @@
+{
+  "description": "Deletes a custom voice model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "customization_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "GUID of the custom voice model to be deleted. You must make the request with service credentials created for the instance of the service that owns the custom model."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "customization_id": "{customization_id}"
+  },
+  "sampleOutput": {}
+}

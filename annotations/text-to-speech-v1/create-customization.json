@@ -1,0 +1,65 @@
+{
+  "description": "Creates a new custom voice model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "name",
+      "required": true,
+      "bindTime": false,
+      "description": "Name of the new custom voice model."
+    },
+    {
+      "name": "language",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Language of the new custom voice model. Omit the parameter to use the default language, `en-US`."
+    },
+    {
+      "name": "description",
+      "required": false,
+      "bindTime": false,
+      "description": "Description of the new custom voice model."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "name": "First Model",
+    "language": "en-US",
+    "description": "First custom voice model"
+  },
+  "sampleOutput": {
+    "customization_id": "51e996ea-86ca-482e-b7ec-0f31c34e5ee9"
+  }
+}

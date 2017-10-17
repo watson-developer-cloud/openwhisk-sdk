@@ -1,0 +1,67 @@
+{
+  "description": "Adds one or more words to a custom voice model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "customization_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "GUID of the custom voice model to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model."
+    },
+    {
+      "name": "words",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "List of words and their translations. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "customization_id": "{customization_id}",
+    "words": [
+      {
+        "word": "EEE",
+        "translation": "<phoneme alphabet=\"ibm\" ph=\"tr1Ipxl.1i\"></phoneme>"
+      },
+      {
+        "word": "IEEE",
+        "translation":
+          "<phoneme alphabet=\"ibm\" ph=\"1Y.tr1Ipxl.1i\"></phoneme>"
+      }
+    ]
+  },
+  "sampleOutput": {}
+}

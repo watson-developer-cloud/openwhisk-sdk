@@ -1,0 +1,64 @@
+{
+  "description":
+    "Get information about the given translation model, including training status.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "model_id",
+      "required": true,
+      "bindTime": false,
+      "description": "Model ID to use."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "model_id": "{model_id}"
+  },
+  "sampleOutput": {
+    "models": [
+      {
+        "model_id ": "{model_id}",
+        "source": "en",
+        "target": "es",
+        "base_model_id": "en-es",
+        "customizable": "false",
+        "default_model": "false",
+        "domain": "travel",
+        "owner": "74a239fa-f2db-42ef-8737-7bf74f49e35f",
+        "status": "available",
+        "name": "mymodel"
+      }
+    ]
+  }
+}

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 
 /**
- * Analyze customer engagement tone.
+ * Updates information and words for a custom voice model.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -25,23 +25,21 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the
- * input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response.
- * For two-character arguments, regional variants are treated as their parent language;
- * for example, `en-US` is interpreted as `en`.
+ * @param {string} params.customization_id - GUID of the custom voice model to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model.
+ * @param {Word[]} params.words - List of words and their translations to be added to or updated in the custom voice model. Pass an empty array to make no additions or updates.
+ * @param {string} [params.name] - New name for the custom voice model.
+ * @param {string} [params.description] - New description for the custom voice model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new TextToSpeechV1(params);
     } catch (err) {
       reject(err.message);
     }
-    service.toneChat(params, (err, response) => {
+    service.updateCustomization(params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

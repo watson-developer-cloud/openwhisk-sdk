@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 
 /**
- * Analyze customer engagement tone.
+ * Add entity value.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -26,22 +26,26 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the
- * input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response.
- * For two-character arguments, regional variants are treated as their parent language;
- * for example, `en-US` is interpreted as `en`.
+ * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.entity - The name of the entity.
+ * @param {string} params.value - The text of the entity value.
+ * @param {Object} [params.metadata] - Any metadata related to the entity value.
+ * @param {string[]} [params.synonyms] - An array of synonyms for the entity value.
+ * @param {string[]} [params.patterns] - An array of patterns for the entity value.
+ * A pattern is specified as a regular expression.
+ * @param {string} [params.value_type] - Specifies the type of value (`synonyms` or `patterns`).
+ * The default value is `synonyms`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
     }
-    service.toneChat(params, (err, response) => {
+    service.createValue(params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

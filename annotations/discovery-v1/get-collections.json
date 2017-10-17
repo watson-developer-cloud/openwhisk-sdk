@@ -1,0 +1,83 @@
+{
+  "description": "List collections.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "environment_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the environment."
+    },
+    {
+      "name": "name",
+      "required": false,
+      "bindTime": false,
+      "description": "Find collections with the given name."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "environment_id": "{environment_id}"
+  },
+  "sampleOutput": {
+    "collections": [
+      {
+        "collection_id": "44e29a9a-47e3-4acd-874b-c7cbe04043f1",
+        "description": null,
+        "name": "test_collection",
+        "configuration_id": "e8b9d793-b163-452a-9373-bce07efb510b",
+        "language": "en",
+        "status": "active",
+        "created": "2016-12-14T18:42:25.324Z",
+        "updated": "2016-12-14T18:42:25.324Z"
+      },
+      {
+        "collection_id": "0c08b701-9499-4a9f-9517-e0851635a59c",
+        "description": "New collection",
+        "name": "new_collection",
+        "configuration_id": "654573b2-b02a-472c-a345-28498eb0b77e",
+        "language": "en",
+        "status": "active",
+        "created": "2017-02-08T14:18:22.786Z",
+        "updated": "2017-02-08T14:18:22.786Z"
+      }
+    ]
+  }
+}

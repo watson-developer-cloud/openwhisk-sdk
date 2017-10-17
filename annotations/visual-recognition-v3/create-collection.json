@@ -1,0 +1,61 @@
+{
+  "description": "Create a new collection - beta.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "name",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The name of the new collection. The name can be a maximum of 128 UTF8 characters, with no spaces."
+    },
+    {
+      "name": "disregard",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Disregard this parameter. In order for the swagger spec to work, there needs to be at least one file in a multipart/form-data call. Uploading a file using this parameter has no impact on the collection."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19"
+  },
+  "sampleOutput": {}
+}

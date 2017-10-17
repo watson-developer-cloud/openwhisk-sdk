@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
 /**
- * Analyze customer engagement tone.
+ * Create a new collection - beta.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -26,22 +26,22 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the
- * input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response.
- * For two-character arguments, regional variants are treated as their parent language;
- * for example, `en-US` is interpreted as `en`.
+ * @param {string} params.name - The name of the new collection.
+ * The name can be a maximum of 128 UTF8 characters, with no spaces.
+ * @param {File} [params.disregard] - Disregard this parameter.
+ * In order for the swagger spec to work, there needs to be at least one file in a
+ * multipart/form-data call. Uploading a file using this parameter has no impact on the collection.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new VisualRecognitionV3(params);
     } catch (err) {
       reject(err.message);
     }
-    service.toneChat(params, (err, response) => {
+    service.createCollection(params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

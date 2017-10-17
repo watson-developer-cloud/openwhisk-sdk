@@ -1,0 +1,344 @@
+{
+  "description": "Add configuration.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": false,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers.X-Watson-Learning-Opt-Out",
+      "required": false,
+      "bindTime": false,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": false,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": false,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "environment_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the environment."
+    },
+    {
+      "name": "name",
+      "required": true,
+      "bindTime": false,
+      "description": "The name of the configuration."
+    },
+    {
+      "name": "description",
+      "required": false,
+      "bindTime": false,
+      "description": "The description of the configuration, if available."
+    },
+    {
+      "name": "conversions",
+      "required": false,
+      "bindTime": false,
+      "description": "The document conversion settings for the configuration."
+    },
+    {
+      "name": "enrichments",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "An array of document enrichment settings for the configuration."
+    },
+    {
+      "name": "normalizations",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array."
+    }
+  ],
+  "sampleInput": {
+    "username": "XXX",
+    "password": "XXX",
+    "version_date": "2016-10-19",
+    "environment_id": "{environment_id}",
+    "name": "Demonstration configuration",
+    "description":
+      "A demonstration configuration that has the same contents as the default configuration.",
+    "conversions": {
+      "word": {
+        "heading": {
+          "fonts": [
+            {
+              "level": 1,
+              "min_size": 24,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 2,
+              "min_size": 18,
+              "max_size": 23,
+              "bold": true,
+              "italic": false
+            },
+            {
+              "level": 3,
+              "min_size": 14,
+              "max_size": 17,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 4,
+              "min_size": 13,
+              "max_size": 13,
+              "bold": true,
+              "italic": false
+            }
+          ],
+          "styles": [
+            {
+              "level": 1,
+              "names": ["pullout heading", "pulloutheading", "header"]
+            },
+            {
+              "level": 2,
+              "names": ["subtitle"]
+            }
+          ]
+        }
+      },
+      "pdf": {
+        "heading": {
+          "fonts": [
+            {
+              "level": 1,
+              "min_size": 24,
+              "max_size": 80
+            },
+            {
+              "level": 2,
+              "min_size": 18,
+              "max_size": 24,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 2,
+              "min_size": 18,
+              "max_size": 24,
+              "bold": true
+            },
+            {
+              "level": 3,
+              "min_size": 13,
+              "max_size": 18,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 3,
+              "min_size": 13,
+              "max_size": 18,
+              "bold": true
+            },
+            {
+              "level": 4,
+              "min_size": 11,
+              "max_size": 13,
+              "bold": false,
+              "italic": false
+            }
+          ]
+        }
+      },
+      "html": {
+        "exclude_tags_completely": ["script", "sup"],
+        "exclude_tags_keep_content": ["font", "em", "span"],
+        "exclude_content": {
+          "xpaths": []
+        },
+        "keep_content": {
+          "xpaths": []
+        },
+        "exclude_tag_attributes": ["EVENT_ACTIONS"]
+      },
+      "json_normalizations": []
+    },
+    "enrichments": [
+      {
+        "source_field": "text",
+        "destination_field": "enriched_text",
+        "enrichment": "natural_language_understanding",
+        "options": {
+          "features": {
+            "entities": {
+              "sentiment": true,
+              "emotion": false,
+              "limit": 50
+            },
+            "sentiment": {
+              "document": true
+            },
+            "categories": {},
+            "concepts": {
+              "limit": 8
+            }
+          }
+        }
+      }
+    ],
+    "normalizations": []
+  },
+  "sampleOutput": {
+    "configuration_id": "{configuration_id}",
+    "name": "doc-Demonstration configurationconfig",
+    "description": "this is a demo configuration",
+    "created": "2016-12-14T02:33:34.396Z",
+    "updated": "2016-12-14T02:33:34.396Z",
+    "conversions": {
+      "word": {
+        "heading": {
+          "fonts": [
+            {
+              "level": 1,
+              "min_size": 24,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 2,
+              "min_size": 18,
+              "max_size": 23,
+              "bold": true,
+              "italic": false
+            },
+            {
+              "level": 3,
+              "min_size": 14,
+              "max_size": 17,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 4,
+              "min_size": 13,
+              "max_size": 13,
+              "bold": true,
+              "italic": false
+            }
+          ],
+          "styles": [
+            {
+              "level": 1,
+              "names": ["pullout heading", "pulloutheading", "header"]
+            },
+            {
+              "level": 2,
+              "names": ["subtitle"]
+            }
+          ]
+        }
+      },
+      "pdf": {
+        "heading": {
+          "fonts": [
+            {
+              "level": 1,
+              "min_size": 24,
+              "max_size": 80
+            },
+            {
+              "level": 2,
+              "min_size": 18,
+              "max_size": 24,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 2,
+              "min_size": 18,
+              "max_size": 24,
+              "bold": true
+            },
+            {
+              "level": 3,
+              "min_size": 13,
+              "max_size": 18,
+              "bold": false,
+              "italic": false
+            },
+            {
+              "level": 3,
+              "min_size": 13,
+              "max_size": 18,
+              "bold": true
+            },
+            {
+              "level": 4,
+              "min_size": 11,
+              "max_size": 13,
+              "bold": false,
+              "italic": false
+            }
+          ]
+        }
+      },
+      "html": {
+        "exclude_tags_completely": ["script", "sup"],
+        "exclude_tags_keep_content": ["font", "em", "span"],
+        "exclude_content": {
+          "xpaths": []
+        },
+        "keep_content": {
+          "xpaths": []
+        },
+        "exclude_tag_attributes": ["EVENT_ACTIONS"]
+      },
+      "json_normalizations": []
+    },
+    "enrichments": [
+      {
+        "source_field": "text",
+        "destination_field": "enriched_text",
+        "enrichment": "natural_language_understanding",
+        "options": {
+          "features": {
+            "entities": {
+              "sentiment": true,
+              "emotion": false,
+              "limit": 50
+            },
+            "sentiment": {
+              "document": true
+            },
+            "categories": {},
+            "concepts": {
+              "limit": 8
+            }
+          }
+        }
+      }
+    ]
+  }
+}

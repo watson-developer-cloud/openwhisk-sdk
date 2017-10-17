@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 
 /**
- * Analyze customer engagement tone.
+ * Lists available standard and custom models by source or target language.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -25,23 +25,23 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the
- * input content that the service is to analyze.
- * @param {string} [params.accept_language] - The desired language of the response.
- * For two-character arguments, regional variants are treated as their parent language;
- * for example, `en-US` is interpreted as `en`.
+ * @param {string} [params.source] - Filter models by source language.
+ * @param {string} [params.target] - Filter models by target language.
+ * @param {boolean} [params.default_models] - Valid values are leaving it unset,
+ * `true`, and `false`. When `true`, it filters models to return the default_models
+ * model or models. When `false`, it returns the non-default_models model or models.
+ * If not set, it returns all models, default_models and non-default_models.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     let service;
     try {
-      service = new ToneAnalyzerV3(params);
+      service = new LanguageTranslatorV2(params);
     } catch (err) {
       reject(err.message);
     }
-    service.toneChat(params, (err, response) => {
+    service.getModels(params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

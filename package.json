@@ -18,7 +18,7 @@
   "dependencies": {
     "mocha": "^3.5.3",
     "nock": "^9.0.21",
-    "watson-developer-cloud": "^2.39.0"
+    "watson-developer-cloud": "^2.41.1"
   },
   "devDependencies": {
     "eslint": "^4.7.2",

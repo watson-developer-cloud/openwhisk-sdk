@@ -27,8 +27,7 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - The workspace ID.
- * @param {string} params.text - The text of a user input counterexample
- * (for example, `What are you wearing?`).
+ * @param {string} params.text - The text of a user input counterexample (for example, `What are you wearing?`).
  * @param {string} [params.new_text] - The text of the example to be marked as irrelevant input.
  * @return {Promise} - The Promise that the action returns.
  */
@@ -39,6 +38,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.updateCounterexample(params, (err, response) => {
       if (err) {

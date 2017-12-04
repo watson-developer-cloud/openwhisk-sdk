@@ -41,6 +41,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.createEntity(params, (err, response) => {
       if (err) {

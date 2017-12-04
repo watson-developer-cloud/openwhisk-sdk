@@ -32,13 +32,10 @@ const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-l
  * @param {string} [params.url] - The web page to analyze.
  * @param {boolean} [params.clean] - Remove website elements, such as links, ads, etc.
  * @param {string} [params.xpath] - XPath query for targeting nodes in HTML.
- * @param {boolean} [params.fallback_to_raw] - Whether to use raw HTML content
- * if text cleaning fails.
+ * @param {boolean} [params.fallback_to_raw] - Whether to use raw HTML content if text cleaning fails.
  * @param {boolean} [params.return_analyzed_text] - Whether or not to return the analyzed text.
- * @param {string} [params.language] - ISO 639-1 code indicating the language to
- * use in the analysis.
- * @param {number} [params.limit_text_characters] - Sets the maximum number of characters
- * that are processed by the service.
+ * @param {string} [params.language] - ISO 639-1 code indicating the language to use in the analysis.
+ * @param {number} [params.limit_text_characters] - Sets the maximum number of characters that are processed by the service.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -48,6 +45,7 @@ function main(params) {
       service = new NaturalLanguageUnderstandingV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.analyze(params, (err, response) => {
       if (err) {

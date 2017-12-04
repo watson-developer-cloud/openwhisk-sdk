@@ -36,6 +36,7 @@ function main(params) {
       service = new DiscoveryV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.deleteEnvironment(params, (err, response) => {
       if (err) {

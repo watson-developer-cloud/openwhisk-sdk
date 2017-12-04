@@ -31,10 +31,8 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {string} params.value - The text of the entity value.
  * @param {Object} [params.metadata] - Any metadata related to the entity value.
  * @param {string[]} [params.synonyms] - An array of synonyms for the entity value.
- * @param {string[]} [params.patterns] - An array of patterns for the entity value.
- * A pattern is specified as a regular expression.
- * @param {string} [params.value_type] - Specifies the type of value (`synonyms` or `patterns`).
- * The default value is `synonyms`.
+ * @param {string[]} [params.patterns] - An array of patterns for the entity value. A pattern is specified as a regular expression.
+ * @param {string} [params.value_type] - Specifies the type of value (`synonyms` or `patterns`). The default value is `synonyms`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -44,6 +42,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.createValue(params, (err, response) => {
       if (err) {

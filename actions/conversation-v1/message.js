@@ -28,18 +28,11 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {InputData} [params.input] - An input object that includes the input text.
- * @param {boolean} [params.alternate_intents] - Whether to return more than one intent.
- * Set to `true` to return all matching intents.
- * @param {Context} [params.context] - State information for the conversation.
- * Continue a conversation by including the context object from the previous response.
- * @param {RuntimeEntity[]} [params.entities] - Include the entities from the previous response
- * when they do not need to change and to prevent Watson from trying to identify them.
- * @param {RuntimeIntent[]} [params.intents] - An array of name-confidence pairs for the user input.
- * Include the intents from the previous response when they do not need to change and to prevent
- * Watson from trying to identify them.
- * @param {OutputData} [params.output] - System output. Include the output from the request when
- * you have several requests within the same
- * Dialog turn to pass back in the intermediate information.
+ * @param {boolean} [params.alternate_intents] - Whether to return more than one intent. Set to `true` to return all matching intents.
+ * @param {Context} [params.context] - State information for the conversation. Continue a conversation by including the context object from the previous response.
+ * @param {RuntimeEntity[]} [params.entities] - Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.
+ * @param {RuntimeIntent[]} [params.intents] - An array of name-confidence pairs for the user input. Include the intents from the previous response when they do not need to change and to prevent Watson from trying to identify them.
+ * @param {OutputData} [params.output] - System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -49,6 +42,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.message(params, (err, response) => {
       if (err) {

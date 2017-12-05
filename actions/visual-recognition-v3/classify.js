@@ -35,8 +35,8 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const fileParams = [ 'images_file' ,];
-    fileParams.forEach(fileParam => {
+    const fileParams = ['images_file'];
+    fileParams.forEach((fileParam) => {
       try {
         params[fileParam] = Buffer.from(params[fileParam], 'base64');
       } catch (err) {

@@ -32,7 +32,7 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
 function main(params) {
   return new Promise((resolve, reject) => {
     const fileParams = ['metadata', 'training_data'];
-    fileParams.forEach(fileParam => {
+    fileParams.forEach((fileParam) => {
       try {
         params[fileParam] = Buffer.from(params[fileParam], 'base64');
       } catch (err) {

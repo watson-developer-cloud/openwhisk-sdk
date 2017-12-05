@@ -39,7 +39,7 @@ function main(params) {
       'parallel_corpus',
       'monolingual_corpus'
     ];
-    fileParams.forEach(fileParam => {
+    fileParams.forEach((fileParam) => {
       try {
         params[fileParam] = Buffer.from(params[fileParam], 'base64');
       } catch (err) {

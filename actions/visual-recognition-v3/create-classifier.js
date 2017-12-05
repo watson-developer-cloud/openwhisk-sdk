@@ -35,7 +35,7 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
 function main(params) {
   return new Promise((resolve, reject) => {
     const fileParams = ['negative_examples'];
-    fileParams.forEach(fileParam => {
+    fileParams.forEach((fileParam) => {
       try {
         params[fileParam] = Buffer.from(params[fileParam], 'base64');
       } catch (err) {
@@ -43,13 +43,12 @@ function main(params) {
         return;
       }
     });
-    const positive_example_classes = Object.keys(params).filter(key =>
-      key.match(/.*positive_examples/)
-    );
-    positive_example_classes.forEach(positive_example_class => {
+    const positiveExampleClasses = Object.keys(params).filter(key =>
+      key.match(/.*positive_examples/));
+    positiveExampleClasses.forEach((positiveExampleClass) => {
       try {
-        params[positive_example_class] = Buffer.from(
-          params[positive_example_class],
+        params[positiveExampleClass] = Buffer.from(
+          params[positiveExampleClass],
           'base64'
         );
       } catch (err) {

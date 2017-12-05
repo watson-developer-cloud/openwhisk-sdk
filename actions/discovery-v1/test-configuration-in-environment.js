@@ -38,7 +38,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const fileParams = ['file'];
-    fileParams.forEach(fileParam => {
+    fileParams.forEach((fileParam) => {
       try {
         params[fileParam] = Buffer.from(params[fileParam], 'base64');
       } catch (err) {

@@ -1,5 +1,5 @@
 {
-  "description": "Detect faces in an image.",
+  "description": "Detect faces in images.",
   "parameters": [
     {
       "name": "username",
@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -42,7 +42,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "Base-64 encoded image file (.jpg, .png) data or .zip file data. Include no more than 15 images and limit the .zip file to 5 MB. You can also include images with the `url` property in the **parameters** object. All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0."
+        "Must be a base64-encoded string. An image file (.jpg, .png) or .zip file with images. Include no more than 15 images. You can also include images with the `url` property in the **parameters** object.  All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0."
     },
     {
       "name": "parameters",
@@ -58,42 +58,6 @@
       "description": "The content type of images_file."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "images_file": "fs.createReadStream('./resources/obama.jpg')"
-  },
-  "sampleOutput": {
-    "images": [
-      {
-        "faces": [
-          {
-            "age": {
-              "max": 44,
-              "min": 35,
-              "score": 0.446989
-            },
-            "face_location": {
-              "height": 159,
-              "left": 256,
-              "top": 64,
-              "width": 92
-            },
-            "gender": {
-              "gender": "MALE",
-              "score": 0.99593
-            },
-            "identity": {
-              "name": "Barack Obama",
-              "score": 0.970688,
-              "type_hierarchy": "/people/politicians/democrats/barack obama"
-            }
-          }
-        ],
-        "image": "prez.jpg"
-      }
-    ],
-    "images_processed": 1
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

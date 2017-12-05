@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -49,35 +49,16 @@
       "required": true,
       "bindTime": false,
       "description":
-        "A compressed (.zip) file of images that depict the visual subject for a class within the new classifier. Must contain a minimum of 10 images. The swagger limits you to training only one class. To train more classes, use the API functionality."
+        "Must be a base64-encoded string. A .zip file of images that depict the visual subject of a class in the new classifier. You can include more than one positive example file in a call. Append `_positive_examples` to the form name. The prefix is used as the class name. For example, `goldenretriever_positive_examples` creates the class **goldenretriever**.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  The API explorer limits you to training only one class. To train more classes, use the API functionality."
     },
     {
       "name": "negative_examples",
       "required": false,
       "bindTime": false,
       "description":
-        "A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images."
+        "Must be a base64-encoded string. A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "apple_positive_examples": "fs.createReadStream('./apples.zip')",
-    "banana_positive_examples": "fs.createReadStream('./yellow.zip')",
-    "orange_positive_examples": "fs.createReadStream('./pos_ex.zip')",
-    "negative_examples": "fs.createReadStream('./vegetables.zip')"
-  },
-  "sampleOutput": {
-    "classifier_id": "dogs_1477088859",
-    "name": "dogs",
-    "owner": "b2a3c43c-f1ef-4186-a3d3-71073e4142c5",
-    "status": "training",
-    "created": "2017-09-12T14:34:22.965",
-    "classes": [
-      { "class": "goldenretriever" },
-      { "class": "beagle" },
-      { "class": "husky" }
-    ]
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

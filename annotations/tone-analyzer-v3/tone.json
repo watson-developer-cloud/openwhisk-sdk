@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -59,11 +59,18 @@
         "Indicates whether the service is to return an analysis of each individual sentence in addition to its analysis of the full document. If `true` (the default), the service returns results for each sentence."
     },
     {
+      "name": "tones",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "**`2017-09-21`:** Deprecated. The service continues to accept the parameter for backward-compatibility, but the parameter no longer affects the response.   **`2016-05-19`:** A comma-separated list of tones for which the service is to return its analysis of the input; the indicated tones apply both to the full document and to individual sentences of the document. You can specify one or more of the valid values. Omit the parameter to request results for all three tones."
+    },
+    {
       "name": "content_language",
       "required": false,
       "bindTime": false,
       "description":
-        "The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can specify any combination of languages for `content_language` and `Accept-Language`."
+        "The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can specify any combination of languages for `content_language` and `Accept-Language`. * **`2017-09-21`:** Accepts `en` or `fr`. * **`2016-05-19`:** Accepts only `en`."
     },
     {
       "name": "accept_language",
@@ -73,125 +80,6 @@
         "The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of languages for `Content-Language` and `accept_language`."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "tone_input":
-      "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!",
-    "content_type": "text/plain"
-  },
-  "sampleOutput": {
-    "document_tone": {
-      "tone_categories": [
-        {
-          "tones": [
-            {
-              "score": 0.134622,
-              "tone_id": "anger",
-              "tone_name": "Anger"
-            },
-            {
-              "score": 0.013182,
-              "tone_id": "disgust",
-              "tone_name": "Disgust"
-            },
-            {
-              "score": 0.092403,
-              "tone_id": "fear",
-              "tone_name": "Fear"
-            },
-            {
-              "score": 0.013411,
-              "tone_id": "joy",
-              "tone_name": "Joy"
-            },
-            {
-              "score": 0.635069,
-              "tone_id": "sadness",
-              "tone_name": "Sadness"
-            }
-          ],
-          "category_id": "emotion_tone",
-          "category_name": "Emotion Tone"
-        }
-      ]
-    },
-    "sentences_tone": [
-      {
-        "sentence_id": 0,
-        "text": "Team, I know that times are tough!",
-        "input_from": 0,
-        "input_to": 34,
-        "tone_categories": [
-          {
-            "tones": [
-              {
-                "score": 0.150882,
-                "tone_id": "anger",
-                "tone_name": "Anger"
-              },
-              {
-                "score": 0.410121,
-                "tone_id": "sadness",
-                "tone_name": "Sadness"
-              }
-            ],
-            "category_id": "emotion_tone",
-            "category_name": "Emotion Tone"
-          }
-        ]
-      },
-      {
-        "sentence_id": 1,
-        "text":
-          "Product sales have been disappointing for the past three quarters.",
-        "input_from": 35,
-        "input_to": 101,
-        "tone_categories": [
-          {
-            "tones": [
-              {
-                "score": 0.106857,
-                "tone_id": "anger",
-                "tone_name": "Anger"
-              },
-              {
-                "score": 0.758459,
-                "tone_id": "sadness",
-                "tone_name": "Sadness"
-              }
-            ],
-            "category_id": "emotion_tone",
-            "category_name": "Emotion Tone"
-          }
-        ]
-      },
-      {
-        "sentence_id": 2,
-        "text":
-          "We have a competitive product, but we need to do a better job of selling it!",
-        "input_from": 102,
-        "input_to": 178,
-        "tone_categories": [
-          {
-            "tones": [
-              {
-                "score": 0.094095,
-                "tone_id": "anger",
-                "tone_name": "Anger"
-              },
-              {
-                "score": 0.193997,
-                "tone_id": "sadness",
-                "tone_name": "Sadness"
-              }
-            ],
-            "category_id": "emotion_tone",
-            "category_name": "Emotion Tone"
-          }
-        ]
-      }
-    ]
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

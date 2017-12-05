@@ -1,0 +1,44 @@
+{
+  "description": "Lists information about all custom language models.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "language",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "The identifier of the language for which custom language models are to be returned (for example, `en-US`). Omit the parameter to see all custom language models owned by the requesting service credentials."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

@@ -1,0 +1,57 @@
+{
+  "description": "Adds one or more custom words to a custom language model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "customization_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The GUID of the custom language model to which words are to be added. You must make the request with service credentials created for the instance of the service that owns the custom model."
+    },
+    {
+      "name": "content_type",
+      "required": true,
+      "bindTime": false,
+      "description": "The type of the input."
+    },
+    {
+      "name": "words",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "An array of objects that provides information about each custom word that is to be added to or updated in the custom language model."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

@@ -1,5 +1,5 @@
 {
-  "description": "Retrieve information about a custom classifier.",
+  "description": "Retrieve classifier details.",
   "parameters": [
     {
       "name": "username",
@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -44,22 +44,6 @@
       "description": "The ID of the classifier."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "classifier_id": "{classifier_id}"
-  },
-  "sampleOutput": {
-    "classifier_id": "dogs_1477088859",
-    "name": "dogs",
-    "owner": "b2a3c43c-f1ef-4186-a3d3-71073e4142c5",
-    "status": "training",
-    "created": "2017-09-12T14:34:22.965",
-    "classes": [
-      { "class": "goldenretriever" },
-      { "class": "beagle" },
-      { "class": "husky" }
-    ]
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

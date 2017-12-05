@@ -16,19 +16,19 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
@@ -36,36 +36,30 @@
       "required": true,
       "bindTime": false,
       "description":
-        "GUID of the custom voice model to which to which to add a word. You must make the request with service credentials created for the instance of the service that owns the custom model."
+        "The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model."
     },
     {
       "name": "word",
       "required": true,
       "bindTime": false,
-      "description": "The word to be added to the custom voice model."
+      "description":
+        "The word that is to be added or updated for the custom voice model."
     },
     {
       "name": "translation",
       "required": true,
       "bindTime": false,
       "description":
-        "Phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for representing the phonetic string of a word either as an IPA translation or as an IBM SPR translation. A sounds-like is one or more words that, when combined, sound like the word."
+        "The phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for representing the phonetic string of a word either as an IPA translation or as an IBM SPR translation. A sounds-like is one or more words that, when combined, sound like the word."
     },
     {
       "name": "part_of_speech",
       "required": false,
       "bindTime": false,
       "description":
-        "**Japanese only.** The part of speech for the word. The service uses the value to produce the correct intonation for the word. You can create only a single entry, with or without a single part of speech, for any word; you cannot create multiple entries with different parts of speech for the same word. For more information, see [Working with Japanese entries](https://console.bluemix.net/docs/services/text-to-speech/custom-using.html#jaNotes)."
+        "**Japanese only.** The part of speech for the word. The service uses the value to produce the correct intonation for the word. You can create only a single entry, with or without a single part of speech, for any word; you cannot create multiple entries with different parts of speech for the same word. For more information, see [Working with Japanese entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes)."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "customization_id": "{customization_id}",
-    "word": "ACls",
-    "translation": "ackles"
-  },
-  "sampleOutput": {}
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

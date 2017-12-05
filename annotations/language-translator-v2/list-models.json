@@ -17,19 +17,19 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
@@ -52,25 +52,6 @@
         "Valid values are leaving it unset, `true`, and `false`. When `true`, it filters models to return the default_models model or models. When `false`, it returns the non-default_models model or models. If not set, it returns all models, default_models and non-default_models."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19"
-  },
-  "sampleOutput": {
-    "models": [
-      {
-        "model_id ": "3e7dfdbe-f757-4150-afee-458e71eb93fb",
-        "source": "en",
-        "target": "es",
-        "base_model_id": "en-es",
-        "customizable": "false",
-        "default_model": "false",
-        "domain": "travel",
-        "owner": "74a239fa-f2db-42ef-8737-7bf74f49e35f",
-        "status": "available",
-        "name": "mymodel"
-      }
-    ]
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

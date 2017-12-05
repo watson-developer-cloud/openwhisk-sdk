@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -66,53 +66,6 @@
         "A token identifying the last value from the previous page of results."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19"
-  },
-  "sampleOutput": {
-    "workspaces": [
-      {
-        "name": "Car_Dashboard",
-        "created": "2016-07-13T12:26:55.781Z",
-        "updated": "2016-11-29T21:46:38.969Z",
-        "language": "en",
-        "metadata": {
-          "runtime_version": "2017-05-26"
-        },
-        "description":
-          "Cognitive Car workspace which allows multi-turn conversations to perform tasks in the car.",
-        "workspace_id": "0a0c06c1-8e31-4655-9067-58fcac5134fc",
-        "learning_opt_out": false
-      },
-      {
-        "name": "testing",
-        "created": "2016-09-01T21:20:26.514Z",
-        "updated": "2016-11-29T21:46:38.969Z",
-        "language": "en",
-        "metadata": {
-          "runtime_version": "2017-05-26"
-        },
-        "description": null,
-        "workspace_id": "e42c8e5c-eb34-4b65-99f0-59f9329b66ec",
-        "learning_opt_out": false
-      },
-      {
-        "name": "workspace-example",
-        "created": "2016-07-11T17:06:57.089Z",
-        "updated": "2016-11-29T21:46:38.969Z",
-        "language": "en",
-        "metadata": {
-          "runtime_version": "2017-05-26"
-        },
-        "description": "Example workspace to try out the service",
-        "workspace_id": "293b58fc-3c5b-4ac5-a8f4-8d52c393d875",
-        "learning_opt_out": false
-      }
-    ],
-    "pagination": {
-      "refresh_url": "/v1/workspaces?version=2017-05-26"
-    }
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

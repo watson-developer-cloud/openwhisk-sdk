@@ -1,0 +1,51 @@
+{
+  "description": "Deletes an audio resource from a custom acoustic model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "customization_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The GUID of the custom acoustic model from which an audio resource is to be deleted. You must make the request with service credentials created for the instance of the service that owns the custom model."
+    },
+    {
+      "name": "audio_name",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The name of the audio resource that is to be deleted from the custom acoustic model."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

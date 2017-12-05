@@ -16,19 +16,19 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
@@ -36,32 +36,16 @@
       "required": true,
       "bindTime": false,
       "description":
-        "GUID of the custom voice model to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model."
+        "The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model."
     },
     {
       "name": "words",
       "required": true,
       "bindTime": false,
       "description":
-        "List of words and their translations. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words."
+        "An array of `CustomWord` objects that provides information about the words and their translations that are to be added or updated for the custom voice model."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "customization_id": "{customization_id}",
-    "words": [
-      {
-        "word": "EEE",
-        "translation": "<phoneme alphabet=\"ibm\" ph=\"tr1Ipxl.1i\"></phoneme>"
-      },
-      {
-        "word": "IEEE",
-        "translation":
-          "<phoneme alphabet=\"ibm\" ph=\"1Y.tr1Ipxl.1i\"></phoneme>"
-      }
-    ]
-  },
-  "sampleOutput": {}
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

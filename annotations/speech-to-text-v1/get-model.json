@@ -1,0 +1,44 @@
+{
+  "description": "Retrieves information about the model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "model_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The identifier of the desired model in the form of its `name` from the output of `GET /v1/models`."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

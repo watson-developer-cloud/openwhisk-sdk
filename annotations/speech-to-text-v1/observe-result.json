@@ -1,0 +1,57 @@
+{
+  "description": "Observes results for a recognition task within a session.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "session_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the session whose results you want to observe."
+    },
+    {
+      "name": "sequence_id",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "The sequence ID of the recognition task whose results you want to observe. Omit the parameter to obtain results either for an ongoing recognition, if any, or for the next recognition task regardless of whether it specifies a sequence ID."
+    },
+    {
+      "name": "interim_results",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "If `true`, interim results are returned as a stream of JSON `SpeechRecognitionResults` objects. If `false`, the response is a single `SpeechRecognitionResults` object with final results only."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

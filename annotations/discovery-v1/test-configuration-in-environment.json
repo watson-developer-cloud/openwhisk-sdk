@@ -1,0 +1,90 @@
+{
+  "description": "Test configuration.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "version_date",
+      "required": true,
+      "bindTime": true,
+      "description": "Release date of the API version in YYYY-MM-DD format."
+    },
+    {
+      "name": "environment_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the environment."
+    },
+    {
+      "name": "configuration",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "The configuration to use to process the document. If this part is provided, then the provided configuration is used to process the document. If the `configuration_id` is also provided (both are present at the same time), then request is rejected. The maximum supported configuration size is 1 MB. Configuration parts larger than 1 MB are rejected. See the `GET /configurations/{configuration_id}` operation for an example configuration."
+    },
+    {
+      "name": "step",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Specify to only run the input document through the given step instead of running the input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`."
+    },
+    {
+      "name": "configuration_id",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "The ID of the configuration to use to process the document. If the `configuration` form part is also provided (both are present at the same time), then request will be rejected."
+    },
+    {
+      "name": "file",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Must be a base64-encoded string. The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected."
+    },
+    {
+      "name": "metadata",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   \"Creator\": \"Johnny Appleseed\",   \"Subject\": \"Apples\" } ```."
+    },
+    {
+      "name": "file_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of file."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

@@ -16,46 +16,22 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19"
-  },
-  "sampleOutput": {
-    "languages": [
-      {
-        "language": "af",
-        "name": "Afrikaans"
-      },
-      {
-        "language": "ar",
-        "name": "Arabic"
-      },
-      {
-        "language": "az",
-        "name": "Azerbaijani"
-      },
-      {
-        "language": "ba",
-        "name": "Bashkir"
-      }
-      //...
-    ]
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

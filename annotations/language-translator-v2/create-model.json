@@ -17,19 +17,19 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
@@ -51,50 +51,23 @@
       "required": false,
       "bindTime": false,
       "description":
-        "A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call."
+        "Must be a base64-encoded string. A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call."
     },
     {
       "name": "parallel_corpus",
       "required": false,
       "bindTime": false,
       "description":
-        "A TMX file that contains entries that are treated as a parallel corpus instead of a glossary."
+        "Must be a base64-encoded string. A TMX file that contains entries that are treated as a parallel corpus instead of a glossary."
     },
     {
       "name": "monolingual_corpus",
       "required": false,
       "bindTime": false,
       "description":
-        "A UTF-8 encoded plain text file that is used to customize the target language model."
-    },
-    {
-      "name": "forced_glossary_content_type",
-      "required": false,
-      "bindTime": false,
-      "description": "The content type of forced_glossary."
-    },
-    {
-      "name": "parallel_corpus_content_type",
-      "required": false,
-      "bindTime": false,
-      "description": "The content type of parallel_corpus."
-    },
-    {
-      "name": "monolingual_corpus_content_type",
-      "required": false,
-      "bindTime": false,
-      "description": "The content type of monolingual_corpus."
+        "Must be a base64-encoded string. A UTF-8 encoded plain text file that is used to customize the target language model."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "name": "custom-english-to-spanish",
-    "base_model_id": "en-es",
-    "monolingual_corpus": "<UTF-8 Encoded String>"
-  },
-  "sampleOutput": {
-    "model_id": "3e7dfdbe-f757-4150-afee-458e71eb93fb"
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

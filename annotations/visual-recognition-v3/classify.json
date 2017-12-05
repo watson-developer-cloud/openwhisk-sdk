@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -42,7 +42,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "Base-64 encoded image file (.jpg, .png) data or .zip file data. Include no more than 20 images and limit the .zip file to 5 MB. You can also include images* with the `url` property in the **parameters** object."
+        "Must be a base64-encoded string. An image file (.jpg, .png) or .zip file with images. Include no more than 20 images and limit the .zip file to 5 MB. You can also include images with the `url` property in the **parameters** object."
     },
     {
       "name": "parameters",
@@ -65,62 +65,6 @@
       "description": "The content type of images_file."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "images_file": "{Base64 image data}"
-  },
-  "sampleOutput": {
-    "custom_classes": 0,
-    "images": [
-      {
-        "classifiers": [
-          {
-            "classes": [
-              {
-                "class": "banana",
-                "score": 0.562,
-                "type_hierarchy": "/fruit/banana"
-              },
-              {
-                "class": "fruit",
-                "score": 0.788
-              },
-              {
-                "class": "diet (food)",
-                "score": 0.528,
-                "type_hierarchy": "/food/diet (food)"
-              },
-              {
-                "class": "food",
-                "score": 0.528
-              },
-              {
-                "class": "honeydew",
-                "score": 0.5,
-                "type_hierarchy": "/fruit/melon/honeydew"
-              },
-              {
-                "class": "melon",
-                "score": 0.501
-              },
-              {
-                "class": "olive color",
-                "score": 0.973
-              },
-              {
-                "class": "lemon yellow color",
-                "score": 0.789
-              }
-            ],
-            "classifier_id": "default",
-            "name": "default"
-          }
-        ],
-        "image": "fruitbowl.jpg"
-      }
-    ],
-    "images_processed": 1
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

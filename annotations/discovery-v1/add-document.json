@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -54,7 +54,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "Base-64 encoded content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected."
+        "Must be a base64-encoded string. The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected."
     },
     {
       "name": "metadata",
@@ -70,16 +70,6 @@
       "description": "The content type of file."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "environment_id": "{environment_id}",
-    "collection_id": "{collection_id}",
-    "file": "fs.readFileSync('{/path/to/file}')"
-  },
-  "sampleOutput": {
-    "status": "processing",
-    "document_id": "45556e23-f2b1-449d-8f27-489b514000ff"
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

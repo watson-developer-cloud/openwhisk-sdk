@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -100,82 +100,6 @@
         "Sets the maximum number of characters that are processed by the service."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "text":
-      "IBM is an American multinational technology company headquartered in Armonk, New York, United States, with operations in over 170 countries.",
-    "features": {
-      "entities": {
-        "emotion": true,
-        "sentiment": true,
-        "limit": 2
-      }
-    }
-  },
-  "sampleOutput": {
-    "language": "en",
-    "keywords": [
-      {
-        "text": "American multinational technology",
-        "sentiment": {
-          "score": 0.312231
-        },
-        "relevance": 0.993518,
-        "emotion": {
-          "sadness": 0.357113,
-          "joy": 0.221593,
-          "fear": 0.078444,
-          "disgust": 0.378436,
-          "anger": 0.067114
-        }
-      },
-      {
-        "text": "New York",
-        "sentiment": {
-          "score": 0
-        },
-        "relevance": 0.613816,
-        "emotion": {
-          "sadness": 0.350735,
-          "joy": 0.48397,
-          "fear": 0.145972,
-          "disgust": 0.023062,
-          "anger": 0.039178
-        }
-      }
-    ],
-    "entities": [
-      {
-        "type": "Company",
-        "text": "IBM",
-        "sentiment": {
-          "score": 0.312231
-        },
-        "relevance": 0.33,
-        "emotion": {
-          "sadness": 0.357113,
-          "joy": 0.221593,
-          "fear": 0.078444,
-          "disgust": 0.378436,
-          "anger": 0.067114
-        },
-        "disambiguation": {
-          "subtype": [
-            "SoftwareLicense",
-            "OperatingSystemDeveloper",
-            "ProcessorManufacturer",
-            "SoftwareDeveloper",
-            "CompanyFounder",
-            "ProgrammingLanguageDesigner",
-            "ProgrammingLanguageDeveloper"
-          ],
-          "name": "IBM",
-          "dbpedia_resource": "http://dbpedia.org/resource/IBM"
-        },
-        "count": 1
-      }
-    ]
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

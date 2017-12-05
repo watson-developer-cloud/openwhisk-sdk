@@ -1,0 +1,161 @@
+{
+  "description": "Sends audio for speech recognition within a session.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "session_id",
+      "required": true,
+      "bindTime": false,
+      "description": "The ID of the session for the recognition task."
+    },
+    {
+      "name": "transfer_encoding",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Set to `chunked` to send the audio in streaming mode; the data does not need to exist fully before being streamed to the service.   MULTIPART: You must also set this header for requests with more than one audio part."
+    },
+    {
+      "name": "audio",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Audio to transcribe in the format specified by the `Content-Type` header. **Required for a non-multipart request.**."
+    },
+    {
+      "name": "content_type",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "The type of the input: audio/basic, audio/flac, audio/l16, audio/mp3, audio/mpeg, audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/wav, audio/webm, audio/webm;codecs=opus, audio/webm;codecs=vorbis, or multipart/form-data."
+    },
+    {
+      "name": "sequence_id",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Sequence ID of this recognition task in the form of a user-specified integer. If omitted, no sequence ID is associated with the recognition task."
+    },
+    {
+      "name": "inactivity_timeout",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: The time in seconds after which, if only silence (no speech) is detected in submitted audio, the connection is closed with a 400 error and with `session_closed` set to `true`. Useful for stopping audio submission from a live microphone when a user simply walks away.  Use `-1` for infinity."
+    },
+    {
+      "name": "keywords",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Array of keyword strings to spot in the audio. Each keyword string can include one or more tokens. Keywords are spotted only in the final hypothesis, not in interim results (if supported by the method). Omit the parameter or specify an empty array if you do not need to spot keywords."
+    },
+    {
+      "name": "keywords_threshold",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Confidence value that is the lower bound for spotting a keyword. A word is considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you specify a threshold, you must also specify one or more keywords."
+    },
+    {
+      "name": "max_alternatives",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Maximum number of alternative transcripts to be returned. By default, a single transcription is returned."
+    },
+    {
+      "name": "word_alternatives_threshold",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as \"Confusion Networks\"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No alternative words are computed if you omit the parameter."
+    },
+    {
+      "name": "word_confidence",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: If `true`, confidence measure per word is returned."
+    },
+    {
+      "name": "timestamps",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: If `true`, time alignment for each word is returned."
+    },
+    {
+      "name": "profanity_filter",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only."
+    },
+    {
+      "name": "smart_formatting",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. If `false` (the default), no formatting is performed. Applies to US English transcription only."
+    },
+    {
+      "name": "speaker_labels",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "NON-MULTIPART ONLY: Indicates whether labels that identify which words were spoken by which participants in a multi-person exchange are to be included in the response. The default is `false`; no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the `GET /v1/models` method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels)."
+    },
+    {
+      "name": "metadata",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "MULTIPART ONLY: Parameters for the multipart recognition request. This must be the first part of the request and must consist of JSON-formatted data. The information describes the subsequent parts of the request, which pass the audio files to be transcribed. **Required for a multipart request.**."
+    },
+    {
+      "name": "upload",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Must be a base64-encoded string. MULTIPART ONLY: One or more audio files for the request. For multiple audio files, set `Transfer-Encoding` to `chunked`. **Required for a multipart request.**."
+    },
+    {
+      "name": "upload_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of upload."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

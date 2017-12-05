@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -97,21 +97,6 @@
         "Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "name": "API test",
-    "description": "Example workspace created via API."
-  },
-  "sampleOutput": {
-    "name": "API test",
-    "created": "2017-01-31T18:02:19.070Z",
-    "updated": "2017-01-31T18:02:19.070Z",
-    "language": "en",
-    "metadata": null,
-    "description": "Example workspace created via API.",
-    "workspace_id": "245edf96-b89f-46ac-b647-c6618b2eb5f0",
-    "learning_opt_out": false
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

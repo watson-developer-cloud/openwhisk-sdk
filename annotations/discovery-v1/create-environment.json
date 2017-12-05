@@ -16,25 +16,25 @@
     {
       "name": "headers",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "The request headers"
     },
     {
-      "name": "headers.X-Watson-Learning-Opt-Out",
+      "name": "headers[X-Watson-Learning-Opt-Out]",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "opt-out of data collection"
     },
     {
       "name": "url",
       "required": false,
-      "bindTime": false,
+      "bindTime": true,
       "description": "override default service base url"
     },
     {
       "name": "version_date",
       "required": true,
-      "bindTime": false,
+      "bindTime": true,
       "description": "Release date of the API version in YYYY-MM-DD format."
     },
     {
@@ -56,32 +56,6 @@
       "description": "**Deprecated**: Size of the environment."
     }
   ],
-  "sampleInput": {
-    "username": "XXX",
-    "password": "XXX",
-    "version_date": "2016-10-19",
-    "name": "{environment_name}"
-  },
-  "sampleOutput": {
-    "environment_id": "f822208e-e4c2-45f8-a0d6-c2be950fbcc8",
-    "name": "{environment_name}",
-    "created": "2016-06-16T10:56:54.957Z",
-    "updated": "2017-05-16T13:56:54.957Z",
-    "status": "active",
-    "read_only": false,
-    "index_capacity": {
-      "documents": {
-        "available": 0,
-        "maximum_allowed": 1000000
-      },
-      "disk_usage": {
-        "used_bytes": 0,
-        "maximum_allowed_bytes": 85899345920
-      },
-      "collections": {
-        "available": 1,
-        "maximum_allowed": 2
-      }
-    }
-  }
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
 }

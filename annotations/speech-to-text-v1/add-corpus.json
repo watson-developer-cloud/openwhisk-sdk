@@ -1,0 +1,71 @@
+{
+  "description": "Adds a corpus text file to a custom language model.",
+  "parameters": [
+    {
+      "name": "username",
+      "required": false,
+      "bindTime": true,
+      "description": "The service username"
+    },
+    {
+      "name": "password",
+      "required": false,
+      "bindTime": true,
+      "description": "The service password"
+    },
+    {
+      "name": "headers",
+      "required": false,
+      "bindTime": true,
+      "description": "The request headers"
+    },
+    {
+      "name": "headers[X-Watson-Learning-Opt-Out]",
+      "required": false,
+      "bindTime": true,
+      "description": "opt-out of data collection"
+    },
+    {
+      "name": "url",
+      "required": false,
+      "bindTime": true,
+      "description": "override default service base url"
+    },
+    {
+      "name": "customization_id",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The GUID of the custom language model to which a corpus is to be added. You must make the request with service credentials created for the instance of the service that owns the custom model."
+    },
+    {
+      "name": "corpus_name",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "The name of the corpus that is to be added to the custom language model. The name cannot contain spaces and cannot be the string `user`, which is reserved by the service to denote custom words added or modified by the user. Use a localized name that matches the language of the custom model."
+    },
+    {
+      "name": "allow_overwrite",
+      "required": false,
+      "bindTime": false,
+      "description":
+        "Indicates whether the specified corpus is to overwrite an existing corpus with the same name. If a corpus with the same name already exists, the request fails unless `allow_overwrite` is set to `true`; by default, the parameter is `false`. The parameter has no effect if a corpus with the same name does not already exist."
+    },
+    {
+      "name": "corpus_file",
+      "required": true,
+      "bindTime": false,
+      "description":
+        "Must be a base64-encoded string. A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters. With cURL, use the `--data-binary` option to upload the file for the request."
+    },
+    {
+      "name": "corpus_file_content_type",
+      "required": false,
+      "bindTime": false,
+      "description": "The content type of corpus_file."
+    }
+  ],
+  "sampleInput": "Coming soon!",
+  "sampleOutput": "Coming soon!"
+}

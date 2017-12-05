@@ -17,7 +17,7 @@
 const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-language-classifier/v1');
 
 /**
- * Returns label information for the input.
+ * Classify.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -36,6 +36,7 @@ function main(params) {
       service = new NaturalLanguageClassifierV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.classify(params, (err, response) => {
       if (err) {

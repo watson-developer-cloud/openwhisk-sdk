@@ -25,31 +25,34 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.base_model_id - Specifies the domain model that is used as the
- * base for the training. To see current supported domain models, use the GET /v2/models parameter.
- * @param {string} [params.name] - The model name. Valid characters are
- * letters, numbers, -, and _. No spaces.
- * @param {File} [params.forced_glossary] - A TMX file with your customizations.
- * The customizations in the file completely overwrite the domain data translation,
- * including high frequency or high confidence phrase translations.
- * You can upload only one glossary with a file size less than 10 MB per call.
- * @param {File} [params.parallel_corpus] - A TMX file that contains entries that are treated
- * as a parallel corpus instead of a glossary.
- * @param {File} [params.monolingual_corpus] - A UTF-8 encoded plain text file that is used
- * to customize the target language model.
- * @param {string} [params.forced_glossary_content_type] - The content type of forced_glossary.
- * @param {string} [params.parallel_corpus_content_type] - The content type of parallel_corpus.
- * @param {string} [params.monolingual_corpus_content_type] - The content type of
- * monolingual_corpus.
+ * @param {string} params.base_model_id - Specifies the domain model that is used as the base for the training. To see current supported domain models, use the GET /v2/models parameter.
+ * @param {string} [params.name] - The model name. Valid characters are letters, numbers, -, and _. No spaces.
+ * @param {string} [params.forced_glossary] - Must be a base64-encoded string. A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call.
+ * @param {string} [params.parallel_corpus] - Must be a base64-encoded string. A TMX file that contains entries that are treated as a parallel corpus instead of a glossary.
+ * @param {string} [params.monolingual_corpus] - Must be a base64-encoded string. A UTF-8 encoded plain text file that is used to customize the target language model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const fileParams = [
+      'forced_glossary',
+      'parallel_corpus',
+      'monolingual_corpus'
+    ];
+    fileParams.forEach((fileParam) => {
+      try {
+        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+      } catch (err) {
+        reject(err.message);
+        return;
+      }
+    });
     let service;
     try {
       service = new LanguageTranslatorV2(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.createModel(params, (err, response) => {
       if (err) {

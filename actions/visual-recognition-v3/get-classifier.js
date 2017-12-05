@@ -17,11 +17,12 @@
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
 /**
- * Retrieve information about a custom classifier.
+ * Retrieve classifier details.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
+ * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
@@ -36,6 +37,7 @@ function main(params) {
       service = new VisualRecognitionV3(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.getClassifier(params, (err, response) => {
       if (err) {

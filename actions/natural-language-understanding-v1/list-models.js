@@ -35,6 +35,7 @@ function main(params) {
       service = new NaturalLanguageUnderstandingV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.listModels(params, (err, response) => {
       if (err) {

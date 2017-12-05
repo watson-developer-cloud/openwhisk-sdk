@@ -29,22 +29,28 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.document_id - The ID of the document.
- * @param {File} [params.file] - The content of the document to ingest. The maximum supported file
- * size is 50 megabytes. Files larger than 50 megabytes is rejected.
- * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents,
- * you can test a document against the type of metadata that the Data Crawler might send.
- * The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected.
- * Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
+ * @param {string} [params.file] - Must be a base64-encoded string. The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected.
+ * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
  * @param {string} [params.file_content_type] - The content type of file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const fileParams = ['file'];
+    fileParams.forEach((fileParam) => {
+      try {
+        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+      } catch (err) {
+        reject(err.message);
+        return;
+      }
+    });
     let service;
     try {
       service = new DiscoveryV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.updateDocument(params, (err, response) => {
       if (err) {

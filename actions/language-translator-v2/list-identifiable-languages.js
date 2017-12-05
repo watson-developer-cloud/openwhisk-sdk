@@ -34,6 +34,7 @@ function main(params) {
       service = new LanguageTranslatorV2(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.listIdentifiableLanguages(params, (err, response) => {
       if (err) {

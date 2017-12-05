@@ -25,8 +25,8 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - GUID of the custom voice model in which to query a word. You must make the request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.word - The word to be queried from the custom voice model.
+ * @param {string} params.customization_id - The GUID of the custom voice model from which to query a word. You must make the request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.word - The word that is to be queried from the custom voice model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -36,6 +36,7 @@ function main(params) {
       service = new TextToSpeechV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.getWord(params, (err, response) => {
       if (err) {

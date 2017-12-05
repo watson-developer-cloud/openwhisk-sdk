@@ -3,3 +3,8 @@ env:
   jest: true
   node: true
   mocha: true
+rules:
+  no-param-reassign: 0
+  max-len: [2, 80, 4, { "ignoreComments": true, "ignorePattern":  '^\s*const\s.+=\s*require\s*\(' }]
+  comma-dangle: ["error", "never"]
+  no-useless-return: 0

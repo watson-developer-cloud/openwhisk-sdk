@@ -30,13 +30,9 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.configuration_id - The ID of the configuration.
  * @param {string} params.name - The name of the configuration.
  * @param {string} [params.description] - The description of the configuration, if available.
- * @param {Conversions} [params.conversions] - The document conversion
- * settings for the configuration.
- * @param {Enrichment[]} [params.enrichments] - An array of document enrichment
- * settings for the configuration.
- * @param {NormalizationOperation[]} [params.normalizations] - Defines operations that can be
- * used to transform the final output JSON into a normalized form.
- * Operations are executed in the order that they appear in the array.
+ * @param {Conversions} [params.conversions] - The document conversion settings for the configuration.
+ * @param {Enrichment[]} [params.enrichments] - An array of document enrichment settings for the configuration.
+ * @param {NormalizationOperation[]} [params.normalizations] - Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -46,6 +42,7 @@ function main(params) {
       service = new DiscoveryV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.updateConfiguration(params, (err, response) => {
       if (err) {

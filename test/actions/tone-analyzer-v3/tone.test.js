@@ -86,8 +86,7 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Missing version_date error was not found');
       })
       .catch((err) => {
-        assert(err ===
-            'Argument error: version_date was not specified, use 2016-05-19');
+        assert(err === 'Argument error: version_date was not specified, use 2016-05-19');
       });
   });
 

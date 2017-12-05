@@ -26,14 +26,10 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {number} [params.page_limit] - The number of records to return in each page of results.
- * The default page limit is 100.
- * @param {boolean} [params.include_count] - Whether to include information about
- * the number of records returned.
- * @param {string} [params.sort] - Sorts the response according to the value of
- * the specified property, in ascending or descending order.
- * @param {string} [params.cursor] - A token identifying the last value
- * from the previous page of results.
+ * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
+ * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
+ * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
+ * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -43,6 +39,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.listWorkspaces(params, (err, response) => {
       if (err) {

@@ -25,20 +25,10 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string[]} params.text - Input text in UTF-8 encoding. It is a list so that multiple
- * paragraphs can be submitted. Also accept a single string, instead of an array, as valid input.
- * @param {string} [params.model_id] - The unique model_id of the translation model being used to
- * translate text. The model_id inherently specifies source language, target language, and domain.
- * If the model_id is specified, there is no need for the source and target parameters
- * and the values are ignored.
- * @param {string} [params.source] - Used in combination with target as an alternative way to
- * select the model for translation. When target and source are set, and model_id is not set,
- * the system chooses a default model with the right language pair to translate
- * (usually the model based on the news domain).
- * @param {string} [params.target] - Used in combination with source as an alternative way to
- * select the model for translation. When target and source are set, and model_id is not set,
- * the system chooses a default model with the right language pair to translate
- * (usually the model based on the news domain).
+ * @param {string[]|string} params.text - Input text in UTF-8 encoding. It is a list so that multiple paragraphs can be submitted. Also accept a single string, instead of an array, as valid input.
+ * @param {string} [params.model_id] - The unique model_id of the translation model being used to translate text. The model_id inherently specifies source language, target language, and domain. If the model_id is specified, there is no need for the source and target parameters and the values are ignored.
+ * @param {string} [params.source] - Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
+ * @param {string} [params.target] - Used in combination with source as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -48,6 +38,7 @@ function main(params) {
       service = new LanguageTranslatorV2(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.translate(params, (err, response) => {
       if (err) {

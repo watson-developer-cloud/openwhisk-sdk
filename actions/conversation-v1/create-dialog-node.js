@@ -35,8 +35,7 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {Object} [params.output] - The output of the dialog node.
  * @param {Object} [params.context] - The context for the dialog node.
  * @param {Object} [params.metadata] - The metadata for the dialog node.
- * @param {DialogNodeNextStep} [params.next_step] - The next step to execute following
- * this dialog node.
+ * @param {DialogNodeNextStep} [params.next_step] - The next step to execute following this dialog node.
  * @param {DialogNodeAction[]} [params.actions] - The actions for the dialog node.
  * @param {string} [params.title] - The alias used to identify the dialog node.
  * @param {string} [params.node_type] - How the dialog node is processed.
@@ -51,6 +50,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.createDialogNode(params, (err, response) => {
       if (err) {

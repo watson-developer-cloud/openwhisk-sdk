@@ -22,27 +22,46 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
+ * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.name - The name of the new classifier. Cannot contain special characters.
- * @param {File} params.classname_positive_examples - A compressed (.zip) file of images that
- * depict the visual subject for a class within the new classifier. Must contain a minimum of
- * 10 images. The swagger limits you to training only one class.
- * To train more classes, use the API functionality.
- * @param {File} [params.negative_examples] - A compressed (.zip) file of images that do not depict
- * the visual subject of any of the classes of the new classifier.
- * Must contain a minimum of 10 images.
+ * @param {string} params.classname_positive_examples - Must be a base64-encoded string. A .zip file of images that depict the visual subject of a class in the new classifier. You can include more than one positive example file in a call. Append `_positive_examples` to the form name. The prefix is used as the class name. For example, `goldenretriever_positive_examples` creates the class **goldenretriever**.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  The API explorer limits you to training only one class. To train more classes, use the API functionality.
+ * @param {string} [params.negative_examples] - Must be a base64-encoded string. A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const fileParams = ['negative_examples'];
+    fileParams.forEach((fileParam) => {
+      try {
+        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+      } catch (err) {
+        reject(err.message);
+        return;
+      }
+    });
+    const positiveExampleClasses = Object.keys(params).filter(key =>
+      key.match(/.*positive_examples/));
+    positiveExampleClasses.forEach((positiveExampleClass) => {
+      try {
+        params[positiveExampleClass] = Buffer.from(
+          params[positiveExampleClass],
+          'base64'
+        );
+      } catch (err) {
+        reject(err.message);
+        return;
+      }
+    });
     let service;
     try {
       service = new VisualRecognitionV3(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.createClassifier(params, (err, response) => {
       if (err) {

@@ -25,11 +25,11 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} [params.accept] - Requested audio format (MIME type) of the audio. You can use this header or the `accept` query parameter to specify the audio format. (For the `audio/l16` format, you can optionally specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.).
- * @param {string} [params.accept2] - Requested audio format (MIME type) of the audio. You can use this query parameter or the `Accept` header to specify the audio format. (For the `audio/l16` format, you can optionally specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.).
- * @param {string} [params.voice] - Selects a voice to use for synthesis. Retrieve available voices with the `GET /v1/voices` method.
- * @param {string} [params.customization_id] - GUID of a custom voice model to be used for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization.
- * @param {string} params.text - Text to synthesize.
+ * @param {string} [params.accept] - The requested audio format (MIME type) of the audio. You can use this header or the `accept` query parameter to specify the audio format. (For the `audio/l16` format, you can optionally specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.).
+ * @param {string} [params.accept2] - The requested audio format (MIME type) of the audio. You can use this query parameter or the `Accept` header to specify the audio format. (For the `audio/l16` format, you can optionally specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.).
+ * @param {string} [params.voice] - The voice to use for synthesis. Retrieve available voices with the `GET /v1/voices` method.
+ * @param {string} [params.customization_id] - The GUID of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization.
+ * @param {string} params.text - The text to synthesize.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -39,6 +39,7 @@ function main(params) {
       service = new TextToSpeechV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.synthesize(params, (err, response) => {
       if (err) {

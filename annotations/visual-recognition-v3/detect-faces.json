@@ -42,7 +42,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "An image file (.jpg, .png) or .zip file with images. Include no more than 15 images. You can also include images with the `url` property in the **parameters** object.  All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0."
+        "Base-64 encoded image file (.jpg, .png) data or .zip file data. Include no more than 15 images and limit the .zip file to 5 MB. You can also include images with the `url` property in the **parameters** object. All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0."
     },
     {
       "name": "parameters",

@@ -29,10 +29,8 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.name - The name of the collection to be created.
  * @param {string} [params.description] - A description of the collection.
- * @param {string} [params.configuration_id] - The ID of the configuration in which
- * the collection is to be created.
- * @param {string} [params.language] - The language of the documents stored in the collection,
- * in the form of an ISO 639-1 language code.
+ * @param {string} [params.configuration_id] - The ID of the configuration in which the collection is to be created.
+ * @param {string} [params.language] - The language of the documents stored in the collection, in the form of an ISO 639-1 language code.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -42,6 +40,7 @@ function main(params) {
       service = new DiscoveryV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.createCollection(params, (err, response) => {
       if (err) {

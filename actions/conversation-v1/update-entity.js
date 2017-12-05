@@ -42,6 +42,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.updateEntity(params, (err, response) => {
       if (err) {

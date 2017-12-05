@@ -39,6 +39,7 @@ function main(params) {
       service = new ConversationV1(params);
     } catch (err) {
       reject(err.message);
+      return;
     }
     service.deleteSynonym(params, (err, response) => {
       if (err) {

@@ -42,7 +42,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "An image file (.jpg, .png) or .zip file with images. Include no more than 20 images and limit the .zip file to 5 MB. You can also include images with the `url` property in the **parameters** object."
+        "Base-64 encoded image file (.jpg, .png) data or .zip file data. Include no more than 20 images and limit the .zip file to 5 MB. You can also include images* with the `url` property in the **parameters** object."
     },
     {
       "name": "parameters",

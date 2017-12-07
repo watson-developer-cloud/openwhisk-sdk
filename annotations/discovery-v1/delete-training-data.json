@@ -1,5 +1,6 @@
 {
-  "description": "",
+  "description":
+    "Removes the training data and all associated examples from the training data set.",
   "parameters": [
     {
       "name": "username",

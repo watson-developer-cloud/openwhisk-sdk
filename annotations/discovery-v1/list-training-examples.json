@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "List all examples for this training data query.",
   "parameters": [
     {
       "name": "username",

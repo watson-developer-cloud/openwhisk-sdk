@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "Gets the details for this training example.",
   "parameters": [
     {
       "name": "username",

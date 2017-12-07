@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "Clears all training data for this collection.",
   "parameters": [
     {
       "name": "username",

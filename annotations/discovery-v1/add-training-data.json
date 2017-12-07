@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "Adds a query to the training data for this collection. The query can contain a filter and natural language query.",
   "parameters": [
     {
       "name": "username",

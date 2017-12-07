@@ -17,7 +17,9 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * List fields in specified collecitons.
+ * List fields in specified collecitons
+ *
+ * Gets a list of the unique fields (and their types) stored in the indexes of the specified collecitons.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

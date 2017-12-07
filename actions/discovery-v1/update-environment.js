@@ -17,7 +17,9 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Update an environment.
+ * Update an environment
+ *
+ * Updates an environment. The environment's `name` and  `description` parameters can be changed. You must specify a `name` for the environment.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

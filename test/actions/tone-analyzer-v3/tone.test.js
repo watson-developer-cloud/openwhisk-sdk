@@ -2,15 +2,17 @@ const assert = require('assert');
 const nock = require('nock');
 const action = require('../../../actions/tone-analyzer-v3/tone');
 
+const serviceName = 'TONE ANALYZER V3';
+
 describe('[action] ToneAnalyzer', () => {
   beforeEach(() => {
     nock('https://gateway.watsonplatform.net/tone-analyzer')
       .post('/api/v3/tone')
       .query({
-        version: 'fake version date',
+        version: 'fake version date'
       })
       .reply(200, {
-        'fake-key': 'fake-value',
+        'fake-key': 'fake-value'
       });
   });
 
@@ -23,7 +25,7 @@ describe('[action] ToneAnalyzer', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+            `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -36,7 +38,7 @@ describe('[action] ToneAnalyzer', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+            `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -44,7 +46,7 @@ describe('[action] ToneAnalyzer', () => {
     const params = {
       password: 'fake password',
       text: 'fake text',
-      version_date: 'fake version date',
+      version_date: 'fake version date'
     };
     return action
       .main(params)
@@ -53,7 +55,7 @@ describe('[action] ToneAnalyzer', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+            `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -61,7 +63,7 @@ describe('[action] ToneAnalyzer', () => {
     const params = {
       username: 'fake username',
       text: 'fake text',
-      version_date: 'fake version date',
+      version_date: 'fake version date'
     };
     return action
       .main(params)
@@ -70,7 +72,7 @@ describe('[action] ToneAnalyzer', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+            `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -78,7 +80,7 @@ describe('[action] ToneAnalyzer', () => {
     const params = {
       username: 'fake username',
       password: 'fake password',
-      text: 'fake text',
+      text: 'fake text'
     };
     return action
       .main(params)
@@ -86,7 +88,7 @@ describe('[action] ToneAnalyzer', () => {
         assert.fail('Missing version_date error was not found');
       })
       .catch((err) => {
-        assert(err === 'Argument error: version_date was not specified, use 2016-05-19');
+        assert(err === 'Argument error: version_date was not specified');
       });
   });
 
@@ -94,7 +96,7 @@ describe('[action] ToneAnalyzer', () => {
     const params = {
       username: 'fake username',
       password: 'fake password',
-      version_date: 'fake version date',
+      version_date: 'fake version date'
     };
 
     return action
@@ -112,7 +114,7 @@ describe('[action] ToneAnalyzer', () => {
       username: 'fake username',
       password: 'fake password',
       version_date: 'fake version date',
-      text: 'fake text',
+      text: 'fake text'
     };
 
     return action
@@ -127,7 +129,7 @@ describe('[action] ToneAnalyzer', () => {
     const params = {
       text: 'fake text',
       version_date: 'fake version date',
-      use_unauthenticated: true,
+      use_unauthenticated: true
     };
 
     return action

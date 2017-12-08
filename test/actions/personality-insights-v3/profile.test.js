@@ -1,6 +1,7 @@
 const assert = require('assert');
 const nock = require('nock');
 const action = require('../../../actions/personality-insights-v3/profile');
+const serviceName = 'PERSONALITY INSIGHTS V3';
 
 describe('[action] Personality Insights', () => {
   beforeEach(() => {
@@ -23,7 +24,7 @@ describe('[action] Personality Insights', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+            `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -36,7 +37,7 @@ describe('[action] Personality Insights', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+          `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -53,7 +54,7 @@ describe('[action] Personality Insights', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+          `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -70,7 +71,7 @@ describe('[action] Personality Insights', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: username and password are required unless use_unauthenticated is set');
+          `Argument error: username and password are required for ${serviceName} unless use_unauthenticated is set`);
       });
   });
 
@@ -87,7 +88,7 @@ describe('[action] Personality Insights', () => {
       })
       .catch((err) => {
         assert(err ===
-            'Argument error: version_date was not specified, use 2016-10-19');
+            'Argument error: version_date was not specified');
       });
   });
 

@@ -17,7 +17,9 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Add an environment.
+ * Add an environment
+ *
+ * Creates a new environment.  You can create only one environment per service instance. An attempt to create another environment results in an error.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

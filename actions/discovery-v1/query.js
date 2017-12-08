@@ -17,7 +17,9 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Query documents.
+ * Query documents
+ *
+ * See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

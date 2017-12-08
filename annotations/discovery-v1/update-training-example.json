@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "Changes the label or cross reference query for this training example.",
   "parameters": [
     {
       "name": "username",

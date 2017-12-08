@@ -31,10 +31,11 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
     const fileParams = ['metadata', 'training_data'];
-    fileParams.forEach((fileParam) => {
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
-        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
         reject(err.message);
         return;
@@ -42,12 +43,12 @@ function main(params) {
     });
     let service;
     try {
-      service = new NaturalLanguageClassifierV1(params);
+      service = new NaturalLanguageClassifierV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.createClassifier(params, (err, response) => {
+    service.createClassifier(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -17,9 +17,9 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Delete a configuration
+ * Knowledge Graph entity query
  *
- * The deletion is performed unconditionally. A configuration deletion request succeeds even if the configuration is referenced by a collection or document ingestion. However, documents that have already been submitted for processing continue to use the deleted configuration. Documents are always processed with a snapshot of the configuration as it existed at the time the document was submitted.
+ * See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,7 +29,11 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
- * @param {string} params.configuration_id - The ID of the configuration.
+ * @param {string} params.collection_id - The ID of the collection.
+ * @param {string} [params.feature] - The entity query feature to perform. Must be `disambiguate`
+ * @param {QueryEntitiesEntity} [params.entity] - A text string that appears within the entity text field.
+ * @param {QueryEntitiesContext} [params.context] - Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
+ * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -41,7 +45,7 @@ function main(params) {
       reject(err.message);
       return;
     }
-    service.deleteConfiguration(params, (err, response) => {
+    service.queryEntities(params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

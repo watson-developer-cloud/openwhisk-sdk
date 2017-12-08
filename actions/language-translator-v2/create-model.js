@@ -34,14 +34,15 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
     const fileParams = [
       'forced_glossary',
       'parallel_corpus',
       'monolingual_corpus'
     ];
-    fileParams.forEach((fileParam) => {
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
-        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
         reject(err.message);
         return;
@@ -49,12 +50,12 @@ function main(params) {
     });
     let service;
     try {
-      service = new LanguageTranslatorV2(params);
+      service = new LanguageTranslatorV2(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.createModel(params, (err, response) => {
+    service.createModel(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

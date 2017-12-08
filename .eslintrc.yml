@@ -8,3 +8,4 @@ rules:
   max-len: [2, 80, 4, { "ignoreComments": true, "ignorePattern":  '^\s*const\s.+=\s*require\s*\(' }]
   comma-dangle: ["error", "never"]
   no-useless-return: 0
+  no-underscore-dangle: 0

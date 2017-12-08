@@ -1,5 +1,6 @@
 {
-  "description": "",
+  "description":
+    "Removes the example with the given ID for the training data query.",
   "parameters": [
     {
       "name": "username",

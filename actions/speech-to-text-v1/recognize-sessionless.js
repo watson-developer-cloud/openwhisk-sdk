@@ -49,10 +49,11 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
     const fileParams = ['upload'];
-    fileParams.forEach((fileParam) => {
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
-        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
         reject(err.message);
         return;
@@ -60,12 +61,12 @@ function main(params) {
     });
     let service;
     try {
-      service = new SpeechToTextV1(params);
+      service = new SpeechToTextV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.recognizeSessionless(params, (err, response) => {
+    service.recognizeSessionless(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

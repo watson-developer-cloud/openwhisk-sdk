@@ -15,10 +15,4 @@ deploy:
     script: python deploy.py staging
     skip_cleanup: true
     on:
-      branch: develop
-  # deploy master to production
-  - provider: script
-    script: python deploy.py staging #should be changed to production later
-    skip_cleanup: true
-    on:
       branch: master

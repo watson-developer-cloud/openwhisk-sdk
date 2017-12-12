@@ -69,7 +69,7 @@ def deploy():
         action_paths = glob.glob(package_path+'/*.js')
         for action_path in action_paths:
             action_name = action_path.split('/')[2].split('.')[0]
-            action_annotations = get_annotation(package_name,action_name)
+            action_annotations = get_annotations(package_name,action_name)
             #don't deploy actions that are missing annotations
             if action_annotations is None:
                 continue

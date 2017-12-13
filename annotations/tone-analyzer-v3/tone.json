@@ -49,7 +49,7 @@
       "required": true,
       "bindTime": false,
       "description":
-        "The type of the input: application/json, text/plain, or text/html. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'."
+        "The type of the input: application/json, text/plain, or text/html. A character encoding can be specified by including a `charset` parameter. For example, \"text/plain;charset=utf-8\"."
     },
     {
       "name": "sentences",

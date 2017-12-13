@@ -66,7 +66,7 @@ function main(params) {
       reject(err.message);
       return;
     }
-    service.recognizeSessionless(_params, (err, response) => {
+    service.recognize(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

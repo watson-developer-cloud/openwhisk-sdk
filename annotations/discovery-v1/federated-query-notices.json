@@ -55,7 +55,7 @@
       "required": false,
       "bindTime": false,
       "description":
-        "A cacheable query that limits the documents returned to exclude any documents that don't mention the query content. Filter searches are better for metadata type searches and when you are trying to get a sense of concepts in the data set."
+        "A cacheable query that limits the documents returned to exclude any documents that do not mention the query content. Filter searches are better for metadata type searches and when you are trying to get a sense of concepts in the data set."
     },
     {
       "name": "query",

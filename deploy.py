@@ -68,7 +68,7 @@ def make_action_command(action_path, action_annotations):
         string: A command that can be executed using the wsk cli.
     """
     first_slash = action_path.find('/')
-    qualified_action_name = action_path[first_slash + 1:]
+    qualified_action_name = action_path[first_slash + 1:].split('.')[0]
     command = "{} action update {} {}".format(WSK_CLI, qualified_action_name, action_path) \
         + " --auth {} --apihost {}".format(AUTH, API_HOST) \
         + " -a description {}".format(json.dumps(action_annotations['description'])) \

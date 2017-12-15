@@ -8,9 +8,3 @@ before_install:
 - sudo wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
 - sudo chmod 711 /usr/local/bin/wsk
 - export PATH=$PATH:"/usr/local/bin/wsk"
-deploy:
-  - provider: script
-    script: python deploy.py staging
-    skip_cleanup: true
-    on:
-      branch: master

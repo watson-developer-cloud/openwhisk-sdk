@@ -18,7 +18,7 @@ describe('[action] Personality Insights', () => {
   it('should fail if params is undefined', () => {
     const params = undefined;
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Undefined parameters error was not found');
       })
@@ -31,7 +31,7 @@ describe('[action] Personality Insights', () => {
   it('should fail if params is null', () => {
     const params = null;
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Null parameters error was not found');
       })
@@ -48,7 +48,7 @@ describe('[action] Personality Insights', () => {
       text: 'fake text',
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing username error was not found');
       })
@@ -65,7 +65,7 @@ describe('[action] Personality Insights', () => {
       text: 'fake text',
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing password error was not found');
       })
@@ -82,7 +82,7 @@ describe('[action] Personality Insights', () => {
       text: 'fake text',
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing version_date error was not found');
       })
@@ -99,7 +99,7 @@ describe('[action] Personality Insights', () => {
       version_date: 'fake version date',
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing text and content_items error was not found');
       })
@@ -116,7 +116,7 @@ describe('[action] Personality Insights', () => {
       version_date: 'fake version date',
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert(true);
       })
@@ -131,7 +131,7 @@ describe('[action] Personality Insights', () => {
       content_items: { text: 'fake text' },
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert(true);
       })
@@ -145,7 +145,7 @@ describe('[action] Personality Insights', () => {
       use_unauthenticated: true,
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert(true);
       })

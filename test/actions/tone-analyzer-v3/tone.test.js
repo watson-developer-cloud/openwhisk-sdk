@@ -19,7 +19,7 @@ describe('[action] ToneAnalyzer', () => {
   it('should fail if params is undefined', () => {
     const params = undefined;
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Undefined parameters error was not found');
       })
@@ -32,7 +32,7 @@ describe('[action] ToneAnalyzer', () => {
   it('should fail if params is null', () => {
     const params = null;
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Null parameters error was not found');
       })
@@ -49,7 +49,7 @@ describe('[action] ToneAnalyzer', () => {
       version_date: 'fake version date'
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing username error was not found');
       })
@@ -66,7 +66,7 @@ describe('[action] ToneAnalyzer', () => {
       version_date: 'fake version date'
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing password error was not found');
       })
@@ -83,7 +83,7 @@ describe('[action] ToneAnalyzer', () => {
       text: 'fake text'
     };
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing version_date error was not found');
       })
@@ -100,7 +100,7 @@ describe('[action] ToneAnalyzer', () => {
     };
 
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert.fail('Missing text error was not found');
       })
@@ -118,7 +118,7 @@ describe('[action] ToneAnalyzer', () => {
     };
 
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert(true);
       })
@@ -133,7 +133,7 @@ describe('[action] ToneAnalyzer', () => {
     };
 
     return action
-      .main(params)
+      .test(params)
       .then(() => {
         assert(true);
       })

@@ -61,4 +61,5 @@ function main(params) {
     });
   });
 }
-module.exports.main = main;
+global.main = main;
+module.exports.test = main;

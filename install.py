@@ -26,7 +26,7 @@ import sys
 import re
 import shutil
 
-WSK_CLI = 'wsk' if len(sys.argv) < 2 else sys.argv[1]
+WSK_CLI = 'bx wsk' if len(sys.argv) < 2 else sys.argv[1]
 
 
 def get_annotations(package_name, annotation_filename):

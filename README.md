@@ -22,7 +22,7 @@ This SDK contains the following Watson packages:
 To use the openwhisk-sdk, you need to:
 
 1. Install node (follow instructions [here](https://docs.npmjs.com/getting-started/installing-node))
-2. Install the wsk cli (follow instructions [here](https://github.com/apache/incubator-openwhisk/blob/master/docs/cli.md#openwhisk-cli))
+2. Install the bx wsk cli (follow instructions [here](https://console.bluemix.net/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli))
 3. Clone this repository
 4. run `install.py` to install the Watson packages into your namespace.
 
@@ -45,14 +45,14 @@ To set up a package for usage with your Watson service instance, you must manual
 - Create a package binding that is configured for your Watson service.
 
 ```
-wsk package bind <package-name> <binding-name> -p username MYUSERNAME -p password MYPASSWORD
+bx wsk package bind <package-name> <binding-name> -p username MYUSERNAME -p password MYPASSWORD
 ```
 
 ```
-wsk package bind <package-name> <binding-name> -p api_key <api_key>
+bx wsk package bind <package-name> <binding-name> -p api_key <api_key>
 ```
 
-* If you want to bind more than the credentials, it's easiest to create a JSON file with the parameters you want to bind, then run the binding command via the wsk cli.
+* If you want to bind more than the credentials, it's easiest to create a JSON file with the parameters you want to bind, then run the binding command via the bx wsk cli.
 
 ```
 {
@@ -67,7 +67,7 @@ wsk package bind <package-name> <binding-name> -p api_key <api_key>
 ```
 
 ```
-wsk package bind <package-name> <binding-name> --param-file binding.json
+bx wsk package bind <package-name> <binding-name> --param-file binding.json
 ```
 
 # Invoking an action
@@ -105,13 +105,13 @@ The `message` action retrieves a response to a user's input. The parameters that
 If you haven't created a package binding, you can invoke the message action by providing all the required parameters, i.e.:
 
 ```
-wsk action invoke conversation-v1/message -p username <username> -p password <password> -p version_date <version_date> -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
+bx wsk action invoke conversation-v1/message -p username <username> -p password <password> -p version_date <version_date> -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
 ```
 
 If you've created a binding, you can invoke the message action via:
 
 ```
-wsk action invoke <binding-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
+bx wsk action invoke <binding-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
 ```
 
 # Documentation

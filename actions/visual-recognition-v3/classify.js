@@ -35,10 +35,11 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
     const fileParams = ['images_file'];
-    fileParams.forEach((fileParam) => {
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
-        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
         reject(err.message);
         return;
@@ -46,12 +47,12 @@ function main(params) {
     });
     let service;
     try {
-      service = new VisualRecognitionV3(params);
+      service = new VisualRecognitionV3(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.classify(params, (err, response) => {
+    service.classify(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

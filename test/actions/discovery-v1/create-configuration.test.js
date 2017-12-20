@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createConfiguration = require('../../../actions/discovery-v1/create-configuration');
 
@@ -15,7 +15,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createConfiguration = adapt(
       createConfiguration,
@@ -67,7 +67,7 @@ describe('create-configuration', () => {
       .then((res) => {
         // cleanup
         params.configuration_id = res.configuration_id;
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'discovery-v1/delete-configuration',

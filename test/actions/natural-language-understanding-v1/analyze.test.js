@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let analyze = require('../../../actions/natural-language-understanding-v1/analyze');
 
@@ -22,7 +22,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     analyze = adapt(analyze, 'natural-language-understanding-v1/analyze', ow);
     credentials = auth.natural_language_understanding;

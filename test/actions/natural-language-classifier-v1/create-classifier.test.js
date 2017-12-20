@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createClassifier = require('../../../actions/natural-language-classifier-v1/create-classifier');
 
@@ -21,7 +21,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createClassifier = adapt(
       createClassifier,
@@ -76,7 +76,7 @@ describe('create-classifier', () => {
     return createClassifier
       .test(params)
       .then((res) => {
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           const { classifier_id } = res;
           return ow.actions
             .invoke({

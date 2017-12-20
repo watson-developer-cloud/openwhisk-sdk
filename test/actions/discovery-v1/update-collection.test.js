@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let updateCollection = require('../../../actions/discovery-v1/update-collection');
 
@@ -16,7 +16,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     updateCollection = adapt(
       updateCollection,

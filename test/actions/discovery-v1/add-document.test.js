@@ -5,7 +5,7 @@ const fs = require('fs');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let addDocument = require('../../../actions/discovery-v1/add-document');
 
@@ -24,7 +24,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     addDocument = adapt(addDocument, 'discovery-v1/add-document', ow);
     credentials = auth.discovery;
@@ -83,7 +83,7 @@ describe('add-document', () => {
       .then((res) => {
         // cleanup
         params.document_id = res.document_id;
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'discovery-v1/delete-document',

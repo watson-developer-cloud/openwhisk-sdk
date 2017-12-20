@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let addTrainingData = require('../../../actions/discovery-v1/add-training-data');
 
@@ -16,7 +16,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     addTrainingData = adapt(
       addTrainingData,
@@ -78,7 +78,7 @@ describe('add-training-data', () => {
       .then((res) => {
         // cleanup
         params.query_id = res.query_id;
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'discovery-v1/delete-training-data',

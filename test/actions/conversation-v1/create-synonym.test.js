@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createSynonym = require('../../../actions/conversation-v1/create-synonym');
 
@@ -17,7 +17,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createSynonym = adapt(createSynonym, 'conversation-v1/create-synonym', ow);
     credentials = auth.conversation;
@@ -104,7 +104,7 @@ describe('create-synonym', () => {
       .test(params)
       .then(() => {
         // cleanup
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'conversation-v1/delete-synonym',

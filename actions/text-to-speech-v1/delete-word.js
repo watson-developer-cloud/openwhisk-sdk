@@ -42,7 +42,7 @@ function main(params) {
       if (err) {
         reject(err.message);
       } else {
-        resolve(response);
+        resolve({ response });
       }
     });
   });

@@ -64,21 +64,12 @@ describe('tone-chat', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if tone_input is missing', () => {
-    const params = omit(payload, ['tone_input']);
+  it('should fail if utterances is missing', () => {
+    const params = omit(payload, ['utterances']);
     return toneChat
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing tone_input');
-      })
-      .catch(err => negativeHandler(err));
-  });
-  it('should fail if content_type is missing', () => {
-    const params = omit(payload, ['content_type']);
-    return toneChat
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing content_type');
+        assert.fail('No failure on missing utterances');
       })
       .catch(err => negativeHandler(err));
   });

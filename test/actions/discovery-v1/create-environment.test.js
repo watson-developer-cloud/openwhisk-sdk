@@ -50,15 +50,6 @@ describe('create-environment', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if environment_id is missing', () => {
-    const params = omit(payload, ['environment_id']);
-    return createEnvironment
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing environment_id');
-      })
-      .catch(err => negativeHandler(err));
-  });
   it('should fail if name is missing', () => {
     const params = omit(payload, ['name']);
     return createEnvironment

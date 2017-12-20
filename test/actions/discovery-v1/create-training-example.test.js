@@ -82,13 +82,4 @@ describe('create-training-example', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if document_id is missing', () => {
-    const params = omit(payload, ['document_id']);
-    return createTrainingExample
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing document_id');
-      })
-      .catch(err => negativeHandler(err));
-  });
 });

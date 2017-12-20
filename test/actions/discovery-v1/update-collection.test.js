@@ -70,16 +70,6 @@ describe('update-collection', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if name is missing', () => {
-    const params = omit(payload, ['name']);
-    return updateCollection
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing name');
-      })
-      .catch(err => negativeHandler(err));
-  });
-
   it('should generate a valid payload', () => {
     const params = payload;
     return updateCollection

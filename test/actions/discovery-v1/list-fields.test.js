@@ -29,7 +29,8 @@ before(() => {
       nock('https://gateway.watsonplatform.net/discovery')
         .get(`/api/v1/environments/${payload.environment_id}/fields`)
         .query({
-          version: credentials.version_date
+          version: credentials.version_date,
+          collection_ids: payload.collection_ids
         })
         .reply(200, {});
     });

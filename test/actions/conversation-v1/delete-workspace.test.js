@@ -2,12 +2,9 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
-const { adapt, negativeHandler } = require('../../resources/test-helper');
+const { negativeHandler } = require('../../resources/test-helper');
 const deleteWorkspace = require('../../../actions/conversation-v1/delete-workspace');
 
-let ow;
 let credentials;
 let payload = {
   workspace_id: 'example_workspace_id'
@@ -53,7 +50,7 @@ describe('delete-workspace', () => {
     const params = payload;
     return deleteWorkspace
       .test(params)
-      .then((res) => {
+      .then(() => {
         assert.ok(true);
       })
       .catch(() => {

@@ -33,7 +33,10 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
-        .put(`/api/v1/environments/${payload.environment_id}/collections/${payload.collection_id}/training_data/${payload.query_id}/examples/${payload.example_id}`)
+        .put(`/api/v1/environments/${payload.environment_id}
+              /collections/${payload.collection_id}
+              /training_data/${payload.query_id}
+              /examples/${payload.example_id}`)
         .query({
           version: credentials.version_date
         })

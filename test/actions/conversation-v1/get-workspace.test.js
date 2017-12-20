@@ -59,7 +59,7 @@ describe('get-workspace', () => {
     const params = payload;
     return getWorkspace
       .test(params)
-      .then((res) => {
+      .then(() => {
         assert.ok(true);
       })
       .catch(() => {

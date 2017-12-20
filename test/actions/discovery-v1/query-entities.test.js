@@ -28,7 +28,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
-        .post(`/api/v1/environments/${payload.environment_id}/collections/${payload.collection_id}/query_entities`)
+        .post(`/api/v1/environments/${payload.environment_id}
+               /collections/${payload.collection_id}/query_entities`)
         .query({
           version: credentials.version_date
         })

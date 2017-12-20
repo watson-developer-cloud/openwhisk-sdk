@@ -10,8 +10,8 @@ let analyze = require('../../../actions/natural-language-understanding-v1/analyz
 let ow;
 let credentials;
 let payload = {
-  text:
-    'IBM is an American multinational technology company headquartered in Armonk, New York, United States, with operations in over 170 countries.',
+  text: `IBM is an American multinational technology company headquartered in Armonk, 
+    New York, United States, with operations in over 170 countries.`,
   features: {
     entities: {
       emotion: true,

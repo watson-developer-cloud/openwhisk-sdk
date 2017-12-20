@@ -2,12 +2,9 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
-const { adapt, negativeHandler } = require('../../resources/test-helper');
+const { negativeHandler } = require('../../resources/test-helper');
 const deleteDialogNode = require('../../../actions/conversation-v1/delete-dialog-node');
 
-let ow;
 let credentials;
 let payload = {
   dialog_node: 'example_node',
@@ -22,7 +19,8 @@ before(() => {
   };
   beforeEach(() => {
     nock('https://gateway.watsonplatform.net/conversation')
-      .delete(`/api/v1/workspaces/${payload.workspace_id}/dialog_nodes/${payload.dialog_node}`)
+      .delete(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/dialog_nodes/${payload.dialog_node}`)
       .query({
         version: credentials.version_date
       })

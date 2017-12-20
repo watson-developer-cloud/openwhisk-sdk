@@ -29,7 +29,9 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
-        .post(`/api/v1/workspaces/${payload.workspace_id}/entities/${payload.entity}/values/${payload.value}/synonyms`)
+        .post(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/entities/${payload.entity}`
+              + `/values/${payload.value}/synonyms`)
         .query({
           version: credentials.version_date
         })

@@ -7,7 +7,6 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const auth = require('../../resources/auth');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-const deleteClassifier = require('../../../actions/natural-language-classifier-v1/delete-classifier');
 let createClassifier = require('../../../actions/natural-language-classifier-v1/create-classifier');
 
 let ow;
@@ -78,7 +77,7 @@ describe('create-classifier', () => {
       .test(params)
       .then((res) => {
         if (process.env.TEST_OPENWHISK) {
-          const classifier_id = res.classifier_id;
+          const { classifier_id } = res;
           return ow.actions
             .invoke({
               name: 'natural-language-classifier-v1/delete-classifier',

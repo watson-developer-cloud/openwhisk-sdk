@@ -2,12 +2,9 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
-const { adapt, negativeHandler } = require('../../resources/test-helper');
+const { negativeHandler } = require('../../resources/test-helper');
 const deleteIntent = require('../../../actions/conversation-v1/delete-intent');
 
-let ow;
 let credentials;
 let payload = {
   intent: 'example_intent',

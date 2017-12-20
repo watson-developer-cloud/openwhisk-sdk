@@ -2,7 +2,6 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const path = require('path');
 const openwhisk = require('openwhisk');
 const auth = require('../../resources/auth');
 const { adapt, negativeHandler } = require('../../resources/test-helper');

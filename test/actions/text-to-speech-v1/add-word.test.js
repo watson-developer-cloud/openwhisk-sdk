@@ -28,7 +28,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://stream.watsonplatform.net/text-to-speech')
-        .put(`/api/v1/customizations/${payload.customization_id}/words/${payload.word}`)
+        .put(`/api/v1/customizations/${payload.customization_id}`
+             + `/words/${payload.word}`)
         .reply(200, {});
     });
   }

@@ -2,12 +2,9 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
-const { adapt, negativeHandler } = require('../../resources/test-helper');
+const { negativeHandler } = require('../../resources/test-helper');
 const deleteEntity = require('../../../actions/conversation-v1/delete-entity');
 
-let ow;
 let credentials;
 let payload = {
   entity: 'example_entity',

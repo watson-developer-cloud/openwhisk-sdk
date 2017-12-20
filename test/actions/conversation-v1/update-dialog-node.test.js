@@ -32,7 +32,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
-        .post(`/api/v1/workspaces/${payload.workspace_id}/dialog_nodes/${payload.dialog_node}`)
+        .post(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/dialog_nodes/${payload.dialog_node}`)
         .query({
           version: credentials.version_date
         })

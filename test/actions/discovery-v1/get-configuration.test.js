@@ -31,7 +31,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
-        .get(`/api/v1/environments/${payload.environment_id}/configurations/${payload.configuration_id}`)
+        .get(`/api/v1/environments/${payload.environment_id}`
+             + `/configurations/${payload.configuration_id}`)
         .query({
           version: credentials.version_date
         })

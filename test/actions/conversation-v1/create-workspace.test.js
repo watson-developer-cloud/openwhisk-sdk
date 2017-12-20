@@ -65,8 +65,8 @@ describe('create-workspace', () => {
       .test(params)
       .then((res) => {
         // cleanup
-        const workspace_id = res.workspace_id;
-        params.workspace_id = workspace_id;
+        const { workspace_id: workspaceId } = res;
+        params.workspace_id = workspaceId;
         if (process.env.TEST_OPENWHISK) {
           return ow.actions
             .invoke({

@@ -80,7 +80,7 @@ describe('tone-chat', () => {
       .then(() => {
         assert.ok(true);
       })
-      .catch((err) => {
+      .catch(() => {
         assert.fail('Failure on valid payload');
       });
   });

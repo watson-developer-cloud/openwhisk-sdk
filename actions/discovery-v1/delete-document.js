@@ -46,9 +46,10 @@ function main(params) {
       if (err) {
         reject(err.message);
       } else {
-        resolve(response);
+        resolve({ response });
       }
     });
   });
 }
-module.exports.main = main;
+global.main = main;
+module.exports.test = main;

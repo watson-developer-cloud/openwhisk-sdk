@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-len */
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
 /**
@@ -36,7 +37,7 @@ function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
     const fileParams = ['negative_examples'];
-    fileParams.forEach((fileParam) => {
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
@@ -46,17 +47,19 @@ function main(params) {
     });
     const positiveExampleClasses = Object.keys(_params).filter(key =>
       key.match(/.*positive_examples/));
-    positiveExampleClasses.forEach((positiveExampleClass) => {
-      try {
-        _params[positiveExampleClass] = Buffer.from(
-          _params[positiveExampleClass],
-          'base64'
-        );
-      } catch (err) {
-        reject(err.message);
-        return;
-      }
-    });
+    positiveExampleClasses
+      .filter(positiveExampleClass => positiveExampleClasses[positiveExampleClass])
+      .forEach((positiveExampleClass) => {
+        try {
+          _params[positiveExampleClass] = Buffer.from(
+            _params[positiveExampleClass],
+            'base64'
+          );
+        } catch (err) {
+          reject(err.message);
+          return;
+        }
+      });
     let service;
     try {
       service = new VisualRecognitionV3(_params);
@@ -73,4 +76,5 @@ function main(params) {
     });
   });
 }
-module.exports.main = main;
+global.main = main;
+module.exports.test = main;

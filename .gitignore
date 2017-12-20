@@ -1,3 +1,7 @@
 node_modules
 coverage
 .DS_Store
+*.json
+!package.json
+!package-lock.json
+dist

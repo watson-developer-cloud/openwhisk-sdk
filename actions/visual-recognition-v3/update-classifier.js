@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-len */
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
 /**

@@ -4,3 +4,4 @@ coverage
 *.json
 !package.json
 !package-lock.json
+dist

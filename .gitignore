@@ -5,3 +5,6 @@ coverage
 !package.json
 !package-lock.json
 dist
+.nyc_output
+.vscode
+test/resources/auth.js

@@ -3,15 +3,15 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let analyze = require('../../../actions/natural-language-understanding-v1/analyze');
 
 let ow;
 let credentials;
 let payload = {
-  text:
-    'IBM is an American multinational technology company headquartered in Armonk, New York, United States, with operations in over 170 countries.',
+  text: `IBM is an American multinational technology company headquartered in Armonk, 
+    New York, United States, with operations in over 170 countries.`,
   features: {
     entities: {
       emotion: true,
@@ -22,7 +22,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     analyze = adapt(analyze, 'natural-language-understanding-v1/analyze', ow);
     credentials = auth.natural_language_understanding;

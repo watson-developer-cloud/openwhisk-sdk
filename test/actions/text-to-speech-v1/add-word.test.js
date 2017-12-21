@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let addWord = require('../../../actions/text-to-speech-v1/add-word');
 
@@ -16,7 +16,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     addWord = adapt(addWord, 'text-to-speech-v1/add-word', ow);
     credentials = auth.text_to_speech;
@@ -28,7 +28,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://stream.watsonplatform.net/text-to-speech')
-        .put(`/api/v1/customizations/${payload.customization_id}/words/${payload.word}`)
+        .put(`/api/v1/customizations/${payload.customization_id}`
+             + `/words/${payload.word}`)
         .reply(200, {});
     });
   }
@@ -78,7 +79,7 @@ describe('add-word', () => {
       .test(params)
       .then(() => {
         // cleanup
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'text-to-speech-v1/delete-word',

@@ -2,9 +2,8 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const path = require('path');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let getClassifier = require('../../../actions/visual-recognition-v3/get-classifier');
 
@@ -15,7 +14,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     getClassifier = adapt(
       getClassifier,
@@ -76,8 +75,7 @@ describe('get-classifier', () => {
       .then(() => {
         assert.ok(true);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         assert.fail('Failure on valid payload');
       });
   });

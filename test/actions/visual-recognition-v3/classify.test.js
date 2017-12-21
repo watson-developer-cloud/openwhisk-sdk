@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const path = require('path');
 const fs = require('fs');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let classify = require('../../../actions/visual-recognition-v3/classify');
 
@@ -22,7 +22,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     classify = adapt(classify, 'visual-recognition-v3/classify', ow);
     credentials = auth.visual_recognition.v3;

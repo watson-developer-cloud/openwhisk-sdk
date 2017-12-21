@@ -2,12 +2,9 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
-const { adapt, negativeHandler } = require('../../resources/test-helper');
+const { negativeHandler } = require('../../resources/test-helper');
 const deleteSynonym = require('../../../actions/conversation-v1/delete-synonym');
 
-let ow;
 let credentials;
 let payload = {
   synonym: 'example_synonym',
@@ -24,7 +21,10 @@ before(() => {
   };
   beforeEach(() => {
     nock('https://gateway.watsonplatform.net/conversation')
-      .delete(`/api/v1/workspaces/${payload.workspace_id}/entities/${payload.entity}/values/${payload.value}/synonyms/${payload.synonym}`)
+      .delete(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/entities/${payload.entity}`
+              + `/values/${payload.value}`
+              + `/synonyms/${payload.synonym}`)
       .query({
         version: credentials.version_date
       })

@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createTrainingExample = require('../../../actions/discovery-v1/create-training-example');
 
@@ -19,7 +19,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createTrainingExample = adapt(
       createTrainingExample,
@@ -35,7 +35,9 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
-        .post(`/api/v1/environments/${payload.environment_id}/collections/${payload.collection_id}/training_data/${payload.query_id}/examples`)
+        .post(`/api/v1/environments/${payload.environment_id}
+               /collections/${payload.collection_id}
+               /training_data/${payload.query_id}/examples`)
         .query({
           version: credentials.version_date
         })

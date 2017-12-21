@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let updateSynonym = require('../../../actions/conversation-v1/update-synonym');
 
@@ -18,7 +18,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     updateSynonym = adapt(updateSynonym, 'conversation-v1/update-synonym', ow);
     credentials = auth.conversation;
@@ -30,7 +30,10 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
-        .post(`/api/v1/workspaces/${payload.workspace_id}/entities/${payload.entity}/values/${payload.value}/synonyms/${payload.synonym}`)
+        .post(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/entities/${payload.entity}`
+              + `/values/${payload.value}`
+              + `/synonyms/${payload.synonym}`)
         .query({
           version: credentials.version_date
         })

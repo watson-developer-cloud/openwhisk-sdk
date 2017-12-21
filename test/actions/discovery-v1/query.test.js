@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let query = require('../../../actions/discovery-v1/query');
 
@@ -15,7 +15,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     query = adapt(query, 'discovery-v1/query', ow);
     credentials = auth.discovery;
@@ -27,7 +27,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
-        .get(`/api/v1/environments/${payload.environment_id}/collections/${payload.collection_id}/query`)
+        .get(`/api/v1/environments/${payload.environment_id}`
+             + `/collections/${payload.collection_id}/query`)
         .query({
           version: credentials.version_date
         })

@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createWorkspace = require('../../../actions/conversation-v1/create-workspace');
 
@@ -14,7 +14,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createWorkspace = adapt(
       createWorkspace,
@@ -65,9 +65,9 @@ describe('create-workspace', () => {
       .test(params)
       .then((res) => {
         // cleanup
-        const workspace_id = res.workspace_id;
-        params.workspace_id = workspace_id;
-        if (process.env.TEST_OPENWHISK) {
+        const { workspace_id: workspaceId } = res;
+        params.workspace_id = workspaceId;
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'conversation-v1/delete-workspace',

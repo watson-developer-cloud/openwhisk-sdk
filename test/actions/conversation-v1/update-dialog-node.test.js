@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let updateDialogNode = require('../../../actions/conversation-v1/update-dialog-node');
 
@@ -16,7 +16,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     updateDialogNode = adapt(
       updateDialogNode,
@@ -32,7 +32,8 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
-        .post(`/api/v1/workspaces/${payload.workspace_id}/dialog_nodes/${payload.dialog_node}`)
+        .post(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/dialog_nodes/${payload.dialog_node}`)
         .query({
           version: credentials.version_date
         })

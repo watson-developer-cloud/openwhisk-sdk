@@ -2,11 +2,9 @@ const assert = require('assert');
 const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
-const openwhisk = require('openwhisk');
 const { negativeHandler } = require('../../resources/test-helper');
 const deleteVoiceModel = require('../../../actions/text-to-speech-v1/delete-voice-model');
 
-let ow;
 let credentials;
 let payload = {
   customization_id: 'example_customization_id'

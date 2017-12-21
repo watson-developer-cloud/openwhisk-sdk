@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",
     "test-unit": "unset TEST_OPENWHISK && nyc mocha test/actions/*",
-    "test-integration": "export TEST_OPENWHISK=true && mocha --timeout 30000 test/actions/*",
+    "test-integration": "export TEST_OPENWHISK=true && mocha --timeout 50000 test/actions/*",
     "lint": "eslint .",
     "autofix": "eslint --fix ."
   },
@@ -31,7 +31,8 @@
     "nyc": "~11.3.0",
     "object.omit": "~3.0.0",
     "openwhisk": "~3.11.0",
-    "prettier-eslint": "~8.1.1"
+    "prettier-eslint": "~8.1.1",
+    "extend": "~3.0.1"
   },
   "repository": {
     "type": "git",

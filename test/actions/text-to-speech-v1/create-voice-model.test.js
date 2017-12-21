@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createVoiceModel = require('../../../actions/text-to-speech-v1/create-voice-model');
 
@@ -14,7 +14,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createVoiceModel = adapt(
       createVoiceModel,
@@ -63,7 +63,7 @@ describe('create-voice-model', () => {
       .then((res) => {
         params.customization_id = res.customization_id;
         // cleanup
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'text-to-speech-v1/delete-voice-model',

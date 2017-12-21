@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let getWorkspace = require('../../../actions/conversation-v1/get-workspace');
 
@@ -14,7 +14,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     getWorkspace = adapt(getWorkspace, 'conversation-v1/get-workspace', ow);
     credentials = auth.conversation;
@@ -59,7 +59,7 @@ describe('get-workspace', () => {
     const params = payload;
     return getWorkspace
       .test(params)
-      .then((res) => {
+      .then(() => {
         assert.ok(true);
       })
       .catch(() => {

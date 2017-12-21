@@ -72,7 +72,7 @@ bx wsk package bind <package-name> <binding-name> --param-file binding.json
 
 # Invoking an action
 
-Each package contains a series of actions. Each actions accepts a number of parameters which can either be passed on the command line, or passed via a JSON file. For instance, let's look at the `message` action from the `conversation-v1` package.
+Each package contains a series of actions. Each action accepts a number of parameters which can either be passed on the command line, or passed via a JSON file. For instance, let's look at the `message` action from the `conversation-v1` package.
 
 The `message` action retrieves a response to a user's input. The parameters that this action accepts are:
 

@@ -19,7 +19,8 @@ before(() => {
   };
   beforeEach(() => {
     nock('https://stream.watsonplatform.net/text-to-speech')
-      .delete(`/api/v1/customizations/${payload.customization_id}/words/${payload.word}`)
+      .delete(`/api/v1/customizations/${payload.customization_id}`
+              + `/words/${payload.word}`)
       .reply(200, {});
   });
   payload = extend({}, payload, credentials);

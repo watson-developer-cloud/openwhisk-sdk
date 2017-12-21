@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const openwhisk = require('openwhisk');
-const auth = require('../../resources/auth');
+const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let createIntent = require('../../../actions/conversation-v1/create-intent');
 
@@ -15,7 +15,7 @@ let payload = {
 };
 
 before(() => {
-  if (process.env.TEST_OPENWHISK) {
+  if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
     createIntent = adapt(createIntent, 'conversation-v1/create-intent', ow);
     credentials = auth.conversation;
@@ -80,7 +80,7 @@ describe('create-intent', () => {
       .test(params)
       .then(() => {
         // cleanup
-        if (process.env.TEST_OPENWHISK) {
+        if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
               name: 'conversation-v1/delete-intent',

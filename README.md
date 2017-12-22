@@ -23,9 +23,10 @@ To use the openwhisk-sdk, you need to:
 
 1. Install node (follow instructions [here](https://docs.npmjs.com/getting-started/installing-node))
 2. Install the bx wsk cli (follow instructions [here](https://console.bluemix.net/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli))
-3. Clone this repository
-4. run `npm install`.
-5. run `install.py` to install the Watson packages into your namespace.
+3. Install python if it is not available on your system (see installation guides [here](http://docs.python-guide.org/en/latest/starting/installation/))
+4. Clone this repository
+5. run `npm install`.
+6. run `python install.py` to install the Watson packages into your namespace.
 
 Optionally, for a simpler usage pattern:
 

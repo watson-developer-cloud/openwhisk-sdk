@@ -11,7 +11,7 @@ let ow;
 let credentials;
 let payload = {
   environment_id: 'example_environment_id',
-  name: 'example_collection_name'
+  name: 'example_collection'
 };
 
 before(() => {

@@ -71,13 +71,4 @@ describe('update-configuration', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if name is missing', () => {
-    const params = omit(payload, ['name']);
-    return updateConfiguration
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing name');
-      })
-      .catch(err => negativeHandler(err));
-  });
 });

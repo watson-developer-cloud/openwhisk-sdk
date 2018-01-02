@@ -12,7 +12,7 @@ let credentials;
 let payload = {
   environment_id: 'example_environment_id',
   collection_id: 'example_collection_id',
-  natural_language_query: 'nlq'
+  natural_language_query: 'example_query'
 };
 
 before(() => {
@@ -95,8 +95,7 @@ describe('add-training-data', () => {
         }
         assert.ok(true);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         assert.fail('Failure on valid payload');
       });
   });

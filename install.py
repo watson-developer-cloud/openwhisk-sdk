@@ -79,7 +79,7 @@ def make_action_command(package_name, action_name, action_annotations):
     qualified_action_name = '{}/{}'.format(package_name, action_name)
     entry_point = 'actions/{}/{}'.format(package_name, action_name)
     os.system(
-        'webpack --env {} --config webpack.config.js'.format(entry_point))
+        'node_modules/webpack/bin/webpack.js --env {} --config webpack.config.js'.format(entry_point))
     command = "{} action update {} ./dist/{}.js".format(WSK_CLI,
                                                         qualified_action_name,
                                                         action_name) \
@@ -101,6 +101,8 @@ def install():
         os.system(package_deployment_command)
 
         action_paths = glob.glob(package_path + '/*.js')
+        if not os.path.exists('dist'):
+            os.mkdir('dist')
         for action_path in action_paths:
             action_name = re.findall(r'/.*/(.*).js', action_path)[0]
             action_annotations = get_annotations(package_name, action_name)

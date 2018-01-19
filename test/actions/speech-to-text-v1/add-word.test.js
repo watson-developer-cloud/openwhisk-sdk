@@ -1,0 +1,106 @@
+const assert = require('assert');
+const nock = require('nock');
+const extend = require('extend');
+const omit = require('object.omit');
+const openwhisk = require('openwhisk');
+const { auth, describe } = require('../../resources/auth-helper');
+const { adapt, negativeHandler } = require('../../resources/test-helper');
+let addWord = require('../../../actions/speech-to-text-v1/add-word');
+
+let ow;
+let credentials;
+let payload = {
+  customization_id: 'example_customization_id',
+  content_type: 'example_type',
+  word_name: 'example_word'
+};
+
+before(() => {
+  if (process.env.TEST_OPENWHISK && auth) {
+    console.log("here");
+    ow = openwhisk(auth.ow);
+    addWord = adapt(addWord, 'speech-to-text-v1/add-word', ow);
+    credentials = auth.speech_to_text;
+  } else {
+    credentials = {
+      username: 'username',
+      password: 'password',
+      version_date: 'version-date'
+    };
+    beforeEach(() => {
+      nock('https://stream.watsonplatform.net/speech-to-text')
+        .put(`/api/v1/customizations/${payload.customization_id}`
+            + `/words/${payload.word_name}`)
+        .reply(200, {});
+    });
+  }
+  payload = extend({}, payload, omit(credentials, ['word']));
+});
+
+describe('add-word', () => {
+  it('should fail if credentials are missing', () => {
+    const params = omit(payload, ['username', 'password']);
+    return addWord
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing credentials');
+      })
+      .catch(err => negativeHandler(err));
+  });
+
+  it('should fail if customization_id is missing', () => {
+    const params = omit(payload, ['customization_id']);
+    return addWord
+      .test(params)
+      .then(() => {
+        assert.fail();
+      })
+      .catch(err => negativeHandler(err));
+  });
+  it('should fail if word_name is missing', () => {
+    const params = omit(payload, ['word_name']);
+    return addWord
+      .test(params)
+      .then(() => {
+        assert.fail();
+      })
+      .catch(err => negativeHandler(err));
+  });
+  it('should fail if content_type is missing', () => {
+    const params = omit(payload, ['content_type']);
+    return addWord
+      .test(params)
+      .then(() => {
+        assert.fail();
+      })
+      .catch(err => negativeHandler(err));
+  });
+
+  it('should generate a valid payload', () => {
+    const params = payload;
+    return addWord
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'speech-to-text-v1/add-word',
+              blocking: true,
+              result: true,
+              params
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch(() => {
+              assert(false);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
+});

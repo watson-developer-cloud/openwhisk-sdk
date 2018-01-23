@@ -10,7 +10,10 @@ let identify = require('../../../actions/language-translator-v2/identify');
 let ow;
 let credentials;
 let payload = {
-  text: 'I love my son.'
+  text: 'I love my son.',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

@@ -10,7 +10,10 @@ let listWords = require('../../../actions/text-to-speech-v1/list-words');
 let ow;
 let credentials;
 let payload = {
-  customization_id: 'example_customization_id'
+  customization_id: 'example_customization_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

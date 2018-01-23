@@ -10,6 +10,9 @@ let getWord = require('../../../actions/text-to-speech-v1/get-word');
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   word: 'example_word',
   customization_id: 'example_customization_id'
 };

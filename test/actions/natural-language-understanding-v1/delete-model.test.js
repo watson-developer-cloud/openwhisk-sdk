@@ -10,7 +10,10 @@ let deleteModel = require('../../../actions/natural-language-understanding-v1/de
 let ow;
 let credentials;
 let payload = {
-  model_id: 'fake-model'
+  model_id: 'fake-model',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

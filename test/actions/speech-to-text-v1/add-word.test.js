@@ -12,7 +12,10 @@ let credentials;
 let payload = {
   customization_id: 'example_customization_id',
   content_type: 'example_type',
-  word_name: 'example_word'
+  word_name: 'example_word',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

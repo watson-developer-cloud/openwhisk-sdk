@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   environment_id: 'example_environment_id',
-  name: 'example_collection'
+  name: 'example_collection',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {
@@ -80,7 +83,7 @@ describe('create-collection', () => {
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'discovery-v1/delete-collection',
+              name: 'discovery-v1/create-collection',
               blocking: true,
               result: true,
               params

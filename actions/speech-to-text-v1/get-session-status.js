@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 /**
  * Checks whether a session is ready to accept a new recognition task.
  *
+ * Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the `initialized` state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the `POST /v1/sessions` method.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -30,14 +32,16 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new SpeechToTextV1(params);
+      service = new SpeechToTextV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.getSessionStatus(params, (err, response) => {
+    service.getSessionStatus(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

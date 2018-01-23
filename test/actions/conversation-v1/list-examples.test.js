@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   intent: 'example_intent',
-  workspace_id: 'example_workspace'
+  workspace_id: 'example_workspace',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

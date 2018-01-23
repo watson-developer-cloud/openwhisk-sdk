@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 /**
  * Checks the status of all asynchronous jobs.
  *
+ * Returns the ID and status of all outstanding jobs associated with the service credentials with which it is called. The method also returns the creation and update times of each job, and, if a job was created with a callback URL and a user token, the user token for the job. To obtain the results for a job whose status is `completed`, use the `GET /v1/recognitions/{id}` method. A job and its results remain available until you delete them with the `DELETE /v1/recognitions/{id}` method or until the job's time to live expires, whichever comes first.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -29,14 +31,16 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new SpeechToTextV1(params);
+      service = new SpeechToTextV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.checkJobs(params, (err, response) => {
+    service.checkJobs(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

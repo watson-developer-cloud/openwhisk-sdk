@@ -10,7 +10,10 @@ let listEntities = require('../../../actions/conversation-v1/list-entities');
 let ow;
 let credentials;
 let payload = {
-  workspace_id: 'example_workspace_id'
+  workspace_id: 'example_workspace_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

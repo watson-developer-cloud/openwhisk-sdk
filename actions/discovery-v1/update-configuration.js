@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Update a configuration
+ * Update a configuration.
  *
  * Replaces an existing configuration.   * Completely replaces the original configuration.   * The `configuration_id`, `updated`, and `created` fields are accepted in the request, but they are ignored, and an error is not generated. It is also acceptable for users to submit an updated configuration with none of the three properties.   * Documents are processed with a snapshot of the configuration as it was at the time the document was submitted to be ingested. This means that already submitted documents will not see any updates made to the configuration.
  *
@@ -39,14 +39,16 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new DiscoveryV1(params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.updateConfiguration(params, (err, response) => {
+    service.updateConfiguration(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

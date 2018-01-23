@@ -7,6 +7,9 @@ const deleteVoiceModel = require('../../../actions/text-to-speech-v1/delete-voic
 
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   customization_id: 'example_customization_id'
 };
 

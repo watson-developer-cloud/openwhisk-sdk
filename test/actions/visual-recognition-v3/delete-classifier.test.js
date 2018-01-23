@@ -10,6 +10,9 @@ let deleteClassifier = require('../../../actions/visual-recognition-v3/delete-cl
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   classifier_id: 'example_classifier_id'
 };
 

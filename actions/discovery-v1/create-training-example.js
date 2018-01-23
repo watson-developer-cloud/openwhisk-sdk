@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,21 +29,23 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.query_id - The ID of the query used for training.
- * @param {string} [params.document_id] -
- * @param {string} [params.cross_reference] -
- * @param {number} [params.relevance] -
+ * @param {string} [params.document_id] - 
+ * @param {string} [params.cross_reference] - 
+ * @param {number} [params.relevance] - 
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new DiscoveryV1(params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.createTrainingExample(params, (err, response) => {
+    service.createTrainingExample(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

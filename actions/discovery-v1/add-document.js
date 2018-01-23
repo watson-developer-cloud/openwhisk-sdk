@@ -38,6 +38,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     const fileParams = ['file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

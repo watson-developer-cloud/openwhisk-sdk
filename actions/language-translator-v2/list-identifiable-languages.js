@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 /**
  * Lists all languages that can be identified by the API.
  *
+ * Lists all languages that the service can identify. Returns the two-letter code (for example, `en` for English or `es` for Spanish) and name of each language.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -29,14 +31,16 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new LanguageTranslatorV2(params);
+      service = new LanguageTranslatorV2(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listIdentifiableLanguages(params, (err, response) => {
+    service.listIdentifiableLanguages(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

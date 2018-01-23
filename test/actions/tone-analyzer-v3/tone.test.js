@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   tone_input: 'I love my son.',
-  content_type: 'text/plain'
+  content_type: 'text/plain',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

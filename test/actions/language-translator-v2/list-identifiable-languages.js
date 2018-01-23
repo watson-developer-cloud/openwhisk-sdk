@@ -9,7 +9,11 @@ let listIdentifiableLanguages = require('../../../actions/language-translator-v2
 
 let ow;
 let credentials;
-let payload = {};
+let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
+};
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {

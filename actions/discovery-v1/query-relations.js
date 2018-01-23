@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Knowledge Graph relationship query
+ * Knowledge Graph relationship query.
  *
  * See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
  *
@@ -32,21 +32,23 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.collection_id - The ID of the collection.
  * @param {QueryRelationsEntity[]} [params.entities] - An array of entities to find relationships for.
  * @param {QueryEntitiesContext} [params.context] - Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
- * @param {string} [params.sort] - The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique times each entity is identified. The default is `score`
- * @param {QueryRelationsFilter} [params.filter] - Filters to apply to the relationship query
+ * @param {string} [params.sort] - The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique times each entity is identified. The default is `score`.
+ * @param {QueryRelationsFilter} [params.filter] - Filters to apply to the relationship query.
  * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new DiscoveryV1(params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.queryRelations(params, (err, response) => {
+    service.queryRelations(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

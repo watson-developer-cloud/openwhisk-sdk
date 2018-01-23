@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 
 /**
  * Update dialog node.
+ *
+ * Update information for a dialog node.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -38,7 +40,7 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {Object} [params.new_metadata] - The metadata for the dialog node.
  * @param {DialogNodeNextStep} [params.new_next_step] - The next step to execute following this dialog node.
  * @param {string} [params.new_title] - The alias used to identify the dialog node.
- * @param {string} [params.new_type] - How the node is processed.
+ * @param {string} [params.new_type] - How the dialog node is processed.
  * @param {string} [params.new_event_name] - How an `event_handler` node is processed.
  * @param {string} [params.new_variable] - The location in the dialog context where output is stored.
  * @param {DialogNodeAction[]} [params.new_actions] - The actions for the dialog node.
@@ -46,14 +48,16 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new ConversationV1(params);
+      service = new ConversationV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.updateDialogNode(params, (err, response) => {
+    service.updateDialogNode(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -13,7 +13,10 @@ let payload = {
   workspace_id: 'example_workspace',
   entity: 'example_entity',
   value: 'example_value',
-  new_value: 'example_value'
+  new_value: 'example_value',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

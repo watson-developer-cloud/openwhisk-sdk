@@ -12,7 +12,10 @@ let credentials;
 let payload = {
   workspace_id: 'example_workspace_id',
   entity: 'example_entity',
-  value: 'example_value'
+  value: 'example_value',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

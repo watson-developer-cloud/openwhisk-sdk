@@ -35,6 +35,7 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     const fileParams = [
       'forced_glossary',
       'parallel_corpus',

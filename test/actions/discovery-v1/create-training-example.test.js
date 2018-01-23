@@ -15,7 +15,10 @@ let payload = {
   query_id: 'example_query_id',
   relevance: 15,
   cross_reference: 'example_cross_reference',
-  document_id: 'example_document_id'
+  document_id: 'example_document_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

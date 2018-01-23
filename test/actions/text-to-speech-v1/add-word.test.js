@@ -10,6 +10,9 @@ let addWord = require('../../../actions/text-to-speech-v1/add-word');
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   customization_id: 'example_customization_id',
   word: 'example_word',
   translation: 'example_translation'
@@ -82,7 +85,7 @@ describe('add-word', () => {
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'text-to-speech-v1/delete-word',
+              name: 'text-to-speech-v1/add-word',
               blocking: true,
               result: true,
               params

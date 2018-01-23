@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   environment_id: 'example_environment_id',
-  collection_ids: 'example_collection_id'
+  collection_ids: 'example_collection_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

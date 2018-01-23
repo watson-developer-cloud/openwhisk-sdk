@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 /**
  * Deletes a custom language model.
  *
+ * Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus to the model, is currently being processed. You must use credentials for the instance of the service that owns a model to delete it.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -30,14 +32,16 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new SpeechToTextV1(params);
+      service = new SpeechToTextV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.deleteLanguageModel(params, (err, response) => {
+    service.deleteLanguageModel(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -10,7 +10,10 @@ let listDialogNodes = require('../../../actions/conversation-v1/list-dialog-node
 let ow;
 let credentials;
 let payload = {
-  workspace_id: 'example_workspace'
+  workspace_id: 'example_workspace',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

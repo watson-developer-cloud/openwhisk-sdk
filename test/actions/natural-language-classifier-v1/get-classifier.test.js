@@ -10,7 +10,10 @@ let getClassifier = require('../../../actions/natural-language-classifier-v1/get
 let ow;
 let credentials;
 let payload = {
-  classifier_id: 'example_classifier_id'
+  classifier_id: 'example_classifier_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

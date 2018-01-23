@@ -7,7 +7,10 @@ const deleteCounterExample = require('../../../actions/conversation-v1/delete-co
 
 let credentials;
 let payload = {
-  text: 'example_counterexample'
+  text: 'example_counterexample',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

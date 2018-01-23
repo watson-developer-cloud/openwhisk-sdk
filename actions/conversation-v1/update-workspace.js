@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 /**
  * Update workspace.
  *
+ * Update an existing workspace with new or modified data. You must provide component objects defining the content of the updated workspace.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -36,18 +38,21 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  * @param {CreateCounterexample[]} [params.counterexamples] - An array of objects defining input examples that have been marked as irrelevant input.
  * @param {Object} [params.metadata] - Any metadata related to the workspace.
  * @param {boolean} [params.learning_opt_out] - Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+ * @param {boolean} [params.append] - Specifies that the elements included in the request body are to be appended to the existing data in the workspace. The default value is `false`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new ConversationV1(params);
+      service = new ConversationV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.updateWorkspace(params, (err, response) => {
+    service.updateWorkspace(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

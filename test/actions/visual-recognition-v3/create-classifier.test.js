@@ -10,7 +10,10 @@ let createClassifier = require('../../../actions/visual-recognition-v3/create-cl
 let ow;
 let credentials;
 let payload = {
-  name: 'example_name'
+  name: 'example_name',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

@@ -10,7 +10,10 @@ let listConfigurations = require('../../../actions/discovery-v1/list-configurati
 let ow;
 let credentials;
 let payload = {
-  environment_id: 'example_environment_id'
+  environment_id: 'example_environment_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

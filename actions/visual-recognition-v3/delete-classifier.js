@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,14 +32,16 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new VisualRecognitionV3(params);
+      service = new VisualRecognitionV3(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.deleteClassifier(params, (err, response) => {
+    service.deleteClassifier(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   customization_id: 'example_customization_id',
-  description: 'example_description'
+  description: 'example_description',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

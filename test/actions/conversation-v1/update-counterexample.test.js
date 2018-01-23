@@ -12,7 +12,10 @@ let credentials;
 let payload = {
   text: 'example_counterexample',
   new_text: 'example_counterexample',
-  workspace_id: 'example_workspace_id'
+  workspace_id: 'example_workspace_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

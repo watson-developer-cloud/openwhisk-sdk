@@ -13,7 +13,10 @@ let payload = {
   synonym: 'example_synonym',
   workspace_id: 'example_workspace',
   entity: 'example_entity',
-  value: 'example_value'
+  value: 'example_value',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

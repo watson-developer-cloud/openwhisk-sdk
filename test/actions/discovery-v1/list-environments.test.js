@@ -9,7 +9,11 @@ let listEnvironments = require('../../../actions/discovery-v1/list-environments'
 
 let ow;
 let credentials;
-let payload = {};
+let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
+};
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {

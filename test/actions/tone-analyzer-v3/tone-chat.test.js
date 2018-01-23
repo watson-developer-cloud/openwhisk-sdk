@@ -10,6 +10,9 @@ let toneChat = require('../../../actions/tone-analyzer-v3/tone-chat');
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   utterances: [
     {
       text: 'I am having a problem with my account.',

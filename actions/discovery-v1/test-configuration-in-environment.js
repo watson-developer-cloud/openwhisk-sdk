@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Test configuration
+ * Test configuration.
  *
  * Runs a sample document through the default or your configuration and returns diagnostic information designed to help you understand how the document was processed. The document is not added to the index.
  *
@@ -33,16 +33,18 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} [params.step] - Specify to only run the input document through the given step instead of running the input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`.
  * @param {string} [params.configuration_id] - The ID of the configuration to use to process the document. If the `configuration` form part is also provided (both are present at the same time), then request will be rejected.
  * @param {string} [params.file] - Must be a base64-encoded string. The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected.
- * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```
+ * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
  * @param {string} [params.file_content_type] - The content type of file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const fileParams = ['file'];
-    fileParams.filter(fileParam => params[fileParam]).forEach((fileParam) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
+    const fileParams = [ 'file' ,];
+    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
       try {
-        params[fileParam] = Buffer.from(params[fileParam], 'base64');
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
         reject(err.message);
         return;
@@ -50,12 +52,12 @@ function main(params) {
     });
     let service;
     try {
-      service = new DiscoveryV1(params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.testConfigurationInEnvironment(params, (err, response) => {
+    service.testConfigurationInEnvironment(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

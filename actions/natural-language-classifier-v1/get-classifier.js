@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
 /**
  * Get information about a classifier.
  *
+ * Returns status and other information about a classifier.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -30,14 +32,16 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new NaturalLanguageClassifierV1(params);
+      service = new NaturalLanguageClassifierV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.getClassifier(params, (err, response) => {
+    service.getClassifier(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

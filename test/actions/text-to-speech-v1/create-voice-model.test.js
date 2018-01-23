@@ -10,6 +10,9 @@ let createVoiceModel = require('../../../actions/text-to-speech-v1/create-voice-
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   name: 'example_name'
 };
 

@@ -10,7 +10,10 @@ let listAllLogs = require('../../../actions/conversation-v1/list-all-logs');
 let ow;
 let credentials;
 let payload = {
-  filter: 'language::en,request.context.metadata.deployment::deployment_1'
+  filter: 'language::en,request.context.metadata.deployment::deployment_1',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

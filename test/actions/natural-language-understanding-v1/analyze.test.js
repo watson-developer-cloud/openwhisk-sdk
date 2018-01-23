@@ -18,6 +18,9 @@ let payload = {
       sentiment: true,
       limit: 2
     }
+  },
+  headers: {
+    'User-Agent': 'openwhisk'
   }
 };
 

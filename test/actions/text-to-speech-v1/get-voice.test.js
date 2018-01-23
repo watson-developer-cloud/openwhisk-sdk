@@ -10,6 +10,9 @@ let getVoice = require('../../../actions/text-to-speech-v1/get-voice');
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   voice: 'example_voice'
 };
 

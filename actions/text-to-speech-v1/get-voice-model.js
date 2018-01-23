@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 /**
  * Queries the contents of a custom voice model.
  *
+ * Lists all information about the custom voice model with the specified `customization_id`. In addition to metadata such as the name and description of the voice model, the output includes the words in the model and their translations as defined in the model. To see just the metadata for a voice model, use the `GET /v1/customizations` method. You must use credentials for the instance of the service that owns a model to list information about it.   **Note:** This method is currently a beta release.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -30,14 +32,16 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new TextToSpeechV1(params);
+      service = new TextToSpeechV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.getVoiceModel(params, (err, response) => {
+    service.getVoiceModel(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

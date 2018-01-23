@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 /**
  * Deletes the specified session.
  *
+ * Deletes an existing session and its engine. The request must pass the cookie that was returned by the `POST /v1/sessions` method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -30,14 +32,16 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new SpeechToTextV1(params);
+      service = new SpeechToTextV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.deleteSession(params, (err, response) => {
+    service.deleteSession(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

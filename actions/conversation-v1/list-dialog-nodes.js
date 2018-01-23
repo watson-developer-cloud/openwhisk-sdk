@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 /**
  * List dialog nodes.
  *
+ * List the dialog nodes in the workspace.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -35,14 +37,16 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new ConversationV1(params);
+      service = new ConversationV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listDialogNodes(params, (err, response) => {
+    service.listDialogNodes(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

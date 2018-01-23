@@ -32,6 +32,7 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     const fileParams = ['metadata', 'training_data'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

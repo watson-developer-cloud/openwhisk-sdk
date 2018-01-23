@@ -8,7 +8,10 @@ const deleteEntity = require('../../../actions/conversation-v1/delete-entity');
 let credentials;
 let payload = {
   entity: 'example_entity',
-  workspace_id: 'example_workspace_id'
+  workspace_id: 'example_workspace_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

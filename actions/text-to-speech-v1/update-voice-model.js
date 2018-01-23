@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 /**
  * Updates information and words for a custom voice model.
  *
+ * Updates information for the custom voice model with the specified `customization_id`. You can update the metadata such as the name and description of the voice model. You can also update the words in the model and their translations. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to update it.   **Note:** This method is currently a beta release.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -33,14 +35,16 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new TextToSpeechV1(params);
+      service = new TextToSpeechV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.updateVoiceModel(params, (err, response) => {
+    service.updateVoiceModel(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

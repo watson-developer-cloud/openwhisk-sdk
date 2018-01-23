@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-l
 
 /**
  * Analyze text, HTML, or a public webpage.
+ *
+ * Analyzes text, HTML, or a public webpage with one or more text analysis features.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -40,14 +42,16 @@ const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-l
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new NaturalLanguageUnderstandingV1(params);
+      service = new NaturalLanguageUnderstandingV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.analyze(params, (err, response) => {
+    service.analyze(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

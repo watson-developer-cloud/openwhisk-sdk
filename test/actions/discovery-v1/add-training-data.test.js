@@ -12,7 +12,10 @@ let credentials;
 let payload = {
   environment_id: 'example_environment_id',
   collection_id: 'example_collection_id',
-  natural_language_query: 'example_query'
+  natural_language_query: 'example_query',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {
@@ -81,7 +84,7 @@ describe('add-training-data', () => {
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'discovery-v1/delete-training-data',
+              name: 'discovery-v1/add-training-data',
               blocking: true,
               result: true,
               params

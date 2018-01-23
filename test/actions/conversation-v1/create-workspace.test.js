@@ -10,7 +10,10 @@ let createWorkspace = require('../../../actions/conversation-v1/create-workspace
 let ow;
 let credentials;
 let payload = {
-  name: 'example_workspace'
+  name: 'example_workspace',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

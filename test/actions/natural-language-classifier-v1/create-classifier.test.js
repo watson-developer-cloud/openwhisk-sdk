@@ -12,12 +12,16 @@ let createClassifier = require('../../../actions/natural-language-classifier-v1/
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   training_data: fs
     .readFileSync(path.join(__dirname, '/../../resources/nlc_training_data.txt'))
     .toString(),
   metadata: fs
     .readFileSync(path.join(__dirname, '/../../resources/nlc_metadata.txt'))
     .toString()
+
 };
 
 before(() => {

@@ -7,6 +7,9 @@ const deleteWord = require('../../../actions/text-to-speech-v1/delete-word');
 
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   customization_id: 'example_customization_id',
   word: 'example_word'
 };

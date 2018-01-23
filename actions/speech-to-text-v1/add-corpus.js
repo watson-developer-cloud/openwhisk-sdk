@@ -35,6 +35,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     const fileParams = ['corpus_file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

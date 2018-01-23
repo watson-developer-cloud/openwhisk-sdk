@@ -9,7 +9,11 @@ let listVoices = require('../../../actions/text-to-speech-v1/list-voices');
 
 let ow;
 let credentials;
-let payload = {};
+let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
+};
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {

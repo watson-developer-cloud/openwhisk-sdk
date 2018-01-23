@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   environment_id: 'example_environment_id',
-  name: 'example_configuration_name'
+  name: 'example_configuration_name',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {
@@ -70,7 +73,7 @@ describe('create-configuration', () => {
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'discovery-v1/delete-configuration',
+              name: 'discovery-v1/create-configuration',
               blocking: true,
               result: true,
               params

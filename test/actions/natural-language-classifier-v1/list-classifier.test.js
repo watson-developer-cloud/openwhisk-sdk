@@ -9,7 +9,11 @@ let listClassifiers = require('../../../actions/natural-language-classifier-v1/l
 
 let ow;
 let credentials;
-let payload = {};
+let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
+};
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {

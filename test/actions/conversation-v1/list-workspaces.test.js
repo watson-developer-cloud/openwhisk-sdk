@@ -9,7 +9,11 @@ let listWorkspaces = require('../../../actions/conversation-v1/list-workspaces')
 
 let ow;
 let credentials;
-let payload = {};
+let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
+};
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {

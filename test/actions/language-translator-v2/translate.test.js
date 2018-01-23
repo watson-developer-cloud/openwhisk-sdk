@@ -12,7 +12,10 @@ let credentials;
 let payload = {
   text: 'I love my son.',
   source: 'en',
-  target: 'fr'
+  target: 'fr',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

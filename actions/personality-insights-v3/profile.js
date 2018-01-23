@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insigh
 /**
  * Generates a personality profile based on input text.
  *
+ * Derives personality insights for up to 20 MB of input content written by an author, though the service requires much less text to produce an accurate profile; for more information, see [Providing sufficient input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). Accepts input in Arabic, English, Japanese, Korean, or Spanish and produces output in one of eleven languages. Provide plain text, HTML, or JSON content, and receive results in JSON or CSV format.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
@@ -37,14 +39,16 @@ const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insigh
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new PersonalityInsightsV3(params);
+      service = new PersonalityInsightsV3(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.profile(params, (err, response) => {
+    service.profile(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

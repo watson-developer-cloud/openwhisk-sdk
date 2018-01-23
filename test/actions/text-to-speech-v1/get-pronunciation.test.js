@@ -10,6 +10,9 @@ let getPronunciation = require('../../../actions/text-to-speech-v1/get-pronuncia
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   text: 'example_text'
 };
 

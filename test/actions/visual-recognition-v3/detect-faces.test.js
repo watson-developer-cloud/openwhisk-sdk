@@ -12,6 +12,9 @@ let detectFaces = require('../../../actions/visual-recognition-v3/detect-faces')
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   images_file: fs
     .readFileSync(path.join(__dirname, '/../../resources/vr_images_file.txt'))
     .toString(),

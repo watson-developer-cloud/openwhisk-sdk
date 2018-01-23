@@ -10,7 +10,10 @@ let synthesize = require('../../../actions/text-to-speech-v1/synthesize');
 let ow;
 let credentials;
 let payload = {
-  text: 'example_text'
+  text: 'example_text',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

@@ -12,6 +12,9 @@ let profile = require('../../../actions/personality-insights-v3/profile');
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   content: fs
     .readFileSync(path.join(__dirname, '/../../resources/personality_insights_content.txt'))
     .toString(),

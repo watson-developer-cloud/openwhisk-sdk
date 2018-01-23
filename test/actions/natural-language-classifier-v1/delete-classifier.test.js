@@ -10,7 +10,10 @@ let deleteClassifier = require('../../../actions/natural-language-classifier-v1/
 let ow;
 let credentials;
 let payload = {
-  classifier_id: 'classifier-id'
+  classifier_id: 'classifier-id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

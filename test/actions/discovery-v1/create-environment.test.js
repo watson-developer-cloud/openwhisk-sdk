@@ -10,7 +10,10 @@ let createEnvironment = require('../../../actions/discovery-v1/create-environmen
 let ow;
 let credentials;
 let payload = {
-  name: 'example_name'
+  name: 'example_name',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

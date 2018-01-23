@@ -11,7 +11,10 @@ let ow;
 let credentials;
 let payload = {
   classifier_id: 'example_classifier_id',
-  text: 'How is the weather today'
+  text: 'How is the weather today',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

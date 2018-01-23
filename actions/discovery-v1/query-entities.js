@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Knowledge Graph entity query
+ * Knowledge Graph entity query.
  *
  * See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
  *
@@ -30,7 +30,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {string} [params.feature] - The entity query feature to perform. Must be `disambiguate`
+ * @param {string} [params.feature] - The entity query feature to perform. Must be `disambiguate`.
  * @param {QueryEntitiesEntity} [params.entity] - A text string that appears within the entity text field.
  * @param {QueryEntitiesContext} [params.context] - Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
  * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
@@ -38,14 +38,16 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
+    const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     let service;
     try {
-      service = new DiscoveryV1(params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.queryEntities(params, (err, response) => {
+    service.queryEntities(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

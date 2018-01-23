@@ -9,7 +9,11 @@ let listModels = require('../../../actions/natural-language-understanding-v1/lis
 
 let ow;
 let credentials;
-let payload = {};
+let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
+};
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {

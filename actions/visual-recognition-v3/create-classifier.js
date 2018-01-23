@@ -36,6 +36,7 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
+    _params.headers['User-Agent'] = 'openwhisk';
     const fileParams = ['negative_examples'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

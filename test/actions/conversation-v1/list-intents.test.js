@@ -10,7 +10,10 @@ let listIntents = require('../../../actions/conversation-v1/list-intents');
 let ow;
 let credentials;
 let payload = {
-  workspace_id: 'example_workspace_id'
+  workspace_id: 'example_workspace_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  }
 };
 
 before(() => {

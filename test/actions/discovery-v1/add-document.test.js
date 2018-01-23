@@ -14,6 +14,9 @@ let credentials;
 let payload = {
   environment_id: 'example_environment_id',
   collection_id: 'example_collection_id',
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   metadata: {
     creator: 'example_creator',
     subject: 'example_subject'
@@ -86,7 +89,7 @@ describe('add-document', () => {
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'discovery-v1/delete-document',
+              name: 'discovery-v1/add-document',
               blocking: true,
               result: true,
               params

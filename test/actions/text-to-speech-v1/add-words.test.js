@@ -10,6 +10,9 @@ let addWords = require('../../../actions/text-to-speech-v1/add-words');
 let ow;
 let credentials;
 let payload = {
+  headers: {
+    'User-Agent': 'openwhisk'
+  },
   customization_id: 'example_customization_id',
   words: [
     {

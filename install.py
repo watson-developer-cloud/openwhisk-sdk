@@ -89,28 +89,50 @@ def make_action_command(package_name, action_name, action_annotations):
 
 
 def install():
-    """
-    Main entry point of the script.
-    """
-    package_paths = glob.glob('actions/*')
-    for package_path in package_paths:
-        package_name = re.findall(r'.*/(.*)', package_path)[0]
-        package_annotations = get_annotations(package_name, package_name)
-        package_deployment_command = make_package_command(
-            package_name, package_annotations)
-        os.system(package_deployment_command)
+    try:
+        sys.argv[1]
+        for arg in sys.argv[1:]:
+            install_by_package(arg)
+    except IndexError:
+        """
+        Main entry point of the script.
+        """
+        package_paths = glob.glob('actions/*')
+        for package_path in package_paths:
+            package_name = re.findall(r'.*/(.*)', package_path)[0]
+            package_annotations = get_annotations(package_name, package_name)
+            package_deployment_command = make_package_command(
+                package_name, package_annotations)
+            os.system(package_deployment_command)
 
-        action_paths = glob.glob(package_path + '/*.js')
-        if not os.path.exists('dist'):
-            os.mkdir('dist')
-        for action_path in action_paths:
-            action_name = re.findall(r'/.*/(.*).js', action_path)[0]
-            action_annotations = get_annotations(package_name, action_name)
-            action_deployment_command = make_action_command(
-                package_name, action_name, action_annotations)
-            os.system(action_deployment_command)
+            action_paths = glob.glob(package_path + '/*.js')
+            if not os.path.exists('dist'):
+                os.mkdir('dist')
+            for action_path in action_paths:
+                action_name = re.findall(r'/.*/(.*).js', action_path)[0]
+                action_annotations = get_annotations(package_name, action_name)
+                action_deployment_command = make_action_command(
+                    package_name, action_name, action_annotations)
+                os.system(action_deployment_command)
+        shutil.rmtree('./dist', ignore_errors=True)
+
+def install_by_package(package_name):
+    package_path = 'actions/'+package_name
+    package_annotations = get_annotations(package_name, package_name)
+    package_deployment_command = make_package_command(
+        package_name, package_annotations)
+    os.system(package_deployment_command)
+
+    action_paths = glob.glob(package_path + '/*.js')
+    if not os.path.exists('dist'):
+        os.mkdir('dist')
+    for action_path in action_paths:
+        action_name = re.findall(r'/.*/(.*).js', action_path)[0]
+        action_annotations = get_annotations(package_name, action_name)
+        action_deployment_command = make_action_command(
+            package_name, action_name, action_annotations)
+        os.system(action_deployment_command)
     shutil.rmtree('./dist', ignore_errors=True)
-
 
 if __name__ == '__main__':
     install()

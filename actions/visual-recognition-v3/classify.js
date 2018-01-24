@@ -65,4 +65,3 @@ function main(params) {
 global.main = main;
 module.exports.test = main;
 
-

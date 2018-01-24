@@ -97,7 +97,7 @@ describe('add-words', () => {
         })
         .catch(() => {
           assert.fail('Failure on valid payload');
-        });       
+        });
     }
   });
 });

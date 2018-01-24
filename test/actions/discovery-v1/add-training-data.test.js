@@ -75,31 +75,16 @@ describe('add-training-data', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    const params = payload;
-    return addTrainingData
-      .test(params)
-      .then((res) => {
-        // cleanup
-        params.query_id = res.query_id;
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'discovery-v1/add-training-data',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert.ok(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      return addTrainingData
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

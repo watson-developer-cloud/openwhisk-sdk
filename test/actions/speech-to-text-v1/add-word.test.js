@@ -9,10 +9,11 @@ let addWord = require('../../../actions/speech-to-text-v1/add-word');
 
 let ow;
 let credentials;
+
 let payload = {
-  customization_id: 'example_customization_id',
-  content_type: 'example_type',
-  word_name: 'example_word',
+  customization_id: 'example_customization',
+  word_name: 'tomato',
+  sounds_like: ['tomatoh', 'tomayto'],
   headers: {
     'User-Agent': 'openwhisk'
   }
@@ -20,7 +21,6 @@ let payload = {
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {
-    console.log("here");
     ow = openwhisk(auth.ow);
     addWord = adapt(addWord, 'speech-to-text-v1/add-word', ow);
     credentials = auth.speech_to_text;
@@ -80,30 +80,16 @@ describe('add-word', () => {
   });
 
   it('should generate a valid payload', () => {
-    const params = payload;
-    return addWord
-      .test(params)
-      .then(() => {
-        // cleanup
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'speech-to-text-v1/add-word',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    it('should generate a valid payload', () => {
+      const params = payload;
+      return addWord
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    });
   });
 });

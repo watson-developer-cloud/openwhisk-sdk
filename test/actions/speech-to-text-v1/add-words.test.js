@@ -13,11 +13,19 @@ let payload = {
   headers: {
     'User-Agent': 'openwhisk'
   },
-  customization_id: 'example_customization_id',
-  content_type: 'example_type',
+
+  customization_id: 'sample',
+  content_type: 'application/json',
   words: [
     {
-      word: 'example_word'
+      word: 'hhonors',
+      sounds_like: ['hilton honors', 'h honors'],
+      display_as: 'HHonors'
+    },
+    {
+      word: 'ieee',
+      sounds_like: ['i triple e'],
+      display_as: 'IEEE'
     }
   ]
 };
@@ -71,31 +79,17 @@ describe('add-words', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    const params = payload;
-    params.word = params.words[0].word;
-    return addWords
-      .test(params)
-      .then(() => {
-        // cleanup
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'speech-to-text-v1/add-words',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      params.word = params.words[0].word;
+      return addWords
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

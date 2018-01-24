@@ -71,31 +71,33 @@ describe('add-words', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    const params = payload;
-    params.word = params.words[0].word;
-    return addWords
-      .test(params)
-      .then(() => {
-        // cleanup
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'text-to-speech-v1/delete-word',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      params.word = params.words[0].word;
+      return addWords
+        .test(params)
+        .then(() => {
+          // cleanup
+          if (process.env.TEST_OPENWHISK && auth) {
+            return ow.actions
+              .invoke({
+                name: 'text-to-speech-v1/delete-word',
+                blocking: true,
+                result: true,
+                params
+              })
+              .then(() => {
+                assert(true);
+              })
+              .catch(() => {
+                assert(false);
+              });
+          }
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });       
+    }
   });
 });

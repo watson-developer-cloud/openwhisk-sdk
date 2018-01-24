@@ -17,9 +17,7 @@
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 /**
- * Get document details.
- *
- * Fetch status details about a submitted document. **Note:** this operation does not return the document itself. Instead, it returns only the document's processing status and any notices (warnings or errors) that were generated when the document was ingested. Use the query API to retrieve the actual document content.
+ * Get configuration details.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,8 +27,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
- * @param {string} params.collection_id - The ID of the collection.
- * @param {string} params.document_id - The ID of the document.
+ * @param {string} params.configuration_id - The ID of the configuration.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -44,7 +41,7 @@ function main(params) {
       reject(err.message);
       return;
     }
-    service.getDocumentStatus(_params, (err, response) => {
+    service.getConfiguration(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

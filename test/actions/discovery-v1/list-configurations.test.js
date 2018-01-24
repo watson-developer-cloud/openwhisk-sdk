@@ -63,14 +63,16 @@ describe('list-configurations', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    const params = payload;
-    return listConfigurations
-      .test(params)
-      .then(() => {
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      return listConfigurations
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

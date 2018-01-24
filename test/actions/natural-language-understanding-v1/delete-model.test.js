@@ -63,12 +63,14 @@ describe('delete-model', () => {
       .catch(err => negativeHandler(err));
   });
   it('should fail if model_id is missing', () => {
-    const params = omit(payload, ['model_id']);
-    return deleteModel
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing model_id');
-      })
-      .catch(err => negativeHandler(err));
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = omit(payload, ['model_id']);
+      return deleteModel
+        .test(params)
+        .then(() => {
+          assert.fail('No failure on missing model_id');
+        })
+        .catch(err => negativeHandler(err));
+    }
   });
 });

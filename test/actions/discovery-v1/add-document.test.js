@@ -80,31 +80,16 @@ describe('add-document', () => {
   });
 
   it('should generate a valid payload', () => {
-    const params = payload;
-    return addDocument
-      .test(params)
-      .then((res) => {
-        // cleanup
-        params.document_id = res.document_id;
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'discovery-v1/add-document',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert.ok(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      return addDocument
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

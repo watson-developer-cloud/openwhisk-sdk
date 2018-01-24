@@ -64,31 +64,16 @@ describe('create-configuration', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    const params = payload;
-    return createConfiguration
-      .test(params)
-      .then((res) => {
-        // cleanup
-        params.configuration_id = res.configuration_id;
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'discovery-v1/create-configuration',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert.ok(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      return createConfiguration
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

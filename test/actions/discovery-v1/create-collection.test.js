@@ -74,31 +74,16 @@ describe('create-collection', () => {
   });
 
   it('should generate a valid payload', () => {
-    const params = payload;
-    return createCollection
-      .test(params)
-      .then((res) => {
-        // cleanup
-        params.collection_id = res.collection_id;
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'discovery-v1/create-collection',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert.ok(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      return createCollection
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

@@ -15,6 +15,7 @@
  */
 
 const ConversationV1 = require('watson-developer-cloud/conversation/v1');
+const pkg = require('../../package.json');
 
 /**
  * Get intent.
@@ -36,7 +37,7 @@ const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new ConversationV1(_params);

@@ -15,6 +15,7 @@
  */
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+const pkg = require('../../package.json');
 
 /**
  * Deletes a custom language model.
@@ -33,7 +34,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new SpeechToTextV1(_params);

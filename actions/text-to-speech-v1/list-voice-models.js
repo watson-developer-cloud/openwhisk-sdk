@@ -15,6 +15,7 @@
  */
 
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+const pkg = require('../../package.json');
 
 /**
  * Lists all available custom voice models for a language or for all languages.
@@ -33,7 +34,7 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new TextToSpeechV1(_params);

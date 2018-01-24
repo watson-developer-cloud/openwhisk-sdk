@@ -33,7 +33,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new DiscoveryV1(_params);

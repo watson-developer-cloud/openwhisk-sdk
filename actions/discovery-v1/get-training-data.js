@@ -15,6 +15,7 @@
  */
 
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
+const pkg = require('../../package.json');
 
 /**
  * Shows details for a specific training data query, including the query string and all examples.
@@ -34,7 +35,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new DiscoveryV1(_params);

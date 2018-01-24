@@ -15,6 +15,7 @@
  */
 
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+const pkg = require('../../package.json');
 
 /**
  * Generates a personality profile based on input text.
@@ -40,7 +41,7 @@ const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insigh
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new PersonalityInsightsV3(_params);

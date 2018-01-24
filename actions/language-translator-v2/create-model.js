@@ -15,6 +15,7 @@
  */
 
 const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
+const pkg = require('../../package.json');
 
 /**
  * Uploads a TMX glossary file on top of a domain to customize a translation model.
@@ -35,7 +36,7 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     const fileParams = [
       'forced_glossary',
       'parallel_corpus',

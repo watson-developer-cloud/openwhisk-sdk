@@ -26,10 +26,16 @@ To use the openwhisk-sdk, you need to:
 3. Install python if it is not available on your system (see installation guides [here](http://docs.python-guide.org/en/latest/starting/installation/))
 4. Clone this repository
 5. run `npm install`.
-6. Installation of packages
-    * To install ALL packages (Warning: Takes over 30 minutes) run `python install.py` to install the Watson packages into your namespace.
-    * To install specific packages, run the python script passing in the names of the packages you wish to install such as `python install.py visual-recognition-v3` or multiple packages such as  `python install.py tone-analyzer-v3 discovery-v1`
-    * List of packages supported: conversation-v1, discovery-v1, language-translator-v2, natural-language-classifier-v1, natural-language-understanding-v1, personality-insights-v3, speech-to-text-v1, text-to-speech-v1, tone-analyzer-v3, visual-recognition-v3
+6. To install ALL packages (Warning: Takes over 30 minutes)
+```
+python install.py
+```
+7. To install specific packages, run the python script passing in the names of the packages you wish to install such as:
+```
+python install.py tone-analyzer-v3 discovery-v1
+```
+
+* List of packages supported: conversation-v1, discovery-v1, language-translator-v2, natural-language-classifier-v1, natural-language-understanding-v1, personality-insights-v3, speech-to-text-v1, text-to-speech-v1, tone-analyzer-v3, visual-recognition-v3
 
 Optionally, for a simpler usage pattern:
 

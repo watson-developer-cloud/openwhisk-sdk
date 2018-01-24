@@ -15,6 +15,7 @@
  */
 
 const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-language-classifier/v1');
+const pkg = require('../../package.json');
 
 /**
  * Create classifier.
@@ -32,7 +33,7 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     const fileParams = ['metadata', 'training_data'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

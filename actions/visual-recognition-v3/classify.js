@@ -15,6 +15,7 @@
  */
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+const pkg = require('../../package.json');
 
 /**
  * Classify images.
@@ -36,7 +37,7 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     const fileParams = ['images_file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

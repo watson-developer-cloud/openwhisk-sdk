@@ -15,6 +15,7 @@
  */
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+const pkg = require('../../package.json');
 
 /**
  * Sends audio for speech recognition in sessionless mode.
@@ -50,6 +51,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     const fileParams = ['upload'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

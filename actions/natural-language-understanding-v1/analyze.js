@@ -15,6 +15,7 @@
  */
 
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1');
+const pkg = require('../../package.json');
 
 /**
  * Analyze text, HTML, or a public webpage.
@@ -43,7 +44,7 @@ const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-l
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
-    _params.headers['User-Agent'] = 'openwhisk';
+    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
       service = new NaturalLanguageUnderstandingV1(_params);

@@ -15,6 +15,7 @@
  */
 
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
+const pkg = require('../../package.json');
 
 /**
  * Delete a collection.

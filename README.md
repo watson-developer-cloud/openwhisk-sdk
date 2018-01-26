@@ -1,4 +1,4 @@
-# openwhisk-sdk [![Build Status](https://travis.ibm.com/Watson/openwhisk-sdk.svg?token=ouxuNEZVg24FqsCxcPYL&branch=master)](https://travis.ibm.com/Watson/openwhisk-sdk)
+# openwhisk-sdk [![Build Status](https://travis-ci.org/watson-developer-cloud/openwhisk-sdk.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/openwhisk-sdk)
 
 The Watson openwhisk-sdk contains packages for each of the Watson Services to provide a convenient way to call the Watson APIs.
 

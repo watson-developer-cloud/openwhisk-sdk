@@ -76,30 +76,16 @@ describe('create-classifier', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    const params = payload;
-    return createClassifier
-      .test(params)
-      .then((res) => {
-        if (process.env.TEST_OPENWHISK && auth) {
-          const { classifier_id } = res;
-          return ow.actions
-            .invoke({
-              name: 'natural-language-classifier-v1/delete-classifier',
-              blocking: true,
-              result: true,
-              params: extend({}, credentials, { classifier_id })
-            })
-            .then(() => {
-              assert.ok(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = payload;
+      return createClassifier
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

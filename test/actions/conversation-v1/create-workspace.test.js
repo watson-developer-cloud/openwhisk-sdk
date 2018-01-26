@@ -66,9 +66,9 @@ describe('create-workspace', () => {
     const params = payload;
     return createWorkspace
       .test(params)
-      .then((res) => {
+      .then(() => {
         // cleanup
-        const { workspace_id: workspaceId } = res;
+      /* const { workspace_id: workspaceId } = res;
         params.workspace_id = workspaceId;
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
@@ -84,7 +84,7 @@ describe('create-workspace', () => {
             .catch(() => {
               assert(false);
             });
-        }
+        } */
         assert.ok(true);
       })
       .catch(() => {

@@ -88,15 +88,17 @@ describe('classify', () => {
       });
   });
   it('should generate a valid payload with url', () => {
-    const params = omit(payload, ['images_file']);
-    return classify
-      .test(params)
-      .then(() => {
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = omit(payload, ['images_file']);
+      return classify
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
   it('should generate a valid payload with both url and images_file', () => {
     const params = payload;

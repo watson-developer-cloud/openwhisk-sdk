@@ -127,4 +127,4 @@ bx wsk action invoke <binding-name>/message -p workspace_id 'my-id' -p input '{"
 
 # Documentation
 
-You can find links to the documentation at https://www.ibm.com/watson/developercloud/doc/index.html. Find the service that you're interested in, click API reference, and then select the Node tab.
+You can find links to the documentation at https://console.bluemix.net/developer/watson/documentation. Find the service that you're interested in, click API reference, and then select the Node tab.

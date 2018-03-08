@@ -83,15 +83,6 @@ describe('update-dialog-node', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if new_dialog_node is missing', () => {
-    const params = omit(payload, ['new_dialog_node']);
-    return updateDialogNode
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing new_dialog_node');
-      })
-      .catch(err => negativeHandler(err));
-  });
   it('should generate a valid payload', () => {
     payload.new_dialog_node = payload.dialog_node;
     const params = payload;

@@ -39,8 +39,10 @@ function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
-    const fileParams = [ 'forced_glossary' , 'parallel_corpus' , 'monolingual_corpus' ];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
+    const fileParams = [
+      'forced_glossary', 'parallel_corpus', 'monolingual_corpus'
+    ];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

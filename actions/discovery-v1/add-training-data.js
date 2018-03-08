@@ -29,9 +29,9 @@ const pkg = require('../../package.json');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {string} [params.natural_language_query] - 
- * @param {string} [params.filter] - 
- * @param {TrainingExample[]} [params.examples] - 
+ * @param {string} [params.natural_language_query] -
+ * @param {string} [params.filter] -
+ * @param {TrainingExample[]} [params.examples] -
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

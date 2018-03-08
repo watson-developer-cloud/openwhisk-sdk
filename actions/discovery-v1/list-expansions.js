@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const pkg = require('../../package.json');
 
 /**
- * Deletes the specified session.
+ * List current expansions.
  *
- * Deletes an existing session and its engine. The request must pass the cookie that was returned by the `POST /v1/sessions` method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first.
+ * Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -28,7 +28,9 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.session_id - The ID of the session to be deleted.
+ * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.environment_id - The ID of the environment.
+ * @param {string} params.collection_id - The ID of the collection.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -37,12 +39,12 @@ function main(params) {
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
-      service = new SpeechToTextV1(_params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.deleteSession(_params, (err, response) => {
+    service.listExpansions(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

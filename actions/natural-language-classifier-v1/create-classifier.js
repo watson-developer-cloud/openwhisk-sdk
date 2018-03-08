@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,22 +20,24 @@ const pkg = require('../../package.json');
 /**
  * Create classifier.
  *
+ * Sends data to create and train a classifier and returns information about the new classifier.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.metadata - Must be a base64-encoded string. Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. For details, see the [API reference](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/#create_classifier).
- * @param {string} params.training_data - Must be a base64-encoded string. Training data in CSV format. Each text value must have at least one class. The data can include up to 15,000 records. For details, see [Using your own data](https://www.ibm.com/watson/developercloud/doc/natural-language-classifier/using-your-data.html).
+ * @param {string} params.metadata - Must be a base64-encoded string. Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier.
+ * @param {string} params.training_data - Must be a base64-encoded string. Training data in CSV format. Each text value must have at least one class. The data can include up to 15,000 records. For details, see [Using your own data](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
-    const fileParams = ['metadata', 'training_data'];
-    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
+    const fileParams = [ 'metadata' , 'training_data' ];
+    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

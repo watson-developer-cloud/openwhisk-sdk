@@ -33,6 +33,7 @@ const pkg = require('../../package.json');
  * @param {string} params.entity - The name of the entity.
  * @param {string} params.value - The text of the entity value.
  * @param {string} params.synonym - The text of the synonym.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

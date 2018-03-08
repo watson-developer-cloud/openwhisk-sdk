@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Checks the status of all asynchronous jobs.
  *
- * Returns the ID and status of all outstanding jobs associated with the service credentials with which it is called. The method also returns the creation and update times of each job, and, if a job was created with a callback URL and a user token, the user token for the job. To obtain the results for a job whose status is `completed`, use the `GET /v1/recognitions/{id}` method. A job and its results remain available until you delete them with the `DELETE /v1/recognitions/{id}` method or until the job's time to live expires, whichever comes first.
+ * Returns the ID and status of the latest 100 outstanding jobs associated with the service credentials with which it is called. The method also returns the creation and update times of each job, and, if a job was created with a callback URL and a user token, the user token for the job. To obtain the results for a job whose status is `completed` or not one of the latest 100 outstanding jobs, use the `GET /v1/recognitions/{id}` method. A job and its results remain available until you delete them with the `DELETE /v1/recognitions/{id}` method or until the job's time to live expires, whichever comes first.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

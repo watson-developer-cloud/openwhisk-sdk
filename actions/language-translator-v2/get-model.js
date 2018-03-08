@@ -18,7 +18,9 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 const pkg = require('../../package.json');
 
 /**
- * Get information about the given translation model, including training status.
+ * Get model details.
+ *
+ * Gets information about a translation model, including training status for custom models.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -26,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.model_id - Model ID to use.
+ * @param {string} params.model_id - Model ID of the model to get.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

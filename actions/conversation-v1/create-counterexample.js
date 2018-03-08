@@ -16,6 +16,7 @@
 
 const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 const pkg = require('../../package.json');
+
 /**
  * Create counterexample.
  *

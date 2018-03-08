@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-const ConversationV1 = require('watson-developer-cloud/conversation/v1');
+const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const pkg = require('../../package.json');
 
 /**
- * List dialog nodes.
+ * Delete the expansions list.
  *
- * List the dialog nodes in the workspace.
+ * Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,12 +29,8 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
- * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
- * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
- * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
- * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
- * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
+ * @param {string} params.environment_id - The ID of the environment.
+ * @param {string} params.collection_id - The ID of the collection.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -43,12 +39,12 @@ function main(params) {
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
-      service = new ConversationV1(_params);
+      service = new DiscoveryV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listDialogNodes(_params, (err, response) => {
+    service.deleteExpansions(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

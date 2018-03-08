@@ -49,7 +49,7 @@ function main(params) {
       reject(err.message);
       return;
     }
-    service.profile(_params, (err, response) => {
+    service.profileAsCsv(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

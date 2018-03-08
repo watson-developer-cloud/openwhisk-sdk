@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 const pkg = require('../../package.json');
 
 /**
- * Checks whether a session is ready to accept a new recognition task.
+ * Identify language.
  *
- * Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the `initialized` state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the `POST /v1/sessions` method.
+ * Identifies the language of the input text.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -28,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.session_id - The ID of the session for the recognition task.
+ * @param {string} params.text - Input text in UTF-8 format.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -37,12 +37,12 @@ function main(params) {
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
-      service = new SpeechToTextV1(_params);
+      service = new LanguageTranslatorV2(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.getSessionStatus(_params, (err, response) => {
+    service.identifyAsPlain(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -32,6 +32,7 @@ const pkg = require('../../package.json');
  * @param {string} params.workspace_id - The workspace ID.
  * @param {string} params.intent - The intent name (for example, `pizza_order`).
  * @param {string} params.text - The text of the user input example.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

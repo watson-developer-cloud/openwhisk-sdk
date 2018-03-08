@@ -31,7 +31,7 @@ const pkg = require('../../package.json');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - The workspace ID.
  * @param {string} params.dialog_node - The dialog node ID (for example, `get_order`).
- * @param {string} params.new_dialog_node - The dialog node ID.
+ * @param {string} [params.new_dialog_node] - The dialog node ID.
  * @param {string} [params.new_description] - The description of the dialog node.
  * @param {string} [params.new_conditions] - The condition that will trigger the dialog node.
  * @param {string} [params.new_parent] - The ID of the parent dialog node (if any).

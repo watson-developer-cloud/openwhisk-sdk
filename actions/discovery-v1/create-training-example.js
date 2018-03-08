@@ -30,9 +30,9 @@ const pkg = require('../../package.json');
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.query_id - The ID of the query used for training.
- * @param {string} [params.document_id] -
- * @param {string} [params.cross_reference] -
- * @param {number} [params.relevance] -
+ * @param {string} [params.document_id] - 
+ * @param {string} [params.cross_reference] - 
+ * @param {number} [params.relevance] - 
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

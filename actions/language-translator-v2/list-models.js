@@ -18,7 +18,9 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 const pkg = require('../../package.json');
 
 /**
- * Lists available standard and custom models by source or target language.
+ * List models.
+ *
+ * Lists available translation models.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -26,9 +28,9 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} [params.source] - Filter models by source language.
- * @param {string} [params.target] - Filter models by target language.
- * @param {boolean} [params.default_models] - Valid values are leaving it unset, `true`, and `false`. When `true`, it filters models to return the default_models model or models. When `false`, it returns the non-default_models model or models. If not set, it returns all models, default_models and non-default_models.
+ * @param {string} [params.source] - Specify a language code to filter results by source language.
+ * @param {string} [params.target] - Specify a language code to filter results by target language.
+ * @param {boolean} [params.default_models] - If the default parameter isn't specified, the service will return all models (default and non-default) for each language pair. To return only default models, set this to `true`. To return only non-default models, set this to `false`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

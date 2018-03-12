@@ -18,9 +18,9 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
 const pkg = require('../../package.json');
 
 /**
- * Classify.
+ * Classify a phrase.
  *
- * Returns label information for the input. The status must be `Available` before you can use the classifier to classify text. Use `Get information about a classifier` to retrieve the status.
+ * Returns label information for the input. The status must be `Available` before you can use the classifier to classify text.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

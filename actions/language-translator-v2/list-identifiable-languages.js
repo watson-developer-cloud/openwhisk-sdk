@@ -18,9 +18,9 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 const pkg = require('../../package.json');
 
 /**
- * Lists all languages that can be identified by the API.
+ * List identifiable languages.
  *
- * Lists all languages that the service can identify. Returns the two-letter code (for example, `en` for English or `es` for Spanish) and name of each language.
+ * Lists the languages that the service can identify. Returns the language code (for example, `en` for English or `es` for Spanish) and name of each language.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

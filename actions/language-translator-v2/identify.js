@@ -18,6 +18,8 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 const pkg = require('../../package.json');
 
 /**
+ * Identify language.
+ *
  * Identifies the language of the input text.
  *
  * @param {Object} params - The parameters to send to the service.

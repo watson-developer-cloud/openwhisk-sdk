@@ -31,6 +31,7 @@ const pkg = require('../../package.json');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - The workspace ID.
  * @param {string} params.dialog_node - The dialog node ID (for example, `get_order`).
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

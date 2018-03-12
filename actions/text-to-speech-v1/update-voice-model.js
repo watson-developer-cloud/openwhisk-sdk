@@ -31,7 +31,7 @@ const pkg = require('../../package.json');
  * @param {string} params.customization_id - The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model.
  * @param {string} [params.name] - A new name for the custom voice model.
  * @param {string} [params.description] - A new description for the custom voice model.
- * @param {CustomWord[]} [params.words] - An array of words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.
+ * @param {Word[]} [params.words] - An array of words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

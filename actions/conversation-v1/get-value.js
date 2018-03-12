@@ -33,6 +33,7 @@ const pkg = require('../../package.json');
  * @param {string} params.entity - The name of the entity.
  * @param {string} params.value - The text of the entity value.
  * @param {boolean} [params.export] - Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

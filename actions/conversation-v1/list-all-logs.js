@@ -29,8 +29,8 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
  * @param {string} params.filter - A cacheable parameter that limits the results to those matching the specified filter. You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id` or `request.context.metadata.deployment`. For more information, see the [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).
+ * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
  * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
  * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
  * @return {Promise} - The Promise that the action returns.

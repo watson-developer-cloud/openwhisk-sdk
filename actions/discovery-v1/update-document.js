@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM All Rights Reserved.
+ * Copyright 2018 IBM All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const pkg = require('../../package.json');
 
 /**
- * Update a document
+ * Update a document.
  *
  * Replace an existing document. Starts ingesting a document with optional metadata.
  *
@@ -33,7 +33,7 @@ const pkg = require('../../package.json');
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.document_id - The ID of the document.
  * @param {string} [params.file] - Must be a base64-encoded string. The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected.
- * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```
+ * @param {string} [params.metadata] - If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```.
  * @param {string} [params.file_content_type] - The content type of file.
  * @return {Promise} - The Promise that the action returns.
  */

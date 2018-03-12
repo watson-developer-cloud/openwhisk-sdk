@@ -18,6 +18,8 @@ const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator
 const pkg = require('../../package.json');
 
 /**
+ * Delete model.
+ *
  * Deletes a custom translation model.
  *
  * @param {Object} params - The parameters to send to the service.
@@ -26,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.model_id - The model identifier.
+ * @param {string} params.model_id - Model ID of the model to delete.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -34,6 +34,7 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
  * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
  * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

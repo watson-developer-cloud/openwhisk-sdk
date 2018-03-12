@@ -26,7 +26,7 @@ import sys
 import re
 import shutil
 
-WSK_CLI = 'bx wsk' if len(sys.argv) < 2 else sys.argv[1]
+WSK_CLI = 'bx wsk'
 
 
 def get_annotations(package_name, annotation_filename):
@@ -49,7 +49,7 @@ def get_annotations(package_name, annotation_filename):
     return annotation_data
 
 
-def make_package_command(package_name, package_annotations):
+def make_package_command(package_name):
     """
     Creates a command to create or update a package.
 
@@ -59,14 +59,11 @@ def make_package_command(package_name, package_annotations):
     Returns:
         string: A command that can be executed using the wsk cli.
     """
-    command = "{} package update {}".format(WSK_CLI, package_name) \
-        + " -a description {}".format(json.dumps(package_annotations['description'])) \
-        + " -a parameters '{}'".format(json.dumps(package_annotations['parameters'])) \
-        + " -a prettyName {}".format(json.dumps(package_annotations['prettyName']))
+    command = "{} package update {}".format(WSK_CLI, package_name)
     return command
 
 
-def make_action_command(package_name, action_name, action_annotations):
+def make_action_command(package_name, action_name):
     """
     Creates a command to create or update an action.
 
@@ -82,9 +79,7 @@ def make_action_command(package_name, action_name, action_annotations):
         'node_modules/webpack/bin/webpack.js --env {} --config webpack.config.js'.format(entry_point))
     command = "{} action update {} ./dist/{}.js".format(WSK_CLI,
                                                         qualified_action_name,
-                                                        action_name) \
-        + " -a description {}".format(json.dumps(action_annotations['description'])) \
-        + " -a parameters '{}'".format(json.dumps(action_annotations['parameters']))
+                                                        action_name)
     return command
 
 
@@ -100,9 +95,7 @@ def install():
         package_paths = glob.glob('actions/*')
         for package_path in package_paths:
             package_name = re.findall(r'.*/(.*)', package_path)[0]
-            package_annotations = get_annotations(package_name, package_name)
-            package_deployment_command = make_package_command(
-                package_name, package_annotations)
+            package_deployment_command = make_package_command(package_name)
             os.system(package_deployment_command)
 
             action_paths = glob.glob(package_path + '/*.js')
@@ -110,27 +103,24 @@ def install():
                 os.mkdir('dist')
             for action_path in action_paths:
                 action_name = re.findall(r'/.*/(.*).js', action_path)[0]
-                action_annotations = get_annotations(package_name, action_name)
-                action_deployment_command = make_action_command(
-                    package_name, action_name, action_annotations)
+                action_deployment_command = make_action_command(package_name, action_name)
                 os.system(action_deployment_command)
         shutil.rmtree('./dist', ignore_errors=True)
 
 def install_by_package(package_name):
+
     package_path = 'actions/'+package_name
-    package_annotations = get_annotations(package_name, package_name)
-    package_deployment_command = make_package_command(
-        package_name, package_annotations)
+    package_deployment_command = make_package_command(package_name)
+
     os.system(package_deployment_command)
 
     action_paths = glob.glob(package_path + '/*.js')
+
     if not os.path.exists('dist'):
         os.mkdir('dist')
     for action_path in action_paths:
         action_name = re.findall(r'/.*/(.*).js', action_path)[0]
-        action_annotations = get_annotations(package_name, action_name)
-        action_deployment_command = make_action_command(
-            package_name, action_name, action_annotations)
+        action_deployment_command = make_action_command(package_name, action_name)
         os.system(action_deployment_command)
     shutil.rmtree('./dist', ignore_errors=True)
 

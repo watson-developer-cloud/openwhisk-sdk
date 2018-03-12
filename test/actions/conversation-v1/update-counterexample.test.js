@@ -84,15 +84,17 @@ describe('update-counterexample', () => {
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    payload.new_text = payload.text;
-    const params = payload;
-    return updateCounterExample
-      .test(params)
-      .then(() => {
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      payload.new_text = payload.text;
+      const params = payload;
+      return updateCounterExample
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

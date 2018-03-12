@@ -51,7 +51,8 @@ function main(params) {
     const positiveExampleClasses = Object.keys(_params).filter(key =>
       key.match(/.*positive_examples/));
     positiveExampleClasses
-      .filter(positiveExampleClass => positiveExampleClasses[positiveExampleClass])
+      .filter(positiveExampleClass =>
+        positiveExampleClasses[positiveExampleClass])
       .forEach((positiveExampleClass) => {
         try {
           _params[positiveExampleClass] = Buffer.from(

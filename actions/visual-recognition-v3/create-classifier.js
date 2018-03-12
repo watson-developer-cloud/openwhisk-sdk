@@ -39,7 +39,7 @@ function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
-    const fileParams = ['classname_positive_examples', 'negative_examples'];
+    const fileParams = ['negative_examples'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
@@ -48,6 +48,21 @@ function main(params) {
         return;
       }
     });
+    const positiveExampleClasses = Object.keys(_params).filter(key =>
+      key.match(/.*positive_examples/));
+    positiveExampleClasses
+      .filter(positiveExampleClass => positiveExampleClasses[positiveExampleClass])
+      .forEach((positiveExampleClass) => {
+        try {
+          _params[positiveExampleClass] = Buffer.from(
+            _params[positiveExampleClass],
+            'base64'
+          );
+        } catch (err) {
+          reject(err.message);
+          return;
+        }
+      });
     let service;
     try {
       service = new VisualRecognitionV3(_params);

@@ -26,7 +26,7 @@ import sys
 import re
 import shutil
 
-WSK_CLI = 'bx wsk' if len(sys.argv) < 2 else sys.argv[1]
+WSK_CLI = 'bx wsk'
 
 
 def get_annotations(package_name, annotation_filename):
@@ -108,11 +108,14 @@ def install():
         shutil.rmtree('./dist', ignore_errors=True)
 
 def install_by_package(package_name):
+
     package_path = 'actions/'+package_name
     package_deployment_command = make_package_command(package_name)
+
     os.system(package_deployment_command)
 
     action_paths = glob.glob(package_path + '/*.js')
+
     if not os.path.exists('dist'):
         os.mkdir('dist')
     for action_path in action_paths:

@@ -5,12 +5,15 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let createWorkspace = require('../../../actions/conversation-v1/create-workspace');
+let updateValue = require('../../../actions/assistant-v1/update-value');
 
 let ow;
 let credentials;
 let payload = {
-  name: 'example_workspace',
+  workspace_id: 'example_workspace',
+  entity: 'example_entity',
+  value: 'example_value',
+  new_value: 'example_value',
   headers: {
     'User-Agent': 'openwhisk'
   }
@@ -19,11 +22,7 @@ let payload = {
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
-    createWorkspace = adapt(
-      createWorkspace,
-      'conversation-v1/create-workspace',
-      ow
-    );
+    updateValue = adapt(updateValue, 'assistant-v1/update-value', ow);
     credentials = auth.conversation;
   } else {
     credentials = {
@@ -32,8 +31,10 @@ before(() => {
       version_date: 'version-date'
     };
     beforeEach(() => {
-      nock('https://gateway.watsonplatform.net/conversation')
-        .post('/api/v1/workspaces')
+      nock('https://gateway.watsonplatform.net/assistant')
+        .post(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/entities/${payload.entity}`
+              + `/values/${payload.value}`)
         .query({
           version: credentials.version_date
         })
@@ -43,10 +44,10 @@ before(() => {
   payload = extend({}, payload, credentials);
 });
 
-describe('create-workspace', () => {
+describe('update-value', () => {
   it('should fail if credentials are missing', () => {
     const params = omit(payload, ['username', 'password']);
-    return createWorkspace
+    return updateValue
       .test(params)
       .then(() => {
         assert.fail('No failure on missing credentials');
@@ -55,36 +56,48 @@ describe('create-workspace', () => {
   });
   it('should fail if version_date is missing', () => {
     const params = omit(payload, ['version_date']);
-    return createWorkspace
+    return updateValue
       .test(params)
       .then(() => {
         assert.fail('No failure on missing version_date');
       })
       .catch(err => negativeHandler(err));
   });
-  it('should generate a valid payload', () => {
-    const params = payload;
-    return createWorkspace
+  it('should fail if workspace_id is missing', () => {
+    const params = omit(payload, ['workspace_id']);
+    return updateValue
       .test(params)
-      .then((res) => {
-        // cleanup
-        const { workspace_id: workspaceId } = res;
-        params.workspace_id = workspaceId;
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'conversation-v1/delete-workspace',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert(true);
-            })
-            .catch(() => {
-              assert(false);
-            });
-        }
+      .then(() => {
+        assert.fail('No failure on missing workspace_id');
+      })
+      .catch(err => negativeHandler(err));
+  });
+  it('should fail if entity is missing', () => {
+    const params = omit(payload, ['entity']);
+    return updateValue
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing entity');
+      })
+      .catch(err => negativeHandler(err));
+  });
+  it('should fail if value is missing', () => {
+    const params = omit(payload, ['value']);
+    return updateValue
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing value');
+      })
+      .catch(() => {
+        assert(true);
+      });
+  });
+  it('should generate a valid payload', () => {
+    payload.new_value = payload.value;
+    const params = payload;
+    return updateValue
+      .test(params)
+      .then(() => {
         assert.ok(true);
       })
       .catch(() => {

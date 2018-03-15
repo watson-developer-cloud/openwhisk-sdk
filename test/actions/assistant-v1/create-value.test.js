@@ -5,12 +5,14 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let createWorkspace = require('../../../actions/conversation-v1/create-workspace');
+let createValue = require('../../../actions/assistant-v1/create-value');
 
 let ow;
 let credentials;
 let payload = {
-  name: 'example_workspace',
+  workspace_id: 'example_workspace_id',
+  entity: 'example_entity',
+  value: 'example_value',
   headers: {
     'User-Agent': 'openwhisk'
   }
@@ -19,11 +21,7 @@ let payload = {
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
-    createWorkspace = adapt(
-      createWorkspace,
-      'conversation-v1/create-workspace',
-      ow
-    );
+    createValue = adapt(createValue, 'assistant-v1/create-value', ow);
     credentials = auth.conversation;
   } else {
     credentials = {
@@ -32,21 +30,22 @@ before(() => {
       version_date: 'version-date'
     };
     beforeEach(() => {
-      nock('https://gateway.watsonplatform.net/conversation')
-        .post('/api/v1/workspaces')
+      nock('https://gateway.watsonplatform.net/assistant')
+        .post(`/api/v1/workspaces/${payload.workspace_id}`
+              + `/entities/${payload.entity}/values`)
         .query({
           version: credentials.version_date
         })
         .reply(200, {});
     });
   }
-  payload = extend({}, payload, credentials);
+  payload = extend({}, payload, omit(credentials, ['value']));
 });
 
-describe('create-workspace', () => {
+describe('create-value', () => {
   it('should fail if credentials are missing', () => {
     const params = omit(payload, ['username', 'password']);
-    return createWorkspace
+    return createValue
       .test(params)
       .then(() => {
         assert.fail('No failure on missing credentials');
@@ -55,28 +54,53 @@ describe('create-workspace', () => {
   });
   it('should fail if version_date is missing', () => {
     const params = omit(payload, ['version_date']);
-    return createWorkspace
+    return createValue
       .test(params)
       .then(() => {
         assert.fail('No failure on missing version_date');
       })
       .catch(err => negativeHandler(err));
   });
+  it('should fail if workspace_id is missing', () => {
+    const params = omit(payload, ['workspace_id']);
+    return createValue
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing workspace_id');
+      })
+      .catch(err => negativeHandler(err));
+  });
+  it('should fail if entity is missing', () => {
+    const params = omit(payload, ['entity']);
+    return createValue
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing entity');
+      })
+      .catch(err => negativeHandler(err));
+  });
+  it('should fail if value is missing', () => {
+    const params = omit(payload, ['value']);
+    return createValue
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing value');
+      })
+      .catch(err => negativeHandler(err));
+  });
   it('should generate a valid payload', () => {
     const params = payload;
-    return createWorkspace
+    return createValue
       .test(params)
-      .then((res) => {
+      .then(() => {
         // cleanup
-        const { workspace_id: workspaceId } = res;
-        params.workspace_id = workspaceId;
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'conversation-v1/delete-workspace',
+              name: 'assistant-v1/delete-value',
               blocking: true,
               result: true,
-              params
+              params: payload
             })
             .then(() => {
               assert(true);

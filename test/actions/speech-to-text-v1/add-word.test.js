@@ -69,16 +69,6 @@ describe('add-word', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if content_type is missing', () => {
-    const params = omit(payload, ['content_type']);
-    return addWord
-      .test(params)
-      .then(() => {
-        assert.fail();
-      })
-      .catch(err => negativeHandler(err));
-  });
-
   it('should generate a valid payload', () => {
     it('should generate a valid payload', () => {
       const params = payload;

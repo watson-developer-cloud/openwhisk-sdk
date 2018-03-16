@@ -28,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.dialog_node - The dialog node ID. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 1024 characters.
  * @param {string} [params.description] - The description of the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.

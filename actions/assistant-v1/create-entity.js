@@ -28,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.entity - The name of the entity. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, and hyphen characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 64 characters.
  * @param {string} [params.description] - The description of the entity. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.

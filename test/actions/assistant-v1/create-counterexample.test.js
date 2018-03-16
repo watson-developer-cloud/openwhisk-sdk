@@ -10,7 +10,7 @@ let createCounterExample = require('../../../actions/assistant-v1/create-counter
 let ow;
 let credentials;
 let payload = {
-  text: 'counterexample',
+  text: 'counterexample2',
   workspace_id: 'example_workspace_id',
   headers: {
     'User-Agent': 'openwhisk'
@@ -26,17 +26,18 @@ before(() => {
       ow
     );
     credentials = auth.conversation;
+    credentials.url = 'https://gateway.watsonplatform.net/assistant/api';
   } else {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/assistant')
         .post(`/api/v1/workspaces/${payload.workspace_id}/counterexamples`)
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -54,12 +55,12 @@ describe('create-counterexample', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return createCounterExample
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });
@@ -98,14 +99,14 @@ describe('create-counterexample', () => {
             .then(() => {
               assert(true);
             })
-            .catch(() => {
-              assert(false);
+            .catch((error) => {
+              assert(error);
             });
         }
         assert.ok(true);
       })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
+      .catch((err) => {
+        assert.fail(err);
       });
   });
 });

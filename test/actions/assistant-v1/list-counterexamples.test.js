@@ -29,13 +29,13 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/assistant')
         .get(`/api/v1/workspaces/${payload.workspace_id}/counterexamples`)
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -53,12 +53,12 @@ describe('list-counterexamples', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return listCounterExamples
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });

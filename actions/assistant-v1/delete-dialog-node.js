@@ -28,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.dialog_node - The dialog node ID (for example, `get_order`).
  * @return {Promise} - The Promise that the action returns.

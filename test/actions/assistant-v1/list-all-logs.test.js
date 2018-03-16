@@ -5,15 +5,12 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let addWord = require('../../../actions/speech-to-text-v1/add-word');
+let listAllLogs = require('../../../actions/assistant-v1/list-all-logs');
 
 let ow;
 let credentials;
-
 let payload = {
-  customization_id: 'example_customization',
-  word_name: 'tomato',
-  sounds_like: ['tomatoh', 'tomayto'],
+  filter: 'language::en,request.context.metadata.deployment::deployment_1',
   headers: {
     'User-Agent': 'openwhisk'
   }
@@ -22,64 +19,62 @@ let payload = {
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
-    addWord = adapt(addWord, 'speech-to-text-v1/add-word', ow);
-    credentials = auth.speech_to_text;
+    listAllLogs = adapt(listAllLogs, 'assistant-v1/list-all-logs', ow);
+    credentials = auth.conversation;
   } else {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
-      nock('https://stream.watsonplatform.net/speech-to-text')
-        .put(`/api/v1/customizations/${payload.customization_id}`
-            + `/words/${payload.word_name}`)
+      nock('https://gateway.watsonplatform.net/assistant')
+        .get('/api/v1/logs')
+        .query({
+          version: credentials.version,
+          filter: payload.filter
+        })
         .reply(200, {});
     });
   }
-  payload = extend({}, payload, omit(credentials, ['word']));
+  payload = extend({}, credentials, payload);
 });
 
-describe('add-word', () => {
+describe('list-all-logs', () => {
   it('should fail if credentials are missing', () => {
     const params = omit(payload, ['username', 'password']);
-    return addWord
+    return listAllLogs
       .test(params)
       .then(() => {
         assert.fail('No failure on missing credentials');
       })
       .catch(err => negativeHandler(err));
   });
-
-  it('should fail if customization_id is missing', () => {
-    const params = omit(payload, ['customization_id']);
-    return addWord
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
+    return listAllLogs
       .test(params)
       .then(() => {
-        assert.fail();
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if word_name is missing', () => {
-    const params = omit(payload, ['word_name']);
-    return addWord
+  it('should fail if filter is missing', () => {
+    const params = omit(payload, ['filter']);
+    return listAllLogs
       .test(params)
       .then(() => {
-        assert.fail();
+        assert.fail('No failure on missing filter');
       })
       .catch(err => negativeHandler(err));
   });
   it('should generate a valid payload', () => {
-    it('should generate a valid payload', () => {
-      const params = payload;
-      return addWord
-        .test(params)
-        .then(() => {
-          assert.ok(true);
-        })
-        .catch(() => {
-          assert.fail('Failure on valid payload');
-        });
-    });
+    const params = payload;
+    return listAllLogs
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(err => negativeHandler(err));
   });
 });

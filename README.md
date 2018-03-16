@@ -6,7 +6,7 @@ The Watson openwhisk-sdk contains packages for each of the Watson Services to pr
 
 This SDK contains the following Watson packages:
 
-1. `conversation-v1`
+1. `assistant-v1`
 2. `discovery-v1`
 3. `language-translator-v2`
 4. `natural-language-classifier-v1`

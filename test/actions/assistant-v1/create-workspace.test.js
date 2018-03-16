@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let createWorkspace = require('../../../actions/conversation-v1/create-workspace');
+let createWorkspace = require('../../../actions/assistant-v1/create-workspace');
 
 let ow;
 let credentials;
@@ -21,7 +21,7 @@ before(() => {
     ow = openwhisk(auth.ow);
     createWorkspace = adapt(
       createWorkspace,
-      'conversation-v1/create-workspace',
+      'assistant-v1/create-workspace',
       ow
     );
     credentials = auth.conversation;
@@ -29,13 +29,13 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
-      nock('https://gateway.watsonplatform.net/conversation')
+      nock('https://gateway.watsonplatform.net/assistant')
         .post('/api/v1/workspaces')
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -53,12 +53,12 @@ describe('create-workspace', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return createWorkspace
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });
@@ -73,7 +73,7 @@ describe('create-workspace', () => {
         if (process.env.TEST_OPENWHISK && auth) {
           return ow.actions
             .invoke({
-              name: 'conversation-v1/delete-workspace',
+              name: 'assistant-v1/delete-workspace',
               blocking: true,
               result: true,
               params

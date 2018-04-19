@@ -18,7 +18,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Lists information about all audio resources for a custom acoustic model.
+ * List audio resources.
  *
  * Lists information about all audio resources from a custom acoustic model. The information includes the name of the resource and information about its audio data, such as its duration. It also includes the status of the audio resource, which is important for checking the service's analysis of the resource in response to a request to add it to the custom acoustic model. You must use credentials for the instance of the service that owns a model to list its audio resources.
  *

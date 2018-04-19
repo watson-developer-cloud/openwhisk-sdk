@@ -18,9 +18,9 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const pkg = require('../../package.json');
 
 /**
- * Creates a new custom voice model.
+ * Create a custom model.
  *
- * Creates a new empty custom voice model. The model is owned by the instance of the service whose credentials are used to create it.   **Note:** This method is currently a beta release.
+ * Creates a new empty custom voice model. You must specify a name for the new custom model; you can optionally specify the language and a description of the new model. The model is owned by the instance of the service whose credentials are used to create it.  **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

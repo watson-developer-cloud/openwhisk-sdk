@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Detect faces in images.
  *
- * Analyze and get data about faces in images. Responses can include estimated age and gender, and the service can identify celebrities. This feature uses a built-in classifier, so you do not train it on custom classifiers. The Detect faces method does not support general biometric facial recognition.
+ * **Important:** On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the `name` of the person, `score`, and `type_hierarchy` knowledge graph. For details about the enhanced Face model, see the [Release notes](https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018).  Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition.  Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels per inch.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -30,8 +30,8 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} [params.images_file] - Must be a base64-encoded string. An image file (.jpg, .png) or .zip file with images. Include no more than 15 images. You can also include an image with the**url** parameter.  All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0.
- * @param {string} [params.url] - A string with the image URL to analyze.
+ * @param {string} [params.images_file] - Must be a base64-encoded string. An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip file to 100 MB. You can include a maximum of 15 images in a request.  Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters.  You can also include an image with the **url** parameter.
+ * @param {string} [params.url] - The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. Redirects are followed, so you can use a shortened URL.  You can also include images with the **images_file** parameter.
  * @param {string} [params.images_file_content_type] - The content type of images_file.
  * @return {Promise} - The Promise that the action returns.
  */
@@ -39,8 +39,8 @@ function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
-    const fileParams = ['images_file'];
-    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
+    const fileParams = [ 'images_file' ,];
+    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

@@ -18,7 +18,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Creates a custom acoustic model.
+ * Create a custom acoustic model.
  *
  * Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it.
  *

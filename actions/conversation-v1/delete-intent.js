@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Delete intent.
  *
- * Delete an intent from a workspace.
+ * Delete an intent from a workspace.    This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,8 +29,8 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
- * @param {string} params.intent - The intent name (for example, `pizza_order`).
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
+ * @param {string} params.intent - The intent name.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

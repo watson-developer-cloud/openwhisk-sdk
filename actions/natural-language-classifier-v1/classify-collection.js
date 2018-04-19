@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-language-classifier/v1');
 const pkg = require('../../package.json');
 
 /**
- * Retrieve a list of classifiers.
+ * Classify multiple phrases.
+ *
+ * Returns label information for multiple phrases. The status must be `Available` before you can use the classifier to classify text.  Note that classifying Japanese texts is a beta feature.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
- * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {boolean} [params.verbose] - Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers.
+ * @param {string} params.classifier_id - Classifier ID to use.
+ * @param {ClassifyInput[]} params.collection - The submitted phrases.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -37,12 +38,12 @@ function main(params) {
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
-      service = new VisualRecognitionV3(_params);
+      service = new NaturalLanguageClassifierV1(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listClassifiers(_params, (err, response) => {
+    service.classifyCollection(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Get counterexample.
  *
- * Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant input.
+ * Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant input.    This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,7 +29,7 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.text - The text of a user input counterexample (for example, `What are you wearing?`).
  * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.

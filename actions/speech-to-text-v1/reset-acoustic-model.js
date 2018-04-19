@@ -18,7 +18,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Resets a custom acoustic model.
+ * Reset a custom acoustic model.
  *
  * Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved, but the model's audio resources are removed and must be re-created. You must use credentials for the instance of the service that owns a model to reset it.
  *

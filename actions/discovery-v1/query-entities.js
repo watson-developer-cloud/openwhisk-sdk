@@ -31,10 +31,11 @@ const pkg = require('../../package.json');
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {string} [params.feature] - The entity query feature to perform. Must be `disambiguate`.
+ * @param {string} [params.feature] - The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.
  * @param {QueryEntitiesEntity} [params.entity] - A text string that appears within the entity text field.
  * @param {QueryEntitiesContext} [params.context] - Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
  * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
+ * @param {number} [params.evidence_count] - The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -18,7 +18,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Deletes the specified asynchronous job.
+ * Delete a job.
  *
  * Deletes the specified job. You cannot delete a job that the service is actively processing. Once you delete a job, its results are no longer available. The service automatically deletes a job and its results when the time to live for the results expires. You must submit the request with the service credentials of the user who created the job.
  *

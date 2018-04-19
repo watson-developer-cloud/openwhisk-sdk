@@ -18,9 +18,9 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const pkg = require('../../package.json');
 
 /**
- * Queries the contents of a custom voice model.
+ * List a custom model.
  *
- * Lists all information about the custom voice model with the specified `customization_id`. In addition to metadata such as the name and description of the voice model, the output includes the words in the model and their translations as defined in the model. To see just the metadata for a voice model, use the `GET /v1/customizations` method. You must use credentials for the instance of the service that owns a model to list information about it.   **Note:** This method is currently a beta release.
+ * Lists all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words and their translations as defined in the model. To see just the metadata for a voice model, use the **List custom models** method.   **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -28,7 +28,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The GUID of the custom voice model that is to be queried. You must make the request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The GUID of the custom voice model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

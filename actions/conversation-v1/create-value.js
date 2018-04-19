@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Add entity value.
  *
- * Create a new value for an entity.
+ * Create a new value for an entity.    This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,13 +29,13 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.entity - The name of the entity.
- * @param {string} params.value - The text of the entity value.
+ * @param {string} params.value - The text of the entity value. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 64 characters.
  * @param {Object} [params.metadata] - Any metadata related to the entity value.
- * @param {string[]} [params.synonyms] - An array of synonyms for the entity value.
- * @param {string[]} [params.patterns] - An array of patterns for the entity value. A pattern is specified as a regular expression.
- * @param {string} [params.value_type] - Specifies the type of value (`synonyms` or `patterns`). The default value is `synonyms`.
+ * @param {string[]} [params.synonyms] - An array containing any synonyms for the entity value. You can provide either synonyms or patterns (as indicated by **type**), but not both. A synonym must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 64 characters.
+ * @param {string[]} [params.patterns] - An array of patterns for the entity value. You can provide either synonyms or patterns (as indicated by **type**), but not both. A pattern is a regular expression no longer than 128 characters. For more information about how to specify a pattern, see the [documentation](https://console.bluemix.net/docs/services/conversation/entities.html#creating-entities).
+ * @param {string} [params.value_type] - Specifies the type of value.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -33,7 +33,7 @@ const pkg = require('../../package.json');
  * @param {number} [params.page_limit] - The number of records to return in each page of results.
  * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
  * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order, prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
- * @param {string} [params.cursor] - A token identifying the last object from the previous page of results.
+ * @param {string} [params.cursor] - A token identifying the page of results to retrieve.
  * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */

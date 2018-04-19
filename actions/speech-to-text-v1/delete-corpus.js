@@ -18,9 +18,9 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Deletes a corpus from a custom language model.
+ * Delete a corpus.
  *
- * Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the `POST /v1/customizations/{customization_id}/words` or `PUT /v1/customizations/{customization_id}/words/{word_name}` method. Removing a corpus does not affect the custom model until you train the model with the `POST /v1/customizations/{customization_id}/train` method. You must use credentials for the instance of the service that owns a model to delete its corpora.
+ * Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the **Add custom words** or **Add a custom word** method. Removing a corpus does not affect the custom model until you train the model with the **Train a custom language model** method. You must use credentials for the instance of the service that owns a model to delete its corpora.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

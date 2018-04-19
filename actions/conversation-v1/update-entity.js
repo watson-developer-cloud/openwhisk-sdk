@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Update entity.
  *
- * Update an existing entity with new or modified data.
+ * Update an existing entity with new or modified data. You must provide component objects defining the content of the updated entity.    This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,10 +29,10 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.entity - The name of the entity.
- * @param {string} [params.new_entity] - The name of the entity.
- * @param {string} [params.new_description] - The description of the entity.
+ * @param {string} [params.new_entity] - The name of the entity. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, and hyphen characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 64 characters.
+ * @param {string} [params.new_description] - The description of the entity. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.
  * @param {Object} [params.new_metadata] - Any metadata related to the entity.
  * @param {boolean} [params.new_fuzzy_match] - Whether to use fuzzy matching for the entity.
  * @param {CreateValue[]} [params.new_values] - An array of entity values.

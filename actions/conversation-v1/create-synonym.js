@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Add entity value synonym.
  *
- * Add a new synonym to an entity value.
+ * Add a new synonym to an entity value.    This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,10 +29,10 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.entity - The name of the entity.
  * @param {string} params.value - The text of the entity value.
- * @param {string} params.synonym - The text of the synonym.
+ * @param {string} params.synonym - The text of the synonym. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 64 characters.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 const pkg = require('../../package.json');
 
 /**
- * Retrieve a list of classifiers.
+ * Translate. as plain
+ *
+ * Translates the input text from the source language to the target language.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
- * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {boolean} [params.verbose] - Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers.
+ * @param {string[]} params.text - Input text in UTF-8 encoding. Multiple entries will result in multiple translations in the response.
+ * @param {string} [params.model_id] - Model ID of the translation model to use. If this is specified, the **source** and **target** parameters will be ignored. The method requires either a model ID or both the **source** and **target** parameters.
+ * @param {string} [params.source] - Language code of the source text language. Use with `target` as an alternative way to select a translation model. When `source` and `target` are set, and a model ID is not set, the system chooses a default model for the language pair (usually the model based on the news domain).
+ * @param {string} [params.target] - Language code of the translation target language. Use with source as an alternative way to select a translation model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -37,12 +40,12 @@ function main(params) {
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
-      service = new VisualRecognitionV3(_params);
+      service = new LanguageTranslatorV2(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listClassifiers(_params, (err, response) => {
+    service.translateAsPlain(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * List entity value synonyms.
  *
- * List the synonyms for an entity value.
+ * List the synonyms for an entity value.    This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,13 +29,13 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.entity - The name of the entity.
  * @param {string} params.value - The text of the entity value.
- * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
+ * @param {number} [params.page_limit] - The number of records to return in each page of results.
  * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
- * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
- * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
+ * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order, prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
+ * @param {string} [params.cursor] - A token identifying the page of results to retrieve.
  * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */

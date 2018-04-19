@@ -18,7 +18,7 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Lists a custom word from a custom language model.
+ * List a custom word.
  *
  * Lists information about a custom word from a custom language model. You must use credentials for the instance of the service that owns a model to query information about its words.
  *

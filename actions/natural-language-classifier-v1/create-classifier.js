@@ -28,16 +28,16 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.metadata - Must be a base64-encoded string. Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier.
- * @param {string} params.training_data - Must be a base64-encoded string. Training data in CSV format. Each text value must have at least one class. The data can include up to 15,000 records. For details, see [Using your own data](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).
+ * @param {string} params.metadata - Must be a base64-encoded string. Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. Specify the language with the 2-letter primary language code as assigned in ISO standard 639.  Supported languages are English (`en`), Arabic (`ar`), French (`fr`), German, (`de`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).
+ * @param {string} params.training_data - Must be a base64-encoded string. Training data in CSV format. Each text value must have at least one class. The data can include up to 20,000 records. For details, see [Data preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = params || {};
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
-    const fileParams = ['metadata', 'training_data'];
-    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
+    const fileParams = [ 'metadata' , 'training_data' ];
+    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

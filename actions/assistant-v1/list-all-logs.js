@@ -32,7 +32,7 @@ const pkg = require('../../package.json');
  * @param {string} params.filter - A cacheable parameter that limits the results to those matching the specified filter. You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id` or `request.context.metadata.deployment`. For more information, see the [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).
  * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order, prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
  * @param {number} [params.page_limit] - The number of records to return in each page of results.
- * @param {string} [params.cursor] - A token identifying the last object from the previous page of results.
+ * @param {string} [params.cursor] - A token identifying the page of results to retrieve.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -36,6 +36,7 @@ const pkg = require('../../package.json');
  * @param {string} [params.sort] - The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique times each entity is identified. The default is `score`.
  * @param {QueryRelationsFilter} [params.filter] - Filters to apply to the relationship query.
  * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
+ * @param {number} [params.evidence_count] - The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

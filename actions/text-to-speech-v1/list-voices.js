@@ -18,9 +18,9 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const pkg = require('../../package.json');
 
 /**
- * Retrieves all voices available for speech synthesis.
+ * Get voices.
  *
- * Lists information about all available voices. To see information about a specific voice, use the `GET /v1/voices/{voice}` method.
+ * Retrieves a list of all voices available for use with the service. The information includes the name, language, gender, and other details about the voice.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.

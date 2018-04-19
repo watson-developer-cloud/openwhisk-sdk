@@ -18,9 +18,9 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const pkg = require('../../package.json');
 
 /**
- * Adds one or more words to a custom voice model.
+ * Add custom words.
  *
- * Adds one or more words and their translations to the custom voice model with the specified `customization_id`. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to add words to it.   **Note:** This method is currently a beta release.
+ * Adds one or more words and their translations to the specified custom voice model. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries.  **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -28,8 +28,8 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model.
- * @param {Word[]} params.words - An array of words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words.
+ * @param {string} params.customization_id - The GUID of the custom voice model.
+ * @param {Word[]} params.words - **When adding words to a custom voice model,** an array of `Word` objects that provides one or more words that are to be added or updated for the custom voice model and the translation for each specified word. **When listing words from a custom voice model,** an array of `Word` objects that lists the words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

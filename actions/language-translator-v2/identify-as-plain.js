@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 const pkg = require('../../package.json');
 
 /**
- * Retrieve a list of classifiers.
+ * Identify language. as plain
+ *
+ * Identifies the language of the input text.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
  * @param {string} [params.password] - required unless use_unauthenticated is set.
- * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers]
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {boolean} [params.verbose] - Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers.
+ * @param {string} params.text - Input text in UTF-8 format.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -37,12 +37,12 @@ function main(params) {
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
-      service = new VisualRecognitionV3(_params);
+      service = new LanguageTranslatorV2(_params);
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listClassifiers(_params, (err, response) => {
+    service.identifyAsPlain(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * List log events in all workspaces.
  *
- * List log events in all workspaces in the service instance.
+ * List the events from the logs of all workspaces in the service instance.    If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -30,9 +30,9 @@ const pkg = require('../../package.json');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.filter - A cacheable parameter that limits the results to those matching the specified filter. You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id` or `request.context.metadata.deployment`. For more information, see the [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).
- * @param {string} [params.sort] - Sorts the response according to the value of the specified property, in ascending or descending order.
- * @param {number} [params.page_limit] - The number of records to return in each page of results. The default page limit is 100.
- * @param {string} [params.cursor] - A token identifying the last value from the previous page of results.
+ * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order, prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
+ * @param {number} [params.page_limit] - The number of records to return in each page of results.
+ * @param {string} [params.cursor] - A token identifying the page of results to retrieve.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

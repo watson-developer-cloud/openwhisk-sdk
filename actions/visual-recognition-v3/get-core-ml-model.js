@@ -18,7 +18,9 @@ const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v
 const pkg = require('../../package.json');
 
 /**
- * Retrieve a list of classifiers.
+ * Retrieve a Core ML model of a classifier.
+ *
+ * Download a Core ML model file (.mlmodel) of a custom classifier that returns <tt>\"core_ml_enabled\": true</tt> in the classifier details.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -28,7 +30,7 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {boolean} [params.verbose] - Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers.
+ * @param {string} params.classifier_id - The ID of the classifier.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -42,7 +44,7 @@ function main(params) {
       reject(err.message);
       return;
     }
-    service.listClassifiers(_params, (err, response) => {
+    service.getCoreMlModel(_params, (err, response) => {
       if (err) {
         reject(err.message);
       } else {

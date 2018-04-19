@@ -20,7 +20,7 @@ const pkg = require('../../package.json');
 /**
  * Create dialog node.
  *
- * Create a dialog node.
+ * Create a new dialog node.    This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - required unless use_unauthenticated is set.
@@ -29,21 +29,24 @@ const pkg = require('../../package.json');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.workspace_id - The workspace ID.
- * @param {string} params.dialog_node - The dialog node ID.
- * @param {string} [params.description] - The description of the dialog node.
- * @param {string} [params.conditions] - The condition that will trigger the dialog node.
- * @param {string} [params.parent] - The ID of the parent dialog node (if any).
- * @param {string} [params.previous_sibling] - The previous dialog node.
- * @param {Object} [params.output] - The output of the dialog node.
+ * @param {string} params.workspace_id - Unique identifier of the workspace.
+ * @param {string} params.dialog_node - The dialog node ID. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 1024 characters.
+ * @param {string} [params.description] - The description of the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.
+ * @param {string} [params.conditions] - The condition that will trigger the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
+ * @param {string} [params.parent] - The ID of the parent dialog node.
+ * @param {string} [params.previous_sibling] - The ID of the previous dialog node.
+ * @param {Object} [params.output] - The output of the dialog node. For more information about how to specify dialog node output, see the [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
  * @param {Object} [params.context] - The context for the dialog node.
  * @param {Object} [params.metadata] - The metadata for the dialog node.
- * @param {DialogNodeNextStep} [params.next_step] - The next step to execute following this dialog node.
- * @param {DialogNodeAction[]} [params.actions] - The actions for the dialog node.
- * @param {string} [params.title] - The alias used to identify the dialog node.
+ * @param {DialogNodeNextStep} [params.next_step] - The next step to be executed in dialog processing.
+ * @param {DialogNodeAction[]} [params.actions] - An array of objects describing any actions to be invoked by the dialog node.
+ * @param {string} [params.title] - The alias used to identify the dialog node. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 64 characters.
  * @param {string} [params.node_type] - How the dialog node is processed.
  * @param {string} [params.event_name] - How an `event_handler` node is processed.
  * @param {string} [params.variable] - The location in the dialog context where output is stored.
+ * @param {string} [params.digress_in] - Whether this top-level dialog node can be digressed into.
+ * @param {string} [params.digress_out] - Whether this dialog node can be returned to after a digression.
+ * @param {string} [params.digress_out_slots] - Whether the user can digress to top-level nodes while filling out slots.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -1,0 +1,19 @@
+
+{
+ "description":"Detect faces in images.",
+ "parameters":
+ [
+   {"name":"username", "required":false, "bindTime":true, "description":"The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"password", "required":false, "bindTime":true, "description":"The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"api_key", "required":false, "bindTime":true, "description":"The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"headers", "required":false, "bindTime":true, "description":"The request headers"},
+   {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
+   {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
+   {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."},
+   {"name":"images_file", "required":false, "bindTime":false, "description":"Must be a base64-encoded string. An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip file to 100 MB. You can include a maximum of 15 images in a request.  Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters.  You can also include an image with the **url** parameter."},
+   {"name":"url", "required":false, "bindTime":false, "description":"The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. Redirects are followed, so you can use a shortened URL.  You can also include images with the **images_file** parameter."},
+   {"name":"images_file_content_type", "required":false, "bindTime":false, "description":"The content type of images_file."}
+ ],
+ "sampleInput": "Coming soon!",
+ "sampleOutput": "Coming soon!"
+}

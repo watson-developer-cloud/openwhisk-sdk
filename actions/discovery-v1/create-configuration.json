@@ -1,0 +1,21 @@
+
+{
+ "description":"Add configuration.",
+ "parameters":
+ [
+   {"name":"username", "required":false, "bindTime":true, "description":"The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"password", "required":false, "bindTime":true, "description":"The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"headers", "required":false, "bindTime":true, "description":"The request headers"},
+   {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
+   {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
+   {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."},
+   {"name":"environment_id", "required":true, "bindTime":false, "description":"The ID of the environment."},
+   {"name":"name", "required":true, "bindTime":false, "description":"The name of the configuration."},
+   {"name":"description", "required":false, "bindTime":false, "description":"The description of the configuration, if available."},
+   {"name":"conversions", "required":false, "bindTime":false, "description":"The document conversion settings for the configuration."},
+   {"name":"enrichments", "required":false, "bindTime":false, "description":"An array of document enrichment settings for the configuration."},
+   {"name":"normalizations", "required":false, "bindTime":false, "description":"Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array."}
+ ],
+ "sampleInput": "Coming soon!",
+ "sampleOutput": "Coming soon!"
+}

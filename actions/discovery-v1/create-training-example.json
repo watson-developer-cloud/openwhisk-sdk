@@ -1,0 +1,21 @@
+
+{
+ "description":"",
+ "parameters":
+ [
+   {"name":"username", "required":false, "bindTime":true, "description":"The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"password", "required":false, "bindTime":true, "description":"The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"headers", "required":false, "bindTime":true, "description":"The request headers"},
+   {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
+   {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
+   {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."},
+   {"name":"environment_id", "required":true, "bindTime":false, "description":"The ID of the environment."},
+   {"name":"collection_id", "required":true, "bindTime":false, "description":"The ID of the collection."},
+   {"name":"query_id", "required":true, "bindTime":false, "description":"The ID of the query used for training."},
+   {"name":"document_id", "required":false, "bindTime":false, "description":""},
+   {"name":"cross_reference", "required":false, "bindTime":false, "description":""},
+   {"name":"relevance", "required":false, "bindTime":false, "description":""}
+ ],
+ "sampleInput": "Coming soon!",
+ "sampleOutput": "Coming soon!"
+}

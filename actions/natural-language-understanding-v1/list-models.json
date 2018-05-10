@@ -8,7 +8,7 @@
    {"name":"headers", "required":false, "bindTime":true, "description":"The request headers"},
    {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
    {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
-   {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."},
+   {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."}
  ],
  "sampleInput": "Coming soon!",
  "sampleOutput": "Coming soon!"

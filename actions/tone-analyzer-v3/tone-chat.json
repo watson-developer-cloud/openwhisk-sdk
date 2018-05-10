@@ -9,7 +9,7 @@
    {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
    {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
    {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."},
-   {"name":"utterances", "required":true, "bindTime":false, "description":"An array of `Utterance` objects that provides the input content that the service is to analyze."}
+   {"name":"utterances", "required":true, "bindTime":false, "description":"An array of `Utterance` objects that provides the input content that the service is to analyze."},
    {"name":"content_language", "required":false, "bindTime":false, "description":"The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can use different languages for **Content-Language** and **Accept-Language**. * **`2017-09-21`:** Accepts `en` or `fr`. * **`2016-05-19`:** Accepts only `en`."},
    {"name":"accept_language", "required":false, "bindTime":false, "description":"The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for **Content-Language** and **Accept-Language**."}
  ],

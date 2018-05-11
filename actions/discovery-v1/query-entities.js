@@ -23,18 +23,19 @@ const pkg = require('../../package.json');
  * See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
  *
  * @param {Object} params - The parameters to send to the service.
- * @param {string} [params.username] - required unless use_unauthenticated is set.
- * @param {string} [params.password] - required unless use_unauthenticated is set.
- * @param {Object} [params.headers]
+ * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+ * @param {string} [params.password] - The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+ * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {string} [params.feature] - The entity query feature to perform. Must be `disambiguate`.
+ * @param {string} [params.feature] - The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.
  * @param {QueryEntitiesEntity} [params.entity] - A text string that appears within the entity text field.
  * @param {QueryEntitiesContext} [params.context] - Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
  * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
+ * @param {number} [params.evidence_count] - The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -18,14 +18,14 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const pkg = require('../../package.json');
 
 /**
- * Removes the registration for an asynchronous callback URL.
+ * Unregister a callback.
  *
- * Unregisters a callback URL that was previously white-listed with a `POST register_callback` request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.
+ * Unregisters a callback URL that was previously white-listed with a **Register a callback** request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.
  *
  * @param {Object} params - The parameters to send to the service.
- * @param {string} [params.username] - required unless use_unauthenticated is set.
- * @param {string} [params.password] - required unless use_unauthenticated is set.
- * @param {Object} [params.headers]
+ * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+ * @param {string} [params.password] - The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+ * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.callback_url - The callback URL that is to be unregistered.

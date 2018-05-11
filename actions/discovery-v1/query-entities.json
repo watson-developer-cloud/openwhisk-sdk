@@ -1,0 +1,22 @@
+
+{
+ "description":"Knowledge Graph entity query.",
+ "parameters":
+ [
+   {"name":"username", "required":false, "bindTime":true, "description":"The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"password", "required":false, "bindTime":true, "description":"The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+   {"name":"headers", "required":false, "bindTime":true, "description":"The request headers"},
+   {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
+   {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
+   {"name":"version", "required":true, "bindTime":true, "description":"Release date of the API version in YYYY-MM-DD format."},
+   {"name":"environment_id", "required":true, "bindTime":false, "description":"The ID of the environment."},
+   {"name":"collection_id", "required":true, "bindTime":false, "description":"The ID of the collection."},
+   {"name":"feature", "required":false, "bindTime":false, "description":"The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`."},
+   {"name":"entity", "required":false, "bindTime":false, "description":"A text string that appears within the entity text field."},
+   {"name":"context", "required":false, "bindTime":false, "description":"Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`."},
+   {"name":"count", "required":false, "bindTime":false, "description":"The number of results to return. The default is `10`. The maximum is `1000`."},
+   {"name":"evidence_count", "required":false, "bindTime":false, "description":"The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000."}
+ ],
+ "sampleInput": "Coming soon!",
+ "sampleOutput": "Coming soon!"
+}

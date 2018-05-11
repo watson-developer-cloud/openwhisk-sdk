@@ -8,7 +8,8 @@
     "test-unit": "unset TEST_OPENWHISK && nyc mocha test/actions/*",
     "test-integration": "export TEST_OPENWHISK=true && mocha --timeout 50000 test/actions/*",
     "lint": "eslint .",
-    "autofix": "eslint --fix ."
+    "autofix": "eslint --fix .",
+    "jsonlint": "for x in actions/*/*.json; do jsonlint -q \"$x\"; echo $x; done"
   },
   "keywords": [
     "openwhisk",
@@ -19,7 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "json-loader": "~0.5.7",
-    "watson-developer-cloud": "~3.2.1",
+    "jsonlint": "^1.6.3",
+    "watson-developer-cloud": "~3.4.1j",
     "webpack": "~3.10.0"
   },
   "devDependencies": {

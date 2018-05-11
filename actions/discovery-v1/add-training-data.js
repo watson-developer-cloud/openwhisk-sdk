@@ -21,7 +21,7 @@ const pkg = require('../../package.json');
  * Adds a query to the training data for this collection. The query can contain a filter and natural language query.
  *
  * @param {Object} params - The parameters to send to the service.
- * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+
  * @param {string} [params.password] - The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
@@ -29,9 +29,9 @@ const pkg = require('../../package.json');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {string} [params.natural_language_query] - 
- * @param {string} [params.filter] - 
- * @param {TrainingExample[]} [params.examples] - 
+ * @param {string} [params.natural_language_query] -
+ * @param {string} [params.filter] -
+ * @param {TrainingExample[]} [params.examples] -
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

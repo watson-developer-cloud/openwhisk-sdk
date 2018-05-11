@@ -21,7 +21,7 @@ const pkg = require('../../package.json');
  * Adds a new example to this training data query.
  *
  * @param {Object} params - The parameters to send to the service.
- * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+
  * @param {string} [params.password] - The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
@@ -30,9 +30,9 @@ const pkg = require('../../package.json');
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.query_id - The ID of the query used for training.
- * @param {string} [params.document_id] - 
- * @param {string} [params.cross_reference] - 
- * @param {number} [params.relevance] - 
+ * @param {string} [params.document_id] -
+ * @param {string} [params.cross_reference] -
+ * @param {number} [params.relevance] -
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

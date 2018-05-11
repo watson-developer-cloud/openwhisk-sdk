@@ -21,7 +21,7 @@
   "dependencies": {
     "json-loader": "~0.5.7",
     "jsonlint": "^1.6.3",
-    "watson-developer-cloud": "~3.4.1j",
+    "watson-developer-cloud": "~3.4.1",
     "webpack": "~3.10.0"
   },
   "devDependencies": {

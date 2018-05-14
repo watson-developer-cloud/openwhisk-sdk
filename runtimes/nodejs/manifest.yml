@@ -388,3 +388,68 @@ project:
         update-training-example:
           function: update-training-example.js
           runtime: nodejs:8
+    language-translator-v2:
+      actions:
+        create-model:
+          function: create-model.js
+          runtime: nodejs:8
+        delete-model:
+          function: delete-model.js
+          runtime: nodejs:8
+        get-model:
+          function: get-model.js
+          runtime: nodejs:8
+        identify:
+          function: identify.js
+          runtime: nodejs:8
+        language-translator-v2:
+          function: language-translator-v2.js
+          runtime: nodejs:8
+        list-identifiable-languages:
+          function: list-identifiable-languages.js
+          runtime: nodejs:8
+        list-models:
+          function: list-models.js
+          runtime: nodejs:8
+        translate:
+          function: translate.js
+          runtime: nodejs:8
+    natural-language-classifier-v1:
+      actions:
+        classify-collection:
+          function: classify-collection.js
+          runtime: nodejs:8
+        classify:
+          function: classify.js
+          runtime: nodejs:8
+        create-classifier:
+          function: create-classifier.js
+          runtime: nodejs:8
+        delete-classifier:
+          function: delete-classifier.js
+          runtime: nodejs:8
+        get-classifier:
+          function: get-classifier.js
+          runtime: nodejs:8
+        list-classifiers:
+          function: list-classifiers.js
+          runtime: nodejs:8
+   natural-language-understanding-v1:
+      actions:
+        analyze:
+          function: analyze.js
+          runtime: nodejs:8
+        delete-model:
+          function: delete-model.js
+          runtime: nodejs:8
+        list-models:
+          function: list-models.js
+          runtime: nodejs:8
+   personality-insights-v3:
+      actions:
+        profile-as-csv:
+          function: profile-as-csv.js
+          runtime: nodejs:8
+        profile:
+          function: profile.js
+          runtime: nodejs:8

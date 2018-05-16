@@ -453,3 +453,188 @@ project:
         profile:
           function: profile.js
           runtime: nodejs:8
+   speech-to-text-c1:
+      actions:
+        add-audio:
+          function: add-audio.js
+          runtime: nodejs:8
+        add-corpus:
+          function: add-corpus.js
+          runtime: nodejs:8
+        add-word:
+          function: add-word.js
+          runtime: nodejs:8
+        add-words:
+          function: add-words.js
+          runtime: nodejs:8
+        check-job:
+          function: check-job.js
+          runtime: nodejs:8
+        check-jobs:
+          function: check-jobs.js
+          runtime: nodejs:8
+        create-acoustic-model:
+          function: create-acoustic-model.js
+          runtime: nodejs:8
+        create-job:
+          function: create-job.js
+          runtime: nodejs:8
+        create-language-model:
+          function: create-language-model.js
+          runtime: nodejs:8
+        delete-acoustic-model:
+          function: delete-acoustic-model.js
+          runtime: nodejs:8
+        delete-audio:
+          function: delete-audio.js
+          runtime: nodejs:8
+        delete-corpus:
+          function: delete-corpus.js
+          runtime: nodejs:8
+        delete-job:
+          function: delete-job.js
+          runtime: nodejs:8
+        delete-language-model:
+          function: delete-language-model.js
+          runtime: nodejs:8
+        delete-word:
+          function: delete-word.js
+          runtime: nodejs:8
+        get-acoustic-model:
+          function: get-acoustic-model.js
+          runtime: nodejs:8
+        get-audio:
+          function: get-audio.js
+          runtime: nodejs:8
+        get-corpus:
+          function: get-corpus.js
+          runtime: nodejs:8
+        get-language-model:
+          function: get-language-model.js
+          runtime: nodejs:8
+        get-model:
+          function: get-model.js
+          runtime: nodejs:8
+        get-word:
+          function: get-word.js
+          runtime: nodejs:8
+        list-acoustic-models:
+          function: list-acoustic-models.js
+          runtime: nodejs:8
+        list-audio:
+          function: list-audio.js
+          runtime: nodejs:8
+        list-corpora:
+          function: list-corpora.js
+          runtime: nodejs:8
+        list-language-models:
+          function: list-language-models.js
+          runtime: nodejs:8
+        list-models:
+          function: list-models.js
+          runtime: nodejs:8
+        list-words:
+          function: list-words.js
+          runtime: nodejs:8
+        recognize:
+          function: recognize.js
+          runtime: nodejs:8
+        register-callback:
+          function: register-callback.js
+          runtime: nodejs:8
+        reset-acoustic-model:
+          function: reset-acoustic-model.js
+          runtime: nodejs:8
+        reset-language-model:
+          function: reset-language-model.js
+          runtime: nodejs:8
+        train-language-model:
+          function: train-language-model.js
+          runtime: nodejs:8
+        unregister-callback:
+          function: unregister-callback.js
+          runtime: nodejs:8
+        upgrade-acoustic-model:
+          function: upgrade-acoustic-model.js
+          runtime: nodejs:8
+        upgrade-language-model:
+          function: upgrade-language-model.js
+          runtime: nodejs:8
+   text-to-speech-v1:
+      actions:
+        add-word:
+          function: add-word.js
+          runtime: nodejs:8
+        add-words:
+          function: add-words.js
+          runtime: nodejs:8
+        create-voice-model:
+          function: create-voice-model.js
+          runtime: nodejs:8
+        delete-voice-model:
+          function: delete-voice-model.js
+          runtime: nodejs:8
+        delete-word:
+          function: delete-word.js
+          runtime: nodejs:8
+        get-pronunciation:
+          function: get-pronunciation.js
+          runtime: nodejs:8
+        get-voice-model:
+          function: get-voice-model.js
+          runtime: nodejs:8
+        get-voice:
+          function: get-voice.js
+          runtime: nodejs:8
+        get-word:
+          function: get-word.js
+          runtime: nodejs:8
+        list-voice-models:
+          function: list-voice-models.js
+          runtime: nodejs:8
+        list-voices:
+          function: list-voices.js
+          runtime: nodejs:8
+        list-words:
+          function: list-words.js
+          runtime: nodejs:8
+        synthesize:
+          function: synthesize.js
+          runtime: nodejs:8
+        update-voice-model:
+          function: update-voice-model.js
+          runtime: nodejs:8
+   tone-analyzer-v3:
+      actions:
+        tone-chat:
+          function: tone-chat.js
+          runtime: nodejs:8
+        tone:
+          function: tone.js
+          runtime: nodejs:8
+   visual-recognition-v3:
+      actions:
+        classify:
+          function: classify.js
+          runtime: nodejs:8
+        create-classifier:
+          function: create-classifier.js
+          runtime: nodejs:8
+        delete-classifier:
+          function: delete-classifier.js
+          runtime: nodejs:8
+        detect-faces:
+          function: detect-faces.js
+          runtime: nodejs:8
+        get-classifier:
+          function: get-classifier.js
+          runtime: nodejs:8
+        get-core-ml-model:
+          function: get-core-ml-model.js
+          runtime: nodejs:8
+        list-classifiers:
+          function: list-classifiers.js
+          runtime: nodejs:8
+        update-classifier:
+          function: update-classifier.js
+          runtime: nodejs:8

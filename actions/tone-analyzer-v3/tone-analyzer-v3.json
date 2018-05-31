@@ -10,7 +10,7 @@
         {"name":"iam_url", "required":false, "bindTime":true, "description":"An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"},
         {"name":"headers", "required":false, "bindTime":true, "description":"The request headers"},
         {"name":"headers[X-Watson-Learning-Opt-Out]", "required":false, "bindTime":true, "description":"opt-out of data collection"},
-        {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"},
+        {"name":"url", "required":false, "bindTime":true, "description":"override default service base url"}
     ],
     "prettyName": "Watson Tone Analyzer V3"
 }

@@ -16,6 +16,8 @@
 
 const ConversationV1 = require('watson-developer-cloud/conversation/v1');
 const pkg = require('../../package.json');
+const serviceName = 'conversation';
+
 
 /**
  * Create counterexample.
@@ -38,7 +40,7 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
+    const _params = getParams(params, serviceName)
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
@@ -58,3 +60,17 @@ function main(params) {
 }
 global.main = main;
 module.exports.test = main;
+
+function getParams(theParams, theServiceName) {
+  if (Object.getOwnPropertyNames(theParams).length === 0) {
+    return theParams;
+  } else {
+    const params = {};
+    params.url = theParams.url || theParams.__bx_creds[theServiceName].url;
+    params.username = theParams.username || theParams.__bx_creds[theServiceName].username;
+    params.instance = theParams.instance || theParams.__bx_creds[theServiceName].instance;
+    params.credentials = theParams.credentials || theParams.__bx_creds[theServiceName].credentials;
+    params.password = theParams.password || theParams.__bx_creds[theServiceName].password;
+    return params;
+  }
+}

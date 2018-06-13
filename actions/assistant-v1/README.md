@@ -1,19 +1,19 @@
 
 # Watson Assistant V1 Package
 
-## Deploy Watson Assistant Package with IBM Cloud Command Line Interface (CLI):
+## Deploy the Watson Assistant Package with IBM Cloud Command Line Interface (CLI):
 
 ### Configure CLI
-- Make sure to execute `bx login` if not already logged in
+- Make sure to execute `ibmcloud login` if not already logged in
 - Install IBM Functions CLI plugin
 
 ```
-bx plugin install cloud-functions
+ibmcloud plugin install cloud-functions
 ```
 - Make sure you are authenticated with IBM Functions and can list entities without errors
 
 ```
-bx wsk list
+ibmcloud wsk list
 ```
 ### Deploy
 
@@ -25,6 +25,15 @@ wskdeploy
 popd
 ```
 
+**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
+For now download from here [wskdeploy download](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add `wskdeploy` to your PATH
+
+### Bind Service Credentials
+You will need to bind your Watson Assistant service to the `cloud-object-storage` package, so that the Actions will have access to the service credentials.
+
+```
+bx wsk service bind conversation assistant-v1
+```
 ## Using the Watson Assistant Package
 ###Parameters for the Package and Actions
 This will create a new package `watson-assistant-package` with the following entities.  Find additional details at the API Reference by clicking the entity name.
@@ -39,3 +48,24 @@ This will create a new package `watson-assistant-package` with the following ent
 | [`assistant-v1/list-workspaces`](#list-workspaces) | action | username, password, iam\_access, headers, iam_apikey | List workspaces |
 | [`assistant-v1/update-workspace`](#update-workspace) | action | username, password, iam\_access, headers, iam_apikey | Update workspace |
 | [`assistant-v1/create-intent`](#create-intent) | action | username, password, iam\_access, headers, iam_apikey | Create Intent |
+
+
+
+### Try the Watson Assistant Package
+Write a file `data.txt` into bucket `myBucket`:
+
+```
+bx wsk action invoke cloud-object-storage/object-write -b -p bucket myBucket -p key data.txt -p body "Hello World"
+```
+
+Read a file `data.txt` from bucket `myBucket`:
+
+```
+bx wsk action invoke cloud-object-storage/object-read -b -p bucket myBucket -p key data.txt
+```
+
+Delete a file `data.txt` from bucket `myBucket`:
+
+```
+bx wsk action invoke cloud-object-storage/object-delete -b -p bucket myBucket -p key data.txt
+```

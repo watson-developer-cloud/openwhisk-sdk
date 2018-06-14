@@ -42,7 +42,7 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, tone_analyzer);
+    const _params = getParams(params, 'tone_analyzer');
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {

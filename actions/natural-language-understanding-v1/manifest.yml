@@ -1,0 +1,15 @@
+project:
+  namespace: _
+  packages:
+    natural-language-understanding-v1:
+      actions:
+        analyze:
+          function: analyze.js
+          runtime: nodejs:8
+        delete-model:
+          function: delete-model.js
+          runtime: nodejs:8
+        list-models:
+          function: list-models.js
+          runtime: nodejs:8
+

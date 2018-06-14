@@ -1,0 +1,27 @@
+project:
+  namespace: _
+  packages:
+    language-translator-v2:
+      actions:
+        translate:
+          function: translate.js
+          runtime: nodejs:8
+        identify:
+          function: identify.js
+          runtime: nodejs:8
+        list-identifiable-languages:
+          function: list-identifiable-languages.js
+          runtime: nodejs:8
+        create-model:
+          function: create-model.js
+          runtime: nodejs:8
+        delete-model:
+          function: delete-model.js
+          runtime: nodejs:8
+        get-model:
+          function: get-model.js
+          runtime: nodejs:8
+        list-models:
+          function: list-models.js
+          runtime: nodejs:8
+

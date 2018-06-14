@@ -31,7 +31,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the input content that the service is to analyze.
  * @param {string} [params.content_language] - The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can use different languages for **Content-Language** and **Accept-Language**. * **`2017-09-21`:** Accepts `en` or `fr`. * **`2016-05-19`:** Accepts only `en`.
  * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for **Content-Language** and **Accept-Language**.
@@ -39,7 +39,7 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
+    const _params = getParams(params, tone_analyzer);
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
@@ -57,5 +57,20 @@ function main(params) {
     });
   });
 }
+
+function getParams(params, service) {
+  if (Object.getOwnPropertyNames(params).length === 0) {
+    return params;
+  }
+  const _params = {};
+  _params.username = params.username || params.__bx_creds[service].username;
+  _params.password = params.password || params.__bx_creds[service].password;
+  _params.iam_access_token = params.iam_access_token || params.__bx_creds[service].iam_access_token;
+  _params.iam_apikey = params.iam_apikey || params.__bx_creds[service].iam_apikey;
+  _params.iam_url = params.iam_url || params.__bx_creds[service].iam_url;
+  _params.url = params.url || params.__bx_creds[service].url;
+  return _params;
+}
+
 global.main = main;
 module.exports.test = main;

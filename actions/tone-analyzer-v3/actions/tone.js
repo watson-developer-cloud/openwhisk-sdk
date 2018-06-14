@@ -31,7 +31,7 @@ const pkg = require('../../package.json');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
  * @param {ToneInput} params.tone_input - JSON, plain text, or HTML input that contains the content to be analyzed. For JSON input, provide an object of type `ToneInput`.
  * @param {string} params.content_type - The type of the input: application/json, text/plain, or text/html. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.
  * @param {boolean} [params.sentences] - Indicates whether the service is to return an analysis of each individual sentence in addition to its analysis of the full document. If `true` (the default), the service returns results for each sentence.
@@ -42,7 +42,7 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
+    const _params = getParams(params, tone_analyzer);
     _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
     let service;
     try {
@@ -60,5 +60,21 @@ function main(params) {
     });
   });
 }
+
+function getParams(params, service) {
+  if (Object.getOwnPropertyNames(params).length === 0) {
+    return params;
+  }
+  const _params = {};
+  _params.username = params.username || params.__bx_creds[service].username;
+  _params.password = params.password || params.__bx_creds[service].password;
+  _params.iam_access_token = params.iam_access_token || params.__bx_creds[service].iam_access_token;
+  _params.iam_apikey = params.iam_apikey || params.__bx_creds[service].iam_apikey;
+  _params.iam_url = params.iam_url || params.__bx_creds[service].iam_url;
+  _params.url = params.url || params.__bx_creds[service].url;
+  return _params;
+
+}
+
 global.main = main;
 module.exports.test = main;

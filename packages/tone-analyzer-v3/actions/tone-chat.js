@@ -63,12 +63,13 @@ function getParams(params, service) {
     return params;
   }
   const _params = params;
-  _params.username = params.username || params.__bx_creds[service].username;
-  _params.password = params.password || params.__bx_creds[service].password;
-  _params.iam_access_token = params.iam_access_token || params.__bx_creds[service].iam_access_token;
-  _params.iam_apikey = params.iam_apikey || params.__bx_creds[service].iam_apikey;
-  _params.iam_url = params.iam_url || params.__bx_creds[service].iam_url;
-  _params.url = params.url || params.__bx_creds[service].url;
+  const bxCreds = params.__bx_creds[service] ? params._bx_creds[service] : {};
+  _params.username = params.username || bxCreds[service].username;
+  _params.password = params.password || bxCreds[service].password;
+  _params.iam_access_token = params.iam_access_token || bxCreds[service].iam_access_token;
+  _params.iam_apikey = params.iam_apikey || bxCreds[service].iam_apikey;
+  _params.iam_url = params.iam_url || bxCreds[service].iam_url;
+  _params.url = params.url || bxCreds[service].url;
   return _params;
 }
 

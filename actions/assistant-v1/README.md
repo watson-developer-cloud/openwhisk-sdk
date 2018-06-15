@@ -22,8 +22,8 @@ Before you install the package, you must create a Watson Assistant service insta
 1. [Create an Watson Assistant service instance.](https://console.bluemix.net/catalog/services/watson-assistant-formerly-conversation)
 
 ### Configure CLI
-1. Make sure to execute `ibmcloud login` if not already logged in
-2. Install IBM Functions CLI plugin:
+1. Make sure to execute `ibmcloud login` if you're not already logged in.
+2. Install the IBM Cloud Functions CLI plugin:
 
 	```
 	ibmcloud plugin install cloud-functions
@@ -38,7 +38,7 @@ Before you install the package, you must create a Watson Assistant service insta
 1. To install the Watson Assistant package, first clone the package repo.
 
 	```
-	git clone https://github.com/watson-developer-cloud/openwhisk-sdk/tree/next-templates/actions/assistant-v1
+	git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 	```
 2. Navigate to the packages/assistant-v1 folder.
 3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).

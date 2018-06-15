@@ -24,11 +24,16 @@ Before you install the package, you must create a Watson Assistant service insta
 
 ### Configure CLI
 1. Make sure to execute `ibmcloud login` if not already logged in
-2. Install IBM Functions CLI plugin: `ibmcloud plugin install cloud-functions`
+2. Install IBM Functions CLI plugin:
+
+	```
+	ibmcloud plugin install cloud-functions
+	```
 3. Make sure you are authenticated with IBM Functions and can list entities without errors:
-```
-ibmcloud wsk list
-```
+
+	```
+	ibmcloud wsk list
+	```
 
 ### Installing the Package
 1. To install the Watson Assistant package, first clone the package repo.
@@ -36,14 +41,12 @@ ibmcloud wsk list
 	```
 	git clone https://github.com/watson-developer-cloud/openwhisk-sdk/tree/next-templates/actions/assistant-v1
 	```
-2. Navigate to the packages/assistant-v1 foler
+2. Navigate to the packages/assistant-v1 folder.
 3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
-```
-pushd runtimes/nodejs/
-wskdeploy
-popd
-```
+	```
+	wskdeploy
+	```
 
 **In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
 For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
@@ -59,7 +62,7 @@ bx wsk service bind conversation assistant-v1
 
 
 ### Try the Watson Assistant Package
-Write a file `data.txt` into bucket `myBucket`:
+Write a file `data.txt` into bucket `myBucket`. This should be some example from watson assistant? :
 
 ```
 bx wsk action invoke cloud-object-storage/object-write -b -p bucket myBucket -p key data.txt -p body "Hello World"

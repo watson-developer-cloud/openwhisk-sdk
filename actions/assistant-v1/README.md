@@ -33,6 +33,8 @@ Before you install the package, you must create a Watson Assistant service insta
 	```
 	ibmcloud wsk list
 	```
+4. Install the [wskdeploy binary](https://github.com/apache/incubator-openwhisk-wskdeploy#downloading-released-binaries).
+
 
 ### Installing the Package
 1. To install the Watson Assistant package, first clone the package repo.
@@ -46,9 +48,6 @@ Before you install the package, you must create a Watson Assistant service insta
 	```
 	wskdeploy
 	```
-
-**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
-For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
 ### Bind Service Credentials
 You will need to bind your Watson Assistant service to the `assistant-v1` package, so that the Actions will have access to the service credentials.

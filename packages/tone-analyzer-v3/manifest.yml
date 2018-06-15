@@ -4,9 +4,8 @@ project:
     tone-analyzer-v3:
       actions:
         tone:
-          function: tone.js
+          function: actions/tone.js
           runtime: nodejs:8
         tone-chat:
-          function: tone-chat.js
+          function: actions/tone-chat.js
           runtime: nodejs:8
-

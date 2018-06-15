@@ -15,7 +15,7 @@
  */
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-const pkg = require('../../package.json');
+const pkg = require('../../../package.json');
 
 /**
  * Analyze general tone.

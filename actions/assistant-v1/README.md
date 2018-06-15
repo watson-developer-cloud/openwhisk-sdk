@@ -20,7 +20,6 @@ The `watson-assistant-package` package will contain the following entities.  Fin
 Before you install the package, you must create a Watson Assistant service instance and create the credentials.
 
 1. [Create an Watson Assistant service instance.](https://console.bluemix.net/catalog/services/watson-assistant-formerly-conversation)
-2. [Create credentials for your service](https://console.bluemix.net/docs/services/watson/getting-started-credentials.html#existing-svcs)
 
 ### Configure CLI
 1. Make sure to execute `ibmcloud login` if not already logged in

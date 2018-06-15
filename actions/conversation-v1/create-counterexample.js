@@ -64,13 +64,18 @@ module.exports.test = main;
 function getParams(theParams, theServiceName) {
   if (Object.getOwnPropertyNames(theParams).length === 0) {
     return theParams;
-  } else {
-    const params = {};
-    params.url = theParams.url || theParams.__bx_creds[theServiceName].url;
-    params.username = theParams.username || theParams.__bx_creds[theServiceName].username;
-    params.instance = theParams.instance || theParams.__bx_creds[theServiceName].instance;
-    params.credentials = theParams.credentials || theParams.__bx_creds[theServiceName].credentials;
-    params.password = theParams.password || theParams.__bx_creds[theServiceName].password;
-    return params;
   }
+  console.log(theParams)
+  if(theParams.__bx_creds) {
+    bx_creds = theParams.__bx_creds[theServiceName]
+    delete theParams.__bx_creds
+  }
+  const params = theParams;
+  params.url = theParams.url || bx_creds.url;
+  params.username = theParams.username || bx_creds.username;
+  params.instance = theParams.instance || bx_creds.instance;
+  params.credentials = theParams.credentials || bx_creds.credentials;
+  params.password = theParams.password || bx_creds.password;
+  params.headers = params.headers || bx_creds.headers || {};
+  return params;
 }

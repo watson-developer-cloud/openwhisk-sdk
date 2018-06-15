@@ -15,7 +15,6 @@
  */
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-const pkg = require('../../../package.json');
 
 /**
  * Analyze general tone.
@@ -43,7 +42,7 @@ const pkg = require('../../../package.json');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'tone_analyzer');
-    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
+    _params.headers['User-Agent'] = 'openwhisk-0.3.0';
     let service;
     try {
       service = new ToneAnalyzerV3(_params);

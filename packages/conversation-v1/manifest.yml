@@ -4,135 +4,134 @@ project:
     conversation-v1:
       actions:
         message:
-          function: message.js
+          function: actions/message.js
           runtime: nodejs:8
         create-workspace:
-          function: create-workspace.js
+          function: actions/create-workspace.js
           runtime: nodejs:8
         delete-workspace:
-          function: delete-workspace.js
+          function: actions/delete-workspace.js
           runtime: nodejs:8
         get-workspace:
-          function: get-workspace.js
+          function: actions/get-workspace.js
           runtime: nodejs:8
         list-workspaces:
-          function: list-workspaces.js
+          function: actions/list-workspaces.js
           runtime: nodejs:8
         update-workspace:
-          function: update-workspace.js
+          function: actions/update-workspace.js
           runtime: nodejs:8
         create-intent:
-          function: create-intent.js
+          function: actions/create-intent.js
           runtime: nodejs:8
         delete-intent:
-          function: delete-intent.js
+          function: actions/delete-intent.js
           runtime: nodejs:8
         get-intent:
-          function: get-intent.js
+          function: actions/get-intent.js
           runtime: nodejs:8
         list-intents:
-          function: list-intents.js
+          function: actions/list-intents.js
           runtime: nodejs:8
         update-intent:
-          function: update-intent.js
+          function: actions/update-intent.js
           runtime: nodejs:8
         create-example:
-          function: create-example.js
+          function: actions/create-example.js
           runtime: nodejs:8
         delete-example:
-          function: delete-example.js
+          function: actions/delete-example.js
           runtime: nodejs:8
         get-example:
-          function: get-example.js
+          function: actions/get-example.js
           runtime: nodejs:8
         list-examples:
-          function: list-examples.js
+          function: actions/list-examples.js
           runtime: nodejs:8
         update-example:
-          function: update-example.js
+          function: actions/update-example.js
           runtime: nodejs:8
         create-counterexample:
-          function: create-counterexample.js
+          function: actions/create-counterexample.js
           runtime: nodejs:8
         delete-counterexample:
-          function: delete-counterexample.js
+          function: actions/delete-counterexample.js
           runtime: nodejs:8
         get-counterexample:
-          function: get-counterexample.js
+          function: actions/get-counterexample.js
           runtime: nodejs:8
         list-counterexamples:
-          function: list-counterexamples.js
+          function: actions/list-counterexamples.js
           runtime: nodejs:8
         update-counterexample:
-          function: update-counterexample.js
+          function: actions/update-counterexample.js
           runtime: nodejs:8
         create-entity:
-          function: create-entity.js
+          function: actions/create-entity.js
           runtime: nodejs:8
         delete-entity:
-          function: delete-entity.js
+          function: actions/delete-entity.js
           runtime: nodejs:8
         get-entity:
-          function: get-entity.js
+          function: actions/get-entity.js
           runtime: nodejs:8
         list-entities:
-          function: list-entities.js
+          function: actions/list-entities.js
           runtime: nodejs:8
         update-entity:
-          function: update-entity.js
+          function: actions/update-entity.js
           runtime: nodejs:8
         create-value:
-          function: create-value.js
+          function: actions/create-value.js
           runtime: nodejs:8
         delete-value:
-          function: delete-value.js
+          function: actions/delete-value.js
           runtime: nodejs:8
         get-value:
-          function: get-value.js
+          function: actions/get-value.js
           runtime: nodejs:8
         list-values:
-          function: list-values.js
+          function: actions/list-values.js
           runtime: nodejs:8
         update-value:
-          function: update-value.js
+          function: actions/update-value.js
           runtime: nodejs:8
         create-synonym:
-          function: create-synonym.js
+          function: actions/create-synonym.js
           runtime: nodejs:8
         delete-synonym:
-          function: delete-synonym.js
+          function: actions/delete-synonym.js
           runtime: nodejs:8
         get-synonym:
-          function: get-synonym.js
+          function: actions/get-synonym.js
           runtime: nodejs:8
         list-synonyms:
-          function: list-synonyms.js
+          function: actions/list-synonyms.js
           runtime: nodejs:8
         update-synonym:
-          function: update-synonym.js
+          function: actions/update-synonym.js
           runtime: nodejs:8
         create-dialog-node:
-          function: create-dialog-node.js
+          function: actions/create-dialog-node.js
           runtime: nodejs:8
         delete-dialog-node:
-          function: delete-dialog-node.js
+          function: actions/delete-dialog-node.js
           runtime: nodejs:8
         get-dialog-node:
-          function: get-dialog-node.js
+          function: actions/get-dialog-node.js
           runtime: nodejs:8
         list-dialog-nodes:
-          function: list-dialog-nodes.js
+          function: actions/list-dialog-nodes.js
           runtime: nodejs:8
         update-dialog-node:
-          function: update-dialog-node.js
+          function: actions/update-dialog-node.js
           runtime: nodejs:8
         list-all-logs:
-          function: list-all-logs.js
+          function: actions/list-all-logs.js
           runtime: nodejs:8
         list-logs:
-          function: list-logs.js
+          function: actions/list-logs.js
           runtime: nodejs:8
         delete-user-data:
-          function: delete-user-data.js
+          function: actions/delete-user-data.js
           runtime: nodejs:8
-

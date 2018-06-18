@@ -4,114 +4,113 @@ project:
     speech-to-text-v1:
       actions:
         get-model:
-          function: get-model.js
+          function: actions/get-model.js
           runtime: nodejs:8
         list-models:
-          function: list-models.js
+          function: actions/list-models.js
           runtime: nodejs:8
-        recognize:
-          function: recognize.js
+        recognize-sessionless:
+          function: actions/recognize-sessionless.js
           runtime: nodejs:8
         check-job:
-          function: check-job.js
+          function: actions/check-job.js
           runtime: nodejs:8
         check-jobs:
-          function: check-jobs.js
+          function: actions/check-jobs.js
           runtime: nodejs:8
         create-job:
-          function: create-job.js
+          function: actions/create-job.js
           runtime: nodejs:8
         delete-job:
-          function: delete-job.js
+          function: actions/delete-job.js
           runtime: nodejs:8
         register-callback:
-          function: register-callback.js
+          function: actions/register-callback.js
           runtime: nodejs:8
         unregister-callback:
-          function: unregister-callback.js
+          function: actions/unregister-callback.js
           runtime: nodejs:8
         create-language-model:
-          function: create-language-model.js
+          function: actions/create-language-model.js
           runtime: nodejs:8
         delete-language-model:
-          function: delete-language-model.js
+          function: actions/delete-language-model.js
           runtime: nodejs:8
         get-language-model:
-          function: get-language-model.js
+          function: actions/get-language-model.js
           runtime: nodejs:8
         list-language-models:
-          function: list-language-models.js
+          function: actions/list-language-models.js
           runtime: nodejs:8
         reset-language-model:
-          function: reset-language-model.js
+          function: actions/reset-language-model.js
           runtime: nodejs:8
         train-language-model:
-          function: train-language-model.js
+          function: actions/train-language-model.js
           runtime: nodejs:8
         upgrade-language-model:
-          function: upgrade-language-model.js
+          function: actions/upgrade-language-model.js
           runtime: nodejs:8
         add-corpus:
-          function: add-corpus.js
+          function: actions/add-corpus.js
           runtime: nodejs:8
         delete-corpus:
-          function: delete-corpus.js
+          function: actions/delete-corpus.js
           runtime: nodejs:8
         get-corpus:
-          function: get-corpus.js
+          function: actions/get-corpus.js
           runtime: nodejs:8
         list-corpora:
-          function: list-corpora.js
+          function: actions/list-corpora.js
           runtime: nodejs:8
         add-word:
-          function: add-word.js
+          function: actions/add-word.js
           runtime: nodejs:8
         add-words:
-          function: add-words.js
+          function: actions/add-words.js
           runtime: nodejs:8
         delete-word:
-          function: delete-word.js
+          function: actions/delete-word.js
           runtime: nodejs:8
         get-word:
-          function: get-word.js
+          function: actions/get-word.js
           runtime: nodejs:8
         list-words:
-          function: list-words.js
+          function: actions/list-words.js
           runtime: nodejs:8
         create-acoustic-model:
-          function: create-acoustic-model.js
+          function: actions/create-acoustic-model.js
           runtime: nodejs:8
         delete-acoustic-model:
-          function: delete-acoustic-model.js
+          function: actions/delete-acoustic-model.js
           runtime: nodejs:8
         get-acoustic-model:
-          function: get-acoustic-model.js
+          function: actions/get-acoustic-model.js
           runtime: nodejs:8
         list-acoustic-models:
-          function: list-acoustic-models.js
+          function: actions/list-acoustic-models.js
           runtime: nodejs:8
         reset-acoustic-model:
-          function: reset-acoustic-model.js
+          function: actions/reset-acoustic-model.js
           runtime: nodejs:8
         train-acoustic-model:
-          function: train-acoustic-model.js
+          function: actions/train-acoustic-model.js
           runtime: nodejs:8
         upgrade-acoustic-model:
-          function: upgrade-acoustic-model.js
+          function: actions/upgrade-acoustic-model.js
           runtime: nodejs:8
         add-audio:
-          function: add-audio.js
+          function: actions/add-audio.js
           runtime: nodejs:8
         delete-audio:
-          function: delete-audio.js
+          function: actions/delete-audio.js
           runtime: nodejs:8
         get-audio:
-          function: get-audio.js
+          function: actions/get-audio.js
           runtime: nodejs:8
         list-audio:
-          function: list-audio.js
+          function: actions/list-audio.js
           runtime: nodejs:8
         delete-user-data:
-          function: delete-user-data.js
+          function: actions/delete-user-data.js
           runtime: nodejs:8
-

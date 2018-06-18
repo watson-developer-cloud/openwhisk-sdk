@@ -1,7 +1,7 @@
 project:
   namespace: _
   packages:
-    language-translator-v2:
+    language-translator-v3:
       actions:
         translate:
           function: actions/translate.js

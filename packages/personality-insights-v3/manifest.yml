@@ -4,9 +4,8 @@ project:
     personality-insights-v3:
       actions:
         profile:
-          function: profile.js
+          function: actions/profile.js
           runtime: nodejs:8
         profile-as-csv:
-          function: profile-as-csv.js
+          function: actions/profile-as-csv.js
           runtime: nodejs:8
-

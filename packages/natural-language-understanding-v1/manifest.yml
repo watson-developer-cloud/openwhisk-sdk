@@ -4,12 +4,11 @@ project:
     natural-language-understanding-v1:
       actions:
         analyze:
-          function: analyze.js
+          function: actions/analyze.js
           runtime: nodejs:8
         delete-model:
-          function: delete-model.js
+          function: actions/delete-model.js
           runtime: nodejs:8
         list-models:
-          function: list-models.js
+          function: actions/list-models.js
           runtime: nodejs:8
-

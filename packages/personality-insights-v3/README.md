@@ -64,6 +64,6 @@ bx wsk service bind personality_insights personality-insights-v3
 ### Example usage with Watson Personality Insights V3
 
 ```
-bx wsk action invoke personality-insights-v3/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke personality-insights-v3/ -b -p <param name> <param>
 ```
 

@@ -4,21 +4,20 @@ project:
     natural-language-classifier-v1:
       actions:
         classify:
-          function: classify.js
+          function: actions/classify.js
           runtime: nodejs:8
         classify-collection:
-          function: classify-collection.js
+          function: actions/classify-collection.js
           runtime: nodejs:8
         create-classifier:
-          function: create-classifier.js
+          function: actions/create-classifier.js
           runtime: nodejs:8
         delete-classifier:
-          function: delete-classifier.js
+          function: actions/delete-classifier.js
           runtime: nodejs:8
         get-classifier:
-          function: get-classifier.js
+          function: actions/get-classifier.js
           runtime: nodejs:8
         list-classifiers:
-          function: list-classifiers.js
+          function: actions/list-classifiers.js
           runtime: nodejs:8
-

@@ -100,6 +100,6 @@ bx wsk service bind conversation conversation-v1
 ### Example usage with Watson Conversation V1
 
 ```
-bx wsk action invoke conversation-v1/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke conversation-v1/<action-name> -b -p <param name> <param>
 ```
 

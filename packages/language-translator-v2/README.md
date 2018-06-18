@@ -63,6 +63,6 @@ bx wsk service bind language_translator language-translator-v2
 ### Example usage with Watson Language Translator V2
 
 ```
-bx wsk action invoke language-translator-v2/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke language-translator-v2/<action-name> -b -p <param name> <param>
 ```
 

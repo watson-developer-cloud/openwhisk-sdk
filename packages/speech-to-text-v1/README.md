@@ -104,6 +104,6 @@ bx wsk service bind speech_to_text speech-to-text-v1
 ### Example usage with Watson Speech to Text V1
 
 ```
-bx wsk action invoke speech-to-text-v1/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke speech-to-text-v1/<action-name> -b -p <param name> <param>
 ```
 

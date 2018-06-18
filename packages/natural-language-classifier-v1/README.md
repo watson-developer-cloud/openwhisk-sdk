@@ -62,6 +62,6 @@ bx wsk service bind natural_language_classifier natural-language-classifier-v1
 ### Example usage with Watson Natural Language Classifier V1
 
 ```
-bx wsk action invoke natural-language-classifier-v1/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke natural-language-classifier-v1/<action-name> -b -p <param name> <param>
 ```
 

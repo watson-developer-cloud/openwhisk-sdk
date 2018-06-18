@@ -60,6 +60,6 @@ bx wsk service bind tone_analyzer tone-analyzer-v3
 ### Example usage with Watson Tone Analyzer V3
 
 ```
-bx wsk action invoke tone-analyzer-v3/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke tone-analyzer-v3/<action-name> -b -p <param name> <param>
 ```
 

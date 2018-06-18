@@ -61,6 +61,6 @@ bx wsk service bind natural-language-understanding natural-language-understandin
 ### Example usage with Watson Natural Language Understanding V1
 
 ```
-bx wsk action invoke natural-language-understanding-v1/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+bx wsk action invoke natural-language-understanding-v1/<action-name> -b -p <param name> <param>
 ```
 

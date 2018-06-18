@@ -59,15 +59,6 @@ function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'watson_vision_combined');
     _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
-    const fileParams = [ 'images_file' ,];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
-      try {
-        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
-      } catch (err) {
-        reject(err.message);
-        return;
-      }
-    });
     let service;
     try {
       service = new VisualRecognitionV3(_params);

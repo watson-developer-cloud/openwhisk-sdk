@@ -1,257 +1,66 @@
+# Watson Natural Language Understanding V1 Package
 
-# Watson Natural Language Understanding V1
+Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.
 
-## Parameters:
+You can create <a target="_blank" href="https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/customizing.html">custom models</a> with Watson Knowledge Studio that can be used to detect custom entities and relations in Natural Language Understanding.
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+The Watson Natural Language Understanding V1 Package will contain the following entities. Find additional details at the API Reference by clicking the entity name.
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+| Entity | Type | Parameters | Description |
+| --- | --- | --- | --- |
+| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/NaturalLanguageUnderstandingV1/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Natural Language Understanding V1 Service |
+| [analyze](https://www.ibm.com/watson/developercloud/NaturalLanguageUnderstandingV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   features, text, html, url, clean, xpath, fallback_to_raw, return_analyzed_text, language, limit_text_characters,  | Analyze text, HTML, or a public webpage. |
+| [delete-model](https://www.ibm.com/watson/developercloud/NaturalLanguageUnderstandingV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Delete model. |
+| [list-models](https://www.ibm.com/watson/developercloud/NaturalLanguageUnderstandingV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List models. |
 
 
+## Deploy the Watson Natural Language Understanding V1 Package with IBM Cloud Command Line Interface (CLI):
+### Creating a Watson Natural Language Understanding V1 Service Instance
 
-# Actions for Watson Natural Language Understanding V1
-[analyze](#analyze)
-[delete-model](#delete-model)
-[list-models](#list-models)
+Before you install the package, you must create a Watson Natural Language Understanding V1 service instance and create the credentials.
 
+1. [Create an Watson Natural Language Understanding V1 service instance.](https://console.bluemix.net/catalog/services/natural-language-understanding)
 
-## analyze 
-`description`: Analyze text, HTML, or a public webpage.
+### Configure CLI
+1. Make sure to execute `ibmcloud login` if you're not already logged in.
+2. Install the IBM Cloud Functions CLI plugin:
 
-### parameters
+```
+ibmcloud plugin install cloud-functions
+```
+3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+```
+ibmcloud wsk list
+```
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+### Installing the Package
+1. To install the Watson Natural Language Understanding V1 package, first clone the package repo.
 
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
+```
+git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+```
+2. Navigate to the packages/natural-language-understanding-v1 folder.
+3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
+```
+wskdeploy
+```
 
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
+**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
+For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
+### Bind Service Credentials
+You will need to bind your Watson Natural Language Understanding V1 service to the `natural-language-understanding-v1` package, so that the Actions will have access to the service credentials.
 
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
+```
+bx wsk service bind natural-language-understanding natural-language-understanding-v1
+```
+## Using the Watson Natural Language Understanding V1 Package
 
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+### Example usage with Watson Natural Language Understanding V1
 
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
-`features`
-* `required`: true
-* `bindTime`: false
-* `description`: Specific features to analyze the document for.
-`text`
-* `required`: false
-* `bindTime`: false
-* `description`: The plain text to analyze.
-`html`
-* `required`: false
-* `bindTime`: false
-* `description`: The HTML file to analyze.
-`url`
-* `required`: false
-* `bindTime`: false
-* `description`: The web page to analyze.
-`clean`
-* `required`: false
-* `bindTime`: false
-* `description`: Remove website elements, such as links, ads, etc.
-`xpath`
-* `required`: false
-* `bindTime`: false
-* `description`: XPath query for targeting nodes in HTML.
-`fallback_to_raw`
-* `required`: false
-* `bindTime`: false
-* `description`: Whether to use raw HTML content if text cleaning fails.
-`return_analyzed_text`
-* `required`: false
-* `bindTime`: false
-* `description`: Whether or not to return the analyzed text.
-`language`
-* `required`: false
-* `bindTime`: false
-* `description`: ISO 639-1 code indicating the language to use in the analysis.
-`limit_text_characters`
-* `required`: false
-* `bindTime`: false
-* `description`: Sets the maximum number of characters that are processed by the service.
-
-
-
-## delete-model 
-`description`: Delete model.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
-
-`model_id`
-* `required`: true
-* `bindTime`: false
-* `description`: model_id of the model to delete.
-
-
-## list-models 
-`description`: List models.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
+```
+bx wsk action invoke natural-language-understanding-v1/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+```
 

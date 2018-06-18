@@ -1,227 +1,69 @@
+# Watson Personality Insights V3 Package
 
-# Watson Personality Insights V3
+The IBM Watson Personality Insights service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.
 
-## Parameters:
+The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
+* For information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](https://console.bluemix.net/docs/services/personality-insights/models.html).
+* For information about the meaning of the consumption preferences, see [Consumption preferences](https://console.bluemix.net/docs/services/personality-insights/preferences.html). 
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+**Note:** Request logging is disabled for the Personality Insights service. The service neither logs nor retains data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+The Watson Personality Insights V3 Package will contain the following entities. Find additional details at the API Reference by clicking the entity name.
 
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+| Entity | Type | Parameters | Description |
+| --- | --- | --- | --- |
+| [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/PersonalityInsightsV3/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Personality Insights V3 Service |
+| [profile](https://www.ibm.com/watson/developercloud/PersonalityInsightsV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get profile. |
+| [profile-as-csv](https://www.ibm.com/watson/developercloud/PersonalityInsightsV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get profile. as csv |
 
 
+## Deploy the Watson Personality Insights V3 Package with IBM Cloud Command Line Interface (CLI):
+### Creating a Watson Personality Insights V3 Service Instance
 
-# Actions for Watson Personality Insights V3
-[profile](#profile)
-[profile-as-csv](#profile-as-csv)
+Before you install the package, you must create a Watson Personality Insights V3 service instance and create the credentials.
 
+1. [Create an Watson Personality Insights V3 service instance.](https://console.bluemix.net/catalog/services/personality_insights)
 
-## profile 
-`description`: Get profile.
+### Configure CLI
+1. Make sure to execute `ibmcloud login` if you're not already logged in.
+2. Install the IBM Cloud Functions CLI plugin:
 
-### parameters
+```
+ibmcloud plugin install cloud-functions
+```
+3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+```
+ibmcloud wsk list
+```
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+### Installing the Package
+1. To install the Watson Personality Insights V3 package, first clone the package repo.
 
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
+```
+git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+```
+2. Navigate to the packages/personality-insights-v3 folder.
+3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
+```
+wskdeploy
+```
 
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
+**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
+For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
+### Bind Service Credentials
+You will need to bind your Watson Personality Insights V3 service to the `personality-insights-v3` package, so that the Actions will have access to the service credentials.
 
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
+```
+bx wsk service bind personality_insights personality-insights-v3
+```
+## Using the Watson Personality Insights V3 Package
 
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+### Example usage with Watson Personality Insights V3
 
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
-
-`content`
-* `required`: true
-* `bindTime`: false
-* `description`: A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see [Providing sufficient input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). For JSON input, provide an object of type `Content`.
-
-`content_type`
-* `required`: true
-* `bindTime`: false
-* `description`: The type of the input: application/json, text/html, or text/plain. A character encoding can be specified by including a `charset` parameter. For example, 'text/html;charset=utf-8'.
-
-`content_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`.   The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the language. When **Content-Type** is `application/json`, **Content-Language** overrides a language specified with the `language` parameter of a `ContentItem` object, and content items that specify a different language are ignored; omit this parameter to base the language on the specification of the content items. You can specify any combination of languages for **Content-Language** and **Accept-Language**.
-
-`accept_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of languages for the input and response content.
-
-`raw_scores`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether a raw score in addition to a normalized percentile is returned for each characteristic; raw scores are not compared with a sample population. By default, only normalized percentiles are returned.
-
-`csv_headers`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether column labels are returned with a CSV response. By default, no column labels are returned. Applies only when the **Accept** parameter is set to `text/csv`.
-
-`consumption_preferences`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether consumption preferences are returned with the results. By default, no consumption preferences are returned.
-
-
-## profile-as-csv 
-`description`: Get profile. as csv
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
-
-`content`
-* `required`: true
-* `bindTime`: false
-* `description`: A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see [Providing sufficient input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). For JSON input, provide an object of type `Content`.
-
-`content_type`
-* `required`: true
-* `bindTime`: false
-* `description`: The type of the input: application/json, text/html, or text/plain. A character encoding can be specified by including a `charset` parameter. For example, 'text/html;charset=utf-8'.
-
-`content_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`.   The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the language. When **Content-Type** is `application/json`, **Content-Language** overrides a language specified with the `language` parameter of a `ContentItem` object, and content items that specify a different language are ignored; omit this parameter to base the language on the specification of the content items. You can specify any combination of languages for **Content-Language** and **Accept-Language**.
-
-`accept_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of languages for the input and response content.
-
-`raw_scores`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether a raw score in addition to a normalized percentile is returned for each characteristic; raw scores are not compared with a sample population. By default, only normalized percentiles are returned.
-
-`csv_headers`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether column labels are returned with a CSV response. By default, no column labels are returned. Applies only when the **Accept** parameter is set to `text/csv`.
-
-`consumption_preferences`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether consumption preferences are returned with the results. By default, no consumption preferences are returned.
+```
+bx wsk action invoke personality-insights-v3/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+```
 

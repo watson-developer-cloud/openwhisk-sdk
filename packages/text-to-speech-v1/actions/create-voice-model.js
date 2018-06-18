@@ -15,12 +15,27 @@
  */
 
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
-const pkg = require('../../package.json');
+const extend = require('extend');
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
+  delete _params.__bx_creds;
+  return _params;
+}
 
 /**
  * Create a custom model.
  *
- * Creates a new empty custom voice model. You must specify a name for the new custom model. You can optionally specify the language and a description for the new model. Specify a value of `application/json` for the `Content-Type` header. The model is owned by the instance of the service whose credentials are used to create it.  **Note:** This method is currently a beta release.
+ * Creates a new empty custom voice model. You must specify a name for the new custom model. You can optionally specify the language and a description for the new model. The model is owned by the instance of the service whose credentials are used to create it.  **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -38,23 +53,24 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
-    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
+    const _params = getParams(params, 'text_to_speech');
+    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
       service = new TextToSpeechV1(_params);
+      service.createVoiceModel(_params, (err, response) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(response);
+        }
+      });
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.createVoiceModel(_params, (err, response) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(response);
-      }
-    });
   });
 }
+
 global.main = main;
 module.exports.test = main;

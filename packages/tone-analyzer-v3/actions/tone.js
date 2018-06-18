@@ -15,6 +15,22 @@
  */
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const extend = require('extend');
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
+  delete _params.__bx_creds;
+  return _params;
+}
 
 /**
  * Analyze general tone.
@@ -30,7 +46,7 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {ToneInput} params.tone_input - JSON, plain text, or HTML input that contains the content to be analyzed. For JSON input, provide an object of type `ToneInput`.
  * @param {string} params.content_type - The type of the input: application/json, text/plain, or text/html. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.
  * @param {boolean} [params.sentences] - Indicates whether the service is to return an analysis of each individual sentence in addition to its analysis of the full document. If `true` (the default), the service returns results for each sentence.
@@ -42,37 +58,22 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'tone_analyzer');
-    _params.headers['User-Agent'] = 'openwhisk-0.3.0';
+    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
       service = new ToneAnalyzerV3(_params);
+      service.tone(_params, (err, response) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(response);
+        }
+      });
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.tone(_params, (err, response) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(response);
-      }
-    });
   });
-}
-
-function getParams(params, service) {
-  if (Object.getOwnPropertyNames(params).length === 0) {
-    return params;
-  }
-  const _params = params;
-  const bxCreds = params.__bx_creds[service] ? params._bx_creds[service] : {};
-  _params.username = params.username || bxCreds[service].username;
-  _params.password = params.password || bxCreds[service].password;
-  _params.iam_access_token = params.iam_access_token || bxCreds[service].iam_access_token;
-  _params.iam_apikey = params.iam_apikey || bxCreds[service].iam_apikey;
-  _params.iam_url = params.iam_url || bxCreds[service].iam_url;
-  _params.url = params.url || bxCreds[service].url;
-  return _params;
 }
 
 global.main = main;

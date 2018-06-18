@@ -1,284 +1,67 @@
+# Watson Natural Language Classifier V1 Package
 
-# Watson Natural Language Classifier V1
+IBM Watson Natural Language Classifier uses machine learning algorithms to return the top matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs.
 
-## Parameters:
+The Watson Natural Language Classifier V1 Package will contain the following entities. Find additional details at the API Reference by clicking the entity name.
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+| Entity | Type | Parameters | Description |
+| --- | --- | --- | --- |
+| [`natural-language-classifier-v1`](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html) | package | username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Natural Language Classifier V1 Service |
+| [classify](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,    text,  | Classify a phrase. |
+| [classify-collection](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,    collection,  | Classify multiple phrases. |
+| [create-classifier](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    metadata,     training_data,  | Create classifier. |
+| [delete-classifier](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Delete classifier. |
+| [get-classifier](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Get information about a classifier. |
+| [list-classifiers](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url, | List classifiers. |
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
 
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
+## Deploy the Watson Natural Language Classifier V1 Package with IBM Cloud Command Line Interface (CLI):
+### Creating a Watson Natural Language Classifier V1 Service Instance
 
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
+Before you install the package, you must create a Watson Natural Language Classifier V1 service instance and create the credentials.
 
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+1. [Create an Watson Natural Language Classifier V1 service instance.](https://console.bluemix.net/catalog/services/natural_language_classifier)
 
+### Configure CLI
+1. Make sure to execute `ibmcloud login` if you're not already logged in.
+2. Install the IBM Cloud Functions CLI plugin:
 
+```
+ibmcloud plugin install cloud-functions
+```
+3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
-# Actions for Watson Natural Language Classifier V1
-classify
-classify-collection
-create-classifier
-delete-classifier
-get-classifier
-list-classifiers
+```
+ibmcloud wsk list
+```
 
+### Installing the Package
+1. To install the Watson Natural Language Classifier V1 package, first clone the package repo.
 
-## classify 
-`description`: Classify a phrase.
+```
+git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+```
+2. Navigate to the packages/natural-language-classifier-v1 folder.
+3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
-### parameters
+```
+wskdeploy
+```
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
+For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+### Bind Service Credentials
+You will need to bind your Watson Natural Language Classifier V1 service to the `natural-language-classifier-v1` package, so that the Actions will have access to the service credentials.
 
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
+```
+bx wsk service bind natural_language_classifier natural-language-classifier-v1
+```
+## Using the Watson Natural Language Classifier V1 Package
 
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
+### Example usage with Watson Natural Language Classifier V1
 
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-
-
-`classifier_id`
-* `required`: true
-* `bindTime`: false
-* `description`: Classifier ID to use.
-`text`
-* `required`: true
-* `bindTime`: false
-* `description`: The submitted phrase.
-
-
-
-## classify-collection 
-`description`: Classify multiple phrases.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-
-
-`classifier_id`
-* `required`: true
-* `bindTime`: false
-* `description`: Classifier ID to use.
-`collection`
-* `required`: true
-* `bindTime`: false
-* `description`: The submitted phrases.
-
-
-
-## create-classifier 
-`description`: Create classifier.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-
-
-`metadata`
-* `required`: true
-* `bindTime`: false
-* `description`: Must be a base64-encoded string. Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. Specify the language with the 2-letter primary language code as assigned in ISO standard 639.  Supported languages are English (`en`), Arabic (`ar`), French (`fr`), German, (`de`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).
-
-`training_data`
-* `required`: true
-* `bindTime`: false
-* `description`: Must be a base64-encoded string. Training data in CSV format. Each text value must have at least one class. The data can include up to 20,000 records. For details, see [Data preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).
-
-
-## delete-classifier 
-`description`: Delete classifier.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-
-
-`classifier_id`
-* `required`: true
-* `bindTime`: false
-* `description`: Classifier ID to delete.
-
-
-## get-classifier 
-`description`: Get information about a classifier.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-
-
-`classifier_id`
-* `required`: true
-* `bindTime`: false
-* `description`: Classifier ID to query.
-
-
-## list-classifiers 
-`description`: List classifiers.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-
+```
+bx wsk action invoke natural-language-classifier-v1/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+```
 

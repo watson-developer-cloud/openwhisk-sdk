@@ -20,6 +20,7 @@
   "author": "IBM Corp",
   "license": "MIT",
   "dependencies": {
+    "extend": "^3.0.1",
     "json-loader": "~0.5.7",
     "jsonlint": "^1.6.3",
     "watson-developer-cloud": "~3.4.3"
@@ -28,7 +29,6 @@
     "eslint": "~4.7.2",
     "eslint-config-airbnb-base": "~12.0.2",
     "eslint-plugin-import": "~2.7.0",
-    "extend": "~3.0.1",
     "mocha": "~3.5.3",
     "nock": "~9.0.21",
     "nyc": "~11.3.0",

@@ -1,202 +1,65 @@
+# Watson Tone Analyzer V3 Package
 
-# Watson Tone Analyzer V3
+The IBM Watson Tone Analyzer service uses linguistic analysis to detect emotional and language tones in written text. The service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer appropriately, or to understand and improve their customer conversations.
 
-## Parameters:
+**Note:** Request logging is disabled for the Tone Analyzer service. The service neither logs nor retains data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable."},
+The Watson Tone Analyzer V3 Package will contain the following entities. Find additional details at the API Reference by clicking the entity name.
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+| Entity | Type | Parameters | Description |
+| --- | --- | --- | --- |
+| [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/ToneAnalyzerV3/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Tone Analyzer V3 Service |
+| [tone](https://www.ibm.com/watson/developercloud/ToneAnalyzerV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    tone_input,     content_type,     sentences,     tones,     content_language,     accept_language,  | Analyze general tone. |
+| [tone-chat](https://www.ibm.com/watson/developercloud/ToneAnalyzerV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   utterances,     content_language,     accept_language,  | Analyze customer engagement tone. |
 
 
+## Deploy the Watson Tone Analyzer V3 Package with IBM Cloud Command Line Interface (CLI):
+### Creating a Watson Tone Analyzer V3 Service Instance
 
-# Actions for Watson Tone Analyzer V3
-[tone](#tone)
-[tone-chat](#tone-chat)
+Before you install the package, you must create a Watson Tone Analyzer V3 service instance and create the credentials.
 
+1. [Create an Watson Tone Analyzer V3 service instance.](https://console.bluemix.net/catalog/services/tone_analyzer)
 
-## tone 
-`description`: Analyze general tone.
+### Configure CLI
+1. Make sure to execute `ibmcloud login` if you're not already logged in.
+2. Install the IBM Cloud Functions CLI plugin:
 
-### parameters
+```
+ibmcloud plugin install cloud-functions
+```
+3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+```
+ibmcloud wsk list
+```
 
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
+### Installing the Package
+1. To install the Watson Tone Analyzer V3 package, first clone the package repo.
 
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
+```
+git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+```
+2. Navigate to the packages/tone-analyzer-v3 folder.
+3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
+```
+wskdeploy
+```
 
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
+**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
+For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
+### Bind Service Credentials
+You will need to bind your Watson Tone Analyzer V3 service to the `tone-analyzer-v3` package, so that the Actions will have access to the service credentials.
 
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
+```
+bx wsk service bind tone_analyzer tone-analyzer-v3
+```
+## Using the Watson Tone Analyzer V3 Package
 
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
+### Example usage with Watson Tone Analyzer V3
 
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
-
-`tone_input`
-* `required`: true
-* `bindTime`: false
-* `description`: JSON, plain text, or HTML input that contains the content to be analyzed. For JSON input, provide an object of type `ToneInput`.
-
-`content_type`
-* `required`: true
-* `bindTime`: false
-* `description`: The type of the input: application/json, text/plain, or text/html. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.
-
-`sentences`
-* `required`: false
-* `bindTime`: false
-* `description`: Indicates whether the service is to return an analysis of each individual sentence in addition to its analysis of the full document. If `true` (the default), the service returns results for each sentence.
-
-`tones`
-* `required`: false
-* `bindTime`: false
-* `description`: **`2017-09-21`:** Deprecated. The service continues to accept the parameter for backward-compatibility, but the parameter no longer affects the response.   **`2016-05-19`:** A comma-separated list of tones for which the service is to return its analysis of the input; the indicated tones apply both to the full document and to individual sentences of the document. You can specify one or more of the valid values. Omit the parameter to request results for all three tones.
-
-`content_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can use different languages for **Content-Language** and **Accept-Language**. * **`2017-09-21`:** Accepts `en` or `fr`. * **`2016-05-19`:** Accepts only `en`.
-
-`accept_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for **Content-Language** and **Accept-Language**.
-
-
-## tone-chat 
-`description`: Analyze customer engagement tone.
-
-### parameters
-
-`username`
-* `required`: false
-* `bindTime`: true
-* `description`: The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`password`
-* `required`: false
-* `bindTime`: true
-* `description`: The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of IBM Cloud. When running on IBM Cloud, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
-
-`iam_access_token`
-* `required`: false
-* `bindTime`: true
-* `description`: An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
-
-`iam_apikey`
-* `required`: false
-* `bindTime`:true
-* `description`: An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
-
-`iam_url`
-* `required`: false
-* `bindTime`: true
-* `description`: An optional URL for the IAM service API. Defaults to 'https://iam.ng.bluemix.net/identity/token"}
-
-`headers`
-* `required`: false
-* `bindTime`: true
-* `description`: The request headers
-
-`headers[X-Watson-Learning-Opt-Out]`
-* `required`:false
-* `bindTime`: true
-* `description`: opt-out of data collection
-
-`url`
-* `required`: false
-* `bindTime`: true
-* `description`: override default service base url
-
-
-`version`
-* `required`: true
-* `bindTime`: true
-* `description`: Release date of the API version in YYYY-MM-DD format.
-
-`utterances`
-* `required`: true
-* `bindTime`: false
-* `description`: An array of `Utterance` objects that provides the input content that the service is to analyze.
-
-
-`content_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can use different languages for **Content-Language** and **Accept-Language**. * **`2017-09-21`:** Accepts `en` or `fr`. * **`2016-05-19`:** Accepts only `en`.
-
-`accept_language`
-* `required`: false
-* `bindTime`: false
-* `description`: The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for **Content-Language** and **Accept-Language**.
+```
+bx wsk action invoke tone-analyzer-v3/ -b -p bucket myBucket -p key data.txt -p body "Hello World"
+```
 

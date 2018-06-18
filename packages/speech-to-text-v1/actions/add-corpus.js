@@ -15,7 +15,22 @@
  */
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
-const pkg = require('../../package.json');
+const extend = require('extend');
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
+  delete _params.__bx_creds;
+  return _params;
+}
 
 /**
  * Add a corpus.
@@ -35,13 +50,12 @@ const pkg = require('../../package.json');
  * @param {string} params.corpus_name - The name of the corpus for the custom language model. When adding a corpus, do not include spaces in the name; use a localized name that matches the language of the custom model; and do not use the name `user`, which is reserved by the service to denote custom words added or modified by the user.
  * @param {string} params.corpus_file - Must be a base64-encoded string. A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters. With cURL, use the `--data-binary` option to upload the file for the request.
  * @param {boolean} [params.allow_overwrite] - If `true`, the specified corpus or audio resource overwrites an existing corpus or audio resource with the same name. If `false` (the default), the request fails if a corpus or audio resource with the same name already exists. The parameter has no effect if a corpus or audio resource with the same name does not already exist.
- * @param {string} [params.corpus_file_content_type] - The content type of corpus_file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
-    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
+    const _params = getParams(params, 'speech_to_text');
+    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     const fileParams = [ 'corpus_file' ];
     fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
       try {
@@ -54,18 +68,19 @@ function main(params) {
     let service;
     try {
       service = new SpeechToTextV1(_params);
+      service.addCorpus(_params, (err, response) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(response);
+        }
+      });
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.addCorpus(_params, (err, response) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(response);
-      }
-    });
   });
 }
+
 global.main = main;
 module.exports.test = main;

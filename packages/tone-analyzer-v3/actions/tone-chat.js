@@ -15,6 +15,22 @@
  */
 
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const extend = require('extend');
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
+  delete _params.__bx_creds;
+  return _params;
+}
 
 /**
  * Analyze customer engagement tone.
@@ -30,7 +46,7 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.version_date - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {Utterance[]} params.utterances - An array of `Utterance` objects that provides the input content that the service is to analyze.
  * @param {string} [params.content_language] - The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified language. Do not submit content that contains both languages. You can use different languages for **Content-Language** and **Accept-Language**. * **`2017-09-21`:** Accepts `en` or `fr`. * **`2016-05-19`:** Accepts only `en`.
  * @param {string} [params.accept_language] - The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for **Content-Language** and **Accept-Language**.
@@ -39,37 +55,22 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'tone_analyzer');
-    _params.headers['User-Agent'] = 'openwhisk-0.3.0';
+    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
       service = new ToneAnalyzerV3(_params);
+      service.toneChat(_params, (err, response) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(response);
+        }
+      });
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.toneChat(_params, (err, response) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(response);
-      }
-    });
   });
-}
-
-function getParams(params, service) {
-  if (Object.getOwnPropertyNames(params).length === 0) {
-    return params;
-  }
-  const _params = params;
-  const bxCreds = params.__bx_creds[service] ? params._bx_creds[service] : {};
-  _params.username = params.username || bxCreds[service].username;
-  _params.password = params.password || bxCreds[service].password;
-  _params.iam_access_token = params.iam_access_token || bxCreds[service].iam_access_token;
-  _params.iam_apikey = params.iam_apikey || bxCreds[service].iam_apikey;
-  _params.iam_url = params.iam_url || bxCreds[service].iam_url;
-  _params.url = params.url || bxCreds[service].url;
-  return _params;
 }
 
 global.main = main;

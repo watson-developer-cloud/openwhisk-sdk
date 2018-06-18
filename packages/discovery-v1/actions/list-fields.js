@@ -15,7 +15,22 @@
  */
 
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
-const pkg = require('../../package.json');
+const extend = require('extend');
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
+  delete _params.__bx_creds;
+  return _params;
+}
 
 /**
  * List fields across collections.
@@ -38,23 +53,24 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
-    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
+    const _params = getParams(params, 'discovery');
+    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
       service = new DiscoveryV1(_params);
+      service.listFields(_params, (err, response) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(response);
+        }
+      });
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.listFields(_params, (err, response) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(response);
-      }
-    });
   });
 }
+
 global.main = main;
 module.exports.test = main;

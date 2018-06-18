@@ -15,12 +15,27 @@
  */
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
-const pkg = require('../../package.json');
+const extend = require('extend');
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
+  delete _params.__bx_creds;
+  return _params;
+}
 
 /**
  * Create a custom acoustic model.
  *
- * Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it. You must pass a value of `application/json` with the `Content-Type` header.
+ * Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -38,23 +53,24 @@ const pkg = require('../../package.json');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = params || {};
-    _params.headers['User-Agent'] = `openwhisk-${pkg.version}`;
+    const _params = getParams(params, 'speech_to_text');
+    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
       service = new SpeechToTextV1(_params);
+      service.createAcousticModel(_params, (err, response) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(response);
+        }
+      });
     } catch (err) {
       reject(err.message);
       return;
     }
-    service.createAcousticModel(_params, (err, response) => {
-      if (err) {
-        reject(err.message);
-      } else {
-        resolve(response);
-      }
-    });
   });
 }
+
 global.main = main;
 module.exports.test = main;

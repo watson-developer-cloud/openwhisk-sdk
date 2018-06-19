@@ -3,7 +3,7 @@ sudo: false
 node_js: 6
 script:
 - npm run lint
-- npm test-unit
+- npm run test-unit
 before_install:
 - openssl aes-256-cbc -K $encrypted_39958aaf0600_key -iv $encrypted_39958aaf0600_iv
   -in auth.js.enc -out test/resources/auth.js -d

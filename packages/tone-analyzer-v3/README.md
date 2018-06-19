@@ -8,9 +8,9 @@ The Watson Tone Analyzer V3 Package will contain the following entities. Find ad
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/ToneAnalyzerV3/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Tone Analyzer V3 Service |
-| [tone](https://www.ibm.com/watson/developercloud/ToneAnalyzerV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    tone_input,     content_type,     sentences,     tones,     content_language,     accept_language,  | Analyze general tone. |
-| [tone-chat](https://www.ibm.com/watson/developercloud/ToneAnalyzerV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   utterances,     content_language,     accept_language,  | Analyze customer engagement tone. |
+| [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Tone Analyzer V3 Service |
+| [tone](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    tone_input,     content_type,     sentences,     tones,     content_language,     accept_language,  | Analyze general tone. |
+| [tone-chat](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone-chat) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   utterances,     content_language,     accept_language,  | Analyze customer engagement tone. |
 
 
 ## Deploy the Watson Tone Analyzer V3 Package with IBM Cloud Command Line Interface (CLI):
@@ -27,6 +27,7 @@ Before you install the package, you must create a Watson Tone Analyzer V3 servic
 ```
 ibmcloud plugin install cloud-functions
 ```
+
 3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
 ```
@@ -39,16 +40,13 @@ ibmcloud wsk list
 ```
 git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
-2. Navigate to the packages/tone-analyzer-v3 folder.
-3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
+2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
+3. Navigate to the packages/tone-analyzer-v3 folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
 ```
 wskdeploy
 ```
-
-**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
-For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
-
 ### Bind Service Credentials
 You will need to bind your Watson Tone Analyzer V3 service to the `tone-analyzer-v3` package, so that the Actions will have access to the service credentials.
 
@@ -60,6 +58,5 @@ bx wsk service bind tone_analyzer tone-analyzer-v3
 ### Example usage with Watson Tone Analyzer V3
 
 ```
-bx wsk action invoke tone-analyzer-v3/<action-name> -b -p <param name> <param>
+bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
 ```
-

@@ -6,13 +6,13 @@ The Watson Natural Language Classifier V1 Package will contain the following ent
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`natural-language-classifier-v1`](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html) | package | username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Natural Language Classifier V1 Service |
-| [classify](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,    text,  | Classify a phrase. |
-| [classify-collection](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,    collection,  | Classify multiple phrases. |
-| [create-classifier](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    metadata,     training_data,  | Create classifier. |
-| [delete-classifier](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Delete classifier. |
-| [get-classifier](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Get information about a classifier. |
-| [list-classifiers](https://www.ibm.com/watson/developercloud/NaturalLanguageClassifierV1/api/v1/curl.html?curl#) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url, | List classifiers. |
+| [`natural-language-classifier-v1`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html) | package | username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Natural Language Classifier V1 Service |
+| [classify](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#classify) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,    text,  | Classify a phrase. |
+| [classify-collection](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#classify-collection) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,    collection,  | Classify multiple phrases. |
+| [create-classifier](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#create-classifier) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    metadata,     training_data,  | Create classifier. |
+| [delete-classifier](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#delete-classifier) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Delete classifier. |
+| [get-classifier](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#get-classifier) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Get information about a classifier. |
+| [list-classifiers](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#list-classifiers) | action |  username, password,   headers, headers[X-Watson-Learning-Opt-Out], url, | List classifiers. |
 
 
 ## Deploy the Watson Natural Language Classifier V1 Package with IBM Cloud Command Line Interface (CLI):
@@ -29,6 +29,7 @@ Before you install the package, you must create a Watson Natural Language Classi
 ```
 ibmcloud plugin install cloud-functions
 ```
+
 3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
 ```
@@ -41,15 +42,13 @@ ibmcloud wsk list
 ```
 git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
-2. Navigate to the packages/natural-language-classifier-v1 folder.
-3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
+2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
+3. Navigate to the packages/natural-language-classifier-v1 folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
 ```
 wskdeploy
 ```
-
-**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
-For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
 ### Bind Service Credentials
 You will need to bind your Watson Natural Language Classifier V1 service to the `natural-language-classifier-v1` package, so that the Actions will have access to the service credentials.
@@ -62,6 +61,5 @@ bx wsk service bind natural_language_classifier natural-language-classifier-v1
 ### Example usage with Watson Natural Language Classifier V1
 
 ```
-bx wsk action invoke natural-language-classifier-v1/<action-name> -b -p <param name> <param>
+bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
 ```
-

@@ -26,22 +26,22 @@ The Watson Text to Speech V1 Package will contain the following entities. Find a
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Text to Speech V1 Service |
-| [get-voice](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    voice,     customization_id,  | Get a voice. |
-| [list-voices](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List voices. |
-| [synthesize](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text,     accept,     voice,     customization_id,  | Synthesize audio. |
-| [get-pronunciation](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,     voice,     format,     customization_id,  | Get pronunciation. |
-| [create-voice-model](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   name, language, description,  | Create a custom model. |
-| [delete-voice-model](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Delete a custom model. |
-| [get-voice-model](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Get a custom model. |
-| [list-voice-models](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    language,  | List custom models. |
-| [update-voice-model](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    name, description, words,  | Update a custom model. |
-| [add-word](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,    translation, part_of_speech,  | Add a custom word. |
-| [add-words](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    words,  | Add custom words. |
-| [delete-word](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Delete a custom word. |
-| [get-word](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Get a custom word. |
-| [list-words](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | List custom words. |
-| [delete-user-data](https://www.ibm.com/watson/developercloud/TextToSpeechV1/api/v1/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Delete labeled data. |
+| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Text to Speech V1 Service |
+| [get-voice](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    voice,     customization_id,  | Get a voice. |
+| [list-voices](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List voices. |
+| [synthesize](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#synthesize) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text,     accept,     voice,     customization_id,  | Synthesize audio. |
+| [get-pronunciation](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-pronunciation) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,     voice,     format,     customization_id,  | Get pronunciation. |
+| [create-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#create-voice-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   name, language, description,  | Create a custom model. |
+| [delete-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-voice-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Delete a custom model. |
+| [get-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Get a custom model. |
+| [list-voice-models](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voice-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    language,  | List custom models. |
+| [update-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#update-voice-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    name, description, words,  | Update a custom model. |
+| [add-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-word) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,    translation, part_of_speech,  | Add a custom word. |
+| [add-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-words) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    words,  | Add custom words. |
+| [delete-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-word) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Delete a custom word. |
+| [get-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-word) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Get a custom word. |
+| [list-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | List custom words. |
+| [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Delete labeled data. |
 
 
 ## Deploy the Watson Text to Speech V1 Package with IBM Cloud Command Line Interface (CLI):
@@ -58,6 +58,7 @@ Before you install the package, you must create a Watson Text to Speech V1 servi
 ```
 ibmcloud plugin install cloud-functions
 ```
+
 3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
 ```
@@ -70,15 +71,13 @@ ibmcloud wsk list
 ```
 git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
-2. Navigate to the packages/text-to-speech-v1 folder.
-3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
+2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
+3. Navigate to the packages/text-to-speech-v1 folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
 ```
 wskdeploy
 ```
-
-**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
-For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
 ### Bind Service Credentials
 You will need to bind your Watson Text to Speech V1 service to the `text-to-speech-v1` package, so that the Actions will have access to the service credentials.
@@ -91,6 +90,5 @@ bx wsk service bind text_to_speech text-to-speech-v1
 ### Example usage with Watson Text to Speech V1
 
 ```
-bx wsk action invoke text-to-speech-v1/<action-name> -b -p <param name> <param>
+bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
 ```
-

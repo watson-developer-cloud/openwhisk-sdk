@@ -33,7 +33,7 @@ ibmcloud plugin install cloud-functions
 
 ```
 ibmcloud wsk list
-
+```
 # Setting up a Watson package
 
 1. To install the packages, first clone the package-repo
@@ -42,14 +42,13 @@ ibmcloud wsk list
 git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
 
-2. Navigate to the packages/<desired package name> folder.
-3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
+2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
+3. Navigate to the packages/<desired package name> folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
 ```
 wskdeploy
 ```
-**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
-For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
 ### Bind Service Credentials
 You will need to bind your service credentials to the package, so that the Actions will have access to the service credentials. Individual README instructions within each package detail this step.

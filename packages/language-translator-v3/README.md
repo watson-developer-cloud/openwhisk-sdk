@@ -6,14 +6,14 @@ The Watson Language Translator V3 Package will contain the following entities. F
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`language-translator-v3`](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Language Translator V3 Service |
-| [translate](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text, model_id, source, target,  | Translate. |
-| [identify](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,  | Identify language. |
-| [list-identifiable-languages](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List identifiable languages. |
-| [create-model](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    base_model_id,     name,     forced_glossary,     parallel_corpus,  | Create model. |
-| [delete-model](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Delete model. |
-| [get-model](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Get model details. |
-| [list-models](https://www.ibm.com/watson/developercloud/LanguageTranslatorV3/api/v3/curl.html?curl#) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | List models. |
+| [`language-translator-v3`](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Language Translator V3 Service |
+| [translate](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#translate) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text, model_id, source, target,  | Translate. |
+| [identify](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#identify) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,  | Identify language. |
+| [list-identifiable-languages](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-identifiable-languages) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List identifiable languages. |
+| [create-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#create-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    base_model_id,     name,     forced_glossary,     parallel_corpus,  | Create model. |
+| [delete-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#delete-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Delete model. |
+| [get-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#get-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Get model details. |
+| [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | List models. |
 
 
 ## Deploy the Watson Language Translator V3 Package with IBM Cloud Command Line Interface (CLI):
@@ -30,6 +30,7 @@ Before you install the package, you must create a Watson Language Translator V3 
 ```
 ibmcloud plugin install cloud-functions
 ```
+
 3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
 ```
@@ -42,15 +43,13 @@ ibmcloud wsk list
 ```
 git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
-2. Navigate to the packages/language-translator-v3 folder.
-3. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
+2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
+3. Navigate to the packages/language-translator-v3 folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
 
 ```
 wskdeploy
 ```
-
-**In the future,** the utility `wskdeploy` will be integrated into a new `wsk` plugin command `ibmcloud wsk deploy`.
-For now download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 
 ### Bind Service Credentials
 You will need to bind your Watson Language Translator V3 service to the `language-translator-v3` package, so that the Actions will have access to the service credentials.
@@ -63,6 +62,5 @@ bx wsk service bind language_translator language-translator-v3
 ### Example usage with Watson Language Translator V3
 
 ```
-bx wsk action invoke language-translator-v3/<action-name> -b -p <param name> <param>
+bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
 ```
-

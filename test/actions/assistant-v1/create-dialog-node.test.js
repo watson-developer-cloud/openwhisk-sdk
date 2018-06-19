@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let createDialogNode = require('../../../actions/assistant-v1/create-dialog-node');
+let createDialogNode = require('../../../packages/assistant-v1/actions/create-dialog-node');
 
 let ow;
 let credentials;

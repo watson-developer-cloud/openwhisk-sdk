@@ -18,21 +18,6 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const extend = require('extend');
 
 /**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
-*/
-function getParams(theParams, service) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
-  delete _params.__bx_creds;
-  return _params;
-}
-
-/**
  * Recognize audio (sessionless).
  *
  * Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use session-based requests or the WebSocket API. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the endianness.)   ### Streaming mode   For requests to transcribe live audio as it becomes available, you must set the `Transfer-Encoding` header to `chunked` to use streaming mode. In streaming mode, the server closes the connection (status code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (status code 400) if no speech is detected for `inactivity_timeout` seconds of audio (not processing time); use the `inactivity_timeout` parameter to change the default of 30 seconds.   ### Audio formats (content types)   Use the `Content-Type` header to specify the audio format (MIME type) of the audio. The service accepts the following formats: * `audio/basic` (Use only with narrowband models.) * `audio/flac` * `audio/l16` (Specify the sampling rate (`rate`) and optionally the number of channels (`channels`) and endianness (`endianness`) of the audio.) * `audio/mp3` * `audio/mpeg` * `audio/mulaw` (Specify the sampling rate (`rate`) of the audio.) * `audio/ogg` (The service automatically detects the codec of the input audio.) * `audio/ogg;codecs=opus` * `audio/ogg;codecs=vorbis` * `audio/wav` (Provide audio with a maximum of nine channels.) * `audio/webm` (The service automatically detects the codec of the input audio.) * `audio/webm;codecs=opus` * `audio/webm;codecs=vorbis`   For information about the supported audio formats, including specifying the sampling rate, channels, and endianness for the indicated formats, see [Audio formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).   ### Multipart speech recognition   The method also supports multipart recognition requests. With multipart requests, you pass all audio data as multipart form data. You specify some parameters as request headers and query parameters, but you pass JSON metadata as form data to control most aspects of the transcription.   The multipart approach is intended for use with browsers for which JavaScript is disabled or when the parameters used with the request are greater than the 8 KB limit imposed by most HTTP servers and proxies. You can encounter this limit, for example, if you want to spot a very large number of keywords.   For information about submitting a multipart request, see [Submitting multipart requests as form data](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
@@ -84,6 +69,22 @@ function main(params) {
       return;
     }
   });
+}
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  const _params = Object.assign({}, bxCreds, theParams);
+  delete _params.__bx_creds;
+  return _params;
 }
 
 global.main = main;

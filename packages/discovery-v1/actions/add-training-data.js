@@ -18,21 +18,6 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const extend = require('extend');
 
 /**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
-*/
-function getParams(theParams, service) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
-  delete _params.__bx_creds;
-  return _params;
-}
-
-/**
  * Add query to training data.
  *
  * Adds a query to the training data for this collection. The query can contain a filter and natural language query.
@@ -49,9 +34,9 @@ function getParams(theParams, service) {
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
- * @param {string} [params.natural_language_query] - 
- * @param {string} [params.filter] - 
- * @param {TrainingExample[]} [params.examples] - 
+ * @param {string} [params.natural_language_query] -
+ * @param {string} [params.filter] -
+ * @param {TrainingExample[]} [params.examples] -
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -73,6 +58,22 @@ function main(params) {
       return;
     }
   });
+}
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  const _params = Object.assign({}, bxCreds, theParams);
+  delete _params.__bx_creds;
+  return _params;
 }
 
 global.main = main;

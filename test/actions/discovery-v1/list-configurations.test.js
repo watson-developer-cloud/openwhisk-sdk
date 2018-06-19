@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let listConfigurations = require('../../../actions/discovery-v1/list-configurations');
+let listConfigurations = require('../../../packages/discovery-v1/actions/list-configurations');
 
 let ow;
 let credentials;

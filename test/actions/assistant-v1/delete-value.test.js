@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const { negativeHandler } = require('../../resources/test-helper');
-const deleteValue = require('../../../actions/assistant-v1/delete-value');
+const deleteValue = require('../../../packages/assistant-v1/actions/delete-value');
 
 let credentials;
 let payload = {

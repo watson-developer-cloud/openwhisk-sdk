@@ -18,21 +18,6 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const extend = require('extend');
 
 /**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
-*/
-function getParams(theParams, service) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
-  delete _params.__bx_creds;
-  return _params;
-}
-
-/**
  * Get a corpus.
  *
  * Gets information about a corpus from a custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of the corpus. You must use credentials for the instance of the service that owns a model to list its corpora.
@@ -69,6 +54,22 @@ function main(params) {
       return;
     }
   });
+}
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  const _params = Object.assign({}, bxCreds, theParams);
+  delete _params.__bx_creds;
+  return _params;
 }
 
 global.main = main;

@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let getCounterExample = require('../../../actions/conversation-v1/get-counterexample');
+let getCounterExample = require('../../../packages/conversation-v1/actions/get-counterexample');
 
 let ow;
 let credentials;
@@ -30,13 +30,13 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
         .get(`/api/v1/workspaces/${payload.workspace_id}/counterexamples/${payload.text}`)
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -56,12 +56,12 @@ describe('get-counterexample', () => {
         assert(true);
       });
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return getCounterExample
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });

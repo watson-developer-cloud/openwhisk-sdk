@@ -3,7 +3,7 @@ const nock = require('nock');
 const extend = require('extend');
 const omit = require('object.omit');
 const { negativeHandler } = require('../../resources/test-helper');
-const deleteWord = require('../../../actions/text-to-speech-v1/delete-word');
+const deleteWord = require('../../../packages/text-to-speech-v1/actions/delete-word');
 
 let credentials;
 let payload = {
@@ -18,7 +18,7 @@ before(() => {
   credentials = {
     username: 'username',
     password: 'password',
-    version_date: 'version-date'
+    version: 'version-date'
   };
   beforeEach(() => {
     nock('https://stream.watsonplatform.net/text-to-speech')

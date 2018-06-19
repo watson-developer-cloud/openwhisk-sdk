@@ -7,7 +7,7 @@ const fs = require('fs');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let classify = require('../../../actions/visual-recognition-v3/classify');
+let classify = require('../../../packages/visual-recognition-v3/actions/classify');
 
 let ow;
 let credentials;
@@ -32,14 +32,14 @@ before(() => {
   } else {
     credentials = {
       api_key: 'api-key',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway-a.watsonplatform.net/visual-recognition')
         .post('/api/v3/classify')
         .query({
           api_key: 'api-key',
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -57,12 +57,12 @@ describe('classify', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return classify
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });

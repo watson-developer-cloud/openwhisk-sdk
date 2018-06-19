@@ -18,21 +18,6 @@ const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-lang
 const extend = require('extend');
 
 /**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
-*/
-function getParams(theParams, service) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
-  delete _params.__bx_creds;
-  return _params;
-}
-
-/**
  * Create classifier.
  *
  * Sends data to create and train a classifier and returns information about the new classifier.
@@ -51,6 +36,15 @@ function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'natural_language_classifier');
     _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    const fileParams = ['metadata', 'training_data'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
+      try {
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
+      } catch (err) {
+        reject(err.message);
+        return;
+      }
+    });
     let service;
     try {
       service = new NaturalLanguageClassifierV1(_params);
@@ -66,6 +60,22 @@ function main(params) {
       return;
     }
   });
+}
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  const _params = Object.assign({}, bxCreds, theParams);
+  delete _params.__bx_creds;
+  return _params;
 }
 
 global.main = main;

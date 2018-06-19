@@ -44,7 +44,7 @@ git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 
 2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 3. Navigate to the packages/<desired package name> folder.
-4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml).
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml) in this folder.
 
 ```
 wskdeploy

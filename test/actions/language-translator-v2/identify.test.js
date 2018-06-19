@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let identify = require('../../../actions/language-translator-v2/identify');
+let identify = require('../../../packages/language-translator-v2/actions/identify');
 
 let ow;
 let credentials;

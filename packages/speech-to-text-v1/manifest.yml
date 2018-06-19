@@ -9,8 +9,8 @@ project:
         list-models:
           function: actions/list-models.js
           runtime: nodejs:8
-        recognize-sessionless:
-          function: actions/recognize-sessionless.js
+        recognize:
+          function: actions/recognize.js
           runtime: nodejs:8
         check-job:
           function: actions/check-job.js

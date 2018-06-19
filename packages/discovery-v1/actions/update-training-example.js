@@ -18,21 +18,6 @@ const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const extend = require('extend');
 
 /**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
-*/
-function getParams(theParams, service) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  const _params = Object.assign({}, theParams.__bx_creds[service], theParams);
-  delete _params.__bx_creds;
-  return _params;
-}
-
-/**
  * Change label or cross reference for example.
  *
  * Changes the label or cross reference query for this training data example.
@@ -51,8 +36,8 @@ function getParams(theParams, service) {
  * @param {string} params.collection_id - The ID of the collection.
  * @param {string} params.query_id - The ID of the query used for training.
  * @param {string} params.example_id - The ID of the document as it is indexed.
- * @param {string} [params.cross_reference] - 
- * @param {number} [params.relevance] - 
+ * @param {string} [params.cross_reference] -
+ * @param {number} [params.relevance] -
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -74,6 +59,22 @@ function main(params) {
       return;
     }
   });
+}
+
+/**
+* Helper function used to authenticate credentials bound to package using wsk service bind
+*
+* @param {Object} theParams - parameters sent to service
+* @param {string} service - name of service in bluemix used to retrieve credentials
+*/
+function getParams(theParams, service) {
+  if (Object.keys(theParams).length === 0) {
+    return theParams;
+  }
+  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  const _params = Object.assign({}, bxCreds, theParams);
+  delete _params.__bx_creds;
+  return _params;
 }
 
 global.main = main;

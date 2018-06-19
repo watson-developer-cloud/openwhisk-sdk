@@ -1,0 +1,11 @@
+project:
+  namespace: _
+  packages:
+    personality-insights-v3:
+      actions:
+        profile:
+          function: actions/profile.js
+          runtime: nodejs:8
+        profile-as-csv:
+          function: actions/profile-as-csv.js
+          runtime: nodejs:8

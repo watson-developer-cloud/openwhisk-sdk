@@ -1,0 +1,32 @@
+project:
+  namespace: _
+  packages:
+    visual-recognition-v3:
+      actions:
+        classify:
+          function: actions/classify.js
+          runtime: nodejs:8
+        detect-faces:
+          function: actions/detect-faces.js
+          runtime: nodejs:8
+        create-classifier:
+          function: actions/create-classifier.js
+          runtime: nodejs:8
+        delete-classifier:
+          function: actions/delete-classifier.js
+          runtime: nodejs:8
+        get-classifier:
+          function: actions/get-classifier.js
+          runtime: nodejs:8
+        list-classifiers:
+          function: actions/list-classifiers.js
+          runtime: nodejs:8
+        update-classifier:
+          function: actions/update-classifier.js
+          runtime: nodejs:8
+        get-core-ml-model:
+          function: actions/get-core-ml-model.js
+          runtime: nodejs:8
+        delete-user-data:
+          function: actions/delete-user-data.js
+          runtime: nodejs:8

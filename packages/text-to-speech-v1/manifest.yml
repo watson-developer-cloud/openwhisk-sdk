@@ -1,0 +1,50 @@
+project:
+  namespace: _
+  packages:
+    text-to-speech-v1:
+      actions:
+        get-voice:
+          function: actions/get-voice.js
+          runtime: nodejs:8
+        list-voices:
+          function: actions/list-voices.js
+          runtime: nodejs:8
+        synthesize:
+          function: actions/synthesize.js
+          runtime: nodejs:8
+        get-pronunciation:
+          function: actions/get-pronunciation.js
+          runtime: nodejs:8
+        create-voice-model:
+          function: actions/create-voice-model.js
+          runtime: nodejs:8
+        delete-voice-model:
+          function: actions/delete-voice-model.js
+          runtime: nodejs:8
+        get-voice-model:
+          function: actions/get-voice-model.js
+          runtime: nodejs:8
+        list-voice-models:
+          function: actions/list-voice-models.js
+          runtime: nodejs:8
+        update-voice-model:
+          function: actions/update-voice-model.js
+          runtime: nodejs:8
+        add-word:
+          function: actions/add-word.js
+          runtime: nodejs:8
+        add-words:
+          function: actions/add-words.js
+          runtime: nodejs:8
+        delete-word:
+          function: actions/delete-word.js
+          runtime: nodejs:8
+        get-word:
+          function: actions/get-word.js
+          runtime: nodejs:8
+        list-words:
+          function: actions/list-words.js
+          runtime: nodejs:8
+        delete-user-data:
+          function: actions/delete-user-data.js
+          runtime: nodejs:8

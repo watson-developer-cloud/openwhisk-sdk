@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let listAllLogs = require('../../../actions/conversation-v1/list-all-logs');
+let listAllLogs = require('../../../packages/conversation-v1/actions/list-all-logs');
 
 let ow;
 let credentials;
@@ -25,13 +25,13 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
         .get('/api/v1/logs')
         .query({
-          version: credentials.version_date,
+          version: credentials.version,
           filter: payload.filter
         })
         .reply(200, {});
@@ -50,12 +50,12 @@ describe('list-all-logs', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return listAllLogs
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });

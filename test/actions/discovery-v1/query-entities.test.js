@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let queryEntities = require('../../../actions/discovery-v1/query-entities');
+let queryEntities = require('../../../packages/discovery-v1/actions/query-entities');
 
 let ow;
 let credentials;
@@ -27,14 +27,14 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
         .post(`/api/v1/environments/${payload.environment_id}
                /collections/${payload.collection_id}/query_entities`)
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });

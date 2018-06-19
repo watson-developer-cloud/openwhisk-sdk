@@ -1,0 +1,116 @@
+project:
+  namespace: _
+  packages:
+    speech-to-text-v1:
+      actions:
+        get-model:
+          function: actions/get-model.js
+          runtime: nodejs:8
+        list-models:
+          function: actions/list-models.js
+          runtime: nodejs:8
+        recognize:
+          function: actions/recognize.js
+          runtime: nodejs:8
+        check-job:
+          function: actions/check-job.js
+          runtime: nodejs:8
+        check-jobs:
+          function: actions/check-jobs.js
+          runtime: nodejs:8
+        create-job:
+          function: actions/create-job.js
+          runtime: nodejs:8
+        delete-job:
+          function: actions/delete-job.js
+          runtime: nodejs:8
+        register-callback:
+          function: actions/register-callback.js
+          runtime: nodejs:8
+        unregister-callback:
+          function: actions/unregister-callback.js
+          runtime: nodejs:8
+        create-language-model:
+          function: actions/create-language-model.js
+          runtime: nodejs:8
+        delete-language-model:
+          function: actions/delete-language-model.js
+          runtime: nodejs:8
+        get-language-model:
+          function: actions/get-language-model.js
+          runtime: nodejs:8
+        list-language-models:
+          function: actions/list-language-models.js
+          runtime: nodejs:8
+        reset-language-model:
+          function: actions/reset-language-model.js
+          runtime: nodejs:8
+        train-language-model:
+          function: actions/train-language-model.js
+          runtime: nodejs:8
+        upgrade-language-model:
+          function: actions/upgrade-language-model.js
+          runtime: nodejs:8
+        add-corpus:
+          function: actions/add-corpus.js
+          runtime: nodejs:8
+        delete-corpus:
+          function: actions/delete-corpus.js
+          runtime: nodejs:8
+        get-corpus:
+          function: actions/get-corpus.js
+          runtime: nodejs:8
+        list-corpora:
+          function: actions/list-corpora.js
+          runtime: nodejs:8
+        add-word:
+          function: actions/add-word.js
+          runtime: nodejs:8
+        add-words:
+          function: actions/add-words.js
+          runtime: nodejs:8
+        delete-word:
+          function: actions/delete-word.js
+          runtime: nodejs:8
+        get-word:
+          function: actions/get-word.js
+          runtime: nodejs:8
+        list-words:
+          function: actions/list-words.js
+          runtime: nodejs:8
+        create-acoustic-model:
+          function: actions/create-acoustic-model.js
+          runtime: nodejs:8
+        delete-acoustic-model:
+          function: actions/delete-acoustic-model.js
+          runtime: nodejs:8
+        get-acoustic-model:
+          function: actions/get-acoustic-model.js
+          runtime: nodejs:8
+        list-acoustic-models:
+          function: actions/list-acoustic-models.js
+          runtime: nodejs:8
+        reset-acoustic-model:
+          function: actions/reset-acoustic-model.js
+          runtime: nodejs:8
+        train-acoustic-model:
+          function: actions/train-acoustic-model.js
+          runtime: nodejs:8
+        upgrade-acoustic-model:
+          function: actions/upgrade-acoustic-model.js
+          runtime: nodejs:8
+        add-audio:
+          function: actions/add-audio.js
+          runtime: nodejs:8
+        delete-audio:
+          function: actions/delete-audio.js
+          runtime: nodejs:8
+        get-audio:
+          function: actions/get-audio.js
+          runtime: nodejs:8
+        list-audio:
+          function: actions/list-audio.js
+          runtime: nodejs:8
+        delete-user-data:
+          function: actions/delete-user-data.js
+          runtime: nodejs:8

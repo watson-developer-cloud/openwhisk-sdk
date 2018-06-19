@@ -1,0 +1,11 @@
+project:
+  namespace: _
+  packages:
+    tone-analyzer-v3:
+      actions:
+        tone:
+          function: actions/tone.js
+          runtime: nodejs:8
+        tone-chat:
+          function: actions/tone-chat.js
+          runtime: nodejs:8

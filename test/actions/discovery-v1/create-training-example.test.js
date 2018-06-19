@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let createTrainingExample = require('../../../actions/discovery-v1/create-training-example');
+let createTrainingExample = require('../../../packages/discovery-v1/actions/create-training-example');
 
 let ow;
 let credentials;
@@ -34,7 +34,7 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
@@ -42,7 +42,7 @@ before(() => {
                /collections/${payload.collection_id}
                /training_data/${payload.query_id}/examples`)
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });

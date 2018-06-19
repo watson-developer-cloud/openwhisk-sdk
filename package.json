@@ -1,6 +1,6 @@
 {
   "name": "watson-openwhisk-sdk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "SDK to run Watson services on IBM Cloud Functions (Based on Apache Openwhisk)",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,9 @@
     "test-unit": "unset TEST_OPENWHISK && nyc mocha test/actions/*",
     "test-integration": "export TEST_OPENWHISK=true && mocha --timeout 50000 test/actions/*",
     "lint": "eslint .",
-    "autofix": "eslint --fix ."
+    "autofix": "eslint --fix .",
+    "jsonlint": "for x in actions/*/*.json; do jsonlint -q \"$x\"; echo $x; done",
+    "deploy": "pushd runtimes/nodejs/; wskdeploy; popd"
   },
   "keywords": [
     "openwhisk",
@@ -18,15 +20,15 @@
   "author": "IBM Corp",
   "license": "MIT",
   "dependencies": {
+    "extend": "^3.0.1",
     "json-loader": "~0.5.7",
-    "watson-developer-cloud": "~3.2.1",
-    "webpack": "~3.10.0"
+    "jsonlint": "^1.6.3",
+    "watson-developer-cloud": "~3.5.0"
   },
   "devDependencies": {
     "eslint": "~4.7.2",
     "eslint-config-airbnb-base": "~12.0.2",
     "eslint-plugin-import": "~2.7.0",
-    "extend": "~3.0.1",
     "mocha": "~3.5.3",
     "nock": "~9.0.21",
     "nyc": "~11.3.0",

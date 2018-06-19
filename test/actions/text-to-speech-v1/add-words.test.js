@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let addWords = require('../../../actions/text-to-speech-v1/add-words');
+let addWords = require('../../../packages/text-to-speech-v1/actions/add-words');
 
 let ow;
 let credentials;
@@ -31,7 +31,7 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://stream.watsonplatform.net/text-to-speech')

@@ -1,0 +1,23 @@
+project:
+  namespace: _
+  packages:
+    natural-language-classifier-v1:
+      actions:
+        classify:
+          function: actions/classify.js
+          runtime: nodejs:8
+        classify-collection:
+          function: actions/classify-collection.js
+          runtime: nodejs:8
+        create-classifier:
+          function: actions/create-classifier.js
+          runtime: nodejs:8
+        delete-classifier:
+          function: actions/delete-classifier.js
+          runtime: nodejs:8
+        get-classifier:
+          function: actions/get-classifier.js
+          runtime: nodejs:8
+        list-classifiers:
+          function: actions/list-classifiers.js
+          runtime: nodejs:8

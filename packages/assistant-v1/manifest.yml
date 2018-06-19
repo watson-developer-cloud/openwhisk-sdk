@@ -1,0 +1,137 @@
+project:
+  namespace: _
+  packages:
+    assistant-v1:
+      actions:
+        message:
+          function: actions/message.js
+          runtime: nodejs:8
+        create-workspace:
+          function: actions/create-workspace.js
+          runtime: nodejs:8
+        delete-workspace:
+          function: actions/delete-workspace.js
+          runtime: nodejs:8
+        get-workspace:
+          function: actions/get-workspace.js
+          runtime: nodejs:8
+        list-workspaces:
+          function: actions/list-workspaces.js
+          runtime: nodejs:8
+        update-workspace:
+          function: actions/update-workspace.js
+          runtime: nodejs:8
+        create-intent:
+          function: actions/create-intent.js
+          runtime: nodejs:8
+        delete-intent:
+          function: actions/delete-intent.js
+          runtime: nodejs:8
+        get-intent:
+          function: actions/get-intent.js
+          runtime: nodejs:8
+        list-intents:
+          function: actions/list-intents.js
+          runtime: nodejs:8
+        update-intent:
+          function: actions/update-intent.js
+          runtime: nodejs:8
+        create-example:
+          function: actions/create-example.js
+          runtime: nodejs:8
+        delete-example:
+          function: actions/delete-example.js
+          runtime: nodejs:8
+        get-example:
+          function: actions/get-example.js
+          runtime: nodejs:8
+        list-examples:
+          function: actions/list-examples.js
+          runtime: nodejs:8
+        update-example:
+          function: actions/update-example.js
+          runtime: nodejs:8
+        create-counterexample:
+          function: actions/create-counterexample.js
+          runtime: nodejs:8
+        delete-counterexample:
+          function: actions/delete-counterexample.js
+          runtime: nodejs:8
+        get-counterexample:
+          function: actions/get-counterexample.js
+          runtime: nodejs:8
+        list-counterexamples:
+          function: actions/list-counterexamples.js
+          runtime: nodejs:8
+        update-counterexample:
+          function: actions/update-counterexample.js
+          runtime: nodejs:8
+        create-entity:
+          function: actions/create-entity.js
+          runtime: nodejs:8
+        delete-entity:
+          function: actions/delete-entity.js
+          runtime: nodejs:8
+        get-entity:
+          function: actions/get-entity.js
+          runtime: nodejs:8
+        list-entities:
+          function: actions/list-entities.js
+          runtime: nodejs:8
+        update-entity:
+          function: actions/update-entity.js
+          runtime: nodejs:8
+        create-value:
+          function: actions/create-value.js
+          runtime: nodejs:8
+        delete-value:
+          function: actions/delete-value.js
+          runtime: nodejs:8
+        get-value:
+          function: actions/get-value.js
+          runtime: nodejs:8
+        list-values:
+          function: actions/list-values.js
+          runtime: nodejs:8
+        update-value:
+          function: actions/update-value.js
+          runtime: nodejs:8
+        create-synonym:
+          function: actions/create-synonym.js
+          runtime: nodejs:8
+        delete-synonym:
+          function: actions/delete-synonym.js
+          runtime: nodejs:8
+        get-synonym:
+          function: actions/get-synonym.js
+          runtime: nodejs:8
+        list-synonyms:
+          function: actions/list-synonyms.js
+          runtime: nodejs:8
+        update-synonym:
+          function: actions/update-synonym.js
+          runtime: nodejs:8
+        create-dialog-node:
+          function: actions/create-dialog-node.js
+          runtime: nodejs:8
+        delete-dialog-node:
+          function: actions/delete-dialog-node.js
+          runtime: nodejs:8
+        get-dialog-node:
+          function: actions/get-dialog-node.js
+          runtime: nodejs:8
+        list-dialog-nodes:
+          function: actions/list-dialog-nodes.js
+          runtime: nodejs:8
+        update-dialog-node:
+          function: actions/update-dialog-node.js
+          runtime: nodejs:8
+        list-all-logs:
+          function: actions/list-all-logs.js
+          runtime: nodejs:8
+        list-logs:
+          function: actions/list-logs.js
+          runtime: nodejs:8
+        delete-user-data:
+          function: actions/delete-user-data.js
+          runtime: nodejs:8

@@ -9,77 +9,49 @@ This SDK contains the following Watson packages:
 1. `assistant-v1`
 2. `discovery-v1`
 3. `language-translator-v2`
-4. `natural-language-classifier-v1`
-5. `natural-language-understanding-v1`
-6. `personality-insights-v3`
-7. `speech-to-text-v1`
-8. `text-to-speech-v1`
-9. `tone-analyzer-v3`
-10. `visual-recognition-v3`
+4. `language-translator-v3`
+5. `natural-language-classifier-v1`
+6. `natural-language-understanding-v1`
+7. `personality-insights-v3`
+8. `speech-to-text-v1`
+9. `text-to-speech-v1`
+10. `tone-analyzer-v3`
+11. `visual-recognition-v3`
 
 # Using the Watson openwhisk-sdk
 
 To use the openwhisk-sdk, you need to:
 
-1. Install node (follow instructions [here](https://docs.npmjs.com/getting-started/installing-node))
-2. Install the bx wsk cli (follow instructions [here](https://console.bluemix.net/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli))
-3. Install python if it is not available on your system (see installation guides [here](http://docs.python-guide.org/en/latest/starting/installation/))
-4. Clone this repository
-5. run `npm install`.
-6. To install ALL packages (Warning: Takes over 30 minutes)
-```
-python install.py
-```
-7. To install specific packages, run the python script passing in the names of the packages you wish to install such as:
-```
-python install.py tone-analyzer-v3 discovery-v1
-```
+### Configure CLI
+1. Make sure to execute `ibmcloud login` if you're not already logged in.
+2. Install the IBM Cloud Functions CLI plugin:
 
-* List of packages supported: conversation-v1, discovery-v1, language-translator-v2, natural-language-classifier-v1, natural-language-understanding-v1, personality-insights-v3, speech-to-text-v1, text-to-speech-v1, tone-analyzer-v3, visual-recognition-v3
+```
+ibmcloud plugin install cloud-functions
+```
+3. Make sure you are authenticated with IBM Functions and can list entities without errors:
 
-Optionally, for a simpler usage pattern:
-
-* Set up the Watson Package you want to use (See the sections below about setting up the package)
-
+```
+ibmcloud wsk list
+```
 # Setting up a Watson package
 
-To set up a package for usage with your Watson service instance, you must manually create a package binding for you Watson service. You need the Watson service username and password, or api_key if applicable. You may also want to bind some or all of the following parameters:
-
-* `username` : The Watson Service API username.
-* `password` : The Watson Service API password.
-* `api_key` : The Watson Service API api_key.
-* `url` : override default service base url.
-* `version_date` : Release date of the API version in YYYY-MM-DD format.
-* `headers` : The request headers.
-* `headers.X-Watson-Learning-Opt-Out` : opt-out of data collection.
-
-- Create a package binding that is configured for your Watson service.
+1. To install the packages, first clone the package-repo
 
 ```
-bx wsk package bind <package-name> <binding-name> -p username MYUSERNAME -p password MYPASSWORD
+git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
 
-```
-bx wsk package bind <package-name> <binding-name> -p api_key <api_key>
-```
-
-* If you want to bind more than the credentials, it's easiest to create a JSON file with the parameters you want to bind, then run the binding command via the bx wsk cli.
+2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
+3. Navigate to the packages/<desired package name> folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml) in this folder.
 
 ```
-{
-    "username": <username>,
-    "password": <password>,
-    "url": <url>,
-    "version_date": <version_date>,
-    "headers": {
-        "X-Watson-Learning-Opt-Out": true
-    }
-}
+wskdeploy
 ```
 
-```
-bx wsk package bind <package-name> <binding-name> --param-file binding.json
-```
+### Bind Service Credentials
+You will need to bind your service credentials to the package, so that the Actions will have access to the service credentials. Individual README instructions within each package detail this step.
 
 # Invoking an action
 

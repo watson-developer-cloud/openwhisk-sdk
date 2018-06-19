@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let updateEntity = require('../../../actions/assistant-v1/update-entity');
+let updateEntity = require('../../../packages/assistant-v1/actions/update-entity');
 
 let ow;
 let credentials;

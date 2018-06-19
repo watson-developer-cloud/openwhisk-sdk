@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let deleteClassifier = require('../../../actions/natural-language-classifier-v1/delete-classifier');
+let deleteClassifier = require('../../../packages/natural-language-classifier-v1/actions/delete-classifier');
 
 let ow;
 let credentials;

@@ -1,0 +1,131 @@
+project:
+  namespace: _
+  packages:
+    discovery-v1:
+      actions:
+        create-environment:
+          function: actions/create-environment.js
+          runtime: nodejs:8
+        delete-environment:
+          function: actions/delete-environment.js
+          runtime: nodejs:8
+        get-environment:
+          function: actions/get-environment.js
+          runtime: nodejs:8
+        list-environments:
+          function: actions/list-environments.js
+          runtime: nodejs:8
+        list-fields:
+          function: actions/list-fields.js
+          runtime: nodejs:8
+        update-environment:
+          function: actions/update-environment.js
+          runtime: nodejs:8
+        create-configuration:
+          function: actions/create-configuration.js
+          runtime: nodejs:8
+        delete-configuration:
+          function: actions/delete-configuration.js
+          runtime: nodejs:8
+        get-configuration:
+          function: actions/get-configuration.js
+          runtime: nodejs:8
+        list-configurations:
+          function: actions/list-configurations.js
+          runtime: nodejs:8
+        update-configuration:
+          function: actions/update-configuration.js
+          runtime: nodejs:8
+        test-configuration-in-environment:
+          function: actions/test-configuration-in-environment.js
+          runtime: nodejs:8
+        create-collection:
+          function: actions/create-collection.js
+          runtime: nodejs:8
+        delete-collection:
+          function: actions/delete-collection.js
+          runtime: nodejs:8
+        get-collection:
+          function: actions/get-collection.js
+          runtime: nodejs:8
+        list-collection-fields:
+          function: actions/list-collection-fields.js
+          runtime: nodejs:8
+        list-collections:
+          function: actions/list-collections.js
+          runtime: nodejs:8
+        update-collection:
+          function: actions/update-collection.js
+          runtime: nodejs:8
+        create-expansions:
+          function: actions/create-expansions.js
+          runtime: nodejs:8
+        delete-expansions:
+          function: actions/delete-expansions.js
+          runtime: nodejs:8
+        list-expansions:
+          function: actions/list-expansions.js
+          runtime: nodejs:8
+        add-document:
+          function: actions/add-document.js
+          runtime: nodejs:8
+        delete-document:
+          function: actions/delete-document.js
+          runtime: nodejs:8
+        get-document-status:
+          function: actions/get-document-status.js
+          runtime: nodejs:8
+        update-document:
+          function: actions/update-document.js
+          runtime: nodejs:8
+        federated-query:
+          function: actions/federated-query.js
+          runtime: nodejs:8
+        federated-query-notices:
+          function: actions/federated-query-notices.js
+          runtime: nodejs:8
+        query:
+          function: actions/query.js
+          runtime: nodejs:8
+        query-entities:
+          function: actions/query-entities.js
+          runtime: nodejs:8
+        query-notices:
+          function: actions/query-notices.js
+          runtime: nodejs:8
+        query-relations:
+          function: actions/query-relations.js
+          runtime: nodejs:8
+        add-training-data:
+          function: actions/add-training-data.js
+          runtime: nodejs:8
+        create-training-example:
+          function: actions/create-training-example.js
+          runtime: nodejs:8
+        delete-all-training-data:
+          function: actions/delete-all-training-data.js
+          runtime: nodejs:8
+        delete-training-data:
+          function: actions/delete-training-data.js
+          runtime: nodejs:8
+        delete-training-example:
+          function: actions/delete-training-example.js
+          runtime: nodejs:8
+        get-training-data:
+          function: actions/get-training-data.js
+          runtime: nodejs:8
+        get-training-example:
+          function: actions/get-training-example.js
+          runtime: nodejs:8
+        list-training-data:
+          function: actions/list-training-data.js
+          runtime: nodejs:8
+        list-training-examples:
+          function: actions/list-training-examples.js
+          runtime: nodejs:8
+        update-training-example:
+          function: actions/update-training-example.js
+          runtime: nodejs:8
+        delete-user-data:
+          function: actions/delete-user-data.js
+          runtime: nodejs:8

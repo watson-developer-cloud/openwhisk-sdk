@@ -5,7 +5,7 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let createValue = require('../../../actions/conversation-v1/create-value');
+let createValue = require('../../../packages/conversation-v1/actions/create-value');
 
 let ow;
 let credentials;
@@ -27,14 +27,14 @@ before(() => {
     credentials = {
       username: 'username',
       password: 'password',
-      version_date: 'version-date'
+      version: 'version-date'
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/conversation')
         .post(`/api/v1/workspaces/${payload.workspace_id}`
               + `/entities/${payload.entity}/values`)
         .query({
-          version: credentials.version_date
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -52,12 +52,12 @@ describe('create-value', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if version_date is missing', () => {
-    const params = omit(payload, ['version_date']);
+  it('should fail if version is missing', () => {
+    const params = omit(payload, ['version']);
     return createValue
       .test(params)
       .then(() => {
-        assert.fail('No failure on missing version_date');
+        assert.fail('No failure on missing version');
       })
       .catch(err => negativeHandler(err));
   });

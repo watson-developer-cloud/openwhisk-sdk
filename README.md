@@ -51,7 +51,31 @@ wskdeploy
 ```
 
 ### Bind Service Credentials
-You will need to bind your service credentials to the package, so that the Actions will have access to the service credentials. Individual README instructions within each package detail this step.
+You will need to bind your service credentials to the package, so that the Actions will have access to the service credentials. Individual README instructions within each package detail this step with specific commands to use per package.
+
+Binding credentials is the preferred way to authenticate actions. To do so, it will follow the following pattern.
+
+```
+bx wsk service bind <name-of-service> <name-of-package>
+```
+
+### Passing Authentication Parameters
+
+You may optionally pass in authentication parameters to override the service credential bind as paramaters to each action.
+
+- In some instances, you authenticate by providing the `username` and `password` for the service instance.
+- Visual Recognition uses a form of `api_key` only with instances created before May 23, 2018. Newer instances of Visual Recognition use [IAM](#iam).
+
+### IAM
+
+Some services use token-based Identity and Access Management (IAM) authentication. IAM authentication uses a service API key to get an access token that is passed with the call. Access tokens are valid for approximately one hour and must be regenerated.
+
+Using a service bind will automatically attach your IAM credentials to the package, but you may optionally pass in these parameters to override.
+
+You supply either an IAM service **API key** or an **access token** with the parameters `iam_apikey` and `iam_access_token`:
+
+- Use the API key to have the SDK manage the lifecycle of the access token. The SDK requests an access token, ensures that the access token is valid, and refreshes it if necessary.
+- Use the access token if you want to manage the lifecycle yourself. Access tokens are valid. For details, see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html). If you want to switch to API key, override your stored IAM credentials with an IAM API key.
 
 # Invoking an action
 

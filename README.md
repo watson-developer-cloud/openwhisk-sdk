@@ -63,6 +63,12 @@ The `message` action retrieves a response to a user's input. The parameters that
 
 * `password` : The Watson Conversation API password.
 
+* `iam_access_token` : An IAM access token fully managed by the application. Responsibility falls on the application to refresh the token, either before it expires or reactively upon receiving a 401 from the service, as any requests made with an expired token will fail.
+
+* `iam_apikey` : An API key that can be used to request IAM tokens. If this API key is provided, the SDK will manage the token and handle the refreshing.
+
+* `iam_url`: An optional URL for the IAM service API. Defaults to 'https://iam.bluemix.net/identity/token'.
+
 * `headers`: The request headers.
 
 * `url`: override default service base url.
@@ -85,7 +91,7 @@ The `message` action retrieves a response to a user's input. The parameters that
 
 * `output` : System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
 
-If you haven't created a package binding, you can invoke the message action by providing all the required parameters, i.e.:
+If you haven't created a service binding, you can invoke the message action by providing all the required parameters, i.e.:
 
 ```
 bx wsk action invoke conversation-v1/message -p username <username> -p password <password> -p version_date <version_date> -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
@@ -94,7 +100,7 @@ bx wsk action invoke conversation-v1/message -p username <username> -p password 
 If you've created a binding, you can invoke the message action via:
 
 ```
-bx wsk action invoke <binding-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
+bx wsk action invoke <package-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
 ```
 
 # Documentation

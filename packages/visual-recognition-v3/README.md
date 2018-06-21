@@ -61,6 +61,8 @@ bx wsk service bind watson_vision_combined visual-recognition-v3
 ```
 ## Using the Watson Visual Recognition V3 Package
 
+- Visual Recognition uses a form of `api_key` only with instances created before May 23, 2018. Newer instances of Visual Recognition use `iam_apikey`.
+
 ### Example usage with Watson Visual Recognition V3
 
 ```

@@ -51,7 +51,30 @@ wskdeploy
 ```
 
 ### Bind Service Credentials
-You will need to bind your service credentials to the package, so that the Actions will have access to the service credentials. Individual README instructions within each package detail this step.
+Bind your service credentials to the package so that the Actions have access to the service credentials. For details and specific commands for each package, see the package README.
+
+Authenticate actions by binding credentials with the following pattern:
+
+```sh
+bx wsk service bind <name-of-service> <name-of-package>
+```
+
+### Passing Authentication Parameters
+
+You can override binding credentials by passing authentication parameters to each action if you need to.
+
+* In some instances, you authenticate by providing the `username` and `password` for the service instance.
+
+### IAM
+
+Some services use token-based Identity and Access Management (IAM) authentication. IAM authentication uses a service API key to get an access token that is passed with the call. Access tokens are valid for approximately one hour and must be regenerated.
+
+Using a service bind will automatically attach your IAM credentials to the package, but you may optionally pass in these parameters to override.
+
+You supply either an IAM service **API key** or an **access token** with the parameters `iam_apikey` and `iam_access_token`:
+
+* Use the API key to have the SDK manage the lifecycle of the access token. The SDK requests an access token, ensures that the access token is valid, and refreshes it if necessary.
+* Use the access token if you want to manage the lifecycle yourself. For details, see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html). If you want to switch to API key, override your stored IAM credentials with an IAM API key.
 
 # Invoking an action
 
@@ -62,6 +85,12 @@ The `message` action retrieves a response to a user's input. The parameters that
 * `username` : The Watson Conversation API username.
 
 * `password` : The Watson Conversation API password.
+
+* `iam_access_token` :  The IAM access token. You manage the lifecycle of the token
+
+* `iam_apikey` : The API key. Used to get an access token that is passed with the call.
+
+* `iam_url`: The URL of the IAM service. Usually not required. Defaults to 'https://iam.bluemix.net/identity/token'.
 
 * `headers`: The request headers.
 
@@ -85,7 +114,7 @@ The `message` action retrieves a response to a user's input. The parameters that
 
 * `output` : System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
 
-If you haven't created a package binding, you can invoke the message action by providing all the required parameters, i.e.:
+If you haven't created a service binding, you can invoke the message action by providing all the required parameters. For example:
 
 ```
 bx wsk action invoke conversation-v1/message -p username <username> -p password <password> -p version_date <version_date> -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
@@ -94,7 +123,7 @@ bx wsk action invoke conversation-v1/message -p username <username> -p password 
 If you've created a binding, you can invoke the message action via:
 
 ```
-bx wsk action invoke <binding-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
+bx wsk action invoke <package-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
 ```
 
 # Documentation

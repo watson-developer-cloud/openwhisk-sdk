@@ -99,5 +99,5 @@ bx wsk service bind conversation assistant-v1
 ### Example usage with Watson Assistant V1
 
 ```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
+bx wsk action invoke assistant-v1/<action name> -b -p <param name> <param>
 ```

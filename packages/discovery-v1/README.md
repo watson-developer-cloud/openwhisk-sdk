@@ -97,5 +97,5 @@ bx wsk service bind discovery discovery-v1
 ### Example usage with Watson Discovery V1
 
 ```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
+bx wsk action invoke discovery-v1/<action name> -b -p <param name> <param>
 ```

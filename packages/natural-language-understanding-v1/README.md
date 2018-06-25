@@ -60,5 +60,5 @@ bx wsk service bind natural-language-understanding natural-language-understandin
 ### Example usage with Watson Natural Language Understanding V1
 
 ```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
+bx wsk action invoke natural-language-understanding-v1/<action name> -b -p <param name> <param>
 ```

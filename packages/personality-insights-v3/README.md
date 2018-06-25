@@ -63,5 +63,5 @@ bx wsk service bind personality_insights personality-insights-v3
 ### Example usage with Watson Personality Insights V3
 
 ```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
+bx wsk action invoke personality-insights-v3/<action name> -b -p <param name> <param>
 ```

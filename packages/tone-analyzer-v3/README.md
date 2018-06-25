@@ -58,5 +58,5 @@ bx wsk service bind tone_analyzer tone-analyzer-v3
 ### Example usage with Watson Tone Analyzer V3
 
 ```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
+bx wsk action invoke tone-analyzer-v3/<action name> -b -p <param name> <param>
 ```

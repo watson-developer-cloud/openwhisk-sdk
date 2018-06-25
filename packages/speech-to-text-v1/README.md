@@ -103,5 +103,5 @@ bx wsk service bind speech_to_text speech-to-text-v1
 ### Example usage with Watson Speech to Text V1
 
 ```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
+bx wsk action invoke speech-to-text-v1/<action name> -b -p <param name> <param>
 ```

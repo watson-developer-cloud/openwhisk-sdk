@@ -65,7 +65,7 @@ Ideally, we'd like to see both unit and innervation tests on each method.
 
 Out of the box, `npm test` runs unit and integration tests. Integration tests require credentials, but to run only unit tests type `npm test-unit`
 
-To run integration tests, copy `test/resources/auth-helper.js` to a new file `test/resources/auth.js` and fill in credentials for
+To run integration tests, copy `tests/resources/auth-helper.js` to a new file `tests/resources/auth.js` and fill in credentials for
 the service(s) you wish to test.
 
 Currently this enables integration tests for all services so, unless all credentials are supplied, some tests will fail.
@@ -73,4 +73,4 @@ Currently this enables integration tests for all services so, unless all credent
 
 To run only specific tests, pass the file name to mocha. For example:
 
-node ./node_modules/mocha/bin/_mocha test/actions/conversation-v1/create-example.test.js
+node ./node_modules/mocha/bin/_mocha tests/actions/conversation-v1/create-example.test.js

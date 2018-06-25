@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",
-    "test-unit": "unset TEST_OPENWHISK && nyc mocha test/actions/*",
-    "test-integration": "export TEST_OPENWHISK=true && mocha --timeout 50000 test/actions/*",
+    "test-unit": "unset TEST_OPENWHISK && nyc mocha tests/actions/*",
+    "test-integration": "export TEST_OPENWHISK=true && mocha --timeout 50000 tests/actions/*",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
     "jsonlint": "for x in actions/*/*.json; do jsonlint -q \"$x\"; echo $x; done",

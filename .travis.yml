@@ -6,9 +6,9 @@ script:
 - npm run test-unit
 before_install:
 - openssl aes-256-cbc -K $encrypted_39958aaf0600_key -iv $encrypted_39958aaf0600_iv
-  -in auth.js.enc -out test/resources/auth.js -d
+  -in auth.js.enc -out tests/resources/auth.js -d
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && openssl aes-256-cbc -K $encrypted_39958aaf0600_key
-  -iv $encrypted_39958aaf0600_iv -in auth.js.enc -out test/resources/auth.js -d ||
+  -iv $encrypted_39958aaf0600_iv -in auth.js.enc -out tests/resources/auth.js -d ||
   true'
 - sudo wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
 - sudo chmod 711 /usr/local/bin/wsk

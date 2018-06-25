@@ -7,4 +7,4 @@ install.js
 dist
 .nyc_output
 .vscode
-test/resources/auth.js
+tests/resources/auth.js

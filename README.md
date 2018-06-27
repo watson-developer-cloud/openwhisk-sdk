@@ -18,6 +18,9 @@ This SDK contains the following Watson packages:
 10. `tone-analyzer-v3`
 11. `visual-recognition-v3`
 
+# Before you begin
+* You need an [IBM Cloud][ibm-cloud-onboarding] account.
+
 # Using the Watson openwhisk-sdk
 
 To use the openwhisk-sdk, you need to:
@@ -129,3 +132,5 @@ bx wsk action invoke <package-name>/message -p workspace_id 'my-id' -p input '{"
 # Documentation
 
 You can find links to the documentation at https://console.bluemix.net/developer/watson/documentation. Find the service that you're interested in, click API reference, and then select the Node tab.
+
+[ibm-cloud-onboarding]: http://console.bluemix.net/registration?target=/developer/watson&cm_sp=WatsonPlatform-WatsonServices-_-OnPageNavLink-IBMWatson_SDKs-_-Openwhisk

@@ -1,0 +1,34 @@
+apply plugin: 'scala'
+apply plugin: 'eclipse'
+compileTestScala.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    maven {
+         url 'https://oss.sonatype.org/content/repositories/snapshots/'
+     }
+    mavenLocal()
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    outputs.upToDateWhen { false } // force tests to run every time
+}
+
+task testWithoutCredentials(type: Test) {
+  exclude '**/*Credentials*'
+}
+
+dependencies {
+    compile "org.scala-lang:scala-library:${gradle.scala.version}"
+    compile "org.apache.openwhisk:openwhisk-tests:${gradle.openwhisk.version}:tests"
+    compile "org.apache.openwhisk:openwhisk-tests:${gradle.openwhisk.version}:test-sources"
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = gradle.scala.compileFlags
+}

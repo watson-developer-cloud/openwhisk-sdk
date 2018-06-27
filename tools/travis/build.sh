@@ -14,7 +14,7 @@ cd $UTILDIR
 
 # run jshint
 cd $ROOTDIR/packages
-jshint .
+# jshint .
 
 # Install OpenWhisk
 cd $WHISKDIR/ansible

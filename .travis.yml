@@ -17,7 +17,7 @@ matrix:
       - export PATH=$PATH:"/usr/local/bin/wsk"
     - language: scala
       scala:
-        - 2.11.6
+        - 2.11.11
       services:
         - docker
       env:
@@ -27,6 +27,8 @@ matrix:
         email: false
       install: true
       before_install:
-        - ./tools/travis/setup.sh
+      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then openssl aes-256-cbc -K $encrypted_2f93756e1256_key -iv $encrypted_2f93756e1256_iv
+        -in tests/credentials.json.enc -out tests/credentials.json -d; fi'
+      - "./tools/travis/setup.sh"
       script:
-        - ./tools/travis/build.sh
+      - "./tools/travis/build.sh"

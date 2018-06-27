@@ -5,6 +5,7 @@ set -e
 
 SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 ROOTDIR="$SCRIPTDIR/../.."
+HOMEDIR="$ROOTDIR/.."
 WHISKDIR="$ROOTDIR/../openwhisk"
 UTILDIR="$ROOTDIR/../incubator-openwhisk-utilities"
 
@@ -57,9 +58,8 @@ WSK_CLI=$WHISKDIR/bin/wsk
 AUTH_KEY=$(cat $WHISKDIR/ansible/files/auth.whisk.system)
 EDGE_HOST=$(grep '^edge.host=' $WHISKPROPS_FILE | cut -d'=' -f2)
 
-# Install Package
-
-cd $ROOTDIR/packages
+# Install the deploy package
+cd $HOMEDIR/incubator-openwhisk-package-deploy/packages
 ./installCatalog.sh $AUTH_KEY $EDGE_HOST $WSK_CLI
 
 # Test

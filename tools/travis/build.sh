@@ -43,7 +43,6 @@ $ANSIBLE_CMD openwhisk.yml
 
 # Set Environment
 export OPENWHISK_HOME=$WHISKDIR
-export INSTALL_WEB_ONLY="True"
 
 cd $WHISKDIR
 

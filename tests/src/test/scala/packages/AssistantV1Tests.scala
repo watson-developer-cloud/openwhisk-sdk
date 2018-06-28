@@ -32,6 +32,52 @@ class AssistantV1Tests extends WatsonPackages
     val manifestPath = "packages/assistant-v1"
     val successStatus = """"status":"success""""
 
+    //assistant-v1 action definitions
+    val packageName = "assistant-v1"
+    val create-workspace = packageName + "/create-workspace"
+    val delete-workspace = packageName + "/delete-workspace"
+    val get-workspace = packageName + "/get-workspace"
+    val list-workspaces = packageName + "/list-workspaces"
+    val update-workspace = packageName + "/update-workspace"
+    val create-intent = packageName + "/create-intent"
+    val delete-intent = packageName + "/delete-intent"
+    val get-intent = packageName + "/get-intent"
+    val list-intents = packageName + "/list-intents"
+    val update-intent = packageName + "/update-intent"
+    val create-example = packageName + "/create-example"
+    val delete-example = packageName + "/delete-example"
+    val get-example = packageName + "/get-example"
+    val list-examples = packageName + "/list-examples"
+    val update-example = packageName + "/update-example"
+    val create-counterexample = packageName + "/create-counterexample"
+    val delete-counterexample = packageName + "/delete-counterexample"
+    val get-counterexample = packageName + "/get-counterexample"
+    val list-counterexamples = packageName + "/list-counterexamples"
+    val update-counterexample = packageName + "/update-counterexample"
+    val create-entity = packageName + "/create-entity"
+    val delete-entity = packageName + "/delete-entity"
+    val get-entity = packageName + "/get-entity"
+    val list-entities = packageName + "/list-entities"
+    val update-entity = packageName + "/update-entity"
+    val create-value = packageName + "/create-value"
+    val delete-value = packageName + "/delete-value"
+    val get-value = packageName + "/get-value"
+    val list-values = packageName + "/list-values"
+    val update-value = packageName + "/update-value"
+    val create-synonym = packageName + "/create-synonym"
+    val delete-synonym = packageName + "/delete-synonym"
+    val get-synonym = packageName + "/get-value"
+    val list-synonyms = packageName + "/list-synonyms"
+    val update-synonym = packageName + "/update-synonym"
+    val create-dialog-node = packageName + "/create-dialog-node"
+    val delete-dialog-node = packageName + "/delete-dialog-node"
+    val get-dialog-node = packageName + "/get-dialog-node"
+    val list-dialog-nodes = packageName + "/list-dialog-nodes"
+    val update-dialog-node = packageName + "/update-dialog-node"
+    val list-all-logs = packageName + "/list-all-logs"
+    val list-logs = packageName + "/list-logs"
+    val delete-user-data = packageName + "/delete-user-data"
+
     behavior of "Assistant V1 Package"
 
     // test to create the assistant v1 package from github url. TODO: should use preinstalled folder
@@ -47,6 +93,52 @@ class AssistantV1Tests extends WatsonPackages
        successStatus,
        200
      );
+
+     //clean up after test
+     wsk.action.delete(create-workspace)
+     wsk.action.delete(delete-workspace)
+     wsk.action.delete(get-workspace)
+     wsk.action.delete(list-workspaces)
+     wsk.action.delete(update-workspace)
+     wsk.action.delete(create-intent)
+     wsk.action.delete(delete-intent)
+     wsk.action.delete(get-intent)
+     wsk.action.delete(list-intents)
+     wsk.action.delete(update-intent)
+     wsk.action.delete(create-example)
+     wsk.action.delete(delete-example)
+     wsk.action.delete(get-example)
+     wsk.action.delete(list-examples)
+     wsk.action.delete(update-example)
+     wsk.action.delete(create-counterexample)
+     wsk.action.delete(delete-counterexample)
+     wsk.action.delete(get-counterexample)
+     wsk.action.delete(list-counterexamples)
+     wsk.action.delete(update-counterexample)
+     wsk.action.delete(create-entity)
+     wsk.action.delete(delete-entity)
+     wsk.action.delete(get-entity)
+     wsk.action.delete(list-entities)
+     wsk.action.delete(update-entity)
+     wsk.action.delete(create-value)
+     wsk.action.delete(delete-value)
+     wsk.action.delete(get-value)
+     wsk.action.delete(list-values)
+     wsk.action.delete(update-value)
+     wsk.action.delete(create-synonym)
+     wsk.action.delete(delete-synonym)
+     wsk.action.delete(get-synonym)
+     wsk.action.delete(list-synonyms)
+     wsk.action.delete(update-synonym)
+     wsk.action.delete(create-dialog-node)
+     wsk.action.delete(delete-dialog-node)
+     wsk.action.delete(get-dialog-node)
+     wsk.action.delete(list-dialog-nodes)
+     wsk.action.delete(update-dialog-node)
+     wsk.action.delete(list-all-logs)
+     wsk.action.delete(list-logs)
+     wsk.action.delete(delete-user-data)
+     wsk.package.delete(packageName)
    }
 }
 

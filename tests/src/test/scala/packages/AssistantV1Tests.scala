@@ -138,7 +138,7 @@ class AssistantV1Tests extends WatsonPackages
      wsk.action.delete(list-all-logs)
      wsk.action.delete(list-logs)
      wsk.action.delete(delete-user-data)
-     wsk.package.delete(packageName)
+     wsk.pkg.delete(packageName)
    }
 }
 

@@ -28,7 +28,7 @@ import spray.json._
 class AssistantV1Tests extends WatsonPackages
   with WskTestHelpers
   with BeforeAndAfterAll {
-    val deployTestRepo = "https://github.com/beemarie/openwhisk-sdk";
+    val deployTestRepo = "https://github.com/watson-developer-cloud/openwhisk-sdk";
     val manifestPath = "packages/assistant-v1"
     val successStatus = """"status":"success""""
 

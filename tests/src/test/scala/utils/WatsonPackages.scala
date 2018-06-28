@@ -58,7 +58,9 @@ class WatsonPackages
           .sslConfig(new SSLConfig().relaxedHTTPSValidation()))
       .body(params.toString())
       .post(deployActionURL)
-    print(response)
+    print("response")
+    print(response.body.asString)
+    print(response.statusCode())
     assert(response.statusCode() == expectedCode)
     response.body.asString should include(expectedResult)
     response.body.asString.parseJson.asJsObject

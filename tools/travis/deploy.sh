@@ -11,11 +11,7 @@ UTILDIR="$ROOTDIR/../incubator-openwhisk-utilities"
 
 # run scancode
 cd $UTILDIR
-# scancode/scanCode.py $ROOTDIR
-
-# run jshint
-cd $ROOTDIR/packages
-# jshint .
+scancode/scanCode.py $ROOTDIR
 
 # Install OpenWhisk
 cd $WHISKDIR/ansible
@@ -57,6 +53,16 @@ cat whisk.properties
 WSK_CLI=$WHISKDIR/bin/wsk
 AUTH_KEY=$(cat $WHISKDIR/ansible/files/auth.whisk.system)
 EDGE_HOST=$(grep '^edge.host=' $WHISKPROPS_FILE | cut -d'=' -f2)
+
+
+
+PREINSTALL_DIR=${HOMEDIR}/preInstalled
+
+cd ${ROOTDIR}
+
+# Place these templates in correct location to be included in packageDeploy
+mkdir -p ${PREINSTALL_DIR}/watson-developer-cloud/openwhisk-sdk
+cp -a packages ${PREINSTALL_DIR}/watson-developer-cloud/openwhisk-sdk/
 
 # Install the deploy package
 cd $HOMEDIR/incubator-openwhisk-package-deploy/packages

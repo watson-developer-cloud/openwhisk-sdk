@@ -35,6 +35,7 @@ class AssistantV1Tests extends WatsonPackages
 
     //assistant-v1 action definitions
     val packageName = "assistant-v1"
+    val message = packageName + "/message"
     val createWorkspace = packageName + "/create-workspace"
     val deleteWorkspace = packageName + "/delete-workspace"
     val getWorkspace = packageName + "/get-workspace"
@@ -94,6 +95,9 @@ class AssistantV1Tests extends WatsonPackages
        successStatus,
        200
      );
+
+     val messageAction = wsk.action.get(message)
+     verifyAction(messageAction, message, JsString(nodejs8kind))
 
      val createWorkspaceAction = wsk.action.get(createWorkspace)
      verifyAction(createWorkspaceAction, createWorkspace, JsString(nodejs8kind))
@@ -225,6 +229,7 @@ class AssistantV1Tests extends WatsonPackages
      verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
      //clean up after test
 
+     wsk.action.delete(message)
      wsk.action.delete(createWorkspace)
      wsk.action.delete(deleteWorkspace)
      wsk.action.delete(getWorkspace)

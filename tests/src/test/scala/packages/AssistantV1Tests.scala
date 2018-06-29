@@ -66,7 +66,7 @@ class AssistantV1Tests extends WatsonPackages
     val update_value = packageName + "/update-value"
     val create_synonym = packageName + "/create-synonym"
     val delete_synonym = packageName + "/delete-synonym"
-    val get_synonym = packageName + "/get-value"
+    val get_synonym = packageName + "/get-synonym"
     val list_synonyms = packageName + "/list-synonyms"
     val update_synonym = packageName + "/update-synonym"
     val create_dialog_node = packageName + "/create-dialog-node"

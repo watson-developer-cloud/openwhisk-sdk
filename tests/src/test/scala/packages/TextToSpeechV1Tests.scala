@@ -115,7 +115,6 @@ class TextToSpeechV1Tests extends WatsonPackages
      verifyAction(updateVoiceModelAction, updateVoiceModel, JsString(nodejs8kind))
 
      //clean up after test
-     wsk.action.delete(packageName)
      wsk.action.delete(addWord)
      wsk.action.delete(addWords)
      wsk.action.delete(createVoiceModel)
@@ -131,5 +130,6 @@ class TextToSpeechV1Tests extends WatsonPackages
      wsk.action.delete(listWords)
      wsk.action.delete(synthesize)
      wsk.action.delete(updateVoiceModel)
+     wsk.pkg.delete(packageName)
    }
 }

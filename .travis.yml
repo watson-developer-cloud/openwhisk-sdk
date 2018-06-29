@@ -31,4 +31,4 @@ matrix:
         -in tests/credentials.json.enc -out tests/credentials.json -d; fi'
       - "./tools/travis/setup.sh"
       script:
-      - "./tools/travis/build.sh"
+      - "./tools/travis/deploy.sh"

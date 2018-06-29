@@ -39,7 +39,7 @@ class ToneAnalyzerV3Tests extends WatsonPackages
 
     behavior of "Tone Analyzer V3 Package"
 
-    // test to create the tone analyzer v3 package from github url. TODO: should use preinstalled folder
+    // test to create the tone analyzer v3 package from github url. Will use preinstalled folder.
     it should "create the tone analyzer v3 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -53,6 +53,7 @@ class ToneAnalyzerV3Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val toneChatAction = wsk.action.get(toneChat)
      verifyAction(toneChatAction, toneChat, JsString(nodejs8kind))
 

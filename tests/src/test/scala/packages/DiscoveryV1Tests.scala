@@ -79,7 +79,7 @@ class DiscoveryV1Tests extends WatsonPackages
 
     behavior of "Discovery V1 Package"
 
-    // test to create the discovery v1 package from github url. TODO: should use preinstalled folder
+    // test to create the discovery v1 package from github url. Will use preinstalled folder.
     it should "create the discovery v1 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -93,7 +93,7 @@ class DiscoveryV1Tests extends WatsonPackages
        200
      );
 
-
+     // ensure actions exist and are of expected kind
      val createEnvironmentAction = wsk.action.get(createEnvironment)
      verifyAction(createEnvironmentAction, createEnvironment, JsString(nodejs8kind))
 

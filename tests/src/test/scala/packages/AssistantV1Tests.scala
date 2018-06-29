@@ -81,7 +81,7 @@ class AssistantV1Tests extends WatsonPackages
 
     behavior of "Assistant V1 Package"
 
-    // test to create the assistant v1 package from github url. TODO: should use preinstalled folder
+    // test to create the assistant v1 package from github url. Will use preinstalled folder.
     it should "create the assistant v1 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -95,6 +95,7 @@ class AssistantV1Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val messageAction = wsk.action.get(message)
      verifyAction(messageAction, message, JsString(nodejs8kind))
 
@@ -226,8 +227,8 @@ class AssistantV1Tests extends WatsonPackages
 
      val deleteUserDataAction = wsk.action.get(deleteUserData)
      verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
-     //clean up after test
 
+     //clean up after test
      wsk.action.delete(message)
      wsk.action.delete(createWorkspace)
      wsk.action.delete(deleteWorkspace)
@@ -275,93 +276,3 @@ class AssistantV1Tests extends WatsonPackages
      wsk.pkg.delete(packageName)
    }
 }
-
-//     deployNodeJS8
-//     // create unique asset names
-//
-//     // ensure actions exist and are of expected kind
-//     val testActionWrite =
-//       wsk.action.get(actionWrite)
-//     verifyAction(testActionWrite, actionWrite, JsString(nodejs8kind))
-//
-//     val testActionRead = wsk.action.get(actionRead)
-//     verifyAction(testActionRead, actionRead, JsString(nodejs8kind))
-//
-//     val testActionDelete = wsk.action.get(actionDelete)
-//     verifyAction(testActionDelete, actionDelete, JsString(nodejs8kind))
-//
-//     val testActionGetSignedUrl = wsk.action.get(actionGetSignedUrl)
-//     verifyAction(testActionGetSignedUrl,
-//                  actionGetSignedUrl,
-//                  JsString(nodejs8kind))
-//
-//     val testActionBucketCorsGet = wsk.action.get(actionBucketCorsGet)
-//     verifyAction(testActionBucketCorsGet,
-//                  actionBucketCorsGet,
-//                  JsString(nodejs8kind))
-//
-//     val testActionBucketCorsPut = wsk.action.get(actionBucketCorsPut)
-//     verifyAction(testActionBucketCorsPut,
-//                  actionBucketCorsPut,
-//                  JsString(nodejs8kind))
-//
-//     val testActionBucketCorsDelete =
-//       wsk.action.get(actionBucketCorsDelete)
-//     verifyAction(testActionBucketCorsDelete,
-//                  actionBucketCorsDelete,
-//                  JsString(nodejs8kind))
-//     // clean up after test
-//     deleteNodeJS8
-//   }
-//
-//   // test to create the python Cloud Object Storage package from github url.  Will use preinstalled folder.
-//   it should "create the python Cloud Object Storage package from github url" in {
-//     deployPython
-//
-//     // ensure actions exist and are of expected kind
-//     val testActionWrite = wsk.action.get(actionWrite)
-//     verifyAction(testActionWrite, actionWrite, JsString(pythonkind))
-//
-//     val testActionRead = wsk.action.get(actionRead)
-//     verifyAction(testActionRead, actionRead, JsString(pythonkind))
-//
-//     val testActionDelete = wsk.action.get(actionDelete)
-//     verifyAction(testActionDelete, actionDelete, JsString(pythonkind))
-//
-//     val testActionGetSignedUrl = wsk.action.get(actionGetSignedUrl)
-//     verifyAction(testActionGetSignedUrl,
-//                  actionGetSignedUrl,
-//                  JsString(pythonkind))
-//
-//     val testActionBucketCorsGet = wsk.action.get(actionBucketCorsGet)
-//     verifyAction(testActionBucketCorsGet,
-//                  actionBucketCorsGet,
-//                  JsString(pythonkind))
-//
-//     val testActionBucketCorsPut = wsk.action.get(actionBucketCorsPut)
-//     verifyAction(testActionBucketCorsPut,
-//                  actionBucketCorsPut,
-//                  JsString(pythonkind))
-//
-//     val testActionBucketCorsDelete =
-//       wsk.action.get(actionBucketCorsDelete)
-//     verifyAction(testActionBucketCorsDelete,
-//                  actionBucketCorsDelete,
-//                  JsString(pythonkind))
-//
-//     // clean up after test
-//     deletePython
-//   }
-//
-//   private def verifyAction(action: RunResult,
-//                            name: String,
-//                            kindValue: JsString): Unit = {
-//     val stdout = action.stdout
-//     assert(stdout.startsWith(s"ok: got action $name\n"))
-//     wsk
-//       .parseJsonString(stdout)
-//       .fields("exec")
-//       .asJsObject
-//       .fields("kind") shouldBe kindValue
-//   }
-// }

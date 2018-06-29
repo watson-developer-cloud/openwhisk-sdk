@@ -52,7 +52,7 @@ class TextToSpeechV1Tests extends WatsonPackages
 
     behavior of "Text To Speech V1 Package"
 
-    // test to create the text to speech v1 package from github url. TODO: should use preinstalled folder
+    // test to create the text to speech v1 package from github url. Will use preinstalled folder.
     it should "create the text to speech v1 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -66,6 +66,7 @@ class TextToSpeechV1Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val packageNameAction = wsk.action.get(packageName)
      verifyAction(packageNameAction, packageName, JsString(nodejs8kind))
 

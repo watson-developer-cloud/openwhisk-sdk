@@ -46,7 +46,7 @@ class VisualRecognitionV3Tests extends WatsonPackages
 
     behavior of "Visual Recognition V3 Package"
 
-    // test to create the visual recognition v3 package from github url. TODO: should use preinstalled folder
+    // test to create the visual recognition v3 package from github url. Will use preinstalled folder.
     it should "create the visual recognition v3 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -60,6 +60,7 @@ class VisualRecognitionV3Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val classifyAction = wsk.action.get(classify)
      verifyAction(classifyAction, classify, JsString(nodejs8kind))
 

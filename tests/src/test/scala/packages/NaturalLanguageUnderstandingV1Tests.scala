@@ -40,7 +40,7 @@ class NaturalLanguageUnderstandingV1Tests extends WatsonPackages
 
     behavior of "Natural Language Understanding V1 Package"
 
-    // test to create the natural language understanding v1 package from github url. TODO: should use preinstalled folder
+    // test to create the natural language understanding v1 package from github url. Will use preinstalled folder.
     it should "create the natural language understanding v1 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -54,6 +54,7 @@ class NaturalLanguageUnderstandingV1Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val analyzeAction = wsk.action.get(analyze)
      verifyAction(analyzeAction, analyze, JsString(nodejs8kind))
 

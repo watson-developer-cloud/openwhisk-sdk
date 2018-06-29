@@ -39,7 +39,7 @@ class PersonalityInsightsV3Tests extends WatsonPackages
 
     behavior of "Personality Insights V3 Package"
 
-    // test to create the personality insights v3 package from github url. TODO: should use preinstalled folder
+    // test to create the personality insights v3 package from github url. Will use preinstalled folder.
     it should "create the personality insights v3 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -53,6 +53,7 @@ class PersonalityInsightsV3Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val profileAsCsvAction = wsk.action.get(profileAsCsv)
      verifyAction(profileAsCsvAction, profileAsCsv, JsString(nodejs8kind))
 

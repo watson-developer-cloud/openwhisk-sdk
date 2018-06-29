@@ -44,7 +44,7 @@ class LanguageTranslatorV3Tests extends WatsonPackages
 
     behavior of "Language Translator V3 Package"
 
-    // test to create the language translator v3 package from github url. TODO: should use preinstalled folder
+    // test to create the language translator v3 package from github url. Will use preinstalled folder.
     it should "create the language translator v3 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -58,6 +58,7 @@ class LanguageTranslatorV3Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val createModelAction = wsk.action.get(createModel)
      verifyAction(createModelAction, createModel, JsString(nodejs8kind))
 

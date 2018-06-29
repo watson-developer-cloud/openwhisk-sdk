@@ -43,7 +43,7 @@ class NaturalLanguageClassifierV1Tests extends WatsonPackages
 
     behavior of "Natural Language Classifier V1 Package"
 
-    // test to create the natural language classifier v1 package from github url. TODO: should use preinstalled folder
+    // test to create the natural language classifier v1 package from github url. Will use preinstalled folder.
     it should "create the natural language classifier v1 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
@@ -57,6 +57,7 @@ class NaturalLanguageClassifierV1Tests extends WatsonPackages
        200
      );
 
+     // ensure actions exist and are of expected kind
      val classifyCollectionAction = wsk.action.get(classifyCollection)
      verifyAction(classifyCollectionAction, classifyCollection, JsString(nodejs8kind))
 

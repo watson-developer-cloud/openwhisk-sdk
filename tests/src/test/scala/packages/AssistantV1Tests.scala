@@ -31,52 +31,53 @@ class AssistantV1Tests extends WatsonPackages
     val deployTestRepo = "https://github.com/watson-developer-cloud/openwhisk-sdk";
     val manifestPath = "packages/assistant-v1"
     val successStatus = """"status":"success""""
+    val nodejs8kind = "nodejs:8"
 
     //assistant-v1 action definitions
     val packageName = "assistant-v1"
-    val create_workspace = packageName + "/create-workspace"
-    val delete_workspace = packageName + "/delete-workspace"
-    val get_workspace = packageName + "/get-workspace"
-    val list_workspaces = packageName + "/list-workspaces"
-    val update_workspace = packageName + "/update-workspace"
-    val create_intent = packageName + "/create-intent"
-    val delete_intent = packageName + "/delete-intent"
-    val get_intent = packageName + "/get-intent"
-    val list_intents = packageName + "/list-intents"
-    val update_intent = packageName + "/update-intent"
-    val create_example = packageName + "/create-example"
-    val delete_example = packageName + "/delete-example"
-    val get_example = packageName + "/get-example"
-    val list_examples = packageName + "/list-examples"
-    val update_example = packageName + "/update-example"
-    val create_counterexample = packageName + "/create-counterexample"
-    val delete_counterexample = packageName + "/delete-counterexample"
-    val get_counterexample = packageName + "/get-counterexample"
-    val list_counterexamples = packageName + "/list-counterexamples"
-    val update_counterexample = packageName + "/update-counterexample"
-    val create_entity = packageName + "/create-entity"
-    val delete_entity = packageName + "/delete-entity"
-    val get_entity = packageName + "/get-entity"
-    val list_entities = packageName + "/list-entities"
-    val update_entity = packageName + "/update-entity"
-    val create_value = packageName + "/create-value"
-    val delete_value = packageName + "/delete-value"
-    val get_value = packageName + "/get-value"
-    val list_values = packageName + "/list-values"
-    val update_value = packageName + "/update-value"
-    val create_synonym = packageName + "/create-synonym"
-    val delete_synonym = packageName + "/delete-synonym"
-    val get_synonym = packageName + "/get-synonym"
-    val list_synonyms = packageName + "/list-synonyms"
-    val update_synonym = packageName + "/update-synonym"
-    val create_dialog_node = packageName + "/create-dialog-node"
-    val delete_dialog_node = packageName + "/delete-dialog-node"
-    val get_dialog_node = packageName + "/get-dialog-node"
-    val list_dialog_nodes = packageName + "/list-dialog-nodes"
-    val update_dialog_node = packageName + "/update-dialog-node"
-    val list_all_logs = packageName + "/list-all-logs"
-    val list_logs = packageName + "/list-logs"
-    val delete_user_data = packageName + "/delete-user-data"
+    val createWorkspace = packageName + "/create-workspace"
+    val deleteWorkspace = packageName + "/delete-workspace"
+    val getWorkspace = packageName + "/get-workspace"
+    val listWorkspaces = packageName + "/list-workspaces"
+    val updateWorkspace = packageName + "/update-workspace"
+    val createIntent = packageName + "/create-intent"
+    val deleteIntent = packageName + "/delete-intent"
+    val getIntent = packageName + "/get-intent"
+    val listIntents = packageName + "/list-intents"
+    val updateIntent = packageName + "/update-intent"
+    val createExample = packageName + "/create-example"
+    val deleteExample = packageName + "/delete-example"
+    val getExample = packageName + "/get-example"
+    val listExamples = packageName + "/list-examples"
+    val updateExample = packageName + "/update-example"
+    val createCounterexample = packageName + "/create-counterexample"
+    val deleteCounterexample = packageName + "/delete-counterexample"
+    val getCounterexample = packageName + "/get-counterexample"
+    val listCounterexamples = packageName + "/list-counterexamples"
+    val updateCounterexample = packageName + "/update-counterexample"
+    val createEntity = packageName + "/create-entity"
+    val deleteEntity = packageName + "/delete-entity"
+    val getEntity = packageName + "/get-entity"
+    val listEntities = packageName + "/list-entities"
+    val updateEntity = packageName + "/update-entity"
+    val createValue = packageName + "/create-value"
+    val deleteValue = packageName + "/delete-value"
+    val getValue = packageName + "/get-value"
+    val listValues = packageName + "/list-values"
+    val updateValue = packageName + "/update-value"
+    val createSynonym = packageName + "/create-synonym"
+    val deleteSynonym = packageName + "/delete-synonym"
+    val getSynonym = packageName + "/get-synonym"
+    val listSynonyms = packageName + "/list-synonyms"
+    val updateSynonym = packageName + "/update-synonym"
+    val createDialogNode = packageName + "/create-dialog-node"
+    val deleteDialogNode = packageName + "/delete-dialog-node"
+    val getDialogNode = packageName + "/get-dialog-node"
+    val listDialogNodes = packageName + "/list-dialog-nodes"
+    val updateDialogNode = packageName + "/update-dialog-node"
+    val listAllLogs = packageName + "/list-all-logs"
+    val listLogs = packageName + "/list-logs"
+    val deleteUserData = packageName + "/delete-user-data"
 
     behavior of "Assistant V1 Package"
 
@@ -94,50 +95,179 @@ class AssistantV1Tests extends WatsonPackages
        200
      );
 
+     val createWorkspaceAction = wsk.action.get(createWorkspace)
+     verifyAction(createWorkspaceAction, createWorkspace, JsString(nodejs8kind))
+
+     val deleteWorkspaceAction = wsk.action.get(deleteWorkspace)
+     verifyAction(deleteWorkspaceAction, deleteWorkspace, JsString(nodejs8kind))
+
+     val getWorkspaceAction = wsk.action.get(getWorkspace)
+     verifyAction(getWorkspaceAction, getWorkspace, JsString(nodejs8kind))
+
+     val listWorkspacesAction = wsk.action.get(listWorkspaces)
+     verifyAction(listWorkspacesAction, listWorkspaces, JsString(nodejs8kind))
+
+     val updateWorkspaceAction = wsk.action.get(updateWorkspace)
+     verifyAction(updateWorkspaceAction, updateWorkspace, JsString(nodejs8kind))
+
+     val createIntentAction = wsk.action.get(createIntent)
+     verifyAction(createIntentAction, createIntent, JsString(nodejs8kind))
+
+     val deleteIntentAction = wsk.action.get(deleteIntent)
+     verifyAction(deleteIntentAction, deleteIntent, JsString(nodejs8kind))
+
+     val getIntentAction = wsk.action.get(getIntent)
+     verifyAction(getIntentAction, getIntent, JsString(nodejs8kind))
+
+     val listIntentsAction = wsk.action.get(listIntents)
+     verifyAction(listIntentsAction, listIntents, JsString(nodejs8kind))
+
+     val updateIntentAction = wsk.action.get(updateIntent)
+     verifyAction(updateIntentAction, updateIntent, JsString(nodejs8kind))
+
+     val createExampleAction = wsk.action.get(createExample)
+     verifyAction(createExampleAction, createExample, JsString(nodejs8kind))
+
+     val deleteExampleAction = wsk.action.get(deleteExample)
+     verifyAction(deleteExampleAction, deleteExample, JsString(nodejs8kind))
+
+     val getExampleAction = wsk.action.get(getExample)
+     verifyAction(getExampleAction, getExample, JsString(nodejs8kind))
+
+     val listExamplesAction = wsk.action.get(listExamples)
+     verifyAction(listExamplesAction, listExamples, JsString(nodejs8kind))
+
+     val updateExampleAction = wsk.action.get(updateExample)
+     verifyAction(updateExampleAction, updateExample, JsString(nodejs8kind))
+
+     val createCounterexampleAction = wsk.action.get(createCounterexample)
+     verifyAction(createCounterexampleAction, createCounterexample, JsString(nodejs8kind))
+
+     val deleteCounterexampleAction = wsk.action.get(deleteCounterexample)
+     verifyAction(deleteCounterexampleAction, deleteCounterexample, JsString(nodejs8kind))
+
+     val getCounterexampleAction = wsk.action.get(getCounterexample)
+     verifyAction(getCounterexampleAction, getCounterexample, JsString(nodejs8kind))
+
+     val listCounterexamplesAction = wsk.action.get(listCounterexamples)
+     verifyAction(listCounterexamplesAction, listCounterexamples, JsString(nodejs8kind))
+
+     val updateCounterexampleAction = wsk.action.get(updateCounterexample)
+     verifyAction(updateCounterexampleAction, updateCounterexample, JsString(nodejs8kind))
+
+     val createEntityAction = wsk.action.get(createEntity)
+     verifyAction(createEntityAction, createEntity, JsString(nodejs8kind))
+
+     val deleteEntityAction = wsk.action.get(deleteEntity)
+     verifyAction(deleteEntityAction, deleteEntity, JsString(nodejs8kind))
+
+     val getEntityAction = wsk.action.get(getEntity)
+     verifyAction(getEntityAction, getEntity, JsString(nodejs8kind))
+
+     val listEntitiesAction = wsk.action.get(listEntities)
+     verifyAction(listEntitiesAction, listEntities, JsString(nodejs8kind))
+
+     val updateEntityAction = wsk.action.get(updateEntity)
+     verifyAction(updateEntityAction, updateEntity, JsString(nodejs8kind))
+
+     val createValueAction = wsk.action.get(createValue)
+     verifyAction(createValueAction, createValue, JsString(nodejs8kind))
+
+     val deleteValueAction = wsk.action.get(deleteValue)
+     verifyAction(deleteValueAction, deleteValue, JsString(nodejs8kind))
+
+     val getValueAction = wsk.action.get(getValue)
+     verifyAction(getValueAction, getValue, JsString(nodejs8kind))
+
+     val listValuesAction = wsk.action.get(listValues)
+     verifyAction(listValuesAction, listValues, JsString(nodejs8kind))
+
+     val updateValueAction = wsk.action.get(updateValue)
+     verifyAction(updateValueAction, updateValue, JsString(nodejs8kind))
+
+     val createSynonymAction = wsk.action.get(createSynonym)
+     verifyAction(createSynonymAction, createSynonym, JsString(nodejs8kind))
+
+     val deleteSynonymAction = wsk.action.get(deleteSynonym)
+     verifyAction(deleteSynonymAction, deleteSynonym, JsString(nodejs8kind))
+
+     val getSynonymAction = wsk.action.get(getSynonym)
+     verifyAction(getSynonymAction, getSynonym, JsString(nodejs8kind))
+
+     val listSynonymsAction = wsk.action.get(listSynonyms)
+     verifyAction(listSynonymsAction, listSynonyms, JsString(nodejs8kind))
+
+     val updateSynonymAction = wsk.action.get(updateSynonym)
+     verifyAction(updateSynonymAction, updateSynonym, JsString(nodejs8kind))
+
+     val createDialogNodeAction = wsk.action.get(createDialogNode)
+     verifyAction(createDialogNodeAction, createDialogNode, JsString(nodejs8kind))
+
+     val deleteDialogNodeAction = wsk.action.get(deleteDialogNode)
+     verifyAction(deleteDialogNodeAction, deleteDialogNode, JsString(nodejs8kind))
+
+     val getDialogNodeAction = wsk.action.get(getDialogNode)
+     verifyAction(getDialogNodeAction, getDialogNode, JsString(nodejs8kind))
+
+     val listDialogNodesAction = wsk.action.get(listDialogNodes)
+     verifyAction(listDialogNodesAction, listDialogNodes, JsString(nodejs8kind))
+
+     val updateDialogNodeAction = wsk.action.get(updateDialogNode)
+     verifyAction(updateDialogNodeAction, updateDialogNode, JsString(nodejs8kind))
+
+     val listAllLogsAction = wsk.action.get(listAllLogs)
+     verifyAction(listAllLogsAction, listAllLogs, JsString(nodejs8kind))
+
+     val listLogsAction = wsk.action.get(listLogs)
+     verifyAction(listLogsAction, listLogs, JsString(nodejs8kind))
+
+     val deleteUserDataAction = wsk.action.get(deleteUserData)
+     verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
      //clean up after test
-     wsk.action.delete(create_workspace)
-     wsk.action.delete(delete_workspace)
-     wsk.action.delete(get_workspace)
-     wsk.action.delete(list_workspaces)
-     wsk.action.delete(update_workspace)
-     wsk.action.delete(create_intent)
-     wsk.action.delete(delete_intent)
-     wsk.action.delete(get_intent)
-     wsk.action.delete(list_intents)
-     wsk.action.delete(update_intent)
-     wsk.action.delete(create_example)
-     wsk.action.delete(delete_example)
-     wsk.action.delete(get_example)
-     wsk.action.delete(list_examples)
-     wsk.action.delete(update_example)
-     wsk.action.delete(create_counterexample)
-     wsk.action.delete(delete_counterexample)
-     wsk.action.delete(get_counterexample)
-     wsk.action.delete(list_counterexamples)
-     wsk.action.delete(update_counterexample)
-     wsk.action.delete(create_entity)
-     wsk.action.delete(delete_entity)
-     wsk.action.delete(get_entity)
-     wsk.action.delete(list_entities)
-     wsk.action.delete(update_entity)
-     wsk.action.delete(create_value)
-     wsk.action.delete(delete_value)
-     wsk.action.delete(get_value)
-     wsk.action.delete(list_values)
-     wsk.action.delete(update_value)
-     wsk.action.delete(create_synonym)
-     wsk.action.delete(delete_synonym)
-     wsk.action.delete(get_synonym)
-     wsk.action.delete(list_synonyms)
-     wsk.action.delete(update_synonym)
-     wsk.action.delete(create_dialog_node)
-     wsk.action.delete(delete_dialog_node)
-     wsk.action.delete(get_dialog_node)
-     wsk.action.delete(list_dialog_nodes)
-     wsk.action.delete(update_dialog_node)
-     wsk.action.delete(list_all_logs)
-     wsk.action.delete(list_logs)
-     wsk.action.delete(delete_user_data)
+
+     wsk.action.delete(createWorkspace)
+     wsk.action.delete(deleteWorkspace)
+     wsk.action.delete(getWorkspace)
+     wsk.action.delete(listWorkspaces)
+     wsk.action.delete(updateWorkspace)
+     wsk.action.delete(createIntent)
+     wsk.action.delete(deleteIntent)
+     wsk.action.delete(getIntent)
+     wsk.action.delete(listIntents)
+     wsk.action.delete(updateIntent)
+     wsk.action.delete(createExample)
+     wsk.action.delete(deleteExample)
+     wsk.action.delete(getExample)
+     wsk.action.delete(listExamples)
+     wsk.action.delete(updateExample)
+     wsk.action.delete(createCounterexample)
+     wsk.action.delete(deleteCounterexample)
+     wsk.action.delete(getCounterexample)
+     wsk.action.delete(listCounterexamples)
+     wsk.action.delete(updateCounterexample)
+     wsk.action.delete(createEntity)
+     wsk.action.delete(deleteEntity)
+     wsk.action.delete(getEntity)
+     wsk.action.delete(listEntities)
+     wsk.action.delete(updateEntity)
+     wsk.action.delete(createValue)
+     wsk.action.delete(deleteValue)
+     wsk.action.delete(getValue)
+     wsk.action.delete(listValues)
+     wsk.action.delete(updateValue)
+     wsk.action.delete(createSynonym)
+     wsk.action.delete(deleteSynonym)
+     wsk.action.delete(getSynonym)
+     wsk.action.delete(listSynonyms)
+     wsk.action.delete(updateSynonym)
+     wsk.action.delete(createDialogNode)
+     wsk.action.delete(deleteDialogNode)
+     wsk.action.delete(getDialogNode)
+     wsk.action.delete(listDialogNodes)
+     wsk.action.delete(updateDialogNode)
+     wsk.action.delete(listAllLogs)
+     wsk.action.delete(listLogs)
+     wsk.action.delete(deleteUserData)
      wsk.pkg.delete(packageName)
    }
 }

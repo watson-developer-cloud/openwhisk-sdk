@@ -59,4 +59,14 @@ class WatsonPackages
     response.body.asString.parseJson.asJsObject.getFields("activationId") should have length 1
     print(response)
   }
+
+  def verifyAction(action: RunResult, name: String, kindValue: JsString): Unit = {
+    val stdout = action.stdout
+    assert(stdout.startsWith(s"ok: got action $name\n"))
+    wsk
+      .parseJsonString(stdout)
+      .fields("exec")
+      .asJsObject
+      .fields("kind") shouldBe kindValue
+  }
 }

@@ -34,7 +34,7 @@ class TextToSpeechV1Tests extends WatsonPackages
 
     //text-to-speech-v1 action definitions
     val packageName = "text-to-speech-v1"
-    val addWord = "add-word"
+    val addWord = packageName + "/add-word"
     val addWords = packageName + "/add-words"
     val createVoiceModel = packageName + "/create-voice-model"
     val deleteUserData = packageName + "/delete-user-data"

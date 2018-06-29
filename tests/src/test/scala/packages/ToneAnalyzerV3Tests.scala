@@ -24,23 +24,23 @@ import common.{WskTestHelpers}
 import spray.json._
 
 @RunWith(classOf[JUnitRunner])
-class PersonalityInsightsV3Tests extends WatsonPackages
+class ToneAnalyzerV3Tests extends WatsonPackages
   with WskTestHelpers
   with BeforeAndAfterAll {
     val deployTestRepo = "https://github.com/watson-developer-cloud/openwhisk-sdk";
-    val manifestPath = "packages/personality-insights-v3"
+    val manifestPath = "packages/tone-analyzer-v3"
     val successStatus = """"status":"success""""
     val nodejs8kind = "nodejs:8"
 
-    //personality-insights-v3 action definitions
-    val packageName = "personality-insights-v3"
-    val profileAsCsv = packageName + "/profile-as-csv"
-    val profile = packageName + "/profile"
+    //tone-analyzer-v3 action definitions
+    val packageName = "tone-analyzer-v3"
+    val toneChat = packageName + "/tone-chat"
+    val tone = packageName + "/tone"
 
-    behavior of "Personality Insights V3 Package"
+    behavior of "Tone Analyzer V3 Package"
 
-    // test to create the personality insights v3 package from github url. TODO: should use preinstalled folder
-    it should "create the personality insights v3 package from github url" in {
+    // test to create the tone analyzer v3 package from github url. TODO: should use preinstalled folder
+    it should "create the tone analyzer v3 package from github url" in {
 
       makeWskdeployCallWithExpectedResult(
        JsObject(
@@ -53,15 +53,15 @@ class PersonalityInsightsV3Tests extends WatsonPackages
        200
      );
 
-     val profileAsCsvAction = wsk.action.get(profileAsCsv)
-     verifyAction(profileAsCsvAction, profileAsCsv, JsString(nodejs8kind))
+     val toneChatAction = wsk.action.get(toneChat)
+     verifyAction(toneChatAction, toneChat, JsString(nodejs8kind))
 
-     val profileAction = wsk.action.get(profile)
-     verifyAction(profileAction, profile, JsString(nodejs8kind))
+     val toneAction = wsk.action.get(tone)
+     verifyAction(toneAction, tone, JsString(nodejs8kind))
 
      //clean up after test
-     wsk.action.delete(profileAsCsv)
-     wsk.action.delete(profile)
+     wsk.action.delete(toneChat)
+     wsk.action.delete(tone)
      wsk.pkg.delete(packageName)
    }
 }

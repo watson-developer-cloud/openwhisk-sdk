@@ -27,8 +27,6 @@ matrix:
         email: false
       install: true
       before_install:
-      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then openssl aes-256-cbc -K $encrypted_2f93756e1256_key -iv $encrypted_2f93756e1256_iv
-        -in tests/credentials.json.enc -out tests/credentials.json -d; fi'
       - "./tools/travis/setup.sh"
       script:
       - "./tools/travis/deploy.sh"

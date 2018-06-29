@@ -200,7 +200,6 @@ class SpeechToTextV1Tests extends WatsonPackages
      verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
 
      //clean up after test
-     wsk.action.delete(packageName)
      wsk.action.delete(getModel)
      wsk.action.delete(listModels)
      wsk.action.delete(recognize)
@@ -238,5 +237,7 @@ class SpeechToTextV1Tests extends WatsonPackages
      wsk.action.delete(getAudio)
      wsk.action.delete(listAudio)
      wsk.action.delete(deleteUserData)
+     wsk.pkg.delete(packageName)
+
    }
 }

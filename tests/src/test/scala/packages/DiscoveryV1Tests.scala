@@ -32,7 +32,6 @@ class DiscoveryV1Tests extends WatsonPackages
     val successStatus = """"status":"success""""
     val nodejs8kind = "nodejs:8"
 
-
     //discovery-v1 action definitions
     val packageName = "discovery-v1"
     val createEnvironment = packageName + "/create-environment"
@@ -75,7 +74,7 @@ class DiscoveryV1Tests extends WatsonPackages
     val getTrainingExample = packageName + "/get-training-example"
     val listTrainingData = packageName + "/list-training-data"
     val listTrainingExamples = packageName + "/list-training-examples"
-    val updateTrainingExamples = packageName + "/update-training-examples"
+    val updateTrainingExample = packageName + "/update-training-example"
     val deleteUserData = packageName + "/delete-user-data"
 
     behavior of "Discovery V1 Package"
@@ -215,8 +214,8 @@ class DiscoveryV1Tests extends WatsonPackages
      val listTrainingExamplesAction = wsk.action.get(listTrainingExamples)
      verifyAction(listTrainingExamplesAction, listTrainingExamples, JsString(nodejs8kind))
 
-     val updateTrainingExamplesAction = wsk.action.get(updateTrainingExamples)
-     verifyAction(updateTrainingExamplesAction, updateTrainingExamples, JsString(nodejs8kind))
+     val updateTrainingExampleAction = wsk.action.get(updateTrainingExample)
+     verifyAction(updateTrainingExampleAction, updateTrainingExample, JsString(nodejs8kind))
 
      val deleteUserDataAction = wsk.action.get(deleteUserData)
      verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
@@ -230,6 +229,7 @@ class DiscoveryV1Tests extends WatsonPackages
      wsk.action.delete(createConfiguration)
      wsk.action.delete(deleteConfiguration)
      wsk.action.delete(getConfiguration)
+     wsk.action.delete(listConfigurations)
      wsk.action.delete(updateConfiguration)
      wsk.action.delete(createCollection)
      wsk.action.delete(deleteCollection)
@@ -260,7 +260,8 @@ class DiscoveryV1Tests extends WatsonPackages
      wsk.action.delete(deleteTrainingExample)
      wsk.action.delete(getTrainingExample)
      wsk.action.delete(listTrainingData)
-     wsk.action.delete(updateTrainingExamples)
+     wsk.action.delete(listTrainingExamples)
+     wsk.action.delete(updateTrainingExample)
      wsk.action.delete(deleteUserData)
      wsk.pkg.delete(packageName)
    }

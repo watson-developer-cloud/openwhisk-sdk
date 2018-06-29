@@ -39,23 +39,16 @@ class WatsonPackages
   val allowedActionDuration = 120 seconds
 
   val deployAction = "/whisk.system/deployWeb/wskdeploy"
-  val deployActionURL =
-    s"https://openwhisk.ng.bluemix.net/api/v1/web${deployAction}.http"
+  val deployActionURL = s"https://${wskprops.apihost}/api/v1/web${deployAction}.http"
 
   behavior of "Watson Packages"
   print("HELLO")
 
-  def makeWskdeployCallWithExpectedResult(params: JsObject,
-                                             expectedResult: String,
-                                             expectedCode: Int) = {
+  def makeWskdeployCallWithExpectedResult(params: JsObject, expectedResult: String, expectedCode: Int) = {
     print(params)
-    val response = RestAssured
-      .given()
+    val response = RestAssured.given()
       .contentType("application/json\r\n")
-      .config(
-        RestAssured
-          .config()
-          .sslConfig(new SSLConfig().relaxedHTTPSValidation()))
+      .config(RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation()))
       .body(params.toString())
       .post(deployActionURL)
     print("response")
@@ -63,8 +56,7 @@ class WatsonPackages
     print(response.statusCode())
     assert(response.statusCode() == expectedCode)
     response.body.asString should include(expectedResult)
-    response.body.asString.parseJson.asJsObject
-      .getFields("activationId") should have length 1
+    response.body.asString.parseJson.asJsObject.getFields("activationId") should have length 1
     print(response)
   }
 }

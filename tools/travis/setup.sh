@@ -2,6 +2,7 @@
 
 SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 HOMEDIR="$SCRIPTDIR/../../../"
+ROOTDIR="$SCRIPTDIR/../.."
 UTILDIR="$ROOTDIR/../incubator-openwhisk-utilities"
 
 # jshint support
@@ -11,6 +12,7 @@ sudo npm install -g jshint
 # clone utilties repo. in order to run scanCode.py
 cd $HOMEDIR
 git clone https://github.com/apache/incubator-openwhisk-utilities.git
+
 cd $UTILDIR
 scancode/scanCode.py $ROOT_DIR
 

@@ -67,9 +67,6 @@ class TextToSpeechV1Tests extends WatsonPackages
      );
 
      // ensure actions exist and are of expected kind
-     val packageNameAction = wsk.action.get(packageName)
-     verifyAction(packageNameAction, packageName, JsString(nodejs8kind))
-
      val addWordAction = wsk.action.get(addWord)
      verifyAction(addWordAction, addWord, JsString(nodejs8kind))
 

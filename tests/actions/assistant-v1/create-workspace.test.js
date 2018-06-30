@@ -88,22 +88,6 @@ describe('create-workspace', () => {
         assert.ok(true);
       })
       .catch(() => {
-        // cleanup
-        if (process.env.TEST_OPENWHISK && auth) {
-          return ow.actions
-            .invoke({
-              name: 'assistant-v1/delete-intent',
-              blocking: true,
-              result: true,
-              params
-            })
-            .then(() => {
-              assert(true);
-            })
-            .catch((error) => {
-              assert(error);
-            });
-        }
         assert.fail('Failure on valid payload');
       });
   });

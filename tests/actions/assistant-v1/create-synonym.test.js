@@ -124,8 +124,7 @@ describe('create-synonym', () => {
         }
         assert.ok(true);
       })
-      .catch((err) => {
-        // cleanup
+      .catch(() => {
         assert.fail('Failure on valid payload');
       });
   });

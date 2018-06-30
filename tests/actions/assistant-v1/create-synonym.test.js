@@ -124,7 +124,37 @@ describe('create-synonym', () => {
         }
         assert.ok(true);
       })
-      .catch(() => {
+      .catch((err) => {
+        // cleanup
+        console.log("ERR SYN", err);
+        assert.fail('Failure on valid payload');
+      });
+  });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { "__bx_creds": {"conversation": payload } };
+    return createSynonym
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'assistant-v1/delete-synonym',
+              blocking: true,
+              result: true,
+              params: payload
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch(() => {
+              assert(false);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch((err) => {
+        console.log('bx creds', err);
         assert.fail('Failure on valid payload');
       });
   });

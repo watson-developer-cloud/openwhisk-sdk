@@ -115,4 +115,31 @@ describe('create-value', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { "__bx_creds": {"conversation": payload } };
+    return createValue
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'assistant-v1/delete-value',
+              blocking: true,
+              result: true,
+              params: payload
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch(() => {
+              assert(false);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

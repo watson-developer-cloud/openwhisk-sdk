@@ -84,6 +84,35 @@ describe('create-counterexample', () => {
   });
   it('should generate a valid payload', () => {
     const params = payload;
+    console.log("PARAMS", params)
+    return createCounterExample
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'assistant-v1/delete-counterexample',
+              blocking: true,
+              result: true,
+              params
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch((error) => {
+              assert(error);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch((err) => {
+        assert.fail(err);
+      });
+  });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { "__bx_creds": {"conversation": payload } };
+    console.log("BXPARAMS", params)
     return createCounterExample
       .test(params)
       .then(() => {

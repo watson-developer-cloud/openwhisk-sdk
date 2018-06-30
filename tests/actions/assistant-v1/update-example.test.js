@@ -101,4 +101,16 @@ describe('update-example', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    payload.new_text = payload.text;
+    const params = { "__bx_creds": {"conversation": payload } };
+    return updateExample
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

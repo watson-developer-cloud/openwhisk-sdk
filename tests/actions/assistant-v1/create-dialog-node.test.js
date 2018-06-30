@@ -108,4 +108,31 @@ describe('create-dialog-node', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { "__bx_creds": {"conversation": payload } };
+    return createDialogNode
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'assistant-v1/delete-dialog-node',
+              blocking: true,
+              result: true,
+              params
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch((error) => {
+              assert(error);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch((err) => {
+        assert.fail(err);
+      });
+  });
 });

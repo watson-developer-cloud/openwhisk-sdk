@@ -91,14 +91,12 @@ describe('analyze', () => {
   it('should succeed with __bx_creds as credential source', () => {
     if (!(process.env.TEST_OPENWHISK && auth)) {
       const params = { __bx_creds: { 'natural-language-understanding': payload } };
-      console.log("PARAMS");
       return analyze
         .test(params)
         .then(() => {
           assert.ok(true);
         })
-        .catch((err) => {
-          console.log("ERR", err)
+        .catch(() => {
           assert.fail('Failure on valid payload');
         });
     }

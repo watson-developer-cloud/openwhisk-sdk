@@ -95,7 +95,6 @@ describe('add-words', () => {
   it('should succeed with __bx_creds as credential source', () => {
     if (!(process.env.TEST_OPENWHISK && auth)) {
       const params = { __bx_creds: { speech_to_text: payload } };
-      console.log("PARAMS", params);
       params.word = params.__bx_creds.speech_to_text.words[0].word;
       return addWords
         .test(params)

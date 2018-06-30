@@ -82,8 +82,7 @@ describe('list-models', () => {
         .then(() => {
           assert.ok(true);
         })
-        .catch((err) => {
-          console.log("ERR", err);
+        .catch(() => {
           assert.fail('Failure on valid payload');
         });
     }

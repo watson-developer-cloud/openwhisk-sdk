@@ -95,8 +95,7 @@ describe('create-training-example', () => {
         .then(() => {
           assert.ok(true);
         })
-        .catch((err) => {
-          console.log("ERROR:", err)
+        .catch(() => {
           assert.fail('Failure on valid payload');
         });
     }

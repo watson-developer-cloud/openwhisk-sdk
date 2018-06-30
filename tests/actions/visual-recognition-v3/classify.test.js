@@ -111,4 +111,15 @@ describe('classify', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { watson_vision_combined: payload } };
+    return classify
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch((err) => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

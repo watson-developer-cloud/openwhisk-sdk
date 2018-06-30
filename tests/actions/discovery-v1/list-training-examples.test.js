@@ -97,4 +97,17 @@ describe('list-training-examples', () => {
         });
     }
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = { __bx_creds: { discovery: payload } };
+      return listTrainingExamples
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
+  });
 });

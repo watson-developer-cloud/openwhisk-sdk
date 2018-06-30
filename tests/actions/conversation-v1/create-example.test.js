@@ -115,4 +115,31 @@ describe('create-example', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { conversation: payload } };
+    return createExample
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'conversation-v1/delete-example',
+              blocking: true,
+              result: true,
+              params: payload
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch(() => {
+              assert(false);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

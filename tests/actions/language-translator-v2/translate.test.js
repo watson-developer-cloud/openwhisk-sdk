@@ -85,4 +85,15 @@ describe('translate', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { language_translator: payload } };
+    return translate
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

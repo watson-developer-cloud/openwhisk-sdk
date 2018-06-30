@@ -69,4 +69,13 @@ describe('query-relations', () => {
       })
       .catch(err => negativeHandler(err));
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { discovery: payload } };
+    return queryRelations
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing collection_id');
+      })
+      .catch(err => negativeHandler(err));
+  });
 });

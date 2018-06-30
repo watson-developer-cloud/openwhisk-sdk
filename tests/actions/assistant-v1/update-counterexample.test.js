@@ -98,15 +98,17 @@ describe('update-counterexample', () => {
     }
   });
   it('should succeed with __bx_creds as credential source', () => {
-    payload.new_text = payload.text;
-    const params = { __bx_creds: { conversation: payload } };
-    return updateCounterExample
-      .test(params)
-      .then(() => {
-        assert.ok(true);
-      })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
-      });
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      payload.new_text = payload.text;
+      const params = { __bx_creds: { conversation: payload } };
+      return updateCounterExample
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
   });
 });

@@ -68,4 +68,17 @@ describe('list-words', () => {
         });
     }
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = { __bx_creds: { text_to_speech: payload } };
+      return listWords
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
+  });
 });

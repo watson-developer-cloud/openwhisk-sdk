@@ -74,4 +74,18 @@ describe('list-models', () => {
         });
     }
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = { __bx_creds: { 'natural-language-understanding': payload } };
+      return listModels
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch((err) => {
+          console.log("ERR", err);
+          assert.fail('Failure on valid payload');
+        });
+    }
+  });
 });

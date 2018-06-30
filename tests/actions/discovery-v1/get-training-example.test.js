@@ -95,4 +95,18 @@ describe('get-training-example', () => {
       })
       .catch(err => negativeHandler(err));
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (process.env.TEST_OPENWHISK && auth) {
+      const params = { __bx_creds: { discovery: payload } };
+      return getTrainingExample
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch((err) => {
+          console.log("GEt tRAINING ErRoR", err)
+          assert.fail('Failure on valid payload');
+        });
+      }
+    });
 });

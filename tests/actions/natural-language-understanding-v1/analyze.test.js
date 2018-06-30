@@ -10,7 +10,7 @@ let analyze = require('../../../packages/natural-language-understanding-v1/actio
 let ow;
 let credentials;
 let payload = {
-  text: `IBM is an American multinational technology company headquartered in Armonk, 
+  text: `IBM is an American multinational technology company headquartered in Armonk,
     New York, United States, with operations in over 170 countries.`,
   features: {
     entities: {
@@ -84,6 +84,21 @@ describe('analyze', () => {
           assert.ok(true);
         })
         .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
+  });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = { __bx_creds: { 'natural-language-understanding': payload } };
+      console.log("PARAMS");
+      return analyze
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch((err) => {
+          console.log("ERR", err)
           assert.fail('Failure on valid payload');
         });
     }

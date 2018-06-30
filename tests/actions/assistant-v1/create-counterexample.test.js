@@ -84,7 +84,6 @@ describe('create-counterexample', () => {
   });
   it('should generate a valid payload', () => {
     const params = payload;
-    console.log("PARAMS", params)
     return createCounterExample
       .test(params)
       .then(() => {
@@ -112,7 +111,6 @@ describe('create-counterexample', () => {
   });
   it('should succeed with __bx_creds as credential source', () => {
     const params = { "__bx_creds": {"conversation": payload } };
-    console.log("BXPARAMS", params)
     return createCounterExample
       .test(params)
       .then(() => {

@@ -30,8 +30,6 @@ before(() => {
       version: 'version-date'
     };
     beforeEach(() => {
-      console.log("WORKSPACE", payload.workspace_id )
-      console.log("intent", payload.intent)
       nock('https://gateway.watsonplatform.net/assistant')
         .post(`/api/v1/workspaces/${payload.workspace_id}`
               + `/intents/${payload.intent}/examples`)
@@ -114,7 +112,6 @@ describe('create-example', () => {
         assert.ok(true);
       })
       .catch((err) => {
-        console.log("ERR PARaMS", err);
         assert.fail('Failure on valid payload');
       });
   });
@@ -142,7 +139,6 @@ describe('create-example', () => {
         assert.ok(true);
       })
       .catch((err) => {
-        console.log("ERROR:", err)
         assert.fail('Failure on valid payload');
       });
   });

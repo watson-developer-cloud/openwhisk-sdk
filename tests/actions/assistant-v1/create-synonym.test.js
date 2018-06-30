@@ -126,7 +126,6 @@ describe('create-synonym', () => {
       })
       .catch((err) => {
         // cleanup
-        console.log("ERR SYN", err);
         assert.fail('Failure on valid payload');
       });
   });
@@ -154,7 +153,6 @@ describe('create-synonym', () => {
         assert.ok(true);
       })
       .catch((err) => {
-        console.log('bx creds', err);
         assert.fail('Failure on valid payload');
       });
   });

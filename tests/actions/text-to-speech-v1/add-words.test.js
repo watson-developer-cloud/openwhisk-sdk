@@ -103,7 +103,7 @@ describe('add-words', () => {
   it('should succeed with __bx_creds as credential source', () => {
     if (!(process.env.TEST_OPENWHISK && auth)) {
       const params = { __bx_creds: { text_to_speech: payload } };
-      params.word = params.__bx_creds.text_to_speech.words[0].word
+      params.word = params.__bx_creds.text_to_speech.words[0].word;
       return addWords
         .test(params)
         .then(() => {

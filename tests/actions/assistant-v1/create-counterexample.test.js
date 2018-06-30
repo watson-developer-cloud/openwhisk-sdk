@@ -105,7 +105,7 @@ describe('create-counterexample', () => {
         }
         assert.ok(true);
       })
-      .catch(() => {
+      .catch((err) => {
         assert.fail(err);
       });
   });
@@ -132,7 +132,7 @@ describe('create-counterexample', () => {
         }
         assert.ok(true);
       })
-      .catch(() => {
+      .catch((err) => {
         assert.fail(err);
       });
   });

@@ -106,6 +106,6 @@ describe('get-training-example', () => {
         .catch(() => {
           assert.fail('Failure on valid payload');
         });
-      }
-    });
+    }
+  });
 });

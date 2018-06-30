@@ -129,7 +129,7 @@ describe('create-synonym', () => {
       });
   });
   it('should succeed with __bx_creds as credential source', () => {
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return createSynonym
       .test(params)
       .then(() => {

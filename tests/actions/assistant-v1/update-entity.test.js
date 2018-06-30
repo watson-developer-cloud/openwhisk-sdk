@@ -91,7 +91,7 @@ describe('update-entity', () => {
   });
   it('should succeed with __bx_creds as credential source', () => {
     payload.new_entity = payload.entity;
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return updateEntity
       .test(params)
       .then(() => {

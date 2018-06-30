@@ -93,7 +93,7 @@ describe('get-counterexample', () => {
       .catch(err => negativeHandler(err));
   });
   it('should succeed with __bx_creds as credential source', () => {
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return getCounterExample
       .test(params)
       .then(() => {

@@ -99,7 +99,7 @@ describe('update-counterexample', () => {
   });
   it('should succeed with __bx_creds as credential source', () => {
     payload.new_text = payload.text;
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return updateCounterExample
       .test(params)
       .then(() => {

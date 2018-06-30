@@ -97,7 +97,7 @@ describe('update-dialog-node', () => {
   });
   it('should succeed with __bx_creds as credential source', () => {
     payload.new_dialog_node = payload.dialog_node;
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return updateDialogNode
       .test(params)
       .then(() => {

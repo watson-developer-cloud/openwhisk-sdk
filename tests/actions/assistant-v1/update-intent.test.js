@@ -92,7 +92,7 @@ describe('update-intent', () => {
   });
   it('should succeed with __bx_creds as credential source', () => {
     payload.new_intent = payload.intent;
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return updateIntent
       .test(params)
       .then(() => {

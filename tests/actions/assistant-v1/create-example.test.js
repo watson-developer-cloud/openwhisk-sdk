@@ -116,7 +116,7 @@ describe('create-example', () => {
       });
   });
   it('should succeed with __bx_creds as credential source', () => {
-    const params = { "__bx_creds": {"conversation": payload } };
+    const params = { __bx_creds: { conversation: payload } };
     return createExample
       .test(params)
       .then(() => {

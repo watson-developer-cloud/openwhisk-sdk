@@ -2,8 +2,6 @@
 
 SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 HOMEDIR="$SCRIPTDIR/../../../"
-ROOTDIR="$SCRIPTDIR/../.."
-UTILDIR="$ROOTDIR/../incubator-openwhisk-utilities"
 
 # clone utilties repo. in order to run scanCode.py
 cd $HOMEDIR

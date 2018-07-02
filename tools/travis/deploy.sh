@@ -25,7 +25,13 @@ $ANSIBLE_CMD initdb.yml
 
 cd $WHISKDIR
 
-TERM=dumb ./gradlew install
+TERM=dumb ./gradlew \
+:tools:admin:install \
+:common:scala:install \
+:core:controller:install \
+:core:invoker:install \
+:tests:install \
+distDocker
 
 cd $WHISKDIR/ansible
 

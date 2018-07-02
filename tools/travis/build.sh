@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 # Build script for Travis-CI.
 

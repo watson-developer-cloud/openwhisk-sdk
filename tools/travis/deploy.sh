@@ -7,10 +7,11 @@ SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 ROOTDIR="$SCRIPTDIR/../.."
 WHISKDIR="$ROOTDIR/../openwhisk"
 
-cd $WHISKDIR/ansible
-
+cd $WHISKDIR
 #deploy openwhisk
 TERM=dumb ./gradlew distDocker
+
+cd $WHISKDIR/ansible
 
 ANSIBLE_CMD="ansible-playbook -i environments/local"
 $ANSIBLE_CMD setup.yml

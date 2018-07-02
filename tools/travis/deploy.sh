@@ -32,7 +32,3 @@ VCAP_SERVICES_FILE="$(readlink -f $ROOTDIR/tests/credentials.json)"
 WHISKPROPS_FILE="$WHISKDIR/whisk.properties"
 sed -i 's:^[ \t]*vcap.services.file[ \t]*=\([ \t]*.*\)$:vcap.services.file='$VCAP_SERVICES_FILE':'  $WHISKPROPS_FILE
 cat whisk.properties
-
-WSK_CLI=$WHISKDIR/bin/wsk
-AUTH_KEY=$(cat $WHISKDIR/ansible/files/auth.whisk.system)
-EDGE_HOST=$(grep '^edge.host=' $WHISKPROPS_FILE | cut -d'=' -f2)

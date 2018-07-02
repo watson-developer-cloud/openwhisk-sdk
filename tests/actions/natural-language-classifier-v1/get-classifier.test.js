@@ -71,4 +71,17 @@ describe('get-classifier', () => {
         });
     }
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = { __bx_creds: { natural_language_classifier: payload } };
+      return getClassifier
+        .test(params)
+        .then(() => {
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
+  });
 });

@@ -105,4 +105,33 @@ describe('add-word', () => {
         });
     }
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    if (!(process.env.TEST_OPENWHISK && auth)) {
+      const params = { __bx_creds: { text_to_speech: payload } };
+      return addWord
+        .test(params)
+        .then(() => {
+          // cleanup
+          if (process.env.TEST_OPENWHISK && auth) {
+            return ow.actions
+              .invoke({
+                name: 'text-to-speech-v1/add-word',
+                blocking: true,
+                result: true,
+                params
+              })
+              .then(() => {
+                assert(true);
+              })
+              .catch(() => {
+                assert(false);
+              });
+          }
+          assert.ok(true);
+        })
+        .catch(() => {
+          assert.fail('Failure on valid payload');
+        });
+    }
+  });
 });

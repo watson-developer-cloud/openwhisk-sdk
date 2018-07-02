@@ -82,4 +82,15 @@ describe('add-word', () => {
         });
     });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { speech_to_text: payload } };
+    return addWord
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

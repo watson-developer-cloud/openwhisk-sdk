@@ -87,4 +87,15 @@ describe('tone-chat', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { tone_analyzer: payload } };
+    return toneChat
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

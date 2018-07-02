@@ -109,4 +109,31 @@ describe('create-counterexample', () => {
         assert.fail(err);
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { conversation: payload } };
+    return createCounterExample
+      .test(params)
+      .then(() => {
+        // cleanup
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'assistant-v1/delete-counterexample',
+              blocking: true,
+              result: true,
+              params
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch((error) => {
+              assert(error);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch((err) => {
+        assert.fail(err);
+      });
+  });
 });

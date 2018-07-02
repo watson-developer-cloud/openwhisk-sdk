@@ -113,4 +113,16 @@ describe('update-synonym', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    payload.new_synonym = payload.synonym;
+    const params = { __bx_creds: { conversation: payload } };
+    return updateSynonym
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

@@ -91,4 +91,33 @@ describe('create-workspace', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    const params = { __bx_creds: { conversation: payload } };
+    return createWorkspace
+      .test(params)
+      .then((res) => {
+        // cleanup
+        const { workspace_id: workspaceId } = res;
+        params.workspace_id = workspaceId;
+        if (process.env.TEST_OPENWHISK && auth) {
+          return ow.actions
+            .invoke({
+              name: 'assistant-v1/delete-workspace',
+              blocking: true,
+              result: true,
+              params
+            })
+            .then(() => {
+              assert(true);
+            })
+            .catch(() => {
+              assert(false);
+            });
+        }
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

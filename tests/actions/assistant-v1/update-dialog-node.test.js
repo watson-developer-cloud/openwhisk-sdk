@@ -95,4 +95,16 @@ describe('update-dialog-node', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source', () => {
+    payload.new_dialog_node = payload.dialog_node;
+    const params = { __bx_creds: { conversation: payload } };
+    return updateDialogNode
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

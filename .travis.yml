@@ -27,4 +27,6 @@ matrix:
       before_install:
       - "./tools/travis/setup.sh"
       script:
-      - "./tools/travis/deploy.sh"
+      - "./tools/travis/build.sh && ./tools/travis/deploy.sh && ./tools/travis/deploy_openwhisk_sdk.sh
+        && ./tools/travis/test.sh"
+      # - "./tools/travis/deploy.sh"

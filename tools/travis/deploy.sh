@@ -5,36 +5,18 @@ set -e
 
 SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 ROOTDIR="$SCRIPTDIR/../.."
-HOMEDIR="$ROOTDIR/.."
 WHISKDIR="$ROOTDIR/../openwhisk"
-UTILDIR="$ROOTDIR/../incubator-openwhisk-utilities"
 
-# run scancode
-cd $UTILDIR
-scancode/scanCode.py $ROOTDIR
-
-# Install OpenWhisk
 cd $WHISKDIR/ansible
 
-ANSIBLE_CMD="ansible-playbook -i environments/local"
+#deploy openwhisk
+TERM=dumb ./gradlew distDocker
 
+ANSIBLE_CMD="ansible-playbook -i environments/local"
 $ANSIBLE_CMD setup.yml
 $ANSIBLE_CMD prereq.yml
 $ANSIBLE_CMD couchdb.yml
 $ANSIBLE_CMD initdb.yml
-
-cd $WHISKDIR
-
-TERM=dumb ./gradlew \
-:tools:admin:install \
-:common:scala:install \
-:core:controller:install \
-:core:invoker:install \
-:tests:install \
-distDocker
-
-cd $WHISKDIR/ansible
-
 $ANSIBLE_CMD wipe.yml
 $ANSIBLE_CMD openwhisk.yml
 
@@ -53,19 +35,3 @@ cat whisk.properties
 WSK_CLI=$WHISKDIR/bin/wsk
 AUTH_KEY=$(cat $WHISKDIR/ansible/files/auth.whisk.system)
 EDGE_HOST=$(grep '^edge.host=' $WHISKPROPS_FILE | cut -d'=' -f2)
-
-PREINSTALL_DIR=${HOMEDIR}/preInstalled
-
-cd ${ROOTDIR}
-
-# Place these templates in correct location to be included in packageDeploy
-mkdir -p ${PREINSTALL_DIR}/watson-developer-cloud/openwhisk-sdk
-cp -a packages ${PREINSTALL_DIR}/watson-developer-cloud/openwhisk-sdk/
-
-# Install the deploy package
-cd $HOMEDIR/incubator-openwhisk-package-deploy/packages
-./installCatalog.sh $AUTH_KEY $EDGE_HOST $WSK_CLI
-
-# Test
-cd $ROOTDIR
-TERM=dumb ./gradlew :tests:test

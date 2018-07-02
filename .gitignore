@@ -7,4 +7,7 @@ install.js
 dist
 .nyc_output
 .vscode
+.gradle
+/tests/build
+/tests/out
 tests/resources/auth.js

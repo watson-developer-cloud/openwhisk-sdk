@@ -20,7 +20,14 @@ const extend = require('extend');
 /**
  * Check a job.
  *
- * Returns information about the specified job. The response always includes the status of the job and its creation and update times. If the status is `completed`, the response includes the results of the recognition request. You must submit the request with the service credentials of the user who created the job.   You can use the method to retrieve the results of any job, regardless of whether it was submitted with a callback URL and the `recognitions.completed_with_results` event, and you can retrieve the results multiple times for as long as they remain available. Use the **Check jobs** method to request information about the most recent jobs associated with the calling user.
+ * Returns information about the specified job. The response always includes the status of the job and its creation and
+ * update times. If the status is `completed`, the response includes the results of the recognition request. You must
+ * submit the request with the service credentials of the user who created the job.
+ *
+ * You can use the method to retrieve the results of any job, regardless of whether it was submitted with a callback URL
+ * and the `recognitions.completed_with_results` event, and you can retrieve the results multiple times for as long as
+ * they remain available. Use the **Check jobs** method to request information about the most recent jobs associated
+ * with the calling user.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

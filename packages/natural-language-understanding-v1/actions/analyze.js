@@ -20,7 +20,44 @@ const extend = require('extend');
 /**
  * Analyze text, HTML, or a public webpage.
  *
- * Analyzes text, HTML, or a public webpage with one or more text analysis features.  ### Concepts Identify general concepts that are referenced or alluded to in your content. Concepts that are detected typically have an associated link to a DBpedia resource.  ### Emotion Detect anger, disgust, fear, joy, or sadness that is conveyed by your content. Emotion information can be returned for detected entities, keywords, or user-specified target phrases found in the text.  ### Entities Detect important people, places, geopolitical entities and other types of entities in your content. Entity detection recognizes consecutive coreferences of each entity. For example, analysis of the following text would count \"Barack Obama\" and \"He\" as the same entity:  \"Barack Obama was the 44th President of the United States. He took office in January 2009.\"  ### Keywords Determine the most important keywords in your content. Keyword phrases are organized by relevance in the results.  ### Metadata Get author information, publication date, and the title of your text/HTML content.  ### Relations Recognize when two entities are related, and identify the type of relation.  For example, you can identify an \"awardedTo\" relation between an award and its recipient.  ### Semantic Roles Parse sentences into subject-action-object form, and identify entities and keywords that are subjects or objects of an action.  ### Sentiment Determine whether your content conveys postive or negative sentiment. Sentiment information can be returned for detected entities, keywords, or user-specified target phrases found in the text.   ### Categories Categorize your content into a hierarchical 5-level taxonomy. For example, \"Leonardo DiCaprio won an Oscar\" returns \"/art and entertainment/movies and tv/movies\" as the most confident classification.
+ * Analyzes text, HTML, or a public webpage with one or more text analysis features.
+ *
+ * ### Concepts
+ * Identify general concepts that are referenced or alluded to in your content. Concepts that are detected typically
+ * have an associated link to a DBpedia resource.
+ *
+ * ### Emotion
+ * Detect anger, disgust, fear, joy, or sadness that is conveyed by your content. Emotion information can be returned
+ * for detected entities, keywords, or user-specified target phrases found in the text.
+ *
+ * ### Entities
+ * Detect important people, places, geopolitical entities and other types of entities in your content. Entity detection
+ * recognizes consecutive coreferences of each entity. For example, analysis of the following text would count \"Barack
+ * Obama\" and \"He\" as the same entity:
+ *
+ * \"Barack Obama was the 44th President of the United States. He took office in January 2009.\"
+ *
+ * ### Keywords
+ * Determine the most important keywords in your content. Keyword phrases are organized by relevance in the results.
+ *
+ * ### Metadata
+ * Get author information, publication date, and the title of your text/HTML content.
+ *
+ * ### Relations
+ * Recognize when two entities are related, and identify the type of relation.  For example, you can identify an
+ * \"awardedTo\" relation between an award and its recipient.
+ *
+ * ### Semantic Roles
+ * Parse sentences into subject-action-object form, and identify entities and keywords that are subjects or objects of
+ * an action.
+ *
+ * ### Sentiment
+ * Determine whether your content conveys postive or negative sentiment. Sentiment information can be returned for
+ * detected entities, keywords, or user-specified target phrases found in the text.
+ *
+ * ### Categories
+ * Categorize your content into a hierarchical 5-level taxonomy. For example, \"Leonardo DiCaprio won an Oscar\" returns
+ * \"/art and entertainment/movies and tv/movies\" as the most confident classification.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -41,7 +78,8 @@ const extend = require('extend');
  * @param {boolean} [params.fallback_to_raw] - Whether to use raw HTML content if text cleaning fails.
  * @param {boolean} [params.return_analyzed_text] - Whether or not to return the analyzed text.
  * @param {string} [params.language] - ISO 639-1 code indicating the language to use in the analysis.
- * @param {number} [params.limit_text_characters] - Sets the maximum number of characters that are processed by the service.
+ * @param {number} [params.limit_text_characters] - Sets the maximum number of characters that are processed by the
+ * service.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

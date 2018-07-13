@@ -20,7 +20,11 @@ const extend = require('extend');
 /**
  * Create a custom model.
  *
- * Creates a new empty custom voice model. You must specify a name for the new custom model. You can optionally specify the language and a description for the new model. The model is owned by the instance of the service whose credentials are used to create it.  **Note:** This method is currently a beta release.
+ * Creates a new empty custom voice model. You must specify a name for the new custom model. You can optionally specify
+ * the language and a description for the new model. The model is owned by the instance of the service whose credentials
+ * are used to create it.
+ *
+ * **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -32,8 +36,10 @@ const extend = require('extend');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.name - The name of the new custom voice model.
- * @param {string} [params.language] - The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.
- * @param {string} [params.description] - A description of the new custom voice model. Specifying a description is recommended.
+ * @param {string} [params.language] - The language of the new custom voice model. Omit the parameter to use the the
+ * default language, `en-US`.
+ * @param {string} [params.description] - A description of the new custom voice model. Specifying a description is
+ * recommended.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

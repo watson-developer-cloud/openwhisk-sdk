@@ -20,7 +20,10 @@ const extend = require('extend');
 /**
  * Get information about a workspace.
  *
- * Get information about a workspace, optionally including all workspace content.    With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`, the limit is 20 requests per 30 minutes. For more information, see **Rate limiting**.
+ * Get information about a workspace, optionally including all workspace content.
+ *
+ * With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`, the limit
+ * is 20 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -33,8 +36,11 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
- * @param {boolean} [params.export] - Whether to include all element content in the returned data. If **export**=`false`, the returned data includes only information about the element itself. If **export**=`true`, all content, including subelements, is included.
- * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
+ * @param {boolean} [params.export] - Whether to include all element content in the returned data. If
+ * **export**=`false`, the returned data includes only information about the element itself. If **export**=`true`, all
+ * content, including subelements, is included.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated`
+ * timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

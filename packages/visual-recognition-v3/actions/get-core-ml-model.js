@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Retrieve a Core ML model of a classifier.
  *
- * Download a Core ML model file (.mlmodel) of a custom classifier that returns <tt>\"core_ml_enabled\": true</tt> in the classifier details.
+ * Download a Core ML model file (.mlmodel) of a custom classifier that returns <tt>\"core_ml_enabled\": true</tt> in
+ * the classifier details.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

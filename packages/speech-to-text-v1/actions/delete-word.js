@@ -20,7 +20,11 @@ const extend = require('extend');
 /**
  * Delete a custom word.
  *
- * Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary. Removing a custom word does not affect the custom model until you train the model with the **Train a custom language model** method. You must use credentials for the instance of the service that owns a model to delete its words.
+ * Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's
+ * words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes
+ * only the custom pronunciation for the word; the word remains in the base vocabulary. Removing a custom word does not
+ * affect the custom model until you train the model with the **Train a custom language model** method. You must use
+ * credentials for the instance of the service that owns a model to delete its words.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,8 +35,11 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.word_name - The custom word for the custom language model. When you add or update a custom word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.word_name - The custom word for the custom language model. When you add or update a custom
+ * word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore)
+ * to connect the tokens of compound words.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

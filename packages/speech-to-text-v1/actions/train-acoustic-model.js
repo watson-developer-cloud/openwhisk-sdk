@@ -20,7 +20,35 @@ const extend = require('extend');
 /**
  * Train a custom acoustic model.
  *
- * Initiates the training of a custom acoustic model with new or changed audio resources. After adding or deleting audio resources for a custom acoustic model, use this method to begin the actual training of the model on the latest audio data. The custom acoustic model does not reflect its changed data until you train it. You must use credentials for the instance of the service that owns a model to train it.   The training method is asynchronous. It can take on the order of minutes or hours to complete depending on the total amount of audio data on which the custom acoustic model is being trained and the current load on the service. Typically, training a custom acoustic model takes approximately two to four times the length of its audio data. The range of time depends on the model being trained and the nature of the audio, such as whether the audio is clean or noisy. The method returns an HTTP 200 response code to indicate that the training process has begun.   You can monitor the status of the training by using the **List a custom acoustic model** method to poll the model's status. Use a loop to check the status once a minute. The method returns an `Customization` object that includes `status` and `progress` fields. A status of `available` indicates that the custom model is trained and ready to use. The service cannot accept subsequent training requests, or requests to add new audio resources, until the existing request completes.   You can use the optional `custom_language_model_id` parameter to specify the GUID of a separately created custom language model that is to be used during training. Specify a custom language model if you have verbatim transcriptions of the audio files that you have added to the custom model or you have either corpora (text files) or a list of words that are relevant to the contents of the audio files. For information about creating a separate custom language model, see [Creating a custom language model](https://console.bluemix.net/docs/services/speech-to-text/language-create.html).   Training can fail to start for the following reasons: * The service is currently handling another request for the custom model, such as another training request or a request to add audio resources to the model. * The custom model contains less than 10 minutes or more than 50 hours of audio data. * One or more of the custom model's audio resources is invalid.
+ * Initiates the training of a custom acoustic model with new or changed audio resources. After adding or deleting audio
+ * resources for a custom acoustic model, use this method to begin the actual training of the model on the latest audio
+ * data. The custom acoustic model does not reflect its changed data until you train it. You must use credentials for
+ * the instance of the service that owns a model to train it.
+ *
+ * The training method is asynchronous. It can take on the order of minutes or hours to complete depending on the total
+ * amount of audio data on which the custom acoustic model is being trained and the current load on the service.
+ * Typically, training a custom acoustic model takes approximately two to four times the length of its audio data. The
+ * range of time depends on the model being trained and the nature of the audio, such as whether the audio is clean or
+ * noisy. The method returns an HTTP 200 response code to indicate that the training process has begun.
+ *
+ * You can monitor the status of the training by using the **Get a custom acoustic model** method to poll the model's
+ * status. Use a loop to check the status once a minute. The method returns an `AcousticModel` object that includes
+ * `status` and `progress` fields. A status of `available` indicates that the custom model is trained and ready to use.
+ * The service cannot accept subsequent training requests, or requests to add new audio resources, until the existing
+ * request completes.
+ *
+ * You can use the optional `custom_language_model_id` parameter to specify the GUID of a separately created custom
+ * language model that is to be used during training. Specify a custom language model if you have verbatim
+ * transcriptions of the audio files that you have added to the custom model or you have either corpora (text files) or
+ * a list of words that are relevant to the contents of the audio files. For information about creating a separate
+ * custom language model, see [Creating a custom language
+ * model](https://console.bluemix.net/docs/services/speech-to-text/language-create.html).
+ *
+ * Training can fail to start for the following reasons:
+ * * The service is currently handling another request for the custom model, such as another training request or a
+ * request to add audio resources to the model.
+ * * The custom model contains less than 10 minutes or more than 50 hours of audio data.
+ * * One or more of the custom model's audio resources is invalid.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,8 +59,12 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} [params.custom_language_model_id] - The customization ID (GUID) of a custom language model that is to be used during training of the custom acoustic model. Specify a custom language model that has been trained with verbatim transcriptions of the audio resources or that contains words that are relevant to the contents of the audio resources.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} [params.custom_language_model_id] - The customization ID (GUID) of a custom language model that is to
+ * be used during training of the custom acoustic model. Specify a custom language model that has been trained with
+ * verbatim transcriptions of the audio resources or that contains words that are relevant to the contents of the audio
+ * resources.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

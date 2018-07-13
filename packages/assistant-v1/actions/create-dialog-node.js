@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Create dialog node.
  *
- * Create a new dialog node.    This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
+ * Create a new dialog node.
+ *
+ * This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -33,17 +35,27 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
- * @param {string} params.dialog_node - The dialog node ID. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 1024 characters.
- * @param {string} [params.description] - The description of the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.
- * @param {string} [params.conditions] - The condition that will trigger the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
+ * @param {string} params.dialog_node - The dialog node ID. This string must conform to the following restrictions:
+ * - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.
+ * - It must be no longer than 1024 characters.
+ * @param {string} [params.description] - The description of the dialog node. This string cannot contain carriage
+ * return, newline, or tab characters, and it must be no longer than 128 characters.
+ * @param {string} [params.conditions] - The condition that will trigger the dialog node. This string cannot contain
+ * carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
  * @param {string} [params.parent] - The ID of the parent dialog node.
  * @param {string} [params.previous_sibling] - The ID of the previous dialog node.
- * @param {Object} [params.output] - The output of the dialog node. For more information about how to specify dialog node output, see the [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
+ * @param {Object} [params.output] - The output of the dialog node. For more information about how to specify dialog
+ * node output, see the
+ * [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
  * @param {Object} [params.context] - The context for the dialog node.
  * @param {Object} [params.metadata] - The metadata for the dialog node.
  * @param {DialogNodeNextStep} [params.next_step] - The next step to be executed in dialog processing.
- * @param {DialogNodeAction[]} [params.actions] - An array of objects describing any actions to be invoked by the dialog node.
- * @param {string} [params.title] - The alias used to identify the dialog node. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 64 characters.
+ * @param {DialogNodeAction[]} [params.actions] - An array of objects describing any actions to be invoked by the dialog
+ * node.
+ * @param {string} [params.title] - The alias used to identify the dialog node. This string must conform to the
+ * following restrictions:
+ * - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.
+ * - It must be no longer than 64 characters.
  * @param {string} [params.node_type] - How the dialog node is processed.
  * @param {string} [params.event_name] - How an `event_handler` node is processed.
  * @param {string} [params.variable] - The location in the dialog context where output is stored.

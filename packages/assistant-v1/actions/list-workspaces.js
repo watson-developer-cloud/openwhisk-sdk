@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * List workspaces.
  *
- * List the workspaces associated with a Watson Assistant service instance.    This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
+ * List the workspaces associated with a Watson Assistant service instance.
+ *
+ * This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -34,9 +36,11 @@ const extend = require('extend');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {number} [params.page_limit] - The number of records to return in each page of results.
  * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
- * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order, prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
+ * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order,
+ * prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
  * @param {string} [params.cursor] - A token identifying the page of results to retrieve.
- * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated`
+ * timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

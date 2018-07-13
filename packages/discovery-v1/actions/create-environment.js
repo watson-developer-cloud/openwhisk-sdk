@@ -20,7 +20,10 @@ const extend = require('extend');
 /**
  * Create an environment.
  *
- * Creates a new environment for private data. An environment must be created before collections can be created.   **Note**: You can create only one environment for private data per service instance. An attempt to create another environment results in an error.
+ * Creates a new environment for private data. An environment must be created before collections can be created.
+ *
+ * **Note**: You can create only one environment for private data per service instance. An attempt to create another
+ * environment results in an error.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

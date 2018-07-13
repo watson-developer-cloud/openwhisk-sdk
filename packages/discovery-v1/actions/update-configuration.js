@@ -20,7 +20,13 @@ const extend = require('extend');
 /**
  * Update a configuration.
  *
- * Replaces an existing configuration.   * Completely replaces the original configuration.   * The `configuration_id`, `updated`, and `created` fields are accepted in the request, but they are ignored, and an error is not generated. It is also acceptable for users to submit an updated configuration with none of the three properties.   * Documents are processed with a snapshot of the configuration as it was at the time the document was submitted to be ingested. This means that already submitted documents will not see any updates made to the configuration.
+ * Replaces an existing configuration.
+ *   * Completely replaces the original configuration.
+ *   * The **configuration_id**, **updated**, and **created** fields are accepted in the request, but they are ignored,
+ * and an error is not generated. It is also acceptable for users to submit an updated configuration with none of the
+ * three properties.
+ *   * Documents are processed with a snapshot of the configuration as it was at the time the document was submitted to
+ * be ingested. This means that already submitted documents will not see any updates made to the configuration.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -38,7 +44,9 @@ const extend = require('extend');
  * @param {string} [params.description] - The description of the configuration, if available.
  * @param {Conversions} [params.conversions] - The document conversion settings for the configuration.
  * @param {Enrichment[]} [params.enrichments] - An array of document enrichment settings for the configuration.
- * @param {NormalizationOperation[]} [params.normalizations] - Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array.
+ * @param {NormalizationOperation[]} [params.normalizations] - Defines operations that can be used to transform the
+ * final output JSON into a normalized form. Operations are executed in the order that they appear in the array.
+ * @param {Source} [params.source] - Object containing source parameters for the configuration.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

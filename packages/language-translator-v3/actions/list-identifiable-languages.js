@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * List identifiable languages.
  *
- * Lists the languages that the service can identify. Returns the language code (for example, `en` for English or `es` for Spanish) and name of each language.
+ * Lists the languages that the service can identify. Returns the language code (for example, `en` for English or `es`
+ * for Spanish) and name of each language.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

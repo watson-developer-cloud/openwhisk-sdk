@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Unregister a callback.
  *
- * Unregisters a callback URL that was previously white-listed with a **Register a callback** request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.
+ * Unregisters a callback URL that was previously white-listed with a **Register a callback** request for use with the
+ * asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

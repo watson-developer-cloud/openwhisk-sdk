@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Update entity value synonym.
  *
- * Update an existing entity value synonym with new text.    This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+ * Update an existing entity value synonym with new text.
+ *
+ * This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -36,7 +38,11 @@ const extend = require('extend');
  * @param {string} params.entity - The name of the entity.
  * @param {string} params.value - The text of the entity value.
  * @param {string} params.synonym - The text of the synonym.
- * @param {string} [params.new_synonym] - The text of the synonym. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 64 characters.
+ * @param {string} [params.new_synonym] - The text of the synonym. This string must conform to the following
+ * restrictions:
+ * - It cannot contain carriage return, newline, or tab characters.
+ * - It cannot consist of only whitespace characters.
+ * - It must be no longer than 64 characters.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

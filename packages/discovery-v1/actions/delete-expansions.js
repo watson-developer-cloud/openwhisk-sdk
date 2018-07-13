@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Delete the expansion list.
  *
- * Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
+ * Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion
+ * for a collection.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

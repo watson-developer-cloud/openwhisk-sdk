@@ -20,7 +20,10 @@ const extend = require('extend');
 /**
  * List custom acoustic models.
  *
- * Lists information about all custom acoustic models that are owned by an instance of the service. Use the `language` parameter to see all custom acoustic models for the specified language; omit the parameter to see all custom acoustic models for all languages. You must use credentials for the instance of the service that owns a model to list information about it.
+ * Lists information about all custom acoustic models that are owned by an instance of the service. Use the `language`
+ * parameter to see all custom acoustic models for the specified language. Omit the parameter to see all custom acoustic
+ * models for all languages. You must use credentials for the instance of the service that owns a model to list
+ * information about it.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,7 +34,9 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} [params.language] - The identifier of the language for which custom language or custom acoustic models are to be returned (for example, `en-US`). Omit the parameter to see all custom language or custom acoustic models owned by the requesting service credentials.
+ * @param {string} [params.language] - The identifier of the language for which custom language or custom acoustic
+ * models are to be returned (for example, `en-US`). Omit the parameter to see all custom language or custom acoustic
+ * models owned by the requesting service credentials.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

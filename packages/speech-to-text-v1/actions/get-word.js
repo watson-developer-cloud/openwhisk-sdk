@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Get a custom word.
  *
- * Gets information about a custom word from a custom language model. You must use credentials for the instance of the service that owns a model to query information about its words.
+ * Gets information about a custom word from a custom language model. You must use credentials for the instance of the
+ * service that owns a model to query information about its words.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,8 +32,11 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.word_name - The custom word for the custom language model. When you add or update a custom word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.word_name - The custom word for the custom language model. When you add or update a custom
+ * word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore)
+ * to connect the tokens of compound words.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

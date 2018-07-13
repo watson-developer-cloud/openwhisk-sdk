@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Get document details.
  *
- * Fetch status details about a submitted document. **Note:** this operation does not return the document itself. Instead, it returns only the document's processing status and any notices (warnings or errors) that were generated when the document was ingested. Use the query API to retrieve the actual document content.
+ * Fetch status details about a submitted document. **Note:** this operation does not return the document itself.
+ * Instead, it returns only the document's processing status and any notices (warnings or errors) that were generated
+ * when the document was ingested. Use the query API to retrieve the actual document content.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

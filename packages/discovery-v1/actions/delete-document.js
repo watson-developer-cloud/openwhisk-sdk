@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Delete a document.
  *
- * If the given document ID is invalid, or if the document is not found, then the a success response is returned (HTTP status code `200`) with the status set to 'deleted'.
+ * If the given document ID is invalid, or if the document is not found, then the a success response is returned (HTTP
+ * status code `200`) with the status set to 'deleted'.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

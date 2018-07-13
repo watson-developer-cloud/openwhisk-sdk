@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * List models.
  *
- * Retrieves a list of all language models that are available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things.
+ * Lists all language models that are available for use with the service. The information includes the name of the model
+ * and its minimum sampling rate in Hertz, among other things.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

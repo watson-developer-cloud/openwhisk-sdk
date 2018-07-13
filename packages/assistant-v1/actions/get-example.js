@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Get user input example.
  *
- * Get information about a user input example.    This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
+ * Get information about a user input example.
+ *
+ * This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -35,7 +37,8 @@ const extend = require('extend');
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.intent - The intent name.
  * @param {string} params.text - The text of the user input example.
- * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated`
+ * timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

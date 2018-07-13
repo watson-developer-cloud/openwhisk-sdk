@@ -20,7 +20,10 @@ const extend = require('extend');
 /**
  * Reset a custom acoustic model.
  *
- * Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved, but the model's audio resources are removed and must be re-created. You must use credentials for the instance of the service that owns a model to reset it.
+ * Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic model
+ * initializes the model to its state when it was first created. Metadata such as the name and language of the model are
+ * preserved, but the model's audio resources are removed and must be re-created. You must use credentials for the
+ * instance of the service that owns a model to reset it.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,7 +34,8 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

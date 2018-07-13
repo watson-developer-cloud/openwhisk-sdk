@@ -20,7 +20,14 @@ const extend = require('extend');
 /**
  * Delete labeled data.
  *
- * Deletes all data that is associated with a specified customer ID. The method deletes all data for the customer ID, regardless of the method by which the information was added. The method has no effect if no data is associated with the customer ID. You must issue the request with credentials for the same instance of the service that was used to associate the customer ID with the data.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes the data. For more information about customer IDs and about using this method, see [Information security](https://console.bluemix.net/docs/services/speech-to-text/information-security.html).
+ * Deletes all data that is associated with a specified customer ID. The method deletes all data for the customer ID,
+ * regardless of the method by which the information was added. The method has no effect if no data is associated with
+ * the customer ID. You must issue the request with credentials for the same instance of the service that was used to
+ * associate the customer ID with the data.
+ *
+ * You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes the data.
+ * For more information about customer IDs and about using this method, see [Information
+ * security](https://console.bluemix.net/docs/services/speech-to-text/information-security.html).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

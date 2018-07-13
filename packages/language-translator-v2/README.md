@@ -1,22 +1,27 @@
 # Watson Language Translator V2 Package
 
-## Deprecation notice
-Language Translator v3 is now available. The v2 Language Translator API will no longer be available after July 31, 2018. To take advantage of the latest service enhancements, migrate to the v3 API. View the [Migrating to Language Translator v3](https://console.bluemix.net/docs/services/language-translator/migrating.html) page for more information.
 
-IBM Watson Language Translator translates text from one language to another. The service offers multiple domain-specific models that you can customize based on your unique terminology and language. Use Language Translator to take news from across the globe and present it in your language, communicate with your customers in their own language, and more.
+
+---
+
+Language Translator v3 is [available](https://www.ibm.com/watson/developercloud/language-translator/api/v3/). See the [migration guide](https://console.bluemix.net/docs/services/language-translator/migrating.html).
+
+---
+
+IBM Watson&trade; Language Translator translates text from one language to another. The service offers multiple domain-specific models that you can customize based on your unique terminology and language. Use Language Translator to take news from across the globe and present it in your language, communicate with your customers in their own language, and more.
 
 The Watson Language Translator V2 Package will contain the following entities. Find additional details at the API Reference by clicking the entity name.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | [`language-translator-v2`](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Language Translator V2 Service |
-| [translate](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#translate) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text, model_id, source, target,  | Translate. |
-| [identify](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#identify) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,  | Identify language. |
-| [list-identifiable-languages](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#list-identifiable-languages) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List identifiable languages. |
-| [create-model](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#create-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    base_model_id,     name,     forced_glossary,     parallel_corpus,     monolingual_corpus,  | Create model. |
-| [delete-model](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#delete-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Delete model. |
-| [get-model](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#get-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Get model details. |
-| [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#list-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | List models. |
+| [translate](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#translate) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text, model_id, source, target,  | Translate |
+| [identify](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#identify) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,  | Identify language |
+| [list-identifiable-languages](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#list-identifiable-languages) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List identifiable languages |
+| [create-model](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#create-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    base_model_id,     name,     forced_glossary,     parallel_corpus,     monolingual_corpus,  | Create model |
+| [delete-model](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#delete-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Delete model |
+| [get-model](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#get-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Get model details |
+| [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v2/curl.html?curl#list-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | List models |
 
 
 ## Deploy the Watson Language Translator V2 Package with IBM Cloud Command Line Interface (CLI):

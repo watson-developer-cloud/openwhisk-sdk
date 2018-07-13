@@ -34,7 +34,10 @@ const extend = require('extend');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} [params.source] - Specify a language code to filter results by source language.
  * @param {string} [params.target] - Specify a language code to filter results by target language.
- * @param {boolean} [params.default_models] - If the default parameter isn't specified, the service will return all models (default and non-default) for each language pair. To return only default models, set this to `true`. To return only non-default models, set this to `false`. There is exactly one default model per language pair, the IBM provided base model.
+ * @param {boolean} [params.default_models] - If the default parameter isn't specified, the service will return all
+ * models (default and non-default) for each language pair. To return only default models, set this to `true`. To return
+ * only non-default models, set this to `false`. There is exactly one default model per language pair, the IBM provided
+ * base model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Get response to user input.
  *
- * Get a response to a user's input.    There is no rate limit for this operation.
+ * Get a response to a user's input.
+ *
+ * There is no rate limit for this operation.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -34,12 +36,18 @@ const extend = require('extend');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {InputData} [params.input] - An input object that includes the input text.
- * @param {boolean} [params.alternate_intents] - Whether to return more than one intent. Set to `true` to return all matching intents.
- * @param {Context} [params.context] - State information for the conversation. Continue a conversation by including the context object from the previous response.
- * @param {RuntimeEntity[]} [params.entities] - Entities to use when evaluating the message. Include entities from the previous response to continue using those entities rather than detecting entities in the new input.
- * @param {RuntimeIntent[]} [params.intents] - Intents to use when evaluating the user input. Include intents from the previous response to continue using those intents rather than trying to recognize intents in the new input.
- * @param {OutputData} [params.output] - System output. Include the output from the previous response to maintain intermediate information over multiple requests.
- * @param {boolean} [params.nodes_visited_details] - Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message.
+ * @param {boolean} [params.alternate_intents] - Whether to return more than one intent. Set to `true` to return all
+ * matching intents.
+ * @param {Context} [params.context] - State information for the conversation. Continue a conversation by including the
+ * context object from the previous response.
+ * @param {RuntimeEntity[]} [params.entities] - Entities to use when evaluating the message. Include entities from the
+ * previous response to continue using those entities rather than detecting entities in the new input.
+ * @param {RuntimeIntent[]} [params.intents] - Intents to use when evaluating the user input. Include intents from the
+ * previous response to continue using those intents rather than trying to recognize intents in the new input.
+ * @param {OutputData} [params.output] - System output. Include the output from the previous response to maintain
+ * intermediate information over multiple requests.
+ * @param {boolean} [params.nodes_visited_details] - Whether to include additional diagnostic information about the
+ * dialog nodes that were visited during processing of the message.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

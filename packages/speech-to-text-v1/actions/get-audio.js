@@ -20,7 +20,21 @@ const extend = require('extend');
 /**
  * Get an audio resource.
  *
- * gets information about an audio resource from a custom acoustic model. The method returns an `AudioListing` object whose fields depend on the type of audio resource you specify with the method's `audio_name` parameter: * **For an audio-type resource,** the object's fields match those of an `AudioResource` object: `duration`, `name`, `details`, and `status`. * **For an archive-type resource,** the object includes a `container` field whose fields match those of an `AudioResource` object. It also includes an `audio` field, which contains an array of `AudioResource` objects that provides information about the audio files that are contained in the archive.   The information includes the status of the specified audio resource, which is important for checking the service's analysis of the resource in response to a request to add it to the custom model. You must use credentials for the instance of the service that owns a model to list its audio resources.
+ * Gets information about an audio resource from a custom acoustic model. The method returns an `AudioListing` object
+ * whose fields depend on the type of audio resource that you specify with the method's `audio_name` parameter:
+ * * **For an audio-type resource,** the object's fields match those of an `AudioResource` object: `duration`, `name`,
+ * `details`, and `status`.
+ * * **For an archive-type resource,** the object includes a `container` field whose fields match those of an
+ * `AudioResource` object. It also includes an `audio` field, which contains an array of `AudioResource` objects that
+ * provides information about the audio files that are contained in the archive.
+ *
+ * The information includes the status of the specified audio resource. The status is important for checking the
+ * service's analysis of a resource that you add to the custom model.
+ * * For an audio-type resource, the `status` field is located in the `AudioListing` object.
+ * * For an archive-type resource, the `status` field is located in the `AudioResource` object that is returned in the
+ * `container` field.
+ *
+ * You must use credentials for the instance of the service that owns a model to list its audio resources.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,8 +45,11 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.audio_name - The name of the audio resource for the custom acoustic model. When adding an audio resource, do not include spaces in the name; use a localized name that matches the language of the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.audio_name - The name of the audio resource for the custom acoustic model. When adding an
+ * audio resource, do not include spaces in the name; use a localized name that matches the language of the custom
+ * model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

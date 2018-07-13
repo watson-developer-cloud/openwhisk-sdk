@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Get a voice.
  *
- * Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice. To list information about all available voices, use the **List voices** method.
+ * Gets information about the specified voice. The information includes the name, language, gender, and other details
+ * about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice.
+ * To list information about all available voices, use the **List voices** method.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -32,7 +34,9 @@ const extend = require('extend');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.voice - The voice for which information is to be returned.
- * @param {string} [params.customization_id] - The customization ID (GUID) of a custom voice model for which information is to be returned. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization.
+ * @param {string} [params.customization_id] - The customization ID (GUID) of a custom voice model for which information
+ * is to be returned. You must make the request with service credentials created for the instance of the service that
+ * owns the custom model. Omit the parameter to see information about the specified voice with no customization.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

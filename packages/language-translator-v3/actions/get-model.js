@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Get model details.
  *
- * Gets information about a translation model, including training status for custom models. Use this API call to poll the status of your customization request. A successfully completed training will have a status of `available`.
+ * Gets information about a translation model, including training status for custom models. Use this API call to poll
+ * the status of your customization request. A successfully completed training will have a status of `available`.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

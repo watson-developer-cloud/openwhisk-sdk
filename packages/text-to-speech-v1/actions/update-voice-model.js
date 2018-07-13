@@ -20,7 +20,12 @@ const extend = require('extend');
 /**
  * Update a custom model.
  *
- * Updates information for the specified custom voice model. You can update metadata such as the name and description of the voice model. You can also update the words in the model and their translations. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to update it.  **Note:** This method is currently a beta release.
+ * Updates information for the specified custom voice model. You can update metadata such as the name and description of
+ * the voice model. You can also update the words in the model and their translations. Adding a new translation for a
+ * word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no
+ * more than 20,000 entries. You must use credentials for the instance of the service that owns a model to update it.
+ *
+ * **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,10 +36,12 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom voice model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
  * @param {string} [params.name] - A new name for the custom voice model.
  * @param {string} [params.description] - A new description for the custom voice model.
- * @param {Word[]} [params.words] - An array of `Word` objects that provides the words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.
+ * @param {Word[]} [params.words] - An array of `Word` objects that provides the words and their translations that are
+ * to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

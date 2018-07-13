@@ -20,7 +20,10 @@ const extend = require('extend');
 /**
  * Classify multiple phrases.
  *
- * Returns label information for multiple phrases. The status must be `Available` before you can use the classifier to classify text.  Note that classifying Japanese texts is a beta feature.
+ * Returns label information for multiple phrases. The status must be `Available` before you can use the classifier to
+ * classify text.
+ *
+ * Note that classifying Japanese texts is a beta feature.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

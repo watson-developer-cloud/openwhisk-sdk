@@ -29,7 +29,8 @@ const extend = require('extend');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
- * @param {boolean} [params.verbose] - Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers.
+ * @param {boolean} [params.verbose] - Specify `true` to return details about the classifiers. Omit this parameter to
+ * return a brief list of classifiers.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

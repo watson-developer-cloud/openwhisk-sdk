@@ -20,7 +20,12 @@ const extend = require('extend');
 /**
  * Delete labeled data.
  *
- * Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).
+ * Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the
+ * customer ID.
+ *
+ * You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For
+ * more information about personal data and customer IDs, see [Information
+ * security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

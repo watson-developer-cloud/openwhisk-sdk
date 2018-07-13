@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * Update an environment.
  *
- * Updates an environment. The environment's `name` and  `description` parameters can be changed. You must specify a `name` for the environment.
+ * Updates an environment. The environment's **name** and  **description** parameters can be changed. You must specify a
+ * **name** for the environment.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

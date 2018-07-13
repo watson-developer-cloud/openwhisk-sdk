@@ -20,7 +20,12 @@ const extend = require('extend');
 /**
  * List custom models.
  *
- * Lists metadata such as the name and description for all custom voice models that are owned by an instance of the service. Specify a language to list the voice models for that language only. To see the words in addition to the metadata for a specific voice model, use the **List a custom model** method. You must use credentials for the instance of the service that owns a model to list information about it.  **Note:** This method is currently a beta release.
+ * Lists metadata such as the name and description for all custom voice models that are owned by an instance of the
+ * service. Specify a language to list the voice models for that language only. To see the words in addition to the
+ * metadata for a specific voice model, use the **List a custom model** method. You must use credentials for the
+ * instance of the service that owns a model to list information about it.
+ *
+ * **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,7 +36,9 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} [params.language] - The language for which custom voice models that are owned by the requesting service credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the requester.
+ * @param {string} [params.language] - The language for which custom voice models that are owned by the requesting
+ * service credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the
+ * requester.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

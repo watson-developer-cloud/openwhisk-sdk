@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * List entity values.
  *
- * List the values for an entity.    This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
+ * List the values for an entity.
+ *
+ * This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -34,12 +36,16 @@ const extend = require('extend');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
  * @param {string} params.entity - The name of the entity.
- * @param {boolean} [params.export] - Whether to include all element content in the returned data. If **export**=`false`, the returned data includes only information about the element itself. If **export**=`true`, all content, including subelements, is included.
+ * @param {boolean} [params.export] - Whether to include all element content in the returned data. If
+ * **export**=`false`, the returned data includes only information about the element itself. If **export**=`true`, all
+ * content, including subelements, is included.
  * @param {number} [params.page_limit] - The number of records to return in each page of results.
  * @param {boolean} [params.include_count] - Whether to include information about the number of records returned.
- * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order, prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
+ * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order,
+ * prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
  * @param {string} [params.cursor] - A token identifying the page of results to retrieve.
- * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated` timestamps) in the response.
+ * @param {boolean} [params.include_audit] - Whether to include the audit properties (`created` and `updated`
+ * timestamps) in the response.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

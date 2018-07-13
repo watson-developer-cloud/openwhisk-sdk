@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Create counterexample.
  *
- * Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant input.    This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+ * Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant input.
+ *
+ * This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -33,7 +35,11 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
- * @param {string} params.text - The text of a user input marked as irrelevant input. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters  - It cannot consist of only whitespace characters  - It must be no longer than 1024 characters.
+ * @param {string} params.text - The text of a user input marked as irrelevant input. This string must conform to the
+ * following restrictions:
+ * - It cannot contain carriage return, newline, or tab characters
+ * - It cannot consist of only whitespace characters
+ * - It must be no longer than 1024 characters.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

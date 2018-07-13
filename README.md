@@ -79,6 +79,8 @@ You supply either an IAM service **API key** or an **access token** with the par
 * Use the API key to have the SDK manage the lifecycle of the access token. The SDK requests an access token, ensures that the access token is valid, and refreshes it if necessary.
 * Use the access token if you want to manage the lifecycle yourself. For details, see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html). If you want to switch to API key, override your stored IAM credentials with an IAM API key.
 
+> _NOTE_: Authenticating with the `X-Watson-Authorization-Token` header or the `watson-token` query param is now deprecated. The token continues to work with Cloud Foundry services, but is not supported for services that use Identity and Access Management (IAM) authentication. For details see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html#iam)
+
 # Invoking an action
 
 Each package contains a series of actions. Each action accepts a number of parameters which can either be passed on the command line, or passed via a JSON file. For instance, let's look at the `message` action from the `conversation-v1` package.

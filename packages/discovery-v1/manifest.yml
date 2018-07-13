@@ -129,3 +129,18 @@ project:
         delete-user-data:
           function: actions/delete-user-data.js
           runtime: nodejs:8
+        create-credentials:
+          function: actions/create-credentials.js
+          runtime: nodejs:8
+        delete-credentials:
+          function: actions/delete-credentials.js
+          runtime: nodejs:8
+        get-credentials:
+          function: actions/get-credentials.js
+          runtime: nodejs:8
+        list-credentials:
+          function: actions/list-credentials.js
+          runtime: nodejs:8
+        update-credentials:
+          function: actions/update-credentials.js
+          runtime: nodejs:8

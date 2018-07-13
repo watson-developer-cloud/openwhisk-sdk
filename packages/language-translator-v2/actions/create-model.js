@@ -20,9 +20,11 @@ const extend = require('extend');
 /**
  * Create model.
  *
- * Uploads a TMX glossary file on top of a domain to customize a translation model.  Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
+ * Uploads a TMX glossary file on top of a domain to customize a translation model.
  *
- * @deprecated Language Translator v3 is now available. The v2 Language Translator API will no longer be available after July 31, 2018. To take advantage of the latest service enhancements, migrate to the v3 API. View the [Migrating to Language Translator v3](https://console.bluemix.net/docs/services/language-translator/migrating.html) page for more information.
+ * Depending on the size of the file, training can range from minutes for a glossary to several hours for a large
+ * parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus
+ * files is limited to 250 MB.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -33,11 +35,17 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.base_model_id - The model ID of the model to use as the base for customization. To see available models, use the `List models` method.
- * @param {string} [params.name] - An optional model name that you can use to identify the model. Valid characters are letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters.
- * @param {string} [params.forced_glossary] - Must be a base64-encoded string. A TMX file with your customizations. The customizations in the file completely overwrite the domain translaton data, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call.
- * @param {string} [params.parallel_corpus] - Must be a base64-encoded string. A TMX file that contains entries that are treated as a parallel corpus instead of a glossary.
- * @param {string} [params.monolingual_corpus] - Must be a base64-encoded string. A UTF-8 encoded plain text file that is used to customize the target language model.
+ * @param {string} params.base_model_id - The model ID of the model to use as the base for customization. To see
+ * available models, use the `List models` method.
+ * @param {string} [params.name] - An optional model name that you can use to identify the model. Valid characters are
+ * letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters.
+ * @param {string} [params.forced_glossary] - Must be a base64-encoded string. A TMX file with your customizations. The
+ * customizations in the file completely overwrite the domain translaton data, including high frequency or high
+ * confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call.
+ * @param {string} [params.parallel_corpus] - Must be a base64-encoded string. A TMX file that contains entries that are
+ * treated as a parallel corpus instead of a glossary.
+ * @param {string} [params.monolingual_corpus] - Must be a base64-encoded string. A UTF-8 encoded plain text file that
+ * is used to customize the target language model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

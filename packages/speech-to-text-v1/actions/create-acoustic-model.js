@@ -20,7 +20,9 @@ const extend = require('extend');
 /**
  * Create a custom acoustic model.
  *
- * Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it.
+ * Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the
+ * base model for which it is created. The model is owned by the instance of the service whose credentials are used to
+ * create it.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,9 +33,16 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.name - A user-defined name for the new custom acoustic model. Use a name that is unique among all custom acoustic models that you own. Use a localized name that matches the language of the custom model. Use a name that describes the acoustic environment of the custom model, such as `Mobile custom model` or `Noisy car custom model`.
- * @param {string} params.base_model_name - The name of the base language model that is to be customized by the new custom acoustic model. The new custom model can be used only with the base model that it customizes. To determine whether a base model supports acoustic model customization, refer to [Language support for customization](https://console.bluemix.net/docs/services/speech-to-text/custom.html#languageSupport).
- * @param {string} [params.description] - A description of the new custom acoustic model. Use a localized description that matches the language of the custom model.
+ * @param {string} params.name - A user-defined name for the new custom acoustic model. Use a name that is unique among
+ * all custom acoustic models that you own. Use a localized name that matches the language of the custom model. Use a
+ * name that describes the acoustic environment of the custom model, such as `Mobile custom model` or `Noisy car custom
+ * model`.
+ * @param {string} params.base_model_name - The name of the base language model that is to be customized by the new
+ * custom acoustic model. The new custom model can be used only with the base model that it customizes. To determine
+ * whether a base model supports acoustic model customization, refer to [Language support for
+ * customization](https://console.bluemix.net/docs/services/speech-to-text/custom.html#languageSupport).
+ * @param {string} [params.description] - A description of the new custom acoustic model. Use a localized description
+ * that matches the language of the custom model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

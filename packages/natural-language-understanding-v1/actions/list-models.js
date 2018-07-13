@@ -20,7 +20,8 @@ const extend = require('extend');
 /**
  * List models.
  *
- * Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models that you have created and linked to your Natural Language Understanding service.
+ * Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models that you
+ * have created and linked to your Natural Language Understanding service.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.

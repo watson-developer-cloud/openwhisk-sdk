@@ -20,7 +20,11 @@ const extend = require('extend');
 /**
  * Get a custom model.
  *
- * Gets all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words and their translations as defined in the model. To see just the metadata for a voice model, use the **List custom models** method.   **Note:** This method is currently a beta release.
+ * Gets all information about a specified custom voice model. In addition to metadata such as the name and description
+ * of the voice model, the output includes the words and their translations as defined in the model. To see just the
+ * metadata for a voice model, use the **List custom models** method.
+ *
+ * **Note:** This method is currently a beta release.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -31,7 +35,8 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom voice model. You must make the
+ * request with service credentials created for the instance of the service that owns the custom model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

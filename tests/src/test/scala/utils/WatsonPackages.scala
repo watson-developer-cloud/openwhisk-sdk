@@ -19,7 +19,7 @@ package packages
 
 import org.scalatest.BeforeAndAfterAll
 import common.{TestHelpers, Wsk, WskProps, WskTestHelpers}
-import common.rest.WskRest
+import common.rest.WskRestOperations
 import common.TestUtils.RunResult
 import com.jayway.restassured.RestAssured
 import com.jayway.restassured.config.SSLConfig
@@ -36,7 +36,7 @@ class WatsonPackages
   implicit val wskprops = WskProps()
   print(wskprops)
   val wsk = new Wsk()
-  val wskRest: common.rest.WskRest = new WskRest
+  val wskRest: common.rest.WskRestOperations = new WskRestOperations
   val allowedActionDuration = 120 seconds
 
   val deployAction = "/whisk.system/deployWeb/wskdeploy"

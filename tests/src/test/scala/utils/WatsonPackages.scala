@@ -18,7 +18,7 @@
 package packages
 
 import org.scalatest.BeforeAndAfterAll
-import common.{TestHelpers, Wsk, WskProps, WskTestHelpers}
+import common.{TestHelpers, Wsk, WskActorSystem, WskProps, WskTestHelpers}
 import common.rest.WskRestOperations
 import common.TestUtils.RunResult
 import com.jayway.restassured.RestAssured
@@ -30,6 +30,7 @@ import scala.language.postfixOps
 
 class WatsonPackages
     extends TestHelpers
+    with WskActorSystem
     with WskTestHelpers
     with BeforeAndAfterAll {
 

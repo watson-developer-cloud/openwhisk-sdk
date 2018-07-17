@@ -83,13 +83,13 @@ You supply either an IAM service **API key** or an **access token** with the par
 
 # Invoking an action
 
-Each package contains a series of actions. Each action accepts a number of parameters which can either be passed on the command line, or passed via a JSON file. For instance, let's look at the `message` action from the `conversation-v1` package.
+Each package contains a series of actions. Each action accepts a number of parameters which can either be passed on the command line, or passed via a JSON file. For instance, let's look at the `message` action from the `assistant-v1` package.
 
 The `message` action retrieves a response to a user's input. The parameters that this action accepts are:
 
-* `username` : The Watson Conversation API username.
+* `username` : The Watson Assistant API username.
 
-* `password` : The Watson Conversation API password.
+* `password` : The Watson Assistant API password.
 
 * `iam_access_token` :  The IAM access token. You manage the lifecycle of the token
 
@@ -103,7 +103,7 @@ The `message` action retrieves a response to a user's input. The parameters that
 
 * `headers.X-Watson-Learning-Opt-Out`: opt-out of data collection.
 
-* `version_date` : Release date of the API version in YYYY-MM-DD format.
+* `version` : Release date of the API version in YYYY-MM-DD format.
 
 * `workspace_id` : The unique identifier of the workspace.
 
@@ -119,10 +119,12 @@ The `message` action retrieves a response to a user's input. The parameters that
 
 * `output` : System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
 
+* `nodes_visited_details` : Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message.
+
 If you haven't created a service binding, you can invoke the message action by providing all the required parameters. For example:
 
 ```
-bx wsk action invoke conversation-v1/message -p username <username> -p password <password> -p version_date <version_date> -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
+bx wsk action invoke assistant-v1/message -p username <username> -p password <password> -p version_date <version_date> -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
 ```
 
 If you've created a binding, you can invoke the message action via:

@@ -8,7 +8,7 @@ The Watson Natural Language Understanding V1 Package will contain the following 
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Natural Language Understanding V1 Service |
+| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Watson Natural Language Understanding V1 Service |
 | [analyze](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/curl.html?curl#analyze) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   features, text, html, url, clean, xpath, fallback_to_raw, return_analyzed_text, language, limit_text_characters,  | Analyze text, HTML, or a public webpage |
 | [delete-model](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/curl.html?curl#delete-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Delete model |
 | [list-models](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/curl.html?curl#list-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List models |

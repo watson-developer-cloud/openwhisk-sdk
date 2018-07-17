@@ -103,7 +103,7 @@ The `message` action retrieves a response to a user's input. The parameters that
 
 * `headers.X-Watson-Learning-Opt-Out`: opt-out of data collection.
 
-* `version_date` : Release date of the API version in YYYY-MM-DD format.
+* `version` : Release date of the API version in YYYY-MM-DD format.
 
 * `workspace_id` : The unique identifier of the workspace.
 
@@ -118,6 +118,8 @@ The `message` action retrieves a response to a user's input. The parameters that
 * `intents` : An array of name-confidence pairs for the user input. Include the intents from the previous response when they do not need to change and to prevent Watson from trying to identify them.
 
 * `output` : System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
+
+* `nodes_visited_details` : Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message.
 
 If you haven't created a service binding, you can invoke the message action by providing all the required parameters. For example:
 

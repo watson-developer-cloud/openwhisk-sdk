@@ -76,6 +76,11 @@ class DiscoveryV1Tests extends WatsonPackages
     val listTrainingExamples = packageName + "/list-training-examples"
     val updateTrainingExample = packageName + "/update-training-example"
     val deleteUserData = packageName + "/delete-user-data"
+    val createCredentials = packageName + "/create-credentials"
+    val getCredentials = packageName + "/get-credentials"
+    val updateCredentials = packageName + "/update-credentials"
+    val listCredentials = packageName + "/list-credentials"
+    val deleteCredentials = packageName + "/delete-credentials"
 
     behavior of "Discovery V1 Package"
 
@@ -220,6 +225,21 @@ class DiscoveryV1Tests extends WatsonPackages
      val deleteUserDataAction = wsk.action.get(deleteUserData)
      verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
 
+     val createCredentialsAction = wsk.action.get(createCredentials)
+     verifyAction(createCredentialsAction, createCredentials, JsString(nodejs8kind))
+
+     val getCredentialsAction = wsk.action.get(getCredentials)
+     verifyAction(getCredentialsAction, getCredentials, JsString(nodejs8kind))
+
+     val updateCredentialsAction = wsk.action.get(updateCredentials)
+     verifyAction(updateCredentialsAction, updateCredentials, JsString(nodejs8kind))
+
+     val listCredentialsAction = wsk.action.get(listCredentials)
+     verifyAction(listCredentialsAction, listCredentials, JsString(nodejs8kind))
+
+     val deleteCredentialsAction = wsk.action.get(deleteCredentials)
+     verifyAction(deleteCredentialsAction, deleteCredentials, JsString(nodejs8kind))
+
      //clean up after test
      wsk.action.delete(createEnvironment)
      wsk.action.delete(deleteEnvironment)
@@ -263,6 +283,11 @@ class DiscoveryV1Tests extends WatsonPackages
      wsk.action.delete(listTrainingExamples)
      wsk.action.delete(updateTrainingExample)
      wsk.action.delete(deleteUserData)
+     wsk.action.delete(createCredentials)
+     wsk.action.delete(getCredentials)
+     wsk.action.delete(updateCredentials)
+     wsk.action.delete(listCredentials)
+     wsk.action.delete(deleteCredentials)
      wsk.pkg.delete(packageName)
    }
 }

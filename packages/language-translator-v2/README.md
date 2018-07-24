@@ -53,7 +53,7 @@ git clone https://github.com/watson-developer-cloud/openwhisk-sdk
 ```
 2. Download [wskdeploy](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH
 3. Navigate to the packages/language-translator-v2 folder.
-4. Use `wskdeploy` to install the package using the [`manifest.yml`](./manifest.yml) in this folder.
+4. Use `wskdeploy` to install the package using the [`manifest.yaml`](./manifest.yaml) in this folder.
 
 ```
 wskdeploy

@@ -36,7 +36,11 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, 'natural_language_classifier');
+    const _params = getParams(
+      params,
+      'natural-language-classifier',
+      'natural_language_classifier'
+    );
     _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
@@ -59,17 +63,31 @@ function main(params) {
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
+* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
+* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service) {
+function getParams(theParams, service, serviceAltName) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
-  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  let bxCreds;
+  if (theParams.__bx_creds) {
+    if (theParams.__bx_creds[service]) {
+      bxCreds = theParams.__bx_creds[service];
+    } else if (theParams.__bx_creds[serviceAltName]) {
+      bxCreds = theParams.__bx_creds[serviceAltName];
+    } else {
+      bxCreds = {};
+    }
+  } else {
+    bxCreds = {};
+  }
   const _params = Object.assign({}, bxCreds, theParams);
+  if (_params.apikey) {
+    _params.iam_apikey = _params.apikey;
+  }
   delete _params.__bx_creds;
   return _params;
 }
-
 global.main = main;
 module.exports.test = main;

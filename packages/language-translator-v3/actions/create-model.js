@@ -20,7 +20,18 @@ const extend = require('extend');
 /**
  * Create model.
  *
- * Uploads Translation Memory eXchange (TMX) files to customize a translation model.  You can either customize a model with a forced glossary or with a corpus that contains parallel sentences. To create a model that is customized with a parallel corpus <b>and</b> a forced glossary, proceed in two steps: customize with a parallel corpus first and then customize the resulting model with a glossary. Depending on the type of customization and the size of the uploaded corpora, training can range from minutes for a glossary to several hours for a large parallel corpus. You can upload a single forced glossary file and this file must be less than <b>10 MB</b>. You can upload multiple parallel corpora tmx files. The cumulative file size of all uploaded files is limited to <b>250 MB</b>. To successfully train with a parallel corpus you must have at least <b>5,000 parallel sentences</b> in your corpus.  You can have a <b>maxium of 10 custom models per language pair</b>.
+ * Uploads Translation Memory eXchange (TMX) files to customize a translation model.
+ *
+ * You can either customize a model with a forced glossary or with a corpus that contains parallel sentences. To create
+ * a model that is customized with a parallel corpus <b>and</b> a forced glossary, proceed in two steps: customize with
+ * a parallel corpus first and then customize the resulting model with a glossary. Depending on the type of
+ * customization and the size of the uploaded corpora, training can range from minutes for a glossary to several hours
+ * for a large parallel corpus. You can upload a single forced glossary file and this file must be less than <b>10
+ * MB</b>. You can upload multiple parallel corpora tmx files. The cumulative file size of all uploaded files is limited
+ * to <b>250 MB</b>. To successfully train with a parallel corpus you must have at least <b>5,000 parallel sentences</b>
+ * in your corpus.
+ *
+ * You can have a <b>maxium of 10 custom models per language pair</b>.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -32,16 +43,35 @@ const extend = require('extend');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
- * @param {string} params.base_model_id - The model ID of the model to use as the base for customization. To see available models, use the `List models` method. Usually all IBM provided models are customizable. In addition, all your models that have been created via parallel corpus customization, can be further customized with a forced glossary.
- * @param {string} [params.name] - An optional model name that you can use to identify the model. Valid characters are letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters.
- * @param {string} [params.forced_glossary] - Must be a base64-encoded string. A TMX file with your customizations. The customizations in the file completely overwrite the domain translaton data, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. A forced glossary should contain single words or short phrases.
- * @param {string} [params.parallel_corpus] - Must be a base64-encoded string. A TMX file with parallel sentences for source and target language. You can upload multiple parallel_corpus files in one request. All uploaded parallel_corpus files combined, your parallel corpus must contain at least 5,000 parallel sentences to train successfully.
+ * @param {string} params.base_model_id - The model ID of the model to use as the base for customization. To see
+ * available models, use the `List models` method. Usually all IBM provided models are customizable. In addition, all
+ * your models that have been created via parallel corpus customization, can be further customized with a forced
+ * glossary.
+ * @param {string} [params.name] - An optional model name that you can use to identify the model. Valid characters are
+ * letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters.
+ * @param {string} [params.forced_glossary] - Must be a base64-encoded string. A TMX file with your customizations. The
+ * customizations in the file completely overwrite the domain translaton data, including high frequency or high
+ * confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. A forced
+ * glossary should contain single words or short phrases.
+ * @param {string} [params.parallel_corpus] - Must be a base64-encoded string. A TMX file with parallel sentences for
+ * source and target language. You can upload multiple parallel_corpus files in one request. All uploaded
+ * parallel_corpus files combined, your parallel corpus must contain at least 5,000 parallel sentences to train
+ * successfully.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, 'language_translator');
+    const _params = getParams(params, 'language-translator', 'language_translator');
     _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    const fileParams = ['forced_glossary', 'parallel_corpus'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
+      try {
+        _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
+      } catch (err) {
+        reject(err.message);
+        return;
+      }
+    });
     let service;
     try {
       service = new LanguageTranslatorV3(_params);
@@ -63,17 +93,31 @@ function main(params) {
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
+* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
+* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service) {
+function getParams(theParams, service, serviceAltName) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
-  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  let bxCreds;
+  if (theParams.__bx_creds) {
+    if (theParams.__bx_creds[service]) {
+      bxCreds = theParams.__bx_creds[service];
+    } else if (theParams.__bx_creds[serviceAltName]) {
+      bxCreds = theParams.__bx_creds[serviceAltName];
+    } else {
+      bxCreds = {};
+    }
+  } else {
+    bxCreds = {};
+  }
   const _params = Object.assign({}, bxCreds, theParams);
+  if (_params.apikey) {
+    _params.iam_apikey = _params.apikey;
+  }
   delete _params.__bx_creds;
   return _params;
 }
-
 global.main = main;
 module.exports.test = main;

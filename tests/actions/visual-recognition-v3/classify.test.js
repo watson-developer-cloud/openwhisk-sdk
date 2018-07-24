@@ -122,4 +122,34 @@ describe('classify', () => {
         assert.fail('Failure on valid payload');
       });
   });
+  it('should succeed with __bx_creds as credential source with IAM', () => {
+    const __bx_creds = {
+      'watson-vision-combined': {
+        iam_role_crn: 'crn:v1:bluemix:public:iam::::serviceRole:Manager',
+        url: 'https://gateway.watsonplatform.net/visual-recognition/api',
+        iam_apikey_description: 'Auto generated apikey during resource-key operation for Instance',
+        apikey: 'IAMkey',
+        instance: 'visual-recognition-sdks-lite-do-not-delete',
+        iam_apikey_name: 'auto-generated-apikey',
+        iam_serviceid_crn: 'crn',
+        credentials: 'Credentials-1'
+      },
+      watson_vision_combined: {
+        url: 'https://gateway-a.watsonplatform.net/visual-recognition/api',
+        instance: 'vis-rec-cf',
+        api_key: 'CFkey',
+        note: 'It may take up to 5 minutes for this key to become active',
+        credentials: 'credentials'
+      }
+    };
+    const params = { version: '2018-03-19', __bx_creds };
+    return classify
+      .test(params)
+      .then(() => {
+        assert.ok(true);
+      })
+      .catch(() => {
+        assert.fail('Failure on valid payload');
+      });
+  });
 });

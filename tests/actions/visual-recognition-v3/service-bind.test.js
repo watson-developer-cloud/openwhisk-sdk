@@ -43,7 +43,7 @@ before(() => {
   payload = extend({}, payload, omit(credentials, ['url']));
 });
 
-describe('service bind', () => {
+describe.skip('service bind', () => {
   it('should succeed with __bx_creds as credential source with IAM', () => {
     const __bx_creds = {
       'watson-vision-combined': {

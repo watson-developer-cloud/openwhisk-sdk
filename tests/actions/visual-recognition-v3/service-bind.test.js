@@ -4,9 +4,7 @@ const { describe } = require('../../resources/auth-helper');
 const listClassifiers = require('../../../packages/visual-recognition-v3/actions/list-classifiers');
 
 const IAM_HOST = 'https://iam.bluemix.net:443';
-let ow;
-let credentials;
-let payload = {
+const payload = {
   headers: {
     'User-Agent': 'openwhisk'
   }
@@ -17,6 +15,7 @@ describe('service bind', () => {
     nock.disableNetConnect();
     nock(IAM_HOST)
       .persist()
+      // eslint-disable-next-line
       .post('/identity/token', 'grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey&apikey=IAMkey&response_type=cloud_iam')
       .reply(200, { access_token: 'faa' });
 

@@ -63,7 +63,7 @@ function main(params) {
     const _params = getParams(
       params,
       'watson-vision-combined',
-      'watson_vision_combined'
+      'watson_vision_combined',
     );
     _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     const fileParams = ['classname_positive_examples', 'negative_examples'];
@@ -120,12 +120,16 @@ function getParams(theParams, service, serviceAltName) {
     return theParams;
   }
   let bxCreds;
+  // Code that checks parameters bound using service bind
   if (theParams.__bx_creds) {
+    // If user has IAM instance of service
     if (theParams.__bx_creds[service]) {
       bxCreds = theParams.__bx_creds[service];
     } else if (theParams.__bx_creds[serviceAltName]) {
+      // If user has no IAM instance of service, check for CF instances
       bxCreds = theParams.__bx_creds[serviceAltName];
     } else {
+      // User has no instances of service
       bxCreds = {};
     }
   } else {
@@ -134,9 +138,11 @@ function getParams(theParams, service, serviceAltName) {
   const _params = Object.assign({}, bxCreds, theParams);
   if (_params.apikey) {
     _params.iam_apikey = _params.apikey;
+    delete _params.apikey;
   }
   delete _params.__bx_creds;
   return _params;
 }
+
 global.main = main;
 module.exports.test = main;

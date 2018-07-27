@@ -56,6 +56,7 @@ function main(params) {
   });
 }
 
+
 /**
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
@@ -67,10 +68,13 @@ function getParams(theParams, service) {
     return theParams;
   }
   let bxCreds;
+  // Code that checks parameters bound using service bind
   if (theParams.__bx_creds) {
+    // If user has instance of service
     if (theParams.__bx_creds[service]) {
       bxCreds = theParams.__bx_creds[service];
     } else {
+      // User has no instances of service
       bxCreds = {};
     }
   } else {
@@ -79,6 +83,7 @@ function getParams(theParams, service) {
   const _params = Object.assign({}, bxCreds, theParams);
   if (_params.apikey) {
     _params.iam_apikey = _params.apikey;
+    delete _params.apikey;
   }
   delete _params.__bx_creds;
   return _params;

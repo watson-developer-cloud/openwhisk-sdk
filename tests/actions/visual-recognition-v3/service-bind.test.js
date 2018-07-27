@@ -9,6 +9,7 @@ const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
 let listClassifiers = require('../../../packages/visual-recognition-v3/actions/list-classifiers');
 
+const IAM_HOST = 'https://iam.bluemix.net:443';
 let ow;
 let credentials;
 let payload = {
@@ -17,39 +18,33 @@ let payload = {
   }
 };
 
-before(() => {
-  if (process.env.TEST_OPENWHISK && auth) {
-    ow = openwhisk(auth.ow);
-    listClassifiers = adapt(
-      listClassifiers,
-      'visual-recognition-v3/list-classifiers',
-      ow
-    );
-    credentials = auth.visual_recognition.v3;
-  } else {
-    credentials = {
-      api_key: 'api-key',
-      version: 'version-date'
-    };
-    beforeEach(() => {
-      nock('https://gateway.watsonplatform.net/visual-recognition')
-        .get('/api/v3/classifiers')
-        .query({
-          version: '2018-03-19'
-        })
-        .reply(200, {});
-    });
-  }
-  payload = extend({}, payload, omit(credentials, ['url']));
-});
+describe('service bind', () => {
+  before(() => {
+    nock.disableNetConnect();
+    nock(IAM_HOST)
+      .persist()
+      .post('/identity/token', 'grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey&apikey=IAMkey&response_type=cloud_iam')
+      .reply(200, { access_token: 'faa' });
 
-describe.skip('service bind', () => {
+    nock('https://gateway.watsonplatform.net/visual-recognition')
+      .get('/api/v3/classifiers')
+      .query({
+        version: '2018-03-19'
+      })
+      .reply(200, {});
+  });
+
+  after(() => {
+    nock.cleanAll();
+  });
+
   it('should succeed with __bx_creds as credential source with IAM', () => {
+    // eslint-disable-next-line
     const __bx_creds = {
       'watson-vision-combined': {
         iam_role_crn: 'crn:v1:bluemix:public:iam::::serviceRole:Manager',
         url: 'https://gateway.watsonplatform.net/visual-recognition/api',
-        iam_apikey_description: 'Auto generated apikey during resource-key operation for Instance',
+        iam_apikey_description: 'some key',
         apikey: 'IAMkey',
         instance: 'visual-recognition-sdks-lite-do-not-delete',
         iam_apikey_name: 'auto-generated-apikey',
@@ -64,6 +59,7 @@ describe.skip('service bind', () => {
         credentials: 'credentials'
       }
     };
+    //nock.recorder.rec();
     const params = { version: '2018-03-19', __bx_creds };
     return listClassifiers
       .test(params)

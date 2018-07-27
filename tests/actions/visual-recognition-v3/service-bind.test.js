@@ -1,13 +1,7 @@
 const assert = require('assert');
 const nock = require('nock');
-const extend = require('extend');
-const omit = require('object.omit');
-const path = require('path');
-const fs = require('fs');
-const openwhisk = require('openwhisk');
-const { auth, describe } = require('../../resources/auth-helper');
-const { adapt, negativeHandler } = require('../../resources/test-helper');
-let listClassifiers = require('../../../packages/visual-recognition-v3/actions/list-classifiers');
+const { describe } = require('../../resources/auth-helper');
+const listClassifiers = require('../../../packages/visual-recognition-v3/actions/list-classifiers');
 
 const IAM_HOST = 'https://iam.bluemix.net:443';
 let ow;
@@ -31,14 +25,14 @@ describe('service bind', () => {
       .query({
         version: '2018-03-19'
       })
-      .reply(200, {});
+      .reply(200, { foo: 'bar' });
   });
 
   after(() => {
     nock.cleanAll();
   });
 
-  it('should succeed with __bx_creds as credential source with IAM', () => {
+  it('should succeed with __bx_creds as credential source with IAM preferring IAM', () => {
     // eslint-disable-next-line
     const __bx_creds = {
       'watson-vision-combined': {
@@ -59,15 +53,16 @@ describe('service bind', () => {
         credentials: 'credentials'
       }
     };
-    //nock.recorder.rec();
-    const params = { version: '2018-03-19', __bx_creds };
+
+    const params = { version: '2018-03-19', __bx_creds, payload };
     return listClassifiers
       .test(params)
-      .then(() => {
+      .then((result) => {
+        assert.equal(result.toString(), { foo: 'bar' }.toString());
         assert.ok(true);
       })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
+      .catch((err) => {
+        assert.fail('Failure on valid payload', err);
       });
   });
 });

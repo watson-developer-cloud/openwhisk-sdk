@@ -56,7 +56,11 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, 'speech_to_text');
+    const _params = getParams(
+      params,
+      'speech-to-text',
+      'speech_to_text',
+    );
     _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
     let service;
     try {
@@ -79,14 +83,34 @@ function main(params) {
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
+* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
+* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service) {
+function getParams(theParams, service, serviceAltName) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
-  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  let bxCreds;
+  // Code that checks parameters bound using service bind
+  if (theParams.__bx_creds) {
+    // If user has IAM instance of service
+    if (theParams.__bx_creds[service]) {
+      bxCreds = theParams.__bx_creds[service];
+    } else if (theParams.__bx_creds[serviceAltName]) {
+      // If user has no IAM instance of service, check for CF instances
+      bxCreds = theParams.__bx_creds[serviceAltName];
+    } else {
+      // User has no instances of service
+      bxCreds = {};
+    }
+  } else {
+    bxCreds = {};
+  }
   const _params = Object.assign({}, bxCreds, theParams);
+  if (_params.apikey) {
+    _params.iam_apikey = _params.apikey;
+    delete _params.apikey;
+  }
   delete _params.__bx_creds;
   return _params;
 }

@@ -20,7 +20,12 @@ const extend = require('extend');
 /**
  * Create a classifier.
  *
- * Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call.  Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
+ * Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or
+ * negative examples. Include at least two sets of examples, either two positive example files or one positive and one
+ * negative file. You can upload a maximum of 256 MB per call.
+ *
+ * Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class
+ * names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.api_key] - The API key used to authenticate with the service. The API key credential is only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -32,15 +37,35 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.name - The name of the new classifier. Encode special characters in UTF-8.
- * @param {string} params.classname_positive_examples - Must be a base64-encoded string. A .zip file of images that depict the visual subject of a class in the new classifier. You can include more than one positive example file in a call.  Specify the parameter name by appending `_positive_examples` to the class name. For example, `goldenretriever_positive_examples` creates the class **goldenretriever**.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  Encode special characters in the file name in UTF-8.
- * @param {string} [params.negative_examples] - Must be a base64-encoded string. A .zip file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.  Encode special characters in the file name in UTF-8.
+ * @param {string} params.classname_positive_examples - Must be a base64-encoded string. A .zip file of images that
+ * depict the visual subject of a class in the new classifier. You can include more than one positive example file in a
+ * call.
+ *
+ * Specify the parameter name by appending `_positive_examples` to the class name. For example,
+ * `goldenretriever_positive_examples` creates the class **goldenretriever**.
+ *
+ * Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The
+ * maximum number of images is 10,000 images or 100 MB per .zip file.
+ *
+ * Encode special characters in the file name in UTF-8.
+ * @param {string} [params.negative_examples] - Must be a base64-encoded string. A .zip file of images that do not
+ * depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.
+ *
+ * Encode special characters in the file name in UTF-8.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, 'watson_vision_combined');
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
-    const fileParams = ['negative_examples'];
+    const _params = getParams(
+      params,
+      'watson-vision-combined',
+      'watson_vision_combined',
+    );
+    _params.headers = extend(
+      {},
+      _params.headers, { 'User-Agent': 'openwhisk' }
+    );
+    const fileParams = ['classname_positive_examples', 'negative_examples'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
@@ -86,14 +111,34 @@ function main(params) {
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
+* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
+* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service) {
+function getParams(theParams, service, serviceAltName) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
-  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  let bxCreds;
+  // Code that checks parameters bound using service bind
+  if (theParams.__bx_creds) {
+    // If user has IAM instance of service
+    if (theParams.__bx_creds[service]) {
+      bxCreds = theParams.__bx_creds[service];
+    } else if (theParams.__bx_creds[serviceAltName]) {
+      // If user has no IAM instance of service, check for CF instances
+      bxCreds = theParams.__bx_creds[serviceAltName];
+    } else {
+      // User has no instances of service
+      bxCreds = {};
+    }
+  } else {
+    bxCreds = {};
+  }
   const _params = Object.assign({}, bxCreds, theParams);
+  if (_params.apikey) {
+    _params.iam_apikey = _params.apikey;
+    delete _params.apikey;
+  }
   delete _params.__bx_creds;
   return _params;
 }

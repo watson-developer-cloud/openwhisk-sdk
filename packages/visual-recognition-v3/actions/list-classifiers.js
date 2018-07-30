@@ -38,7 +38,7 @@ function main(params) {
     const _params = getParams(
       params,
       'watson-vision-combined',
-      'watson_vision_combined',
+      'watson_vision_combined'
     );
     _params.headers = extend(
       {},

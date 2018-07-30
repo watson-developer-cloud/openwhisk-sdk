@@ -11,7 +11,7 @@ const payload = {
 };
 
 describe('service bind', () => {
-  before(() => {
+  beforeEach(() => {
     nock.disableNetConnect();
     nock(IAM_HOST)
       .persist()
@@ -27,7 +27,7 @@ describe('service bind', () => {
       .reply(200, { foo: 'bar' });
   });
 
-  after(() => {
+  afterEach(() => {
     nock.cleanAll();
   });
 
@@ -54,6 +54,53 @@ describe('service bind', () => {
     };
 
     const params = { version: '2018-03-19', __bx_creds, payload };
+    return listClassifiers
+      .test(params)
+      .then((result) => {
+        assert.equal(result.toString(), { foo: 'bar' }.toString());
+        assert.ok(true);
+      })
+      .catch((err) => {
+        assert.fail('Failure on valid payload', err);
+      });
+  });
+
+  it('should succeed with __bx_creds as credential source with IAM', () => {
+    // eslint-disable-next-line
+    const __bx_creds = {
+      'watson-vision-combined': {
+        iam_role_crn: 'crn:v1:bluemix:public:iam::::serviceRole:Manager',
+        url: 'https://gateway.watsonplatform.net/visual-recognition/api',
+        iam_apikey_description: 'some key',
+        apikey: 'IAMkey',
+        instance: 'visual-recognition-sdks-lite-do-not-delete',
+        iam_apikey_name: 'auto-generated-apikey',
+        iam_serviceid_crn: 'crn',
+        credentials: 'Credentials-1'
+      }
+    };
+
+    const params = { version: '2018-03-19', __bx_creds, payload };
+    return listClassifiers
+      .test(params)
+      .then((result) => {
+        assert.equal(result.toString(), { foo: 'bar' }.toString());
+        assert.ok(true);
+      })
+      .catch((err) => {
+        assert.fail('Failure on valid payload', err);
+      });
+  });
+
+  it('should succeed when __bx_creds has something else yet parameters are passed in', () => {
+    // eslint-disable-next-line
+    const __bx_creds = {
+      something: {
+        stuff: 'unrelated',
+      }
+    };
+
+    const params = { version: '2018-03-19',iam_apikey: 'IAMkey', __bx_creds, payload };
     return listClassifiers
       .test(params)
       .then((result) => {

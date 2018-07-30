@@ -66,7 +66,11 @@ function main(params) {
       'language-translator',
       'language_translator',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     const fileParams = ['forced_glossary', 'parallel_corpus'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

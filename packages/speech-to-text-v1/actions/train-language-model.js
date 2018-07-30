@@ -78,7 +78,11 @@ function main(params) {
       'speech-to-text',
       'speech_to_text',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     let service;
     try {
       service = new SpeechToTextV1(_params);

@@ -63,7 +63,8 @@ function main(params) {
     );
     _params.headers = extend(
       {},
-      _params.headers, { 'User-Agent': 'openwhisk' }
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
     );
     const fileParams = ['classname_positive_examples', 'negative_examples'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {

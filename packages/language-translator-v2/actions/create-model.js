@@ -55,8 +55,16 @@ function main(params) {
       'language-translator',
       'language_translator',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
-    const fileParams = ['forced_glossary', 'parallel_corpus', 'monolingual_corpus'];
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
+    const fileParams = [
+      'forced_glossary',
+      'parallel_corpus',
+      'monolingual_corpus'
+    ];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');

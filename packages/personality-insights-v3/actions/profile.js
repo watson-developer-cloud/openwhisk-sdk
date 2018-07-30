@@ -83,7 +83,11 @@ function main(params) {
       'personality-insights',
       'personality_insights',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     let service;
     try {
       service = new PersonalityInsightsV3(_params);

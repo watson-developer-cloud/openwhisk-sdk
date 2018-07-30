@@ -82,7 +82,11 @@ function main(params) {
       'speech-to-text',
       'speech_to_text',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     const fileParams = ['corpus_file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

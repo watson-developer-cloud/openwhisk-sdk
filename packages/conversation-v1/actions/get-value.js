@@ -47,7 +47,11 @@ const extend = require('extend');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'conversation');
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     let service;
     try {
       service = new ConversationV1(_params);

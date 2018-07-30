@@ -75,7 +75,11 @@ function main(params) {
       'tone-analyzer',
       'tone_analyzer',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     let service;
     try {
       service = new ToneAnalyzerV3(_params);

@@ -69,7 +69,8 @@ function main(params) {
     const _params = getParams(params, 'conversation');
     _params.headers = extend(
       {},
-      _params.headers, { 'User-Agent': 'openwhisk' }
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
     );
     let service;
     try {

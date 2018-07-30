@@ -45,7 +45,11 @@ function main(params) {
       'natural-language-classifier',
       'natural_language_classifier',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     let service;
     try {
       service = new NaturalLanguageClassifierV1(_params);

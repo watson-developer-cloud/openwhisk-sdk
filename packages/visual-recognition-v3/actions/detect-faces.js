@@ -63,7 +63,11 @@ function main(params) {
       'watson-vision-combined',
       'watson_vision_combined',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     const fileParams = ['images_file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

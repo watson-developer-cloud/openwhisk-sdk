@@ -41,7 +41,11 @@ function main(params) {
       'language-translator',
       'language_translator',
     );
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     let service;
     try {
       service = new LanguageTranslatorV2(_params);

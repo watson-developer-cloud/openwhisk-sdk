@@ -58,7 +58,11 @@ const extend = require('extend');
 function main(params) {
   return new Promise((resolve, reject) => {
     const _params = getParams(params, 'discovery');
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     const fileParams = ['file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {

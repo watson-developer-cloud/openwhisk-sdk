@@ -96,11 +96,13 @@ describe('service bind', () => {
     // eslint-disable-next-line
     const __bx_creds = {
       something: {
-        stuff: 'unrelated',
+        stuff: 'unrelated'
       }
     };
 
-    const params = { version: '2018-03-19',iam_apikey: 'IAMkey', __bx_creds, payload };
+    const params = {
+      version: '2018-03-19', iam_apikey: 'IAMkey', __bx_creds, payload
+    };
     return listClassifiers
       .test(params)
       .then((result) => {

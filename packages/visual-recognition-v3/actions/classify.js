@@ -31,19 +31,54 @@ const extend = require('extend');
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
- * @param {string} [params.images_file] - Must be a base64-encoded string. An image file (.jpg, .png) or .zip file with images. Maximum image size is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters.  You can also include an image with the **url** parameter.
- * @param {string} [params.accept_language] - The language of the output class names. The full set of languages is supported only for the built-in `default` classifier ID. The class names of custom classifiers are not translated.  The response might not be in the specified language when the requested language is not supported or when there is no translation for the class name.
- * @param {string} [params.url] - The URL of an image to analyze. Must be in .jpg, or .png format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB.  You can also include images with the **images_file** parameter.
- * @param {number} [params.threshold] - The minimum score a class must have to be displayed in the response. Set the threshold to `0.0` to ignore the classification score and return all values.
- * @param {string[]} [params.owners] - The categories of classifiers to apply. Use `IBM` to classify against the `default` general classifier, and use `me` to classify against your custom classifiers. To analyze the image against both classifier categories, set the value to both `IBM` and `me`.   The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.  The **classifier_ids** parameter overrides **owners**, so make sure that **classifier_ids** is empty.
- * @param {string[]} [params.classifier_ids] - Which classifiers to apply. Overrides the **owners** parameter. You can specify both custom and built-in classifier IDs. The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.  The following built-in classifier IDs require no training: - `default`: Returns classes from thousands of general tags. - `food`: (Beta) Enhances specificity and accuracy for images of food items. - `explicit`: (Beta) Evaluates whether the image might be pornographic.
+ * @param {string} [params.images_file] - Must be a base64-encoded string. An image file (.jpg, .png) or .zip file with
+ * images. Maximum image size is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the
+ * image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it
+ * encounters non-ASCII characters.
+ *
+ * You can also include an image with the **url** parameter.
+ * @param {string} [params.accept_language] - The language of the output class names. The full set of languages is
+ * supported for the built-in classifier IDs: `default`, `food`, and `explicit`. The class names of custom classifiers
+ * are not translated.
+ *
+ * The response might not be in the specified language when the requested language is not supported or when there is no
+ * translation for the class name.
+ * @param {string} [params.url] - The URL of an image to analyze. Must be in .jpg, or .png format. The minimum
+ * recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB.
+ *
+ * You can also include images with the **images_file** parameter.
+ * @param {number} [params.threshold] - The minimum score a class must have to be displayed in the response. Set the
+ * threshold to `0.0` to ignore the classification score and return all values.
+ * @param {string[]} [params.owners] - The categories of classifiers to apply. Use `IBM` to classify against the
+ * `default` general classifier, and use `me` to classify against your custom classifiers. To analyze the image against
+ * both classifier categories, set the value to both `IBM` and `me`.
+ *
+ * The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.
+ *
+ * The **classifier_ids** parameter overrides **owners**, so make sure that **classifier_ids** is empty.
+ * @param {string[]} [params.classifier_ids] - Which classifiers to apply. Overrides the **owners** parameter. You can
+ * specify both custom and built-in classifier IDs. The built-in `default` classifier is used if both **classifier_ids**
+ * and **owners** parameters are empty.
+ *
+ * The following built-in classifier IDs require no training:
+ * - `default`: Returns classes from thousands of general tags.
+ * - `food`: (Beta) Enhances specificity and accuracy for images of food items.
+ * - `explicit`: (Beta) Evaluates whether the image might be pornographic.
  * @param {string} [params.images_file_content_type] - The content type of images_file.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, 'watson_vision_combined');
-    _params.headers = extend({}, _params.headers, { 'User-Agent': 'openwhisk' });
+    const _params = getParams(
+      params,
+      'watson-vision-combined',
+      'watson_vision_combined',
+    );
+    _params.headers = extend(
+      {},
+      _params.headers,
+      { 'User-Agent': 'openwhisk' }
+    );
     const fileParams = ['images_file'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
@@ -74,14 +109,34 @@ function main(params) {
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials
+* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
+* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service) {
+function getParams(theParams, service, serviceAltName) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
-  const bxCreds = theParams.__bx_creds ? theParams.__bx_creds[service] : {};
+  let bxCreds;
+  // Code that checks parameters bound using service bind
+  if (theParams.__bx_creds) {
+    // If user has IAM instance of service
+    if (theParams.__bx_creds[service]) {
+      bxCreds = theParams.__bx_creds[service];
+    } else if (theParams.__bx_creds[serviceAltName]) {
+      // If user has no IAM instance of service, check for CF instances
+      bxCreds = theParams.__bx_creds[serviceAltName];
+    } else {
+      // User has no instances of service
+      bxCreds = {};
+    }
+  } else {
+    bxCreds = {};
+  }
   const _params = Object.assign({}, bxCreds, theParams);
+  if (_params.apikey) {
+    _params.iam_apikey = _params.apikey;
+    delete _params.apikey;
+  }
   delete _params.__bx_creds;
   return _params;
 }

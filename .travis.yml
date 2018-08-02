@@ -2,7 +2,7 @@ matrix:
   include:
     - language: node_js
       sudo: false
-      node_js: 6
+      node_js: 8.3
       script:
       - npm run lint
       - npm run test-unit
@@ -13,6 +13,10 @@ matrix:
       - sudo wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
       - sudo chmod 711 /usr/local/bin/wsk
       - export PATH=$PATH:"/usr/local/bin/wsk"
+      deploy:
+        - provider: script
+          skip_cleanup: true
+          script: npx travis-deploy-once "npx semantic-release"
     - language: scala
       scala:
         - 2.11.11

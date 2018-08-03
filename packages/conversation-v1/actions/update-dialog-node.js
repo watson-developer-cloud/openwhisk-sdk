@@ -46,8 +46,8 @@ const extend = require('extend');
  * carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
  * @param {string} [params.new_parent] - The ID of the parent dialog node.
  * @param {string} [params.new_previous_sibling] - The ID of the previous sibling dialog node.
- * @param {Object} [params.new_output] - The output of the dialog node. For more information about how to specify dialog
- * node output, see the
+ * @param {DialogNodeOutput} [params.new_output] - The output of the dialog node. For more information about how to
+ * specify dialog node output, see the
  * [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
  * @param {Object} [params.new_context] - The context for the dialog node.
  * @param {Object} [params.new_metadata] - The metadata for the dialog node.
@@ -65,6 +65,8 @@ const extend = require('extend');
  * @param {string} [params.new_digress_out] - Whether this dialog node can be returned to after a digression.
  * @param {string} [params.new_digress_out_slots] - Whether the user can digress to top-level nodes while filling out
  * slots.
+ * @param {string} [params.new_user_label] - A label that can be displayed externally to describe the purpose of the
+ * node to users.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

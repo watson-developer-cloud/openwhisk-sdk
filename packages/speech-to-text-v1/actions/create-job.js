@@ -143,30 +143,31 @@ const extend = require('extend');
  * detected in submitted audio, the connection is closed with a 400 error. The parameter is useful for stopping audio
  * submission from a live microphone when a user simply walks away. Use `-1` for infinity.
  * @param {string[]} [params.keywords] - An array of keyword strings to spot in the audio. Each keyword string can
- * include one or more tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you specify
- * any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the parameter
- * or specify an empty array if you do not need to spot keywords.
+ * include one or more string tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you
+ * specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the
+ * parameter or specify an empty array if you do not need to spot keywords.
  * @param {number} [params.keywords_threshold] - A confidence value that is the lower bound for spotting a keyword. A
  * word is considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a
- * probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you specify a
+ * probability between 0.0 and 1.0. No keyword spotting is performed if you omit the parameter. If you specify a
  * threshold, you must also specify one or more keywords.
- * @param {number} [params.max_alternatives] - The maximum number of alternative transcripts to be returned. By default,
- * a single transcription is returned.
+ * @param {number} [params.max_alternatives] - The maximum number of alternative transcripts that the service is to
+ * return. By default, a single transcription is returned.
  * @param {number} [params.word_alternatives_threshold] - A confidence value that is the lower bound for identifying a
  * hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if
- * its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No
- * alternative words are computed if you omit the parameter.
- * @param {boolean} [params.word_confidence] - If `true`, a confidence measure in the range of 0 to 1 is returned for
- * each word. By default, no word confidence measures are returned.
- * @param {boolean} [params.timestamps] - If `true`, time alignment is returned for each word. By default, no timestamps
- * are returned.
- * @param {boolean} [params.profanity_filter] - If `true` (the default), filters profanity from all output except for
+ * its confidence is greater than or equal to the threshold. Specify a probability between 0.0 and 1.0. No alternative
+ * words are computed if you omit the parameter.
+ * @param {boolean} [params.word_confidence] - If `true`, the service returns a confidence measure in the range of 0.0
+ * to 1.0 for each word. By default, no word confidence measures are returned.
+ * @param {boolean} [params.timestamps] - If `true`, the service returns time alignment for each word. By default, no
+ * timestamps are returned.
+ * @param {boolean} [params.profanity_filter] - If `true`, the service filters profanity from all output except for
  * keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return
  * results with no censoring. Applies to US English transcription only.
- * @param {boolean} [params.smart_formatting] - If `true`, converts dates, times, series of digits and numbers, phone
- * numbers, currency values, and internet addresses into more readable, conventional representations in the final
- * transcript of a recognition request. For US English, also converts certain keyword strings to punctuation symbols. By
- * default, no smart formatting is performed. Applies to US English and Spanish transcription only.
+ * @param {boolean} [params.smart_formatting] - If `true`, the service converts dates, times, series of digits and
+ * numbers, phone numbers, currency values, and internet addresses into more readable, conventional representations in
+ * the final transcript of a recognition request. For US English, the service also converts certain keyword strings to
+ * punctuation symbols. By default, no smart formatting is performed. Applies to US English and Spanish transcription
+ * only.
  * @param {boolean} [params.speaker_labels] - If `true`, the response includes labels that identify which words were
  * spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting
  * `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false`

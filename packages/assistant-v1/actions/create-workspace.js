@@ -48,6 +48,7 @@ const extend = require('extend');
  * @param {Object} [params.metadata] - Any metadata related to the workspace.
  * @param {boolean} [params.learning_opt_out] - Whether training data from the workspace can be used by IBM for general
  * service improvements. `true` indicates that workspace training data is not to be used.
+ * @param {WorkspaceSystemSettings} [params.system_settings] - Global settings for the workspace.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

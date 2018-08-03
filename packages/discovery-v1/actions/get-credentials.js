@@ -50,7 +50,7 @@ function main(params) {
     let service;
     try {
       service = new DiscoveryV1(_params);
-      service.getCredentials(_params, (err, response) => {
+      service.getSourceCredentials(_params, (err, response) => {
         if (err) {
           reject(err.message);
         } else {

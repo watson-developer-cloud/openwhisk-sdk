@@ -80,6 +80,7 @@ const extend = require('extend');
  * **query** are subsequently applied and reduce the query scope.
  * @param {string[]} [params.similar_fields] - A comma-separated list of field names that will be used as a basis for
  * comparison to identify similar documents. If not specified, the entire document is used for comparison.
+ * @param {boolean} [params.logging_opt_out] - If `true`, queries are not stored in the Discovery **Logs** endpoint.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

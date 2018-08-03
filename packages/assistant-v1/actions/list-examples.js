@@ -20,7 +20,7 @@ const extend = require('extend');
 /**
  * List user input examples.
  *
- * List the user input examples for an intent.
+ * List the user input examples for an intent, optionally including contextual entity mentions.
  *
  * This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
  *

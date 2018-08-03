@@ -44,7 +44,6 @@ class WatsonPackages
   val deployActionURL = s"https://${wskprops.apihost}/api/v1/web${deployAction}.http"
 
   behavior of "Watson Packages"
-  print("HELLO")
 
   def makeWskdeployCallWithExpectedResult(params: JsObject, expectedResult: String, expectedCode: Int) = {
     print(params)

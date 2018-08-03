@@ -23,7 +23,7 @@
     "extend": "^3.0.1",
     "json-loader": "~0.5.7",
     "jsonlint": "^1.6.3",
-    "watson-developer-cloud": "~3.7.1"
+    "watson-developer-cloud": "~3.8.0"
   },
   "devDependencies": {
     "eslint": "~4.7.2",

@@ -41,6 +41,7 @@ const extend = require('extend');
  * - It cannot contain carriage return, newline, or tab characters.
  * - It cannot consist of only whitespace characters.
  * - It must be no longer than 1024 characters.
+ * @param {Mentions[]} [params.mentions] - An array of contextual entity mentions.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

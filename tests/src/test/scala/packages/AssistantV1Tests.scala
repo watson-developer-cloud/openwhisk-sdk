@@ -78,6 +78,7 @@ class AssistantV1Tests extends WatsonPackages
     val listAllLogs = packageName + "/list-all-logs"
     val listLogs = packageName + "/list-logs"
     val deleteUserData = packageName + "/delete-user-data"
+    val listMentions = packageName + "/list-mentions"
 
     behavior of "Assistant V1 Package"
 
@@ -228,6 +229,9 @@ class AssistantV1Tests extends WatsonPackages
      val deleteUserDataAction = wsk.action.get(deleteUserData)
      verifyAction(deleteUserDataAction, deleteUserData, JsString(nodejs8kind))
 
+     val listMentionsAction = wsk.action.get(listMentions)
+     verifyAction(listMentionsAction, listMentions, JsString(nodejs8kind))
+
      //clean up after test
      wsk.action.delete(message)
      wsk.action.delete(createWorkspace)
@@ -273,6 +277,7 @@ class AssistantV1Tests extends WatsonPackages
      wsk.action.delete(listAllLogs)
      wsk.action.delete(listLogs)
      wsk.action.delete(deleteUserData)
+     wsk.action.delete(listMentions)
      wsk.pkg.delete(packageName)
    }
 }

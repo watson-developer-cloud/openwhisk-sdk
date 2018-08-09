@@ -111,9 +111,9 @@ const extend = require('extend');
  * recognition, including the `rate`, `channels`, and `endianness` parameters that are used with some formats. For a
  * complete list of supported audio formats, see [Audio formats](/docs/services/speech-to-text/input.html#formats).
  * @param {boolean} [params.allow_overwrite] - If `true`, the specified corpus or audio resource overwrites an existing
- * corpus or audio resource with the same name. If `false` (the default), the request fails if a corpus or audio
- * resource with the same name already exists. The parameter has no effect if a corpus or audio resource with the same
- * name does not already exist.
+ * corpus or audio resource with the same name. If `false`, the request fails if a corpus or audio resource with the
+ * same name already exists. The parameter has no effect if a corpus or audio resource with the same name does not
+ * already exist.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

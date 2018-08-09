@@ -81,6 +81,9 @@ project:
         update-entity:
           function: actions/update-entity.js
           runtime: nodejs:8
+        list-mentions:
+          function: actions/list-mentions.js
+          runtime: nodejs:8
         create-value:
           function: actions/create-value.js
           runtime: nodejs:8

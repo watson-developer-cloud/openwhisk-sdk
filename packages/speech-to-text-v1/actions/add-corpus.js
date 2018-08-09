@@ -70,9 +70,9 @@ const extend = require('extend');
  * data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding
  * if it encounters non-ASCII characters. With cURL, use the `--data-binary` option to upload the file for the request.
  * @param {boolean} [params.allow_overwrite] - If `true`, the specified corpus or audio resource overwrites an existing
- * corpus or audio resource with the same name. If `false` (the default), the request fails if a corpus or audio
- * resource with the same name already exists. The parameter has no effect if a corpus or audio resource with the same
- * name does not already exist.
+ * corpus or audio resource with the same name. If `false`, the request fails if a corpus or audio resource with the
+ * same name already exists. The parameter has no effect if a corpus or audio resource with the same name does not
+ * already exist.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

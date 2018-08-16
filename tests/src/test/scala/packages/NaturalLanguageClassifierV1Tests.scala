@@ -29,7 +29,7 @@ class NaturalLanguageClassifierV1Tests extends WatsonPackages
   with BeforeAndAfterAll {
     val deployTestRepo = "https://github.com/watson-developer-cloud/openwhisk-sdk";
     val manifestPath = "packages/natural-language-classifier-v1"
-    val successStatus = """"status":"success""""
+    val successStatus = """"status": "success""""
     val nodejs8kind = "nodejs:8"
 
     //natural-language-classifier-v1 action definitions

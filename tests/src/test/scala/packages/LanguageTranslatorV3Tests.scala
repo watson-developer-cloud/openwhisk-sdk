@@ -29,7 +29,7 @@ class LanguageTranslatorV3Tests extends WatsonPackages
   with BeforeAndAfterAll {
     val deployTestRepo = "https://github.com/watson-developer-cloud/openwhisk-sdk";
     val manifestPath = "packages/language-translator-v3"
-    val successStatus = """"status":"success""""
+    val successStatus = """"status": "success""""
     val nodejs8kind = "nodejs:8"
 
     //language-translator-v3 action definitions

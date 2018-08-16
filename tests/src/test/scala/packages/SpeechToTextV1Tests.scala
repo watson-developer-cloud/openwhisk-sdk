@@ -29,7 +29,7 @@ class SpeechToTextV1Tests extends WatsonPackages
   with BeforeAndAfterAll {
     val deployTestRepo = "https://github.com/watson-developer-cloud/openwhisk-sdk";
     val manifestPath = "packages/speech-to-text-v1"
-    val successStatus = """"status":"success""""
+    val successStatus = """"status": "success""""
     val nodejs8kind = "nodejs:8"
 
     //speech-to-text-v1 action definitions

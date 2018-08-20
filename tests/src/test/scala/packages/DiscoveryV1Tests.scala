@@ -85,7 +85,7 @@ class DiscoveryV1Tests extends WatsonPackages
     val getMetricsQueryEvent = packageName + "/get-metrics-query-event"
     val getMetricsQueryNoResults = packageName + "/get-metrics-query-no-results"
     val getMetricsQueryTokenEvent = packageName + "/get-metrics-query-token-event"
-    val getMetricsQuery = packageName + "/get-metrics-querys"
+    val getMetricsQuery = packageName + "/get-metrics-query"
     val queryLog = packageName + "/query-log"
     val deleteCredentials = packageName + "/delete-credentials"
 

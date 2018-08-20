@@ -42,8 +42,7 @@ describe('get-metrics-query-event', () => {
         .then(() => {
           assert.ok(true);
         })
-        .catch((e) => {
-            console.log(e);
+        .catch(() => {
           assert.fail('Failure on valid payload');
         });
     }

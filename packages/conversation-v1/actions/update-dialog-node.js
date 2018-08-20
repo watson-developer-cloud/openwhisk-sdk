@@ -46,7 +46,7 @@ const extend = require('extend');
  * carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
  * @param {string} [params.new_parent] - The ID of the parent dialog node.
  * @param {string} [params.new_previous_sibling] - The ID of the previous sibling dialog node.
- * @param {Object} [params.new_output] - The output of the dialog node. For more information about how to
+ * @param {DialogNodeOutput} [params.new_output] - The output of the dialog node. For more information about how to
  * specify dialog node output, see the
  * [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
  * @param {Object} [params.new_context] - The context for the dialog node.

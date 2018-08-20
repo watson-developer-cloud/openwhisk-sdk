@@ -63,8 +63,7 @@ function main(params) {
     const fileParams = [
       'forced_glossary',
       'parallel_corpus',
-      'monolingual_corpus'
-    ];
+      'monolingual_corpus'];
     fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');

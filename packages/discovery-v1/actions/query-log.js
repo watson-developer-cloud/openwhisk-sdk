@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-const NaturalLanguageClassifierV1 = require('watson-developer-cloud/natural-language-classifier/v1');
+const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const extend = require('extend');
 
 /**
- * Classify a phrase.
+ * Search the query and event log.
  *
- * Returns label information for the input. The status must be `Available` before you can use the classifier to classify
- * text.
+ * Searches the query and event log to find query sessions that match the specified criteria. Searching the **logs**
+ * endpoint uses the standard Discovery query syntax for the parameters that are supported.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -32,17 +32,24 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.classifier_id - Classifier ID to use.
- * @param {string} params.text - The submitted phrase. The maximum length is 2048 characters.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} [params.filter] - A cacheable query that limits the documents returned to exclude any documents that
+ * don't mention the query content. Filter searches are better for metadata type searches and when you are trying to get
+ * a sense of concepts in the data set.
+ * @param {string} [params.query] - A query search returns all documents in your data set with full enrichments and full
+ * text, but with the most relevant documents listed first. Use a query search when you want to find the most relevant
+ * search results. You cannot use **natural_language_query** and **query** at the same time.
+ * @param {number} [params.count] - Number of results to return.
+ * @param {number} [params.offset] - The number of query results to skip at the beginning. For example, if the total
+ * number of results that are returned is 10, and the offset is 8, it returns the last two results.
+ * @param {string[]} [params.sort] - A comma separated list of fields in the document to sort on. You can optionally
+ * specify a sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the
+ * default sort direction if no prefix is specified.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
-      params,
-      'natural-language-classifier',
-      'natural_language_classifier',
-    );
+    const _params = getParams(params, 'discovery');
     _params.headers = extend(
       {},
       _params.headers,
@@ -50,8 +57,8 @@ function main(params) {
     );
     let service;
     try {
-      service = new NaturalLanguageClassifierV1(_params);
-      service.classify(_params, (err, response) => {
+      service = new DiscoveryV1(_params);
+      service.queryLog(_params, (err, response) => {
         if (err) {
           reject(err.message);
         } else {
@@ -65,26 +72,23 @@ function main(params) {
   });
 }
 
+
 /**
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
 * @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service, serviceAltName) {
+function getParams(theParams, service) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
   let bxCreds;
   // Code that checks parameters bound using service bind
   if (theParams.__bx_creds) {
-    // If user has IAM instance of service
+    // If user has instance of service
     if (theParams.__bx_creds[service]) {
       bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
     } else {
       // User has no instances of service
       bxCreds = {};
@@ -100,6 +104,5 @@ function getParams(theParams, service, serviceAltName) {
   delete _params.__bx_creds;
   return _params;
 }
-
 global.main = main;
 module.exports.test = main;

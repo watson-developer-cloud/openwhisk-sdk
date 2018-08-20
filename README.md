@@ -62,11 +62,12 @@ Authenticate actions by binding credentials with the following pattern:
 bx wsk service bind <name-of-service> <name-of-package>
 ```
 ### Getting credentials
-To find out which authentication to use, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
+To find out which authentication to use when passing in authentication parameters manually , view the service credentials. You find the service credentials for authentication the same way for all Watson services:
 
 1. Go to the IBM Cloud [Dashboard](https://console.bluemix.net/dashboard/apps?category=ai) page.
 1. Either click an existing Watson service instance or click [**Create resource > AI**](https://console.bluemix.net/catalog/?category=ai) and create a service instance.
 1. Copy the `url` and either `apikey` or `username` and `password`. Click **Show** if the credentials are masked.
+
 ### Passing Authentication Parameters
 
 You can override binding credentials by passing authentication parameters to each action if you need to.
@@ -85,13 +86,6 @@ You supply either an IAM service **API key** or an **access token** with the par
 * Use the access token if you want to manage the lifecycle yourself. For details, see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html). If you want to switch to API key, override your stored IAM credentials with an IAM API key.
 
 > _NOTE_: Authenticating with the `X-Watson-Authorization-Token` header or the `watson-token` query param is now deprecated. The token continues to work with Cloud Foundry services, but is not supported for services that use Identity and Access Management (IAM) authentication. For details see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html#iam)
-
-### Getting credentials
-To find out which authentication to use for passing in authenticatin parameters, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
-
-1. Go to the IBM Cloud [Dashboard](https://console.bluemix.net/dashboard/apps?category=ai) page.
-1. Either click an existing Watson service instance or click [**Create resource > AI**](https://console.bluemix.net/catalog/?category=ai) and create a service instance.
-1. Copy the `url` and either `apikey` or `username` and `password`. Click **Show** if the credentials are masked.
 
 # Invoking an action
 

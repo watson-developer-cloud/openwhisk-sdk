@@ -37,7 +37,7 @@ const extend = require('extend');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.name - Name that identifies the environment.
  * @param {string} [params.description] - Description of the environment.
- * @param {number} [params.size] - **Deprecated**: Size of the environment.
+ * @param {string} [params.size] - Size of the environment.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

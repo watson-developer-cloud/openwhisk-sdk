@@ -47,7 +47,7 @@ const extend = require('extend');
  * @param {string} [params.aggregation] - An aggregation search uses combinations of filters and query search to return
  * an exact answer. Aggregations are useful for building applications, because you can use them to build lists, tables,
  * and time series. For a full list of possible aggregrations, see the Query reference.
- * @param {number} [params.count] - Number of documents to return.
+ * @param {number} [params.count] - Number of results to return.
  * @param {string[]} [params.return_fields] - A comma separated list of the portion of the document hierarchy to return.
  * @param {number} [params.offset] - The number of query results to skip at the beginning. For example, if the total
  * number of results that are returned is 10, and the offset is 8, it returns the last two results.

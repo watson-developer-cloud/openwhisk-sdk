@@ -61,6 +61,12 @@ Authenticate actions by binding credentials with the following pattern:
 ```sh
 bx wsk service bind <name-of-service> <name-of-package>
 ```
+### Getting credentials
+To find out which authentication to use when passing in authentication parameters manually , view the service credentials. You find the service credentials for authentication the same way for all Watson services:
+
+1. Go to the IBM Cloud [Dashboard](https://console.bluemix.net/dashboard/apps?category=ai) page.
+1. Either click an existing Watson service instance or click [**Create resource > AI**](https://console.bluemix.net/catalog/?category=ai) and create a service instance.
+1. Copy the `url` and either `apikey` or `username` and `password`. Click **Show** if the credentials are masked.
 
 ### Passing Authentication Parameters
 

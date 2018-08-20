@@ -129,6 +129,27 @@ project:
         delete-user-data:
           function: actions/delete-user-data.js
           runtime: nodejs:8
+        create-event:
+          function: actions/create-event.js
+          runtime: nodejs:8
+        get-metrics-event-rate:
+          function: actions/get-metrics-event-rate.js
+          runtime: nodejs:8
+        get-metrics-query:
+          function: actions/get-metrics-query.js
+          runtime: nodejs:8
+        get-metrics-query-event:
+          function: actions/get-metrics-query-event.js
+          runtime: nodejs:8
+        get-metrics-query-no-results:
+          function: actions/get-metrics-query-no-results.js
+          runtime: nodejs:8
+        get-metrics-query-token-event:
+          function: actions/get-metrics-query-token-event.js
+          runtime: nodejs:8
+        query-log:
+          function: actions/query-log.js
+          runtime: nodejs:8
         create-credentials:
           function: actions/create-credentials.js
           runtime: nodejs:8

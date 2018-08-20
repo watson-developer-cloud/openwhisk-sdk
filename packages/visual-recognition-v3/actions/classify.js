@@ -62,8 +62,8 @@ const extend = require('extend');
  *
  * The following built-in classifier IDs require no training:
  * - `default`: Returns classes from thousands of general tags.
- * - `food`: (Beta) Enhances specificity and accuracy for images of food items.
- * - `explicit`: (Beta) Evaluates whether the image might be pornographic.
+ * - `food`: Enhances specificity and accuracy for images of food items.
+ * - `explicit`: Evaluates whether the image might be pornographic.
  * @param {string} [params.images_file_content_type] - The content type of images_file.
  * @return {Promise} - The Promise that the action returns.
  */

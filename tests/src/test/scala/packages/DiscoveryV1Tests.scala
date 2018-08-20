@@ -80,6 +80,13 @@ class DiscoveryV1Tests extends WatsonPackages
     val getCredentials = packageName + "/get-credentials"
     val updateCredentials = packageName + "/update-credentials"
     val listCredentials = packageName + "/list-credentials"
+    val createEvent = packageName + "/create-event"
+    val getMetricsEventRate = packageName + "/get-metrics-event-rate"
+    val getMetricsQueryEvent = packageName + "/get-metrics-query-event"
+    val getMetricsQueryNoResults = packageName + "/get-metrics-query-no-results"
+    val getMetricsQueryTokenEvent = packageName + "/get-metrics-query-token-event"
+    val getMetricsQuery = packageName + "/get-metrics-query"
+    val queryLog = packageName + "/query-log"
     val deleteCredentials = packageName + "/delete-credentials"
 
     behavior of "Discovery V1 Package"
@@ -240,6 +247,27 @@ class DiscoveryV1Tests extends WatsonPackages
      val deleteCredentialsAction = wsk.action.get(deleteCredentials)
      verifyAction(deleteCredentialsAction, deleteCredentials, JsString(nodejs8kind))
 
+     val createEventAction = wsk.action.get(createEvent)
+     verifyAction(createEventAction, createEvent, JsString(nodejs8kind))
+
+     val getMetricsEventRateAction = wsk.action.get(getMetricsEventRate)
+     verifyAction(getMetricsEventRateAction, getMetricsEventRate, JsString(nodejs8kind))
+
+     val getMetricsQueryEventAction = wsk.action.get(getMetricsQueryEvent)
+     verifyAction(getMetricsQueryEventAction, getMetricsQueryEvent, JsString(nodejs8kind))
+
+     val getMetricsQueryNoResultsAction = wsk.action.get(getMetricsQueryNoResults)
+     verifyAction(getMetricsQueryNoResultsAction, getMetricsQueryNoResults, JsString(nodejs8kind))
+
+     val getMetricsQueryTokenEventAction = wsk.action.get(getMetricsQueryTokenEvent)
+     verifyAction(getMetricsQueryTokenEventAction, getMetricsQueryTokenEvent, JsString(nodejs8kind))
+
+     val getMetricsQueryAction = wsk.action.get(getMetricsQuery)
+     verifyAction(getMetricsQueryAction, getMetricsQuery, JsString(nodejs8kind))
+
+     val queryLogAction = wsk.action.get(queryLog)
+     verifyAction(queryLogAction, queryLog, JsString(nodejs8kind))
+
      //clean up after test
      wsk.action.delete(createEnvironment)
      wsk.action.delete(deleteEnvironment)
@@ -288,6 +316,13 @@ class DiscoveryV1Tests extends WatsonPackages
      wsk.action.delete(updateCredentials)
      wsk.action.delete(listCredentials)
      wsk.action.delete(deleteCredentials)
+     wsk.action.delete(createEvent)
+     wsk.action.delete(getMetricsEventRate)
+     wsk.action.delete(getMetricsQueryEvent)
+     wsk.action.delete(getMetricsQueryNoResults)
+     wsk.action.delete(getMetricsQueryTokenEvent)
+     wsk.action.delete(getMetricsQuery)
+     wsk.action.delete(queryLog)
      wsk.pkg.delete(packageName)
    }
 }

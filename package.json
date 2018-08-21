@@ -39,6 +39,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Watson/openwhisk-sdk.git"
+    "url": "git@github.com:watson-developer-cloud/openwhisk-sdk.git"
   }
 }

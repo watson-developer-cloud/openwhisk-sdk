@@ -39,8 +39,8 @@ matrix:
       # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then chmod a+x ./appscan/ASOC.sh; fi'
       - chmod a+x ./appscan/ASOC.sh
       script:
-      - "./tools/travis/build.sh && ./tools/travis/deploy.sh && ./tools/travis/deploy_openwhisk_sdk.sh
-        && ./tools/travis/test.sh"
       # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then ./appscan/ASOC.sh; fi'
       - ./appscan/ASOC.sh
+      - "./tools/travis/build.sh && ./tools/travis/deploy.sh && ./tools/travis/deploy_openwhisk_sdk.sh
+        && ./tools/travis/test.sh"
       # - "./tools/travis/deploy.sh"

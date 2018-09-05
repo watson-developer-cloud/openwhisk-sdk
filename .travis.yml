@@ -1,7 +1,8 @@
 matrix:
   include:
     - language: node_js
-      sudo: false
+      sudo: required
+      dist: trusty
       node_js: 8.3
       script:
       - npm run lint
@@ -13,6 +14,10 @@ matrix:
       - sudo wget https://openwhisk.ng.bluemix.net/cli/go/download/linux/386/wsk -P /usr/local/bin/
       - sudo chmod 711 /usr/local/bin/wsk
       - export PATH=$PATH:"/usr/local/bin/wsk"
+      install:
+      - npm install
+      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then cd appscan; make asoc-tool; cd ../; fi'
+      - cd appscan; make asoc-tool; cd ../;
       deploy:
         - provider: script
           skip_cleanup: true
@@ -30,7 +35,12 @@ matrix:
       install: true
       before_install:
       - "./tools/travis/setup.sh"
+      before_script:
+      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then chmod a+x ./appscan/ASOC.sh; fi'
+      - chmod a+x ./appscan/ASOC.sh
       script:
       - "./tools/travis/build.sh && ./tools/travis/deploy.sh && ./tools/travis/deploy_openwhisk_sdk.sh
         && ./tools/travis/test.sh"
+      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then ./appscan/ASOC.sh; fi'
+      - ./appscan/ASOC.sh
       # - "./tools/travis/deploy.sh"

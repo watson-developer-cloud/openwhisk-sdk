@@ -16,14 +16,11 @@ matrix:
       - export PATH=$PATH:"/usr/local/bin/wsk"
       install:
       - npm install
-      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then cd appscan; make asoc-tool; cd ../; fi'
-      - cd appscan; make asoc-tool; cd ../;
+      - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then cd appscan; make asoc-tool; cd ../; fi'
       before_script:
-      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then chmod a+x ./appscan/ASOC.sh; fi'
-      - chmod a+x ./appscan/ASOC.sh
+      - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then chmod a+x ./appscan/ASOC.sh; fi'
       script:
-      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then ./appscan/ASOC.sh; fi'
-      - ./appscan/ASOC.sh
+      - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then ./appscan/ASOC.sh; fi'
       deploy:
         - provider: script
           skip_cleanup: true

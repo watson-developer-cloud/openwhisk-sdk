@@ -18,6 +18,12 @@ matrix:
       - npm install
       # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then cd appscan; make asoc-tool; cd ../; fi'
       - cd appscan; make asoc-tool; cd ../;
+      before_script:
+      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then chmod a+x ./appscan/ASOC.sh; fi'
+      - chmod a+x ./appscan/ASOC.sh
+      script:
+      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then ./appscan/ASOC.sh; fi'
+      - ./appscan/ASOC.sh
       deploy:
         - provider: script
           skip_cleanup: true
@@ -35,12 +41,7 @@ matrix:
       install: true
       before_install:
       - "./tools/travis/setup.sh"
-      before_script:
-      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then chmod a+x ./appscan/ASOC.sh; fi'
-      - chmod a+x ./appscan/ASOC.sh
       script:
-      # - 'if [ "${TRAVIS_TAG}" = "${TRAVIS_BRANCH}" ]; then ./appscan/ASOC.sh; fi'
-      - ./appscan/ASOC.sh
       - "./tools/travis/build.sh && ./tools/travis/deploy.sh && ./tools/travis/deploy_openwhisk_sdk.sh
         && ./tools/travis/test.sh"
       # - "./tools/travis/deploy.sh"

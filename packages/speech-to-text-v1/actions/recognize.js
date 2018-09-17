@@ -20,19 +20,18 @@ const extend = require('extend');
 /**
  * Recognize audio.
  *
- * Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results;
- * to enable interim results, use session-based requests or the WebSocket API. The service imposes a data size limit of
- * 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels,
- * downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the
- * endianness.)
+ * Sends audio and returns transcription results for a recognition request. Returns only the final results; to enable
+ * interim results, use the WebSocket API. The service imposes a data size limit of 100 MB. It automatically detects the
+ * endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel
+ * mono during transcoding. (For the `audio/l16` format, you can specify the endianness.)
  *
  * ### Streaming mode
  *
  *  For requests to transcribe live audio as it becomes available, you must set the `Transfer-Encoding` header to
  * `chunked` to use streaming mode. In streaming mode, the server closes the connection (status code 408) if the service
- * receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also
- * closes the connection (status code 400) if no speech is detected for `inactivity_timeout` seconds of audio (not
- * processing time); use the `inactivity_timeout` parameter to change the default of 30 seconds.
+ * receives no data chunk for 30 seconds and it has no audio to transcribe for 30 seconds. The server also closes the
+ * connection (status code 400) if no speech is detected for `inactivity_timeout` seconds of audio (not processing
+ * time); use the `inactivity_timeout` parameter to change the default of 30 seconds.
  *
  * ### Audio formats (content types)
  *
@@ -67,8 +66,8 @@ const extend = require('extend');
  * with the request are greater than the 8 KB limit imposed by most HTTP servers and proxies. You can encounter this
  * limit, for example, if you want to spot a very large number of keywords.
  *
- * For information about submitting a multipart request, see [Submitting multipart requests as form
- * data](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
+ * For information about submitting a multipart request, see [Making a multipart HTTP
+ * request](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -82,28 +81,23 @@ const extend = require('extend');
  * @param {ReadableStream|FileObject|Buffer} params.audio - The audio to transcribe in the format specified by the
  * `Content-Type` header.
  * @param {string} params.content_type - The type of the input.
- * @param {string} [params.model] - The identifier of the model that is to be used for the recognition request or, for
- * the **Create a session** method, with the new session.
+ * @param {string} [params.model] - The identifier of the model that is to be used for the recognition request.
  * @param {string} [params.customization_id] - The customization ID (GUID) of a custom language model that is to be used
- * with the recognition request or, for the **Create a session** method, with the new session. The base model of the
- * specified custom language model must match the model specified with the `model` parameter. You must make the request
- * with service credentials created for the instance of the service that owns the custom model. By default, no custom
- * language model is used.
+ * with the recognition request. The base model of the specified custom language model must match the model specified
+ * with the `model` parameter. You must make the request with service credentials created for the instance of the
+ * service that owns the custom model. By default, no custom language model is used.
  * @param {string} [params.acoustic_customization_id] - The customization ID (GUID) of a custom acoustic model that is
- * to be used with the recognition request or, for the **Create a session** method, with the new session. The base model
- * of the specified custom acoustic model must match the model specified with the `model` parameter. You must make the
- * request with service credentials created for the instance of the service that owns the custom model. By default, no
- * custom acoustic model is used.
+ * to be used with the recognition request. The base model of the specified custom acoustic model must match the model
+ * specified with the `model` parameter. You must make the request with service credentials created for the instance of
+ * the service that owns the custom model. By default, no custom acoustic model is used.
  * @param {string} [params.base_model_version] - The version of the specified base model that is to be used with
- * recognition request or, for the **Create a session** method, with the new session. Multiple versions of a base model
- * can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom
- * models that have been upgraded for a new base model. The default value depends on whether the parameter is used with
- * or without a custom model. For more information, see [Base model
- * version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version).
+ * recognition request. Multiple versions of a base model can exist when a model is updated for internal improvements.
+ * The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The
+ * default value depends on whether the parameter is used with or without a custom model. For more information, see
+ * [Base model version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version).
  * @param {number} [params.customization_weight] - If you specify the customization ID (GUID) of a custom language model
- * with the recognition request or, for sessions, with the **Create a session** method, the customization weight tells
- * the service how much weight to give to words from the custom language model compared to those from the base model for
- * the current request.
+ * with the recognition request, the customization weight tells the service how much weight to give to words from the
+ * custom language model compared to those from the base model for the current request.
  *
  * Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom model when
  * it was trained, the default value is 0.3. A customization weight that you specify overrides a weight that was

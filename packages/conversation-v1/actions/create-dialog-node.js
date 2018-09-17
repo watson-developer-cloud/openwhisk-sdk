@@ -63,7 +63,7 @@ const extend = require('extend');
  * @param {string} [params.digress_out] - Whether this dialog node can be returned to after a digression.
  * @param {string} [params.digress_out_slots] - Whether the user can digress to top-level nodes while filling out slots.
  * @param {string} [params.user_label] - A label that can be displayed externally to describe the purpose of the node to
- * users.
+ * users. This string must be no longer than 512 characters.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

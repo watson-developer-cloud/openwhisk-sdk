@@ -84,8 +84,7 @@ const extend = require('extend');
  * @param {ReadableStream|FileObject|Buffer} params.audio - The audio to transcribe in the format specified by the
  * `Content-Type` header.
  * @param {string} params.content_type - The type of the input.
- * @param {string} [params.model] - The identifier of the model that is to be used for the recognition request or, for
- * the **Create a session** method, with the new session.
+ * @param {string} [params.model] - The identifier of the model that is to be used for the recognition request.
  * @param {string} [params.callback_url] - A URL to which callback notifications are to be sent. The URL must already be
  * successfully white-listed by using the **Register a callback** method. You can include the same callback URL with any
  * number of job creation requests. Omit the parameter to poll the service for job completion and results.
@@ -102,9 +101,11 @@ const extend = require('extend');
  * * `recognitions.failed` generates a callback notification if the service experiences an error while processing the
  * job.
  *
- * Omit the parameter to subscribe to the default events: `recognitions.started`, `recognitions.completed`, and
- * `recognitions.failed`. The `recognitions.completed` and `recognitions.completed_with_results` events are
- * incompatible; you can specify only of the two events. If the job does not include a callback URL, omit the parameter.
+ * The `recognitions.completed` and `recognitions.completed_with_results` events are incompatible. You can specify only
+ * of the two events.
+ *
+ * If the job includes a callback URL, omit the parameter to subscribe to the default events: `recognitions.started`,
+ * `recognitions.completed`, and `recognitions.failed`. If the job does not include a callback URL, omit the parameter.
  * @param {string} [params.user_token] - If the job includes a callback URL, a user-specified string that the service is
  * to include with each callback notification for the job; the token allows the user to maintain an internal mapping
  * between jobs and notification events. If the job does not include a callback URL, omit the parameter.
@@ -112,25 +113,21 @@ const extend = require('extend');
  * has finished. If not delivered via a callback, the results must be retrieved within this time. Omit the parameter to
  * use a time to live of one week. The parameter is valid with or without a callback URL.
  * @param {string} [params.customization_id] - The customization ID (GUID) of a custom language model that is to be used
- * with the recognition request or, for the **Create a session** method, with the new session. The base model of the
- * specified custom language model must match the model specified with the `model` parameter. You must make the request
- * with service credentials created for the instance of the service that owns the custom model. By default, no custom
- * language model is used.
+ * with the recognition request. The base model of the specified custom language model must match the model specified
+ * with the `model` parameter. You must make the request with service credentials created for the instance of the
+ * service that owns the custom model. By default, no custom language model is used.
  * @param {string} [params.acoustic_customization_id] - The customization ID (GUID) of a custom acoustic model that is
- * to be used with the recognition request or, for the **Create a session** method, with the new session. The base model
- * of the specified custom acoustic model must match the model specified with the `model` parameter. You must make the
- * request with service credentials created for the instance of the service that owns the custom model. By default, no
- * custom acoustic model is used.
+ * to be used with the recognition request. The base model of the specified custom acoustic model must match the model
+ * specified with the `model` parameter. You must make the request with service credentials created for the instance of
+ * the service that owns the custom model. By default, no custom acoustic model is used.
  * @param {string} [params.base_model_version] - The version of the specified base model that is to be used with
- * recognition request or, for the **Create a session** method, with the new session. Multiple versions of a base model
- * can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom
- * models that have been upgraded for a new base model. The default value depends on whether the parameter is used with
- * or without a custom model. For more information, see [Base model
- * version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version).
+ * recognition request. Multiple versions of a base model can exist when a model is updated for internal improvements.
+ * The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The
+ * default value depends on whether the parameter is used with or without a custom model. For more information, see
+ * [Base model version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version).
  * @param {number} [params.customization_weight] - If you specify the customization ID (GUID) of a custom language model
- * with the recognition request or, for sessions, with the **Create a session** method, the customization weight tells
- * the service how much weight to give to words from the custom language model compared to those from the base model for
- * the current request.
+ * with the recognition request, the customization weight tells the service how much weight to give to words from the
+ * custom language model compared to those from the base model for the current request.
  *
  * Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom model when
  * it was trained, the default value is 0.3. A customization weight that you specify overrides a weight that was

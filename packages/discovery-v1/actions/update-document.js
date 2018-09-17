@@ -55,8 +55,8 @@ function main(params) {
       _params.headers,
       { 'User-Agent': 'openwhisk' }
     );
-    const fileParams = [ 'file' ,];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
+    const fileParams = ['file'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

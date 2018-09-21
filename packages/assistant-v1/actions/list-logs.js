@@ -36,8 +36,8 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.workspace_id - Unique identifier of the workspace.
- * @param {string} [params.sort] - The attribute by which returned results will be sorted. To reverse the sort order,
- * prefix the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
+ * @param {string} [params.sort] - How to sort the returned log events. You can sort by **request_timestamp**. To
+ * reverse the sort order, prefix the parameter value with a minus sign (`-`).
  * @param {string} [params.filter] - A cacheable parameter that limits the results to those matching the specified
  * filter. For more information, see the
  * [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).

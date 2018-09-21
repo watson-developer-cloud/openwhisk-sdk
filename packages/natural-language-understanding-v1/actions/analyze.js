@@ -70,14 +70,20 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {Features} params.features - Specific features to analyze the document for.
- * @param {string} [params.text] - The plain text to analyze.
- * @param {string} [params.html] - The HTML file to analyze.
- * @param {string} [params.url] - The web page to analyze.
+ * @param {string} [params.text] - The plain text to analyze. One of the `text`, `html`, or `url` parameters is
+ * required.
+ * @param {string} [params.html] - The HTML file to analyze. One of the `text`, `html`, or `url` parameters is required.
+ * @param {string} [params.url] - The web page to analyze. One of the `text`, `html`, or `url` parameters is required.
  * @param {boolean} [params.clean] - Remove website elements, such as links, ads, etc.
- * @param {string} [params.xpath] - XPath query for targeting nodes in HTML.
+ * @param {string} [params.xpath] - An [XPath query](https://www.w3.org/TR/xpath/) to perform on `html` or `url` input.
+ * Results of the query will be appended to the cleaned webpage text before it is analyzed. To analyze only the results
+ * of the XPath query, set the `clean` parameter to `false`.
  * @param {boolean} [params.fallback_to_raw] - Whether to use raw HTML content if text cleaning fails.
  * @param {boolean} [params.return_analyzed_text] - Whether or not to return the analyzed text.
- * @param {string} [params.language] - ISO 639-1 code indicating the language to use in the analysis.
+ * @param {string} [params.language] - ISO 639-1 code that specifies the language of your text. This overrides automatic
+ * language detection. Language support differs depending on the features you include in your analysis. See [Language
+ * support](https://www.bluemix.net/docs/services/natural-language-understanding/language-support.html) for more
+ * information.
  * @param {number} [params.limit_text_characters] - Sets the maximum number of characters that are processed by the
  * service.
  * @return {Promise} - The Promise that the action returns.

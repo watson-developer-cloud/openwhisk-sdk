@@ -66,7 +66,7 @@ const extend = require('extend');
  * @param {string} [params.new_digress_out_slots] - Whether the user can digress to top-level nodes while filling out
  * slots.
  * @param {string} [params.new_user_label] - A label that can be displayed externally to describe the purpose of the
- * node to users.
+ * node to users. This string must be no longer than 512 characters.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

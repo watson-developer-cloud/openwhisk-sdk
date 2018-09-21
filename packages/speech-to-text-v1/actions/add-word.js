@@ -67,12 +67,15 @@ const extend = require('extend');
  *
  * Omit this field for the **Add a custom word** method.
  * @param {string[]} [params.sounds_like] - An array of sounds-like pronunciations for the custom word. Specify how
- * words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users. For a word that
- * is not in the service's base vocabulary, omit the parameter to have the service automatically generate a sounds-like
- * pronunciation for the word. For a word that is in the service's base vocabulary, use the parameter to specify
- * additional pronunciations for the word. You cannot override the default pronunciation of a word; pronunciations you
- * add augment the pronunciation from the base vocabulary. A word can have at most five sounds-like pronunciations, and
- * a pronunciation can include at most 40 characters not including spaces.
+ * words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.
+ * * For a word that is not in the service's base vocabulary, omit the parameter to have the service automatically
+ * generate a sounds-like pronunciation for the word.
+ * * For a word that is in the service's base vocabulary, use the parameter to specify additional pronunciations for the
+ * word. You cannot override the default pronunciation of a word; pronunciations you add augment the pronunciation from
+ * the base vocabulary.
+ *
+ * A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters not
+ * including spaces.
  * @param {string} [params.display_as] - An alternative spelling for the custom word when it appears in a transcript.
  * Use the parameter when you want the word to have a spelling that is different from its usual representation or from
  * its spelling in corpora training data.

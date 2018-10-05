@@ -1,0 +1,14 @@
+project:
+  namespace: _
+  packages:
+    assistant-v2:
+      actions:
+        create-session:
+          function: actions/create-session.js
+          runtime: nodejs:8
+        delete-session:
+          function: actions/delete-session.js
+          runtime: nodejs:8
+        message:
+          function: actions/message.js
+          runtime: nodejs:8

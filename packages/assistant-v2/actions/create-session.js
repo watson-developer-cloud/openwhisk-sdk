@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 
-const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+const AssistantV2 = require('watson-developer-cloud/assistant/v2');
 const extend = require('extend');
 
 /**
- * Delete an audio resource.
+ * Create a session.
  *
- * Deletes an existing audio resource from a custom acoustic model. Deleting an archive-type audio resource removes the
- * entire archive of files; the current interface does not allow deletion of individual files from an archive resource.
- * Removing an audio resource does not affect the custom model until you train the model on its updated data by using
- * the **Train a custom acoustic model** method. You must use credentials for the instance of the service that owns a
- * model to delete its audio resources.
+ * Create a new session. A session is used to send user input to a skill and receive responses. It also maintains the
+ * state of the conversation.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -35,18 +32,17 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
- * request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.audio_name - The name of the audio resource for the custom acoustic model.
+ * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
+ * @param {string} params.assistant_id - Unique identifier of the assistant. You can find the assistant ID of an
+ * assistant on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
+ * [documentation](https://console.bluemix.net/docs/services/assistant/create-assistant.html#creating-assistants).
+ *
+ * **Note:** Currently, the v2 API does not support creating assistants.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
-      params,
-      'speech-to-text',
-      'speech_to_text',
-    );
+    const _params = getParams(params, 'conversation');
     _params.headers = extend(
       {},
       _params.headers,
@@ -54,8 +50,8 @@ function main(params) {
     );
     let service;
     try {
-      service = new SpeechToTextV1(_params);
-      service.deleteAudio(_params, (err, response) => {
+      service = new AssistantV2(_params);
+      service.createSession(_params, (err, response) => {
         if (err) {
           reject(err.message);
         } else {
@@ -69,26 +65,23 @@ function main(params) {
   });
 }
 
+
 /**
 * Helper function used to authenticate credentials bound to package using wsk service bind
 *
 * @param {Object} theParams - parameters sent to service
 * @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
 */
-function getParams(theParams, service, serviceAltName) {
+function getParams(theParams, service) {
   if (Object.keys(theParams).length === 0) {
     return theParams;
   }
   let bxCreds;
   // Code that checks parameters bound using service bind
   if (theParams.__bx_creds) {
-    // If user has IAM instance of service
+    // If user has instance of service
     if (theParams.__bx_creds[service]) {
       bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
     } else {
       // User has no instances of service
       bxCreds = {};
@@ -104,6 +97,5 @@ function getParams(theParams, service, serviceAltName) {
   delete _params.__bx_creds;
   return _params;
 }
-
 global.main = main;
 module.exports.test = main;

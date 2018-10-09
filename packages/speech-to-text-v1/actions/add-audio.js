@@ -89,6 +89,14 @@ const extend = require('extend');
  * with speech recognition and with the `Content-Type` header, including the `rate`, `channels`, and `endianness`
  * parameters that are used with some formats. The default contained audio format is `audio/wav`.
  *
+ * ### Naming restrictions for embedded audio files
+ *
+ *  The name of an audio file that is embedded within an archive-type resource must meet the following restrictions:
+ * * Include a maximum of 128 characters in the file name; this includes the file extension.
+ * * Do not include spaces, slashes, or backslashes in the file name.
+ * * Do not use the name of an audio file that has already been added to the custom model as part of an archive-type
+ * resource.
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {string} [params.password] - The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -100,9 +108,11 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
  * request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.audio_name - The name of the audio resource for the custom acoustic model. When adding an
- * audio resource, do not include spaces in the name; use a localized name that matches the language of the custom
- * model.
+ * @param {string} params.audio_name - The name of the new audio resource for the custom acoustic model. Use a localized
+ * name that matches the language of the custom model and reflects the contents of the resource.
+ * * Include a maximum of 128 characters in the name.
+ * * Do not include spaces, slashes, or backslashes in the name.
+ * * Do not use the name of an audio resource that has already been added to the custom model.
  * @param {ReadableStream|FileObject|Buffer} params.audio_resource - The audio resource that is to be added to the
  * custom acoustic model, an individual audio file or an archive file.
  * @param {string} params.content_type - The type of the input.

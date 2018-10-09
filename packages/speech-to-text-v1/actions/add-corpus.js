@@ -63,9 +63,13 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the
  * request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.corpus_name - The name of the corpus for the custom language model. When adding a corpus, do
- * not include spaces in the name; use a localized name that matches the language of the custom model; and do not use
- * the name `user`, which is reserved by the service to denote custom words added or modified by the user.
+ * @param {string} params.corpus_name - The name of the new corpus for the custom language model. Use a localized name
+ * that matches the language of the custom model and reflects the contents of the corpus.
+ * * Include a maximum of 128 characters in the name.
+ * * Do not include spaces, slashes, or backslashes in the name.
+ * * Do not use the name of a corpus that has already been added to the custom model.
+ * * Do not use the name `user`, which is reserved by the service to denote custom words that are added or modified by
+ * the user.
  * @param {string} params.corpus_file - Must be a base64-encoded string. A plain text file that contains the training
  * data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding
  * if it encounters non-ASCII characters. With cURL, use the `--data-binary` option to upload the file for the request.

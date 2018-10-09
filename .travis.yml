@@ -24,7 +24,7 @@ matrix:
       deploy:
         - provider: script
           skip_cleanup: true
-          script: npx travis-deploy-once "npx semantic-release"
+          script: npx semantic-release
     - language: scala
       scala:
         - 2.11.11

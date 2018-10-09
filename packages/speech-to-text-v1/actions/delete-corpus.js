@@ -37,9 +37,7 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the
  * request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.corpus_name - The name of the corpus for the custom language model. When adding a corpus, do
- * not include spaces in the name; use a localized name that matches the language of the custom model; and do not use
- * the name `user`, which is reserved by the service to denote custom words added or modified by the user.
+ * @param {string} params.corpus_name - The name of the corpus for the custom language model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -47,9 +47,7 @@ const extend = require('extend');
  * @param {string} [params.url] - override default service base url
  * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
  * request with service credentials created for the instance of the service that owns the custom model.
- * @param {string} params.audio_name - The name of the audio resource for the custom acoustic model. When adding an
- * audio resource, do not include spaces in the name; use a localized name that matches the language of the custom
- * model.
+ * @param {string} params.audio_name - The name of the audio resource for the custom acoustic model.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {

@@ -1,6 +1,6 @@
 {
   "name": "watson-openwhisk-sdk",
-  "version": "0.5.2",
+  "version": "0.8.0",
   "description": "SDK to run Watson services on IBM Cloud Functions (Based on Apache Openwhisk)",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "extend": "^3.0.1",
     "json-loader": "~0.5.7",
     "jsonlint": "^1.6.3",
-    "watson-developer-cloud": "~3.9.0"
+    "watson-developer-cloud": "~3.11.1"
   },
   "devDependencies": {
     "eslint": "~4.7.2",

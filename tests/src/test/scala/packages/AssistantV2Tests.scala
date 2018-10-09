@@ -37,7 +37,7 @@ class AssistantV2Tests extends WatsonPackages
     val message = packageName + "/message"
     val createSession = packageName + "/create-session"
     val deleteSession = packageName + "/delete-session"
-    
+
 
     behavior of "Assistant V2 Package"
 
@@ -65,7 +65,7 @@ class AssistantV2Tests extends WatsonPackages
      val createSessionAction = wsk.action.get(createSession)
      verifyAction(createSessionAction, createSession, JsString(nodejs8kind))
 
-     
+    
 
      //clean up after test
      wsk.action.delete(message)

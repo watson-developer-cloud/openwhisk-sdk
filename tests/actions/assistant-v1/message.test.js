@@ -75,8 +75,8 @@ describe('message', () => {
       .then(() => {
         assert.ok(true);
       })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
+      .catch((e) => {
+        assert.fail(e);
       });
   });
   it('should succeed with __bx_creds as credential source', () => {
@@ -86,8 +86,18 @@ describe('message', () => {
       .then(() => {
         assert.ok(true);
       })
-      .catch(() => {
-        assert.fail('Failure on valid payload');
+      .catch((e) => {
+        assert.fail(e);
       });
+  });
+  it('should fail with __bx_creds as credential source with a different name', () => {
+    const params = { test: 'hello', __bx_creds: { assistant: payload } };
+    console.log(params);
+    return message
+      .test(params)
+      .then(() => {
+        assert.fail('No failure on missing version');
+      })
+      .catch(err => negativeHandler(err));
   });
 });

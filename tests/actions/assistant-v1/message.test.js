@@ -92,7 +92,6 @@ describe('message', () => {
   });
   it('should fail with __bx_creds as credential source with a different name', () => {
     const params = { test: 'hello', __bx_creds: { assistant: payload } };
-    console.log(params);
     return message
       .test(params)
       .then(() => {

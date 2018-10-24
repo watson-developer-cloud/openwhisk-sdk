@@ -141,6 +141,11 @@ If you've created a binding, you can invoke the message action via:
 bx wsk action invoke <package-name>/message -p workspace_id 'my-id' -p input '{"text": "Hello world!"}'
 ```
 
+### Configuring the HTTP client
+The HTTP client can be configured to disable SSL verification. Note that this has serious security implications - only do this if you really mean to! ⚠️
+
+To do this, pass in parameter `disable_ssl_verification` as `true`. For help with passing in parameters, see https://console.bluemix.net/docs/openwhisk/parameters.html#working-with-parameters
+
 # Documentation
 
 You can find links to the documentation at https://console.bluemix.net/developer/watson/documentation. Find the service that you're interested in, click API reference, and then select the Node tab.

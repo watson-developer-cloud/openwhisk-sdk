@@ -56,14 +56,18 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'watson-vision-combined', 'watson_vision_combined');
+    const _params = vcap.getCredentialsFromServiceBind(
+      params,
+      'watson-vision-combined',
+      'watson_vision_combined'
+    );
     _params.headers = extend(
       {},
       _params.headers,
       { 'User-Agent': 'openwhisk' }
     );
-    const fileParams = [ 'classname_positive_examples' , 'negative_examples' ];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
+    const fileParams = ['classname_positive_examples', 'negative_examples'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {
@@ -71,6 +75,22 @@ function main(params) {
         return;
       }
     });
+    const positiveExampleClasses = Object.keys(_params)
+      .filter(key => key.match(/.*positive_examples/));
+    positiveExampleClasses
+      .filter(positiveExampleClass =>
+        positiveExampleClasses[positiveExampleClass])
+      .forEach((positiveExampleClass) => {
+        try {
+          _params[positiveExampleClass] = Buffer.from(
+            _params[positiveExampleClass],
+            'base64'
+          );
+        } catch (err) {
+          reject(err.message);
+          return;
+        }
+      });
     let service;
     try {
       service = new VisualRecognitionV3(_params);

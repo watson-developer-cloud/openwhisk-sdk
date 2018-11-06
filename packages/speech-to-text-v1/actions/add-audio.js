@@ -132,7 +132,11 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'speech-to-text', 'speech_to_text');
+    const _params = vcap.getCredentialsFromServiceBind(
+      params,
+      'speech-to-text',
+      'speech_to_text'
+    );
     _params.headers = extend(
       {},
       _params.headers,

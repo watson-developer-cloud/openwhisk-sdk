@@ -62,14 +62,18 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'language-translator', 'language_translator');
+    const _params = vcap.getCredentialsFromServiceBind(
+      params,
+      'language-translator',
+      'language_translator'
+    );
     _params.headers = extend(
       {},
       _params.headers,
       { 'User-Agent': 'openwhisk' }
     );
-    const fileParams = [ 'forced_glossary' , 'parallel_corpus' ];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
+    const fileParams = ['forced_glossary', 'parallel_corpus'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

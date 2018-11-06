@@ -45,14 +45,18 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'natural-language-classifier', 'natural_language_classifier');
+    const _params = vcap.getCredentialsFromServiceBind(
+      params,
+      'natural-language-classifier',
+      'natural_language_classifier'
+    );
     _params.headers = extend(
       {},
       _params.headers,
       { 'User-Agent': 'openwhisk' }
     );
-    const fileParams = [ 'metadata' , 'training_data' ];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
+    const fileParams = ['metadata', 'training_data'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

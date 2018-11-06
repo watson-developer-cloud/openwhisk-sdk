@@ -88,14 +88,18 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'speech-to-text', 'speech_to_text');
+    const _params = vcap.getCredentialsFromServiceBind(
+      params,
+      'speech-to-text',
+      'speech_to_text'
+    );
     _params.headers = extend(
       {},
       _params.headers,
       { 'User-Agent': 'openwhisk' }
     );
-    const fileParams = [ 'corpus_file' ];
-    fileParams.filter(fileParam => _params[fileParam]).forEach(fileParam => {
+    const fileParams = ['corpus_file'];
+    fileParams.filter(fileParam => _params[fileParam]).forEach((fileParam) => {
       try {
         _params[fileParam] = Buffer.from(_params[fileParam], 'base64');
       } catch (err) {

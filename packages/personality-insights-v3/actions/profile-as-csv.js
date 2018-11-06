@@ -79,7 +79,11 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'personality-insights', 'personality_insights');
+    const _params = vcap.getCredentialsFromServiceBind(
+      params,
+      'personality-insights',
+      'personality_insights'
+    );
     _params.headers = extend(
       {},
       _params.headers,

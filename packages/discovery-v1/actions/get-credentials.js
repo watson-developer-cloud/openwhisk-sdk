@@ -42,7 +42,7 @@ const vcap = require('vcap_services');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-     const _params = vcap.getCredentialsFromServiceBind(params, 'discovery');
+    const _params = vcap.getCredentialsFromServiceBind(params, 'discovery');
     _params.headers = extend(
       {},
       _params.headers,
@@ -51,7 +51,7 @@ function main(params) {
     let service;
     try {
       service = new DiscoveryV1(_params);
-      service.getCredentials(_params, (err, response) => {
+      service.getSourceCredentials(_params, (err, response) => {
         if (err) {
           reject(err.message);
         } else {

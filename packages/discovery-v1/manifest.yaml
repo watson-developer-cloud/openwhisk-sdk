@@ -60,8 +60,17 @@ project:
         create-expansions:
           function: actions/create-expansions.js
           runtime: nodejs:8
+        create-tokenization-dictionary:
+          function: actions/create-tokenization-dictionary.js
+          runtime: nodejs:8
         delete-expansions:
           function: actions/delete-expansions.js
+          runtime: nodejs:8
+        delete-tokenization-dictionary:
+          function: actions/delete-tokenization-dictionary.js
+          runtime: nodejs:8
+        get-tokenization-dictionary-status:
+          function: actions/get-tokenization-dictionary-status.js
           runtime: nodejs:8
         list-expansions:
           function: actions/list-expansions.js

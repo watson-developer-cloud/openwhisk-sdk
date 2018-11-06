@@ -16,6 +16,7 @@
 
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Add custom words.
@@ -25,7 +26,24 @@ const extend = require('extend');
  * more than 20,000 entries. You must use credentials for the instance of the service that owns a model to add words to
  * it.
  *
+ * You can define sounds-like or phonetic translations for words. A sounds-like translation consists of one or more
+ * words that, when combined, sound like the word. Phonetic translations are based on the SSML phoneme format for
+ * representing a word. You can specify them in standard International Phonetic Alphabet (IPA) representation
+ *
+ *   <code>&lt;phoneme alphabet=\"ipa\" ph=\"t&#601;m&#712;&#593;to\"&gt;&lt;/phoneme&gt;</code>
+ *
+ *   or in the proprietary IBM Symbolic Phonetic Representation (SPR)
+ *
+ *   <code>&lt;phoneme alphabet=\"ibm\" ph=\"1gAstroEntxrYFXs\"&gt;&lt;/phoneme&gt;</code>
+ *
  * **Note:** This method is currently a beta release.
+ *
+ * **See also:**
+ * * [Adding multiple words to a custom
+ * model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordsAdd)
+ * * [Adding words to a Japanese custom
+ * model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+ * * [Understanding customization](https://console.bluemix.net/docs/services/text-to-speech/custom-intro.html).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -48,11 +66,7 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
-      params,
-      'text-to-speech',
-      'text_to_speech',
-    );
+     const _params = vcap.getCredentialsFromServiceBind(params, 'text-to-speech', 'text_to_speech');
     _params.headers = extend(
       {},
       _params.headers,
@@ -73,42 +87,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

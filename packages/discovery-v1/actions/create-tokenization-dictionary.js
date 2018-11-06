@@ -19,9 +19,9 @@ const extend = require('extend');
 const vcap = require('vcap_services');
 
 /**
- * List training data.
+ * Create tokenization dictionary.
  *
- * Lists the training data for the specified collection.
+ * Upload a custom tokenization dictionary to use with the specified collection.
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -35,6 +35,9 @@ const vcap = require('vcap_services');
  * @param {string} params.version - Release date of the API version in YYYY-MM-DD format.
  * @param {string} params.environment_id - The ID of the environment.
  * @param {string} params.collection_id - The ID of the collection.
+ * @param {TokenDictRule[]} [params.tokenization_rules] - An array of tokenization rules. Each rule contains, the
+ * original `text` string, component `tokens`, any alternate character set `readings`, and which `part_of_speech` the
+ * text is from.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
@@ -48,7 +51,7 @@ function main(params) {
     let service;
     try {
       service = new DiscoveryV1(_params);
-      service.listTrainingData(_params, (err, response) => {
+      service.createTokenizationDictionary(_params, (err, response) => {
         if (err) {
           reject(err.message);
         } else {

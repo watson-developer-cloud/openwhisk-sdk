@@ -16,6 +16,7 @@
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Create a custom language model.
@@ -23,6 +24,9 @@ const extend = require('extend');
  * Creates a new custom language model for a specified base model. The custom language model can be used only with the
  * base model for which it is created. The model is owned by the instance of the service whose credentials are used to
  * create it.
+ *
+ * **See also:** [Create a custom language
+ * model](https://console.bluemix.net/docs/services/speech-to-text/language-create.html#createModel).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -56,11 +60,7 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
-      params,
-      'speech-to-text',
-      'speech_to_text',
-    );
+     const _params = vcap.getCredentialsFromServiceBind(params, 'speech-to-text', 'speech_to_text');
     _params.headers = extend(
       {},
       _params.headers,
@@ -81,42 +81,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

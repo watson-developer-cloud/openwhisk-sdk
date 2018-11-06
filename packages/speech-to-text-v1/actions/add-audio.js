@@ -16,6 +16,7 @@
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Add an audio resource.
@@ -48,10 +49,14 @@ const extend = require('extend');
  * and it returns the status of the resource. Use a loop to check the status of the audio every few seconds until it
  * becomes `ok`.
  *
+ * **See also:** [Add audio to the custom acoustic
+ * model](https://console.bluemix.net/docs/services/speech-to-text/acoustic-create.html#addAudio).
+ *
  * ### Content types for audio-type resources
  *
  *  You can add an individual audio file in any format that the service supports for speech recognition. For an
- * audio-type resource, use the `Content-Type` parameter to specify the audio format (MIME type) of the audio file:
+ * audio-type resource, use the `Content-Type` parameter to specify the audio format (MIME type) of the audio file,
+ * including specifying the sampling rate, channels, and endianness where indicated.
  * * `audio/basic` (Use only with narrowband models.)
  * * `audio/flac`
  * * `audio/l16` (Specify the sampling rate (`rate`) and optionally the number of channels (`channels`) and endianness
@@ -67,9 +72,7 @@ const extend = require('extend');
  * * `audio/webm;codecs=opus`
  * * `audio/webm;codecs=vorbis`
  *
- * For information about the supported audio formats, including specifying the sampling rate, channels, and endianness
- * for the indicated formats, see [Audio
- * formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).
+ * **See also:** [Audio formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).
  *
  * **Note:** The sampling rate of an audio file must match the sampling rate of the base model for the custom model: for
  * broadband models, at least 16 kHz; for narrowband models, at least 8 kHz. If the sampling rate of the audio is higher
@@ -106,8 +109,9 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model. You must make the
- * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom acoustic model that is to be used
+ * for the request. You must make the request with service credentials created for the instance of the service that owns
+ * the custom model.
  * @param {string} params.audio_name - The name of the new audio resource for the custom acoustic model. Use a localized
  * name that matches the language of the custom model and reflects the contents of the resource.
  * * Include a maximum of 128 characters in the name.
@@ -128,11 +132,7 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
-      params,
-      'speech-to-text',
-      'speech_to_text',
-    );
+     const _params = vcap.getCredentialsFromServiceBind(params, 'speech-to-text', 'speech_to_text');
     _params.headers = extend(
       {},
       _params.headers,
@@ -153,42 +153,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

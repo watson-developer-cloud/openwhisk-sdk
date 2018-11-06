@@ -16,20 +16,22 @@
 
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Synthesize audio.
  *
  * Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. You can pass a maximum
  * of 5 KB of text.  Use the `Accept` header or the `accept` query parameter to specify the requested format (MIME type)
- * of the response audio. By default, the service uses `audio/ogg;codecs=opus`. For detailed information about the
- * supported audio formats and sampling rates, see [Specifying an audio
- * format](https://console.bluemix.net/docs/services/text-to-speech/http.html#format).
+ * of the response audio. By default, the service uses `audio/ogg;codecs=opus`.
  *
  * If a request includes invalid query parameters, the service returns a `Warnings` response header that provides
  * messages about the invalid parameters. The warning includes a descriptive message and a list of invalid argument
  * strings. For example, a message such as `\"Unknown arguments:\"` or `\"Unknown url query arguments:\"` followed by a
  * list of the form `\"invalid_arg_1, invalid_arg_2.\"` The request succeeds despite the warnings.
+ *
+ * **See also:** [Synthesizing text to
+ * audio](https://console.bluemix.net/docs/services/text-to-speech/http.html#synthesize).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -55,11 +57,7 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
-      params,
-      'text-to-speech',
-      'text_to_speech',
-    );
+     const _params = vcap.getCredentialsFromServiceBind(params, 'text-to-speech', 'text_to_speech');
     _params.headers = extend(
       {},
       _params.headers,
@@ -80,42 +78,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

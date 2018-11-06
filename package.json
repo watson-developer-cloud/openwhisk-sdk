@@ -23,7 +23,8 @@
     "extend": "^3.0.1",
     "json-loader": "~0.5.7",
     "jsonlint": "^1.6.3",
-    "watson-developer-cloud": "~3.11.1"
+    "watson-developer-cloud": "~3.11.1",
+    "vcap_services": "0.6.0"
   },
   "devDependencies": {
     "eslint": "~4.7.2",

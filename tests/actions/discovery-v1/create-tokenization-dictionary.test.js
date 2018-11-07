@@ -5,22 +5,29 @@ const omit = require('object.omit');
 const openwhisk = require('openwhisk');
 const { auth, describe } = require('../../resources/auth-helper');
 const { adapt, negativeHandler } = require('../../resources/test-helper');
-let query = require('../../../packages/discovery-v1/actions/query');
+let createTokenizationDictionary = require('../../../packages/discovery-v1/actions/create-tokenization-dictionary');
 
 let ow;
 let credentials;
 let payload = {
   environment_id: 'example_environment_id',
   collection_id: 'example_collection_id',
-  headers: {
-    'User-Agent': 'openwhisk'
-  }
+  tokenization_rules: [{
+    text: 'example_text',
+    tokens: ['example', 'tokens'],
+    readings: ['example', 'readings'],
+    part_of_speech: 'example_part_of_speech'
+  }]
 };
 
 before(() => {
   if (process.env.TEST_OPENWHISK && auth) {
     ow = openwhisk(auth.ow);
-    query = adapt(query, 'discovery-v1/query', ow);
+    createTokenizationDictionary = adapt(
+      createTokenizationDictionary,
+      'discovery-v1/create-tokenization-dictionary',
+      ow
+    );
     credentials = auth.discovery;
   } else {
     credentials = {
@@ -31,21 +38,21 @@ before(() => {
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
         .post(`/api/v1/environments/${payload.environment_id}`
-             + `/collections/${payload.collection_id}/query`)
+              + `/collections/${payload.collection_id}`
+              + '/word_lists/tokenization_dictionary')
         .query({
           version: credentials.version
         })
         .reply(200, {});
     });
   }
-  credentials.collection_ids = credentials.collection_id;
   payload = extend({}, payload, credentials);
 });
 
-describe('query', () => {
+describe('create-tokenization-dictionary', () => {
   it('should fail if credentials are missing', () => {
     const params = omit(payload, ['username', 'password']);
-    return query
+    return createTokenizationDictionary
       .test(params)
       .then(() => {
         assert.fail('No failure on missing credentials');
@@ -54,7 +61,7 @@ describe('query', () => {
   });
   it('should fail if environment_id is missing', () => {
     const params = omit(payload, ['environment_id']);
-    return query
+    return createTokenizationDictionary
       .test(params)
       .then(() => {
         assert.fail('No failure on missing environment_id');
@@ -63,7 +70,7 @@ describe('query', () => {
   });
   it('should fail if collection_id is missing', () => {
     const params = omit(payload, ['collection_id']);
-    return query
+    return createTokenizationDictionary
       .test(params)
       .then(() => {
         assert.fail('No failure on missing collection_id');
@@ -73,7 +80,7 @@ describe('query', () => {
   it('should generate a valid payload', () => {
     if (!(process.env.TEST_OPENWHISK && auth)) {
       const params = payload;
-      return query
+      return createTokenizationDictionary
         .test(params)
         .then(() => {
           assert.ok(true);
@@ -86,7 +93,7 @@ describe('query', () => {
   it('should succeed with __bx_creds as credential source', () => {
     if (!(process.env.TEST_OPENWHISK && auth)) {
       const params = { __bx_creds: { discovery: payload } };
-      return query
+      return createTokenizationDictionary
         .test(params)
         .then(() => {
           assert.ok(true);

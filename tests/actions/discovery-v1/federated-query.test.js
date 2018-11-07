@@ -30,10 +30,9 @@ before(() => {
     };
     beforeEach(() => {
       nock('https://gateway.watsonplatform.net/discovery')
-        .get(`/api/v1/environments/${payload.environment_id}/query`)
+        .post(`/api/v1/environments/${payload.environment_id}/query`)
         .query({
-          version: credentials.version,
-          collection_ids: payload.collection_ids
+          version: credentials.version
         })
         .reply(200, {});
     });
@@ -61,15 +60,6 @@ describe('federated-query', () => {
       })
       .catch(err => negativeHandler(err));
   });
-  it('should fail if collection_ids is missing', () => {
-    const params = omit(payload, ['collection_ids']);
-    return federatedQuery
-      .test(params)
-      .then(() => {
-        assert.fail('No failure on missing collection_ids');
-      })
-      .catch(err => negativeHandler(err));
-  });
   it('should generate a valid payload', () => {
     if (!(process.env.TEST_OPENWHISK && auth)) {
       const params = payload;
@@ -78,8 +68,8 @@ describe('federated-query', () => {
         .then(() => {
           assert.ok(true);
         })
-        .catch(() => {
-          assert.fail('Failure on valid payload');
+        .catch((e) => {
+          assert.fail(e);
         });
     }
   });

@@ -50,16 +50,16 @@ const vcap = require('vcap_services');
  * with filters. Useful for applications to build lists, tables, and time series. For a full list of possible
  * aggregations, see the Query reference.
  * @param {number} [params.count] - Number of results to return.
- * @param {string} [params.return_fields] - A comma-separated list of the portion of the document hierarchy to return.
+ * @param {string[]} [params.return_fields] - A comma-separated list of the portion of the document hierarchy to return.
  * @param {number} [params.offset] - The number of query results to skip at the beginning. For example, if the total
  * number of results that are returned is 10 and the offset is 8, it returns the last two results.
- * @param {string} [params.sort] - A comma-separated list of fields in the document to sort on. You can optionally
+ * @param {string[]} [params.sort] - A comma-separated list of fields in the document to sort on. You can optionally
  * specify a sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the
  * default sort direction if no prefix is specified. This parameter cannot be used in the same query as the **bias**
  * parameter.
  * @param {boolean} [params.highlight] - When true, a highlight field is returned for each result which contains the
  * fields which match the query with `<em></em>` tags around the matching query terms.
- * @param {string} [params.passages_fields] - A comma-separated list of fields that passages are drawn from. If this
+ * @param {string[]} [params.passages_fields] - A comma-separated list of fields that passages are drawn from. If this
  * parameter not specified, then all top-level fields are included.
  * @param {number} [params.passages_count] - The maximum number of passages to return. The search returns fewer passages
  * if the requested total is not found. The default is `10`. The maximum is `100`.
@@ -70,16 +70,16 @@ const vcap = require('vcap_services');
  * @param {string} [params.deduplicate_field] - When specified, duplicate results based on the field specified are
  * removed from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
  * considered. This parameter is currently Beta functionality.
- * @param {string} [params.collection_ids] - A comma-separated list of collection IDs to be queried against. Required
+ * @param {string[]} [params.collection_ids] - A comma-separated list of collection IDs to be queried against. Required
  * when querying multiple collections, invalid when performing a single collection query.
  * @param {boolean} [params.similar] - When `true`, results are returned based on their similarity to the document IDs
  * specified in the **similar.document_ids** parameter.
- * @param {string} [params.similar_document_ids] - A comma-separated list of document IDs to find similar documents.
+ * @param {string[]} [params.similar_document_ids] - A comma-separated list of document IDs to find similar documents.
  *
  * **Tip:** Include the **natural_language_query** parameter to expand the scope of the document similarity search with
  * the natural language query. Other query parameters, such as **filter** and **query**, are subsequently applied and
  * reduce the scope.
- * @param {string} [params.similar_fields] - A comma-separated list of field names that are used as a basis for
+ * @param {string[]} [params.similar_fields] - A comma-separated list of field names that are used as a basis for
  * comparison to identify similar documents. If not specified, the entire document is used for comparison.
  * @param {string} [params.bias] - Field which the returned results will be biased against. The specified field must be
  * either a **date** or **number** format. When a **date** type field is specified returned results are biased towards

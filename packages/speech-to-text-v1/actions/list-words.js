@@ -16,6 +16,7 @@
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * List custom words.
@@ -26,6 +27,9 @@ const extend = require('extend');
  * words are listed in ascending alphabetical order. You must use credentials for the instance of the service that owns
  * a model to query information about its words.
  *
+ * **See also:** [Listing words from a custom language
+ * model](https://console.bluemix.net/docs/services/speech-to-text/language-words.html#listWords).
+ *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
  * @param {string} [params.password] - The password used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -35,8 +39,9 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the
- * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom language model that is to be used
+ * for the request. You must make the request with service credentials created for the instance of the service that owns
+ * the custom model.
  * @param {string} [params.word_type] - The type of words to be listed from the custom language model's words resource:
  * * `all` (the default) shows all words.
  * * `user` shows only custom words that were added or modified by the user.
@@ -45,15 +50,16 @@ const extend = require('extend');
  * `count`. You can prepend an optional `+` or `-` to an argument to indicate whether the results are to be sorted in
  * ascending or descending order. By default, words are sorted in ascending alphabetical order. For alphabetical
  * ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count
- * ordering, values with the same count are ordered alphabetically. With cURL, URL encode the `+` symbol as `%2B`.
+ * ordering, values with the same count are ordered alphabetically. With the `curl` command, URL encode the `+` symbol
+ * as `%2B`.
  * @return {Promise} - The Promise that the action returns.
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
+    const _params = vcap.getCredentialsFromServiceBind(
       params,
       'speech-to-text',
-      'speech_to_text',
+      'speech_to_text'
     );
     _params.headers = extend(
       {},
@@ -75,42 +81,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

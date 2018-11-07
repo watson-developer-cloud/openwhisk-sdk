@@ -16,6 +16,7 @@
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Add a custom word.
@@ -34,18 +35,21 @@ const extend = require('extend');
  * * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to specify
  * how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words,
  * acronyms, and so on. For example, you might specify that the word `IEEE` can sound like `i triple e`. You can specify
- * a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see [Using the
- * sounds_like field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#soundsLike).
+ * a maximum of five sounds-like pronunciations for a word.
  * * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter when you
  * want the word to appear different from its usual representation or from its spelling in corpora training data. For
- * example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM&trade;`. For more information,
- * see [Using the display_as
- * field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#displayAs).
+ * example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM&trade;`.
  *
  *
  * If you add a custom word that already exists in the words resource for the custom model, the new definition
  * overwrites the existing data for the word. If the service encounters an error, it does not add the word to the words
  * resource. Use the **List a custom word** method to review the word that you add.
+ *
+ * **See also:**
+ * * [Working with custom
+ * words](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#workingWords)
+ * * [Add words to the custom language
+ * model](https://console.bluemix.net/docs/services/speech-to-text/language-create.html#addWords).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -56,8 +60,9 @@ const extend = require('extend');
  * @param {Object} [params.headers] - Custom HTTP request headers
  * @param {boolean} [params.headers.X-Watson-Learning-Opt-Out=false] - opt-out of data collection
  * @param {string} [params.url] - override default service base url
- * @param {string} params.customization_id - The customization ID (GUID) of the custom language model. You must make the
- * request with service credentials created for the instance of the service that owns the custom model.
+ * @param {string} params.customization_id - The customization ID (GUID) of the custom language model that is to be used
+ * for the request. You must make the request with service credentials created for the instance of the service that owns
+ * the custom model.
  * @param {string} params.word_name - The custom word for the custom language model. When you add or update a custom
  * word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore)
  * to connect the tokens of compound words.
@@ -83,10 +88,10 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
+    const _params = vcap.getCredentialsFromServiceBind(
       params,
       'speech-to-text',
-      'speech_to_text',
+      'speech_to_text'
     );
     _params.headers = extend(
       {},
@@ -108,42 +113,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

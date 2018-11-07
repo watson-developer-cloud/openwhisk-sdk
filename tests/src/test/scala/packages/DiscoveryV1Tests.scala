@@ -88,6 +88,9 @@ class DiscoveryV1Tests extends WatsonPackages
     val getMetricsQuery = packageName + "/get-metrics-query"
     val queryLog = packageName + "/query-log"
     val deleteCredentials = packageName + "/delete-credentials"
+    val createTokenizationDictionary = packageName + "/create-tokenization-dictionary"
+    val deleteTokenizationDictionary = packageName + "/delete-tokenization-dictionary"
+    val getTokenizationDictionaryStatus = packageName + "/get-tokenization-dictionary-status"
 
     behavior of "Discovery V1 Package"
 
@@ -268,6 +271,15 @@ class DiscoveryV1Tests extends WatsonPackages
      val queryLogAction = wsk.action.get(queryLog)
      verifyAction(queryLogAction, queryLog, JsString(nodejs8kind))
 
+     val createTokenizationDictionaryAction = wsk.action.get(createTokenizationDictionary)
+     verifyAction(createTokenizationDictionaryAction, createTokenizationDictionary, JsString(nodejs8kind))
+
+     val deleteTokenizationDictionaryAction = wsk.action.get(deleteTokenizationDictionary)
+     verifyAction(deleteTokenizationDictionaryAction, deleteTokenizationDictionary, JsString(nodejs8kind))
+
+     val getTokenizationDictionaryStatusAction = wsk.action.get(getTokenizationDictionaryStatus)
+     verifyAction(getTokenizationDictionaryStatusAction, getTokenizationDictionaryStatus, JsString(nodejs8kind))
+
      //clean up after test
      wsk.action.delete(createEnvironment)
      wsk.action.delete(deleteEnvironment)
@@ -323,6 +335,9 @@ class DiscoveryV1Tests extends WatsonPackages
      wsk.action.delete(getMetricsQueryTokenEvent)
      wsk.action.delete(getMetricsQuery)
      wsk.action.delete(queryLog)
+     wsk.action.delete(createTokenizationDictionary)
+     wsk.action.delete(deleteTokenizationDictionary)
+     wsk.action.delete(getTokenizationDictionaryStatus)
      wsk.pkg.delete(packageName)
    }
 }

@@ -16,6 +16,7 @@
 
 const DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Knowledge Graph relationship query.
@@ -40,7 +41,8 @@ const extend = require('extend');
  * on that association. For example, if you wanted to query the city of London in England your query would look for
  * `London` with the context of `England`.
  * @param {string} [params.sort] - The sorting method for the relationships, can be `score` or `frequency`. `frequency`
- * is the number of unique times each entity is identified. The default is `score`.
+ * is the number of unique times each entity is identified. The default is `score`. This parameter cannot be used in the
+ * same query as the **bias** parameter.
  * @param {QueryRelationsFilter} [params.filter] - Filters to apply to the relationship query.
  * @param {number} [params.count] - The number of results to return. The default is `10`. The maximum is `1000`.
  * @param {number} [params.evidence_count] - The number of evidence items to return for each result. The default is `0`.
@@ -49,7 +51,7 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(params, 'discovery');
+    const _params = vcap.getCredentialsFromServiceBind(params, 'discovery');
     _params.headers = extend(
       {},
       _params.headers,
@@ -72,37 +74,5 @@ function main(params) {
   });
 }
 
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-*/
-function getParams(theParams, service) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
-}
 global.main = main;
 module.exports.test = main;

@@ -16,6 +16,7 @@
 
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 const extend = require('extend');
+const vcap = require('vcap_services');
 
 /**
  * Get profile as csv.
@@ -33,10 +34,10 @@ const extend = require('extend');
  * When specifying a content type of plain text or HTML, include the `charset` parameter to indicate the character
  * encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
  *
- * For detailed information about calling the service and the responses it can generate, see [Requesting a
- * profile](https://console.bluemix.net/docs/services/personality-insights/input.html), [Understanding a JSON
- * profile](https://console.bluemix.net/docs/services/personality-insights/output.html), and [Understanding a CSV
- * profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
+ * **See also:**
+ * * [Requesting a profile](https://console.bluemix.net/docs/services/personality-insights/input.html)
+ * * [Understanding a JSON profile](https://console.bluemix.net/docs/services/personality-insights/output.html)
+ * * [Understanding a CSV profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
  *
  * @param {Object} params - The parameters to send to the service.
  * @param {string} [params.username] - The username used to authenticate with the service. Username and password credentials are only required to run your application locally or outside of Bluemix. When running on Bluemix, the credentials will be automatically loaded from the `VCAP_SERVICES` environment variable.
@@ -78,10 +79,10 @@ const extend = require('extend');
  */
 function main(params) {
   return new Promise((resolve, reject) => {
-    const _params = getParams(
+    const _params = vcap.getCredentialsFromServiceBind(
       params,
       'personality-insights',
-      'personality_insights',
+      'personality_insights'
     );
     _params.headers = extend(
       {},
@@ -103,42 +104,6 @@ function main(params) {
       return;
     }
   });
-}
-
-/**
-* Helper function used to authenticate credentials bound to package using wsk service bind
-*
-* @param {Object} theParams - parameters sent to service
-* @param {string} service - name of service in bluemix used to retrieve credentials, used for IAM instances
-* @param {string} serviceAltName - alternate name of service used for cloud foundry instances
-*/
-function getParams(theParams, service, serviceAltName) {
-  if (Object.keys(theParams).length === 0) {
-    return theParams;
-  }
-  let bxCreds;
-  // Code that checks parameters bound using service bind
-  if (theParams.__bx_creds) {
-    // If user has IAM instance of service
-    if (theParams.__bx_creds[service]) {
-      bxCreds = theParams.__bx_creds[service];
-    } else if (theParams.__bx_creds[serviceAltName]) {
-      // If user has no IAM instance of service, check for CF instances
-      bxCreds = theParams.__bx_creds[serviceAltName];
-    } else {
-      // User has no instances of service
-      bxCreds = {};
-    }
-  } else {
-    bxCreds = {};
-  }
-  const _params = Object.assign({}, bxCreds, theParams);
-  if (_params.apikey) {
-    _params.iam_apikey = _params.apikey;
-    delete _params.apikey;
-  }
-  delete _params.__bx_creds;
-  return _params;
 }
 
 global.main = main;

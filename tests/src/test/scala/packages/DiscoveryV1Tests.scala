@@ -88,7 +88,7 @@ class DiscoveryV1Tests extends WatsonPackages
     val getMetricsQuery = packageName + "/get-metrics-query"
     val queryLog = packageName + "/query-log"
     val deleteCredentials = packageName + "/delete-credentials"
-    val createTokenizationDictionary = packageName + "/create-Tokenization-Dictionary"
+    val createTokenizationDictionary = packageName + "/create-tokenization-dictionary"
     val deleteTokenizationDictionary = packageName + "/delete-tokenization-dictionary"
     val getTokenizationDictionaryStatus = packageName + "/get-tokenization-dictionary-status"
 

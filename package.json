@@ -1,7 +1,7 @@
 {
   "name": "watson-openwhisk-sdk",
   "version": "0.8.1",
-  "description": "SDK to run Watson services on IBM Cloud Functions (Based on Apache Openwhisk)",
+  "description": "SDK to run Watson services on IBM Cloud Functions (Based on Apache Openwhisk) - DEPRECATED",
   "main": "index.js",
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",

@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/watson-developer-cloud/openwhisk-sdk.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/openwhisk-sdk)
 [![CLA assistant](https://cla-assistant.io/readme/badge/watson-developer-cloud/openwhisk-sdk)](https://cla-assistant.io/watson-developer-cloud/openwhisk-sdk)
 
-** This SDK has been deprecated and is no longer being maintained. To access Watson from the Cloud Functions NodeJS Runtime, use the [Watson Node SDK](https://github.com/watson-developer-cloud/node-sdk).**
+**This SDK has been deprecated and is no longer being maintained. To access Watson from the Cloud Functions NodeJS Runtime, use the [Watson Node SDK](https://github.com/watson-developer-cloud/node-sdk).**
 
 The Watson openwhisk-sdk contains packages for each of the Watson Services to provide a convenient way to call the Watson APIs.
 
